@@ -1,0 +1,74 @@
+<image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/top_logo.png' class='top_logo'>首页顶部图片</image>
+
+<swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
+  <swiper-item>
+    <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/swiper_1.png' class='index_swiper'>轮播图1-1</image>
+  </swiper-item>
+  <swiper-item>
+    <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/swiper_2.png' class='index_swiper'>轮播图1-2</image>
+  </swiper-item>
+  <swiper-item>
+    <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/swiper_3.png' class='index_swiper'>轮播图1-3</image>
+  </swiper-item>
+</swiper>
+
+<image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/title_img.png' class='top_logo'>首页无连接图片</image>
+
+<image src='/temp/index_img.png' class='index_img'>首页大图</image>
+
+<video src='/temp/index_video.mp4' class='index_video'>小视频</video>
+
+<image src='/temp/index_img1.png' class='index_img1'>首页图片1</image>
+
+<image src='/temp/index_img2.png' class='index_img2'>首页图片2</image>
+
+<swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
+  <swiper-item>
+    <image src='/temp/swiper_1.png' class='index_swiper'>轮播图1-1</image>
+  </swiper-item>
+  <swiper-item src='/temp/swiper1_2.png'>
+    <image src='/temp/swiper_2.png' class='index_swiper'>轮播图1-2</image>
+  </swiper-item>
+</swiper>
+
+<image src='/temp/index_new.png' class='index_new'>新品专区</image>
+
+<swiper class='index_swiper_new' autoplay='true' circular='true' indicator-dots='true'>
+  <swiper-item>
+    <image src='/temp/index_new_1.png' class='index_swiper_new'>新品轮播图-1</image>
+  </swiper-item>
+  <swiper-item>
+    <image src='/temp/index_new_2.png' class='index_swiper_new'>新品轮播图-2</image>
+  </swiper-item>
+</swiper>
+
+<image src='/temp/index_new_ps.png' class='index_new_ps'>新品配饰</image>
+
+<view class='recommend_goods'>
+  <view class='recommend_goods_1'>推荐商品1</view>
+  <view class='recommend_goods_2'>推荐商品2</view>
+</view>
+<view class='recommend_goods'>
+  <view class='recommend_goods_2'>推荐商品3</view>
+  <view class='recommend_goods_1'>推荐商品4</view>
+</view>
+
+<image src='/temp/trend_img.png' class='index_trend'>潮流标题</image>
+
+<image src='/temp/ps_img.png' class='index_ps'>配饰大图</image>
+
+<image src='/temp/star_img.png' class='index_star'>明星大图</image>
+
+<image src='/temp/man_img.png' class='recommend_goods_man_woman'>man</image>
+<image src='/temp/woman_img.png' class='recommend_goods_man_woman'>woman</image>
+
+<image src='/temp/vip_img.png' class='index_vip'>vip大图</image>
+
+<image src='/temp/2019.png' class='index_year_img'>年度图片</image>
+<image src='/temp/2018.png' class='index_year_img'>年度图片</image>
+<image src='/temp/2017.png' class='index_year_img'>年度图片</image>
+<image src='/temp/2016.png' class='index_year_img'>年度图片</image>
+
+<image src='/temp/my_ps.png' class='index_ps_min'>本店声明小图</image>
+<image src='/temp/my_pss.png' class='index_ps_max'>本店声明大图</image>
+

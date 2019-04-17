@@ -1,0 +1,46 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/goods/index",
+    "pages/cart/index",
+    "pages/user/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Grotesquery",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "backgroundColor":"#FFFFFF",
+    "color": "#000",
+    "selectedColor": "#000",
+    "list": [
+    {
+      "pagePath": "pages/index/index",  
+      "text": "首页",   
+      "iconPath": "icons/index2.png",
+      "selectedIconPath": "icons/index1.png"
+    },
+    {
+      "pagePath": "pages/goods/index", 
+      "text": "全部商品", 
+      "iconPath": "icons/index2.png",
+      "selectedIconPath": "icons/index1.png"
+    },
+    {
+      "pagePath": "pages/cart/index",
+      "text": "购物车",
+      "iconPath": "icons/cart2.png",
+      "selectedIconPath": "icons/cart1.png"
+    },
+    {
+      "pagePath": "pages/user/index",
+      "text": "我的",
+      "iconPath": "icons/user2.png",
+      "selectedIconPath": "icons/user1.png"
+    }
+    ]
+  }
+}

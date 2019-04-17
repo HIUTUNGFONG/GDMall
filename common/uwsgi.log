@@ -1,0 +1,638 @@
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Apr 14 19:23:01 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+writing pidfile to uwsgi.pid
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 127.0.0.1:8000 fd 3
+uwsgi socket 0 bound to UNIX address uwsgi.sock fd 6
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /home/hiutungfong/.virtualenvs/gdmall
+Python main interpreter initialized at 0x5629ffc4e7e0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+Traceback (most recent call last):
+  File "GDMall/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 5218)
+spawned uWSGI worker 1 (pid: 5219, cores: 1)
+spawned uWSGI worker 2 (pid: 5220, cores: 1)
+spawned uWSGI worker 3 (pid: 5221, cores: 1)
+spawned uWSGI worker 4 (pid: 5222, cores: 1)
+spawned uWSGI worker 5 (pid: 5223, cores: 1)
+spawned uWSGI http 1 (pid: 5224)
+--- no python application found, check your startup logs for errors ---
+[pid: 5220|app: -1|req: -1/1] 127.0.0.1 () {38 vars in 698 bytes} [Sun Apr 14 19:23:11 2019] GET /admin/ => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 5224)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket uwsgi.sock removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Apr 14 19:27:09 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+writing pidfile to uwsgi.pid
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 127.0.0.1:8000 fd 3
+uwsgi socket 0 bound to UNIX address uwsgi.sock fd 6
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /home/hiutungfong/.virtualenvs/gdmall
+Python main interpreter initialized at 0x557cbaa537e0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+failed to open python file GDMall/GDMall/wsgi.py
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 5573)
+spawned uWSGI worker 1 (pid: 5574, cores: 1)
+spawned uWSGI worker 2 (pid: 5575, cores: 1)
+spawned uWSGI worker 3 (pid: 5576, cores: 1)
+spawned uWSGI worker 4 (pid: 5577, cores: 1)
+spawned uWSGI worker 5 (pid: 5578, cores: 1)
+spawned uWSGI http 1 (pid: 5579)
+--- no python application found, check your startup logs for errors ---
+[pid: 5577|app: -1|req: -1/1] 127.0.0.1 () {38 vars in 684 bytes} [Sun Apr 14 19:27:18 2019] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 5574|app: -1|req: -1/2] 127.0.0.1 () {38 vars in 697 bytes} [Sun Apr 14 19:27:22 2019] GET /admin/ => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 5579)
+worker 2 buried after 0 seconds
+worker 1 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket uwsgi.sock removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Apr 14 19:27:59 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+writing pidfile to uwsgi.pid
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 127.0.0.1:8000 fd 3
+uwsgi socket 0 bound to UNIX address uwsgi.sock fd 6
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /home/hiutungfong/.virtualenvs/gdmall
+Python main interpreter initialized at 0x55b9dbcdd800
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+Traceback (most recent call last):
+  File "/opt/GDMall/GDMall/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 5596)
+spawned uWSGI worker 1 (pid: 5597, cores: 1)
+spawned uWSGI worker 2 (pid: 5598, cores: 1)
+spawned uWSGI worker 3 (pid: 5599, cores: 1)
+spawned uWSGI worker 4 (pid: 5600, cores: 1)
+spawned uWSGI worker 5 (pid: 5601, cores: 1)
+spawned uWSGI http 1 (pid: 5602)
+--- no python application found, check your startup logs for errors ---
+[pid: 5597|app: -1|req: -1/1] 127.0.0.1 () {38 vars in 697 bytes} [Sun Apr 14 19:28:03 2019] GET /admin/ => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 5602)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket uwsgi.sock removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Apr 14 19:38:27 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+writing pidfile to uwsgi.pid
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 127.0.0.1:8000 fd 3
+uwsgi socket 0 bound to UNIX address uwsgi.sock fd 6
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /home/hiutungfong/.virtualenvs/gdmall
+Python main interpreter initialized at 0x561c52f437e0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+Traceback (most recent call last):
+  File "GDMall/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 5899)
+spawned uWSGI worker 1 (pid: 5900, cores: 1)
+spawned uWSGI worker 2 (pid: 5901, cores: 1)
+spawned uWSGI worker 3 (pid: 5902, cores: 1)
+spawned uWSGI worker 4 (pid: 5903, cores: 1)
+spawned uWSGI worker 5 (pid: 5904, cores: 1)
+spawned uWSGI http 1 (pid: 5905)
+--- no python application found, check your startup logs for errors ---
+[pid: 5903|app: -1|req: -1/1] 127.0.0.1 () {38 vars in 697 bytes} [Sun Apr 14 19:38:30 2019] GET /admin/ => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 5904|app: -1|req: -1/2] 127.0.0.1 () {38 vars in 697 bytes} [Sun Apr 14 19:38:32 2019] GET /admin/ => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 5905)
+worker 1 buried after 0 seconds
+worker 3 buried after 0 seconds
+worker 2 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket uwsgi.sock removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Apr 14 19:41:47 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+writing pidfile to uwsgi.pid
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 127.0.0.1:8000 fd 3
+uwsgi socket 0 bound to UNIX address uwsgi.sock fd 6
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /root/.virtualenvs/gdmall
+Python main interpreter initialized at 0x5555b29b1750
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5555b29b1750 pid: 5968 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 5968)
+spawned uWSGI worker 1 (pid: 5970, cores: 1)
+spawned uWSGI worker 2 (pid: 5971, cores: 1)
+spawned uWSGI worker 3 (pid: 5972, cores: 1)
+spawned uWSGI worker 4 (pid: 5973, cores: 1)
+spawned uWSGI worker 5 (pid: 5974, cores: 1)
+spawned uWSGI http 1 (pid: 5975)
+[pid: 5971|app: 0|req: 1/1] 127.0.0.1 () {38 vars in 697 bytes} [Sun Apr 14 19:41:52 2019] GET /admin/ => generated 4187 bytes in 511 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 5971|app: 0|req: 2/2] 127.0.0.1 () {38 vars in 738 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5971|app: 0|req: 3/3] 127.0.0.1 () {38 vars in 742 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5971|app: 0|req: 4/4] 127.0.0.1 () {38 vars in 741 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5971|app: 0|req: 5/5] 127.0.0.1 () {38 vars in 735 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5971|app: 0|req: 6/6] 127.0.0.1 () {38 vars in 747 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+Sun Apr 14 19:41:54 2019 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) on request /static/xadmin/vendor/bootstrap/css/bootstrap.css (ip 127.0.0.1) !!!
+Sun Apr 14 19:41:54 2019 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 306] during GET /static/xadmin/vendor/bootstrap/css/bootstrap.css (127.0.0.1)
+OSError: write error
+[pid: 5972|app: 0|req: 1/7] 127.0.0.1 () {38 vars in 745 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/bootstrap/css/bootstrap.css => generated 0 bytes in 1147 msecs (HTTP/1.1 404) 3 headers in 0 bytes (1 switches on core 0)
+[pid: 5974|app: 0|req: 1/8] 127.0.0.1 () {38 vars in 765 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/font-awesome/css/font-awesome.min.css => generated 132 bytes in 1159 msecs (HTTP/1.1 404) 3 headers in 101 bytes (2 switches on core 0)
+[pid: 5973|app: 0|req: 1/9] 127.0.0.1 () {38 vars in 716 bytes} [Sun Apr 14 19:41:53 2019] GET /static/xadmin/vendor/jquery/jquery.min.js => generated 115 bytes in 1162 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5970|app: 0|req: 1/10] 127.0.0.1 () {38 vars in 660 bytes} [Sun Apr 14 19:41:53 2019] GET /admin/jsi18n/ => generated 4194 bytes in 1342 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 5971|app: 0|req: 7/11] 127.0.0.1 () {38 vars in 739 bytes} [Sun Apr 14 19:41:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5972|app: 0|req: 2/12] 127.0.0.1 () {38 vars in 743 bytes} [Sun Apr 14 19:41:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5974|app: 0|req: 2/13] 127.0.0.1 () {38 vars in 741 bytes} [Sun Apr 14 19:41:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5973|app: 0|req: 2/14] 127.0.0.1 () {38 vars in 747 bytes} [Sun Apr 14 19:41:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5970|app: 0|req: 2/15] 127.0.0.1 () {38 vars in 735 bytes} [Sun Apr 14 19:41:54 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 5975)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket uwsgi.sock removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Apr 14 23:02:32 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+writing pidfile to uwsgi.pid
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 bound to UNIX address uwsgi.sock fd 3
+uwsgi socket 1 bound to TCP address 127.0.0.1:8000 fd 4
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /root/.virtualenvs/gdmall
+Python main interpreter initialized at 0x5652a68f1890
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x5652a68f1890 pid: 6212 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 6212)
+spawned uWSGI worker 1 (pid: 6214, cores: 1)
+spawned uWSGI worker 2 (pid: 6215, cores: 1)
+spawned uWSGI worker 3 (pid: 6216, cores: 1)
+spawned uWSGI worker 4 (pid: 6217, cores: 1)
+spawned uWSGI worker 5 (pid: 6218, cores: 1)
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+[pid: 6214|app: 0|req: 1/1] 127.0.0.1 () {42 vars in 753 bytes} [Sun Apr 14 23:09:29 2019] GET /admin/ => generated 4187 bytes in 224 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 2/2] 127.0.0.1 () {42 vars in 772 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/css/xadmin.plugins.css => generated 110 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 3/3] 127.0.0.1 () {42 vars in 778 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/css/xadmin.responsive.css => generated 113 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 4/4] 127.0.0.1 () {42 vars in 767 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery/jquery.min.js => generated 115 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 5/5] 127.0.0.1 () {42 vars in 711 bytes} [Sun Apr 14 23:09:30 2019] GET /admin/jsi18n/ => generated 4194 bytes in 6 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 6/6] 127.0.0.1 () {42 vars in 789 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 7/7] 127.0.0.1 () {42 vars in 793 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 8/8] 127.0.0.1 () {42 vars in 791 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 9/9] 127.0.0.1 () {42 vars in 797 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 10/10] 127.0.0.1 () {42 vars in 785 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 11/11] 127.0.0.1 () {42 vars in 747 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 12/12] 127.0.0.1 () {42 vars in 759 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 1/13] 127.0.0.1 () {42 vars in 790 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/css/themes/bootstrap-xadmin.css => generated 119 bytes in 193 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 1/14] 127.0.0.1 () {42 vars in 816 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/font-awesome/css/font-awesome.min.css => generated 132 bytes in 202 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 1/15] 127.0.0.1 () {42 vars in 796 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/bootstrap/css/bootstrap.css => generated 122 bytes in 208 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 1/16] 127.0.0.1 () {42 vars in 766 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/css/xadmin.main.css => generated 107 bytes in 208 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 13/17] 127.0.0.1 () {42 vars in 789 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 2/18] 127.0.0.1 () {42 vars in 793 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 2/19] 127.0.0.1 () {42 vars in 791 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 2/20] 127.0.0.1 () {42 vars in 797 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 2/21] 127.0.0.1 () {42 vars in 785 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 14/22] 127.0.0.1 () {42 vars in 747 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 3/23] 127.0.0.1 () {42 vars in 759 bytes} [Sun Apr 14 23:09:30 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 3/24] 127.0.0.1 () {40 vars in 679 bytes} [Sun Apr 14 23:09:30 2019] GET /favicon.ico => generated 85 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 3/25] 192.168.3.122 () {40 vars in 707 bytes} [Sun Apr 14 23:10:04 2019] GET / => generated 74 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 3/26] 192.168.3.122 () {40 vars in 651 bytes} [Sun Apr 14 23:10:04 2019] GET /favicon.ico => generated 85 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 15/27] 192.168.3.122 () {40 vars in 717 bytes} [Sun Apr 14 23:10:14 2019] GET /admin => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 112 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 4/28] 192.168.3.122 () {40 vars in 719 bytes} [Sun Apr 14 23:10:14 2019] GET /admin/ => generated 4187 bytes in 86 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 4/29] 192.168.3.122 () {42 vars in 799 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/bootstrap/css/bootstrap.css => generated 122 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 4/30] 192.168.3.122 () {42 vars in 793 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/css/themes/bootstrap-xadmin.css => generated 119 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 16/31] 192.168.3.122 () {42 vars in 769 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/css/xadmin.main.css => generated 107 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 4/32] 192.168.3.122 () {42 vars in 819 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/font-awesome/css/font-awesome.min.css => generated 132 bytes in 8 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 5/33] 192.168.3.122 () {42 vars in 775 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/css/xadmin.plugins.css => generated 110 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 5/34] 192.168.3.122 () {42 vars in 781 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/css/xadmin.responsive.css => generated 113 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 5/35] 192.168.3.122 () {42 vars in 792 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 6/36] 192.168.3.122 () {42 vars in 796 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 5/37] 192.168.3.122 () {42 vars in 770 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery/jquery.min.js => generated 115 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 6/38] 192.168.3.122 () {42 vars in 794 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 17/39] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:10:15 2019] GET /admin/jsi18n/ => generated 4194 bytes in 8 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 6/40] 192.168.3.122 () {42 vars in 800 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 7/41] 192.168.3.122 () {42 vars in 788 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 6/42] 192.168.3.122 () {42 vars in 750 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 7/43] 192.168.3.122 () {42 vars in 762 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 18/44] 192.168.3.122 () {42 vars in 792 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 7/45] 192.168.3.122 () {42 vars in 796 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 8/46] 192.168.3.122 () {42 vars in 794 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 7/47] 192.168.3.122 () {42 vars in 800 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 8/48] 192.168.3.122 () {42 vars in 788 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 19/49] 192.168.3.122 () {42 vars in 750 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 8/50] 192.168.3.122 () {42 vars in 762 bytes} [Sun Apr 14 23:10:15 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 9/51] 192.168.3.122 () {42 vars in 799 bytes} [Sun Apr 14 23:12:45 2019] GET /static/xadmin/vendor/bootstrap/css/bootstrap.css => generated 122 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 8/52] 192.168.3.122 () {42 vars in 793 bytes} [Sun Apr 14 23:12:45 2019] GET /static/xadmin/css/themes/bootstrap-xadmin.css => generated 119 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 20/53] 192.168.3.122 () {42 vars in 769 bytes} [Sun Apr 14 23:12:45 2019] GET /static/xadmin/css/xadmin.main.css => generated 107 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 9/54] 192.168.3.122 () {42 vars in 775 bytes} [Sun Apr 14 23:12:45 2019] GET /static/xadmin/css/xadmin.plugins.css => generated 110 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 9/55] 192.168.3.122 () {42 vars in 819 bytes} [Sun Apr 14 23:12:45 2019] GET /static/xadmin/vendor/font-awesome/css/font-awesome.min.css => generated 132 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 10/56] 192.168.3.122 () {42 vars in 781 bytes} [Sun Apr 14 23:12:45 2019] GET /static/xadmin/css/xadmin.responsive.css => generated 113 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 9/57] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:12:49 2019] GET /admin/ => generated 4187 bytes in 96 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 21/58] 192.168.3.122 () {42 vars in 799 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/bootstrap/css/bootstrap.css => generated 122 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 10/59] 192.168.3.122 () {42 vars in 793 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/css/themes/bootstrap-xadmin.css => generated 119 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 11/60] 192.168.3.122 () {42 vars in 769 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/css/xadmin.main.css => generated 107 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 10/61] 192.168.3.122 () {42 vars in 819 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/font-awesome/css/font-awesome.min.css => generated 132 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 10/62] 192.168.3.122 () {42 vars in 775 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/css/xadmin.plugins.css => generated 110 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 22/63] 192.168.3.122 () {42 vars in 781 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/css/xadmin.responsive.css => generated 113 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 12/64] 192.168.3.122 () {42 vars in 770 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery/jquery.min.js => generated 115 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 11/65] 192.168.3.122 () {42 vars in 796 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 11/66] 192.168.3.122 () {42 vars in 792 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 23/67] 192.168.3.122 () {42 vars in 794 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 12/68] 192.168.3.122 () {42 vars in 788 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 13/69] 192.168.3.122 () {42 vars in 800 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 24/70] 192.168.3.122 () {42 vars in 762 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 12/71] 192.168.3.122 () {42 vars in 750 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 11/72] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:12:49 2019] GET /admin/jsi18n/ => generated 4194 bytes in 87 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 13/73] 192.168.3.122 () {42 vars in 792 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 14/74] 192.168.3.122 () {42 vars in 796 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 25/75] 192.168.3.122 () {42 vars in 794 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 13/76] 192.168.3.122 () {42 vars in 800 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 12/77] 192.168.3.122 () {42 vars in 788 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 14/78] 192.168.3.122 () {42 vars in 750 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 15/79] 192.168.3.122 () {42 vars in 762 bytes} [Sun Apr 14 23:12:49 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 26/80] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:12:53 2019] GET /admin/ => generated 4187 bytes in 14 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 14/81] 192.168.3.122 () {42 vars in 799 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/bootstrap/css/bootstrap.css => generated 122 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 13/82] 192.168.3.122 () {42 vars in 793 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/css/themes/bootstrap-xadmin.css => generated 119 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 15/83] 192.168.3.122 () {42 vars in 819 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/font-awesome/css/font-awesome.min.css => generated 132 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 16/84] 192.168.3.122 () {42 vars in 769 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/css/xadmin.main.css => generated 107 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 27/85] 192.168.3.122 () {42 vars in 775 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/css/xadmin.plugins.css => generated 110 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 14/86] 192.168.3.122 () {42 vars in 781 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/css/xadmin.responsive.css => generated 113 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 16/87] 192.168.3.122 () {42 vars in 770 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery/jquery.min.js => generated 115 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 17/88] 192.168.3.122 () {42 vars in 792 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 28/89] 192.168.3.122 () {42 vars in 796 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 15/90] 192.168.3.122 () {42 vars in 794 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 17/91] 192.168.3.122 () {42 vars in 800 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 18/92] 192.168.3.122 () {42 vars in 788 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 29/93] 192.168.3.122 () {42 vars in 750 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 16/94] 192.168.3.122 () {42 vars in 762 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 15/95] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:12:54 2019] GET /admin/jsi18n/ => generated 4194 bytes in 90 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 18/96] 192.168.3.122 () {42 vars in 792 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.min.js => generated 126 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 19/97] 192.168.3.122 () {42 vars in 796 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.min.js => generated 128 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6214|app: 0|req: 30/98] 192.168.3.122 () {42 vars in 794 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.min.js => generated 127 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6218|app: 0|req: 17/99] 192.168.3.122 () {42 vars in 800 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.min.js => generated 130 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6217|app: 0|req: 16/100] 192.168.3.122 () {42 vars in 788 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/vendor/bootstrap/js/bootstrap.min.js => generated 124 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6215|app: 0|req: 19/101] 192.168.3.122 () {42 vars in 750 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/js/xadmin.main.js => generated 105 bytes in 0 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 6216|app: 0|req: 20/102] 192.168.3.122 () {42 vars in 762 bytes} [Sun Apr 14 23:12:54 2019] GET /static/xadmin/js/xadmin.responsive.js => generated 111 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket uwsgi.sock removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Apr 14 23:23:45 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+writing pidfile to uwsgi.pid
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 bound to UNIX address uwsgi.sock fd 3
+uwsgi socket 1 bound to TCP address 127.0.0.1:8000 fd 4
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /root/.virtualenvs/gdmall
+Python main interpreter initialized at 0x55b733398890
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55b733398890 pid: 6633 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 6633)
+spawned uWSGI worker 1 (pid: 6635, cores: 1)
+spawned uWSGI worker 2 (pid: 6636, cores: 1)
+spawned uWSGI worker 3 (pid: 6637, cores: 1)
+spawned uWSGI worker 4 (pid: 6638, cores: 1)
+spawned uWSGI worker 5 (pid: 6639, cores: 1)
+[pid: 6635|app: 0|req: 1/1] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:23:50 2019] GET /admin/ => generated 4187 bytes in 221 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 1/2] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:23:50 2019] GET /admin/jsi18n/ => generated 4194 bytes in 265 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6637|app: 0|req: 1/3] 192.168.3.122 () {46 vars in 861 bytes} [Sun Apr 14 23:24:38 2019] GET /admin/ => generated 4187 bytes in 227 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6638|app: 0|req: 1/4] 192.168.3.122 () {46 vars in 767 bytes} [Sun Apr 14 23:24:38 2019] GET /admin/jsi18n/ => generated 4194 bytes in 276 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6639|app: 0|req: 1/5] 192.168.3.122 () {46 vars in 799 bytes} [Sun Apr 14 23:24:38 2019] GET /favicon.ico => generated 85 bytes in 164 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 6635|app: 0|req: 2/6] 127.0.0.1 () {42 vars in 753 bytes} [Sun Apr 14 23:26:44 2019] GET /admin/ => generated 4187 bytes in 4 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 2/7] 127.0.0.1 () {42 vars in 711 bytes} [Sun Apr 14 23:26:44 2019] GET /admin/jsi18n/ => generated 4194 bytes in 6 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6637|app: 0|req: 2/8] 127.0.0.1 () {46 vars in 730 bytes} [Sun Apr 14 23:28:01 2019] GET /admin/ => generated 4187 bytes in 7 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6638|app: 0|req: 2/9] 127.0.0.1 () {46 vars in 688 bytes} [Sun Apr 14 23:28:01 2019] GET /admin/jsi18n/ => generated 4194 bytes in 7 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6639|app: 0|req: 2/10] 127.0.0.1 () {44 vars in 656 bytes} [Sun Apr 14 23:28:02 2019] GET /favicon.ico => generated 85 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 6635|app: 0|req: 3/11] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:30:57 2019] GET /admin/ => generated 4187 bytes in 9 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 3/12] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:30:57 2019] GET /admin/jsi18n/ => generated 4194 bytes in 13 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6637|app: 0|req: 3/13] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:30:59 2019] GET /admin/ => generated 4187 bytes in 11 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6638|app: 0|req: 3/14] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:30:59 2019] GET /admin/jsi18n/ => generated 4194 bytes in 8 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6639|app: 0|req: 3/15] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:31:35 2019] GET /admin/ => generated 4187 bytes in 77 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6635|app: 0|req: 4/16] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:31:35 2019] GET /admin/jsi18n/ => generated 4194 bytes in 9 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 4/17] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:31:36 2019] GET /admin/ => generated 4187 bytes in 11 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6637|app: 0|req: 4/18] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:31:36 2019] GET /admin/jsi18n/ => generated 4194 bytes in 8 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6638|app: 0|req: 4/19] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:31:37 2019] GET /admin/ => generated 4187 bytes in 8 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6639|app: 0|req: 4/20] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:31:37 2019] GET /admin/jsi18n/ => generated 4194 bytes in 9 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6635|app: 0|req: 5/21] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:31:37 2019] GET /admin/ => generated 4187 bytes in 12 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 5/22] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:31:37 2019] GET /admin/jsi18n/ => generated 4194 bytes in 8 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6637|app: 0|req: 5/23] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:31:44 2019] GET /admin/ => generated 4187 bytes in 5 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6638|app: 0|req: 5/24] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:31:44 2019] GET /admin/jsi18n/ => generated 4194 bytes in 9 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6639|app: 0|req: 5/25] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:31:45 2019] GET /admin/ => generated 4187 bytes in 11 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6635|app: 0|req: 6/26] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:31:45 2019] GET /admin/jsi18n/ => generated 4194 bytes in 8 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 6/27] 192.168.3.122 () {44 vars in 839 bytes} [Sun Apr 14 23:32:25 2019] GET /admin/ => generated 4187 bytes in 22 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6637|app: 0|req: 6/28] 192.168.3.122 () {42 vars in 714 bytes} [Sun Apr 14 23:32:25 2019] GET /admin/jsi18n/ => generated 4194 bytes in 9 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 6638|app: 0|req: 6/29] 192.168.3.122 () {52 vars in 1032 bytes} [Sun Apr 14 23:32:36 2019] POST /admin/ => generated 0 bytes in 115 msecs (HTTP/1.1 302) 9 headers in 531 bytes (1 switches on core 0)
+[pid: 6639|app: 0|req: 6/30] 192.168.3.122 () {46 vars in 925 bytes} [Sun Apr 14 23:32:36 2019] GET /admin/ => generated 9063 bytes in 46 msecs (HTTP/1.1 200) 7 headers in 358 bytes (1 switches on core 0)
+[pid: 6635|app: 0|req: 7/31] 192.168.3.122 () {42 vars in 758 bytes} [Sun Apr 14 23:32:36 2019] GET /admin/jsi18n/ => generated 7684 bytes in 29 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 7/32] 192.168.3.122 () {44 vars in 894 bytes} [Sun Apr 14 23:32:38 2019] GET /admin/ => generated 9063 bytes in 34 msecs (HTTP/1.1 200) 6 headers in 227 bytes (1 switches on core 0)
+[pid: 6637|app: 0|req: 7/33] 192.168.3.122 () {42 vars in 758 bytes} [Sun Apr 14 23:32:38 2019] GET /admin/jsi18n/ => generated 7684 bytes in 24 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+[pid: 6638|app: 0|req: 7/34] 192.168.3.122 () {44 vars in 916 bytes} [Sun Apr 14 23:32:38 2019] GET /admin/xadmin/log/ => generated 24818 bytes in 71 msecs (HTTP/1.1 200) 8 headers in 513 bytes (1 switches on core 0)
+[pid: 6639|app: 0|req: 7/35] 192.168.3.122 () {42 vars in 769 bytes} [Sun Apr 14 23:32:38 2019] GET /admin/jsi18n/ => generated 7684 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+[pid: 6635|app: 0|req: 8/36] 192.168.3.122 () {44 vars in 905 bytes} [Sun Apr 14 23:32:41 2019] GET /admin/ => generated 9063 bytes in 34 msecs (HTTP/1.1 200) 6 headers in 227 bytes (1 switches on core 0)
+[pid: 6636|app: 0|req: 8/37] 192.168.3.122 () {42 vars in 758 bytes} [Sun Apr 14 23:32:41 2019] GET /admin/jsi18n/ => generated 7684 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+Gracefully killing worker 3 (pid: 6637)...
+Gracefully killing worker 1 (pid: 6635)...
+...brutally killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /opt/GDMall
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 3 mapped to socket 0 (uwsgi.sock)
+found fd 4 mapped to socket 1 (127.0.0.1:8000)
+running /root/.virtualenvs/gdmall/bin/uwsgi
+[uWSGI] getting INI configuration from common/uwsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Mon Apr 15 00:54:44 2019] ***
+compiled with version: 7.3.0 on 14 April 2019 10:35:34
+os: Linux-4.18.0-17-generic #18~18.04.1-Ubuntu SMP Fri Mar 15 15:27:12 UTC 2019
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /opt/GDMall
+detected binary path: /root/.virtualenvs/gdmall/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /opt/GDMall/
+your processes number limit is 15441
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uwsgi socket 0 inherited UNIX address uwsgi.sock fd 3
+uwsgi socket 1 inherited INET address 127.0.0.1:8000 fd 4
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.7 (default, Oct 22 2018, 11:32:17)  [GCC 8.2.0]
+Set PythonHome to /root/.virtualenvs/gdmall
+Python main interpreter initialized at 0x55e87ecf3250
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486576 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55e87ecf3250 pid: 6633 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 6633)
+spawned uWSGI worker 1 (pid: 8772, cores: 1)
+spawned uWSGI worker 2 (pid: 8773, cores: 1)
+spawned uWSGI worker 3 (pid: 8774, cores: 1)
+spawned uWSGI worker 4 (pid: 8775, cores: 1)
+spawned uWSGI worker 5 (pid: 8776, cores: 1)

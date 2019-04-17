@@ -1,0 +1,3 @@
+<!--pages/goods/index.wxml-->
+<text>商品列表页</text>
+<button>get_token</button>
