@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h1#ym_$=yi!2*dhsae+m2p$ws_73!2xs)0=7@j6dvk(_e0vz50'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'xadmin',  # xadmin后台管理
     'crispy_forms',  # xadmin后台管理
-    'user',  # 用户模块
+    'apps.user',  # 用户模块
+    'apps.goods',
     # 'werkzeug_debugger_runserver',
     # 'django_extensions',
 ]
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'common.processor.ali_media',    # aliyun
             ],
         },
     },
@@ -128,6 +130,19 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT='/opt/static/GDMall'
 
 # 证书配置
-SESSION_COOKIE_SECURE=True
-SESSION_COOKIE_HTTPONLY=True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+# SESSION_COOKIE_SECURE=True
+# SESSION_COOKIE_HTTPONLY=True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+
+# 阿里云oss
+ACCESS_KEY_ID = "LTAI5cuJmRKFt1fW"
+ACCESS_KEY_SECRET = "Km5xbIeCN7ockiONQiX6hY0FQFIOzh"
+END_POINT = "oss-cn-shenzhen.aliyuncs.com"
+PREFIX_URL = 'http://'
+BUCKET_NAME = "grotesquery"
+ALIYUN_OSS_CNAME = ""  # 自定义域名，如果不需要可以不填写
+BUCKET_ACL_TYPE = "public-read"  # private, public-read, public-read-write
+DEFAULT_FILE_STORAGE = 'aliyun_oss2_storage.backends.AliyunMediaStorage'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = "media"
+ALI_MEDIA_URL = PREFIX_URL + BUCKET_NAME + "." + END_POINT + '/media/'

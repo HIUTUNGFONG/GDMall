@@ -1,5 +1,6 @@
-from django.urls import path, re_path
-from user.views import *
+from django.urls import re_path
+
+from apps.user.views import TokenView
 
 app_name = 'user'
 

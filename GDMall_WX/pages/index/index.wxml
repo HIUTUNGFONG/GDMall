@@ -14,22 +14,32 @@
 
 <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/title_img.png' class='top_logo'>首页无连接图片</image>
 
+
+<block wx:if="{{vp}}">
+  <video src='/temp/index_video.mp4' class='index_video'>小视频</video>
+</block>
+<block wx:else>
+  <image src='/temp/index_img2.png' class='index_img2'>视频或图片栏</image>
+</block>
+
+<image src='/temp/index_clothing.png' class='index_img1'>服装</image>
+
+<view class='man_woman'>
+  <view class='mw_1' bindtap='on_mw_1'></view>
+  <view class='mw_2'></view>
+</view>
+
+<view class='{{showManType?"man_type":"man_type_none"}}'></view>
+
+
+
 <image src='/temp/index_img.png' class='index_img'>首页大图</image>
 
-<video src='/temp/index_video.mp4' class='index_video'>小视频</video>
 
-<image src='/temp/index_img1.png' class='index_img1'>首页图片1</image>
 
-<image src='/temp/index_img2.png' class='index_img2'>首页图片2</image>
 
-<swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
-  <swiper-item>
-    <image src='/temp/swiper_1.png' class='index_swiper'>轮播图1-1</image>
-  </swiper-item>
-  <swiper-item src='/temp/swiper1_2.png'>
-    <image src='/temp/swiper_2.png' class='index_swiper'>轮播图1-2</image>
-  </swiper-item>
-</swiper>
+
+
 
 <image src='/temp/index_new.png' class='index_new'>新品专区</image>
 

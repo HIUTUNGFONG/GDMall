@@ -13,10 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.urls import path, include
+
+from GDMall import settings
 import xadmin
 
 urlpatterns = [
     path('admin/', xadmin.site.urls),
-    path('api/', include('user.urls', namespace='user')),  # 用户模块
-]
+    path('api/', include('apps.user.urls', namespace='user')),  # 用户模块
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
