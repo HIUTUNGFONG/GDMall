@@ -1,9 +1,9 @@
 from django.http import HttpResponse
+from django.views import View
 from django.shortcuts import render
+
 import requests
 
-# Create your views here.
-from django.views import View
 
 
 class TokenView(View):

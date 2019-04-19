@@ -22,4 +22,5 @@ import xadmin
 urlpatterns = [
     path('admin/', xadmin.site.urls),
     path('api/', include('apps.user.urls', namespace='user')),  # 用户模块
+    path('api/', include('apps.goods.urls', namespace='goods')),  # 商品模块
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
