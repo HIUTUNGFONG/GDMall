@@ -1,10 +1,10 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/goods/index",
-    "pages/cart/index",
-    "pages/user/index",
-    "pages/logs/logs"
+    "pages/product/product",
+    "pages/goods/goods",
+    "pages/cart/cart",
+    "pages/user/user"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -24,19 +24,19 @@
       "selectedIconPath": "icons/index1.png"
     },
     {
-      "pagePath": "pages/goods/index", 
+      "pagePath": "pages/goods/goods", 
       "text": "全部商品", 
       "iconPath": "icons/index2.png",
       "selectedIconPath": "icons/index1.png"
     },
     {
-      "pagePath": "pages/cart/index",
+      "pagePath": "pages/cart/cart",
       "text": "购物车",
       "iconPath": "icons/cart2.png",
       "selectedIconPath": "icons/cart1.png"
     },
     {
-      "pagePath": "pages/user/index",
+      "pagePath": "pages/user/user",
       "text": "我的",
       "iconPath": "icons/user2.png",
       "selectedIconPath": "icons/user1.png"

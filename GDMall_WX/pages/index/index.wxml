@@ -2,7 +2,7 @@
 
 <swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
   <swiper-item wx:for='{{bannerArr}}' wx:key='{{index}}'>
-    <image src='{{item.image}}' class='index_swiper'>轮播图</image>
+    <image src='{{item.image}}' class='index_swiper' bindtap='onProduct'>轮播图</image>
   </swiper-item>
 </swiper>
 

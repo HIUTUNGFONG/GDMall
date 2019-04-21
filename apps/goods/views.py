@@ -18,4 +18,6 @@ class IndexView(APIView):
         vorb = IndexVideoOrBanner.objects.filter(is_delete=False)
         ics = IndexCarouselSerializers(carousel, many=True)
         ivobs = IndexVideoOrBannerlSerializers(vorb, many=True)
-        return Response(ics.data,ivobs.data)
+        data = {'ics':ics.data,
+                'ivobs':ivobs.data}
+        return Response(data)

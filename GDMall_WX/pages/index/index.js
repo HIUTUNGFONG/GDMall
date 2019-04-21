@@ -33,7 +33,12 @@ Page({
     });
     // console.log(data);
   },
-
+  onProduct: function (){
+    // 轮播图跳转
+    wx.navigateTo({
+      url: '../product/product',
+    })
+  },
 
   on_mw_1: function () {
     // 控制男装显示隐藏
