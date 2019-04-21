@@ -14,6 +14,6 @@ class IndexView(APIView):
     '''
 
     def get(self, request):
-        carousel = IndexCarousel.objects.all().order_by('index')
+        carousel = IndexCarousel.objects.filter(is_delete=False).order_by('index')
         serializers = IndexCarouselSerializers(carousel, many=True)
         return Response(serializers.data)

@@ -1,6 +1,8 @@
 //index.js
 //获取应用实例
-const app = getApp()
+import {Index} from 'index-model.js';
+
+var index = new Index();
 
 Page({
   data: {
@@ -18,9 +20,23 @@ Page({
   onLoad: function (options) {
     // 生命周期函数--监听页面加载
     showManType: (options.showManType == "true" ? true : false)
+    this._loadData();
   
   },
+  _loadData:function(){
+    var data = index.getBannerData((res)=>{
+    // 回调函数
+      console.log(res);
+      this.setData({
+        'bannerArr':res
+      })
+    });
+    // console.log(data);
+  },
+
+
   on_mw_1: function () {
+    // 控制男装显示隐藏
     var that = this;
     that.setData({
       showManType: (!that.data.showManType)

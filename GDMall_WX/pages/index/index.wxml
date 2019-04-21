@@ -1,14 +1,8 @@
 <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/top_logo.png' class='top_logo'>首页顶部图片</image>
 
 <swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
-  <swiper-item>
-    <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/swiper_1.png' class='index_swiper'>轮播图1-1</image>
-  </swiper-item>
-  <swiper-item>
-    <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/swiper_2.png' class='index_swiper'>轮播图1-2</image>
-  </swiper-item>
-  <swiper-item>
-    <image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/swiper_3.png' class='index_swiper'>轮播图1-3</image>
+  <swiper-item wx:for='{{bannerArr}}' wx:key='{{index}}'>
+    <image src='{{item.image}}' class='index_swiper'>轮播图1-1</image>
   </swiper-item>
 </swiper>
 
