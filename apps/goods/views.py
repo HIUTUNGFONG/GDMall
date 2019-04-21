@@ -5,7 +5,7 @@ from apps.goods.models import *
 
 import json
 
-from apps.goods.serializers import IndexCarouselSerializers
+from apps.goods.serializers import *
 
 
 class IndexView(APIView):
@@ -15,5 +15,7 @@ class IndexView(APIView):
 
     def get(self, request):
         carousel = IndexCarousel.objects.filter(is_delete=False).order_by('index')
-        serializers = IndexCarouselSerializers(carousel, many=True)
-        return Response(serializers.data)
+        vorb = IndexVideoOrBanner.objects.filter(is_delete=False)
+        ics = IndexCarouselSerializers(carousel, many=True)
+        ivobs = IndexVideoOrBannerlSerializers(vorb, many=True)
+        return Response(ics.data,ivobs.data)

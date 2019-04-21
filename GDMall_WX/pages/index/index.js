@@ -24,9 +24,9 @@ Page({
   
   },
   _loadData:function(){
-    var data = index.getBannerData((res)=>{
+    index.getBannerData((res)=>{
     // 回调函数
-      console.log(res);
+      // console.log(res);
       this.setData({
         'bannerArr':res
       })
