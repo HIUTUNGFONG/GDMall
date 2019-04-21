@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h1#ym_$=yi!2*dhsae+m2p$ws_73!2xs)0=7@j6dvk(_e0vz50'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'xadmin',  # xadmin后台管理
     'crispy_forms',  # xadmin后台管理
     'apps.user',  # 用户模块
-    'apps.goods',
-    # 'werkzeug_debugger_runserver',
-    # 'django_extensions',
+    'apps.goods',   # 商品模块
+    # 'werkzeug_debugger_runserver',    # https
+    # 'django_extensions',  # https
+    'rest_framework',  # 添加rest_framework
 ]
 
 

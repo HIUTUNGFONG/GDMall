@@ -1,9 +1,9 @@
 from django.urls import re_path,path
 
-from apps.user.views import TokenView
+from apps.goods.views import IndexView
 
-app_name = 'user'
+app_name = 'goods'
 
 urlpatterns = [
-    path('/banner', TokenView.as_view(), name='getBanner'),  # GET
+    path('banner/', IndexView.as_view(), name='IndexView'),  # GET
 ]

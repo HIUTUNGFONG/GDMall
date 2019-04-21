@@ -1,19 +1,19 @@
-from django.shortcuts import render
-from django.views import View
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from apps.goods.models import *
 
+import json
 
-class IndexView(View):
+from apps.goods.serializers import IndexCarouselSerializers
+
+
+class IndexView(APIView):
     '''
     首页
     '''
 
     def get(self, request):
-        # 获取轮播图信息
         carousel = IndexCarousel.objects.all().order_by('index')
-
-        # 组织上下文
-        context = {'carousel': carousel}
-
-        return render(request, context)
+        serializers = IndexCarouselSerializers(carousel, many=True)
+        return Response(serializers.data)

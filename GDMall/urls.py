@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.urls import path, include
+from rest_framework.documentation import include_docs_urls
 
 from GDMall import settings
 import xadmin
 
 urlpatterns = [
     path('admin/', xadmin.site.urls),
+    path('docs/', include_docs_urls(title="API文档")),
     path('api/', include('apps.user.urls', namespace='user')),  # 用户模块
     path('api/', include('apps.goods.urls', namespace='goods')),  # 商品模块
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
