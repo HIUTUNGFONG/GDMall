@@ -26,12 +26,7 @@
   height: 100rpx;
   background-color: black;
 }
-/* 首页大图 */
-.index_img {
-  width: 100%;
-  height: 1030rpx;
-  background-color: black;
-}
+
 /* 首页小视频 */
 .index_video {
   width: 100%;
@@ -56,23 +51,13 @@
   height: 560rpx;
   background-color: black; 
 }
-/* 新品专区 */
-.index_new {
-  width: 100%;
-  height: 600rpx;
-  background-color: black; 
-}
+
 .index_swiper_new {
   width: 100%;
   height: 470rpx;
   background-color: black; 
 }
-/* 新品配饰 */
-.index_new_ps {
-  width: 100%;
-  height: 100rpx;
-  background-color: black; 
-}
+
 /* 推荐商品 */
 .recommend_goods {
   display: flex;  
@@ -90,41 +75,21 @@
   background-color: rgb(209, 41, 41); 
   flex:1;
 }
-/* 潮流标题 */
-.index_trend {
-  width: 100%;
-  height: 150rpx; 
-}
+
 /* 配饰大图 */
 .index_ps {
   width: 100%;
   height: 700rpx; 
 }
-/* 配饰大图 */
-.index_star {
-  width: 100%;
-  height: 700rpx; 
-}
-/* 男装女装 */
-.recommend_goods_man_woman {
-  width: 50%;
-  height: 700rpx; 
-}
+
+
 /* vip大图 */
 .index_vip {
   width: 100%;
   height: 700rpx; 
 }
-/* 年度小图 */
-.index_year_img {
-  width: 50%;
-  height: 250rpx; 
-}
-/* 本店声明小图 */
-.index_ps_min {
-  width: 100%;
-  height: 500rpx; 
-}
+
+
 /* 本店声明大图 */
 .index_ps_max {
   width: 100%;
@@ -132,29 +97,31 @@
 }
 /* 男装&女装 */
 .man_woman {
-  display: flex;
+  /* display: flex; */
   width: 100%;
   height: 230rpx;
-  background: url(https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_woman.png?sign=72791a10240bdea152091aabb1875cdb&t=1555514508) no-repeat; 
+  /* background: url(https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_woman.png?sign=72791a10240bdea152091aabb1875cdb&t=1555514508) no-repeat;  */
 
 }
 /* 男装 */
 .mw_1 {
   position:relative;
   left: 20rpx;
-  top: 20rpx;  
+  top: -230rpx;  
   width: 400rpx;
   height: 90%;
-  /* background-color: rgb(187, 41, 41); */
+  background-color: rgb(187, 41, 41);
+  z-index: 999;
 }
 /* 女装 */
 .mw_2 {
   position:relative;
-  left: 120rpx;
-  top: 20rpx;
+  left: 520rpx;
+  top: -430rpx;
   width: 210rpx;
   height: 90%;
-  /* background-color: rgb(46, 179, 86); */
+  background-color: rgb(46, 179, 86);
+  z-index: 999;
 }
 
 .man_type {
@@ -165,4 +132,15 @@
 }
 .man_type_none {
   display: none;
+}
+.man_classify{
+  display: flex;
+  width: 100%;
+  background-color: rgb(228, 174, 105);
+}
+.man_classifys{ 
+  margin-top: 10rpx;
+  margin-left: 30rpx;
+  width: 45%;
+  background-color: rgb(77, 151, 83);
 }

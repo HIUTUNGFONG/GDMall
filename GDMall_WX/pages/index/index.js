@@ -8,7 +8,8 @@ Page({
   data: {
 
     vp:true,  //视频或图片栏控制显示参数
-    showManType:false
+    showManType:false,
+mwImageUrl:'https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_woman.png?sign=72791a10240bdea152091aabb1875cdb&t=1555514508'
 
   },
   //事件处理函数
@@ -28,7 +29,10 @@ Page({
     // 回调函数
       // console.log(res);
       this.setData({
-        'bannerArr':res
+        'ics':res.ics
+      })
+      this.setData({
+        'ivobs': res.ivobs[0]
       })
     });
     // console.log(data);
@@ -47,6 +51,11 @@ Page({
       showManType: (!that.data.showManType)
     })
 
+  },
+  onVip: function () {
+    wx.navigateTo({
+      url: '../vip/vip',
+    })
   }
 
   

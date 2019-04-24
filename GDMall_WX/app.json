@@ -4,7 +4,9 @@
     "pages/product/product",
     "pages/goods/goods",
     "pages/cart/cart",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/vip/vip"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
