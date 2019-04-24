@@ -17,7 +17,7 @@ class IndexCarousel(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class IndexVideoOrBanner(BaseModel):
@@ -41,7 +41,7 @@ class IndexVideoOrBanner(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Sort(BaseModel):
@@ -114,7 +114,7 @@ class GoodsImage(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Attribute(BaseModel):
@@ -138,7 +138,7 @@ class Attribute(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Commodity(BaseModel):
@@ -158,4 +158,4 @@ class Commodity(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.goods_id
+        return str(self.goods_id)
