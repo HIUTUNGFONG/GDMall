@@ -1,6 +1,10 @@
 {
   "component": true,
   "usingComponents": {
-    "van-search": "/common/dist/search/index"
+    "van-search": "/common/vant/dist/search/index",
+    "van-popup": "/common/vant/dist/popup/index",
+    "van-icon": "/common/vant/dist/icon/index",
+    "van-row": "/common/vant/dist/row/index",
+    "van-col": "/common/vant/dist/col/index"
   }
 }

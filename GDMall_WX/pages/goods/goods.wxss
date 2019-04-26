@@ -1,1 +1,4 @@
-/* pages/goods/goods.wxss */
+
+.sss{
+  padding-top: 50rpx
+}

@@ -1,1 +1,19 @@
-<van-search value="{{ value }}" placeholder="请输入搜索关键词" />
+<van-row>
+  <van-col span="2">
+    <view bindtap='onShowPopup' style='padding-top:15rpx;padding-left: 15rpx'><van-icon name="bars" size='65rpx' /></view>
+  </van-col>
+  <van-col span="22">
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" />
+  </van-col>
+</van-row>
+
+<van-popup
+  show="{{ show }}"
+  position="left"
+  overlay="{{ true }}"
+  bind:close="onClose"
+  custom-style="width:200rpx;height:100%"
+>
+  <van-row>全部商品</van-row>
+  <van-row>全部商品</van-row>
+</van-popup>

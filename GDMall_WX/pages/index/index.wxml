@@ -10,7 +10,7 @@
 
 
 <block wx:if="{{ivobs.show_type==1}}">
-  <video src='{{ivobs.video}}' class='index_video'>视频</video>
+  <video src='{{ivobs.video}}' custom-cache='true' class='index_video'>视频</video>
 </block>
 <block wx:else>
   <image src='{{ivobs.image}}' class='index_img2'>图片</image>
