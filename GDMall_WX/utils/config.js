@@ -7,6 +7,6 @@ class Config{
 
 }
 
-Config.restUrl = 'http://192.168.3.40/api/'
+Config.restUrl = 'http://192.168.3.43/api/'
 
 export {Config};
