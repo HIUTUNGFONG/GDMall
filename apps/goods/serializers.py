@@ -37,6 +37,27 @@ class ClassifySerializers(serializers.ModelSerializer):
     class Meta:
         model = Classify   # 序列化的对象
         fields = 'id','name'   # 序列化的属性
+
+class GoodsSerializers(serializers.ModelSerializer):
+    '''
+    产品
+    '''
+    class Meta:
+        model = Goods  # 序列化的对象
+        # fields = '__all__'   # 序列化的属性
+        fields = 'id', 'create_time', 'update_time', 'is_delete', 'title','sales', 'putaway', 'hits','featured'
+
+class GoodsImageSerializers(serializers.ModelSerializer):
+    '''
+    产品图片
+    '''
+    class Meta:
+        model = GoodsImage   # 序列化的对象
+        fields = '__all__'   # 序列化的属性
+
+
+
+
 class CommoditySerializers(serializers.ModelSerializer):
     '''
     商品

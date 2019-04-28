@@ -80,10 +80,11 @@ class Goods(BaseModel):
     '''
     title = models.CharField(max_length=60, verbose_name='产品标题')
     sales = models.IntegerField(default=0, verbose_name='销量')
-    putaway = models.BooleanField(default=False, verbose_name='是否上架')
-    sort = models.ForeignKey(Sort, on_delete=models.CASCADE, verbose_name='所属类别id')
-    classify = models.ForeignKey(Classify, on_delete=models.CASCADE, verbose_name='所属分类id')
+    sort_id = models.ForeignKey(Sort, on_delete=models.CASCADE, verbose_name='所属类别id')
+    classify_id = models.ForeignKey(Classify, on_delete=models.CASCADE, verbose_name='所属分类id')
     hits = models.IntegerField(default=0, verbose_name='点击量')
+    featured = models.BooleanField(default=False, verbose_name='是否主推')
+    putaway = models.BooleanField(default=False, verbose_name='是否上架')
 
     class Meta:
         db_table = 'gd_goods'

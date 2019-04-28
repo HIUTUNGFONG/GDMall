@@ -4,6 +4,7 @@ import {Index} from 'index-model.js';
 
 var index = new Index();
 
+
 Page({
   data: {
 
@@ -35,7 +36,6 @@ mwImageUrl:'https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_w
         'ivobs': res.ivobs[0]
       })
     });
-    // console.log(data);
   },
   onProduct: function (){
     // 轮播图跳转

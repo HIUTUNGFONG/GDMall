@@ -33,7 +33,6 @@ class PopupListView(APIView):
         data_list = []
         # 查询产品表中的所有类别
         sort_list = Goods.objects.values('sort_id').distinct()
-        print(sort_list)
         # 查询产品表每个列别下的分类
         if sort_list:
             for sort in sort_list:
@@ -54,6 +53,28 @@ class PopupListView(APIView):
                                   'classify': classifys_data_list})
             data = {'data': data_list}
 
+        return Response(data)
+
+
+class GoodsListView(APIView):
+    '''
+    获取产品列表
+    '''
+
+    def get(self, request):
+        # 获取所有产品
+        goods = Goods.objects.filter(is_delete=0).values('id', 'create_time', 'update_time', 'is_delete', 'title',
+                                                         'sales', 'putaway', 'hits', 'classify_id', 'sort_id',
+                                                         'featured')
+        gs = GoodsSerializers(goods, many=True)
+
+        img_data = []
+        for g in goods:
+            gi = GoodsImage.objects.filter(goods_id=g['id'], show_region=0, is_delete=0)
+            gis = GoodsImageSerializers(gi, many=True)
+            img_data.append(gis.data)
+
+        data = {'data': {'goods':gs.data,'goods_img':img_data}}
         return Response(data)
 
 

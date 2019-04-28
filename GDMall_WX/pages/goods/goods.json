@@ -5,6 +5,9 @@
     "van-popup": "/common/vant/dist/popup/index",
     "van-icon": "/common/vant/dist/icon/index",
     "van-row": "/common/vant/dist/row/index",
-    "van-col": "/common/vant/dist/col/index"
+    "van-col": "/common/vant/dist/col/index",
+    "van-tab": "/common/vant/dist/tab/index",
+    "van-tabs": "/common/vant/dist/tabs/index",
+    "van-icon": "/common/vant/dist/icon/index"
   }
 }

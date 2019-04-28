@@ -1,3 +1,60 @@
+<!-- 商品页面 -->
+
+
+
+
+<!-- 左侧隐藏栏 -->
+<van-popup
+  show="{{ show_left }}"
+  position="left"
+  overlay="{{ overlay_left }}"
+  custom-style="width:200rpx;height:100%"
+  bind:click-overlay='onClosePopupLeft'
+>
+  <van-row>全部商品</van-row>
+  <block wx:for='{{popup}}' wx:key='{{item.id}}'>
+    <block wx:for='{{item.sort}}' wx:key='{{item.id}}'>
+      <van-row>
+        {{item.name}}
+      </van-row>
+    </block>
+    <block wx:for='{{item.classify}}' wx:key='{{item.id}}'>
+      <block wx:for='{{item}}' wx:key='{{item.id}}'>
+        <van-row>
+        {{item.name}}
+        </van-row>
+      </block>
+    </block>
+  </block>
+</van-popup>
+
+
+
+
+
+<!-- 标签栏 -->
+<van-tabs  bind:click="onChange" swipe-threshold='5' sticky='true'>
+  <van-tab title="综合"></van-tab>
+
+  <van-tab title="销量"></van-tab>
+  <block wx:if='{{price_label==0}}'>
+    <van-tab title="价格"></van-tab>
+    <van-tab title="新品"></van-tab>
+    <van-tab title="筛选 ☰"></van-tab>
+  </block>
+  <block wx:if='{{price_label==1}}'>
+    <van-tab title="价格∧"></van-tab> 
+    <van-tab title="新品"></van-tab>
+    <van-tab title="筛选 ☰"></van-tab>
+  </block>
+  <block wx:if='{{price_label==-1}}'>
+    <van-tab title="价格∨"></van-tab>
+    <van-tab title="新品"></van-tab>
+    <van-tab title="筛选 ☰"></van-tab>
+  </block>
+</van-tabs>
+
+<!-- 搜索栏 -->
 <van-row>
   <van-col span="2">
     <view bindtap='onShowPopup' style='padding-top:15rpx;padding-left: 15rpx'><van-icon name="bars" size='65rpx' /></view>
@@ -7,13 +64,26 @@
   </van-col>
 </van-row>
 
+
+
+<!-- 右侧筛选栏 -->
 <van-popup
-  show="{{ show }}"
-  position="left"
+  show="{{ show_right }}"
+  position="right"
   overlay="{{ true }}"
-  bind:close="onClose"
-  custom-style="width:200rpx;height:100%"
+  custom-style="width:400rpx;height:100%"
+  bind:click-overlay='onClosePopupRight'
 >
-  <van-row>全部商品</van-row>
-  <van-row>全部商品</van-row>
+<van-row>价格区间：</van-row>
 </van-popup>
+
+<!-- 产品列表 -->
+<van-row>
+  <block  wx:for='{{goods_list}}'>
+    <van-col span='12'>
+      {{item.goods_img[0].image}}
+      {{item.goods.title}}
+    </van-col>
+  </block>
+
+</van-row>
