@@ -70,7 +70,7 @@ class GoodsListView(APIView):
 
         img_data = []
         for g in goods:
-            gi = GoodsImage.objects.filter(goods_id=g['id'], show_region=0, is_delete=0)
+            gi = GoodsImage.objects.filter(goods_id=g['id'], show_region=0, is_delete=0).order_by('index')
             gis = GoodsImageSerializers(gi, many=True)
             img_data.append(gis.data)
 
