@@ -115,7 +115,7 @@ class GoodsImage(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.id)
+        return str(self.goods_id.title)
 
 
 class Attribute(BaseModel):
