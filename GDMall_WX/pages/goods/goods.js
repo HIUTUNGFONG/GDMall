@@ -20,7 +20,8 @@ Component({
     show_right: false,    //右侧栏显示
     overlay_rigth: true,  //右侧蒙层显示
     popup_data:'',        //左侧栏数据
-    price_label:0         //价格标签状态
+    price_label:0,         //价格标签状态
+    goods_list:''         //产品列表
   },
 
   attached(){
@@ -41,8 +42,7 @@ Component({
       for (var i = 0; i < res.data.goods.length; i++) {
         data_list.push({'goods':res.data.goods[i],'goods_img':res.data.goods_img[i]})
       }
-      this.setData({ 'goods_list': data_list });
-      console.log(data_list)
+      this.setData({ goods_list: data_list });
     })
 
   },
@@ -69,18 +69,18 @@ Component({
     
     onChange(event) {
       // 标签栏
-
-      //if(event.detail.index!=4){ last_index = event.detail.index;}
       // 点击价格事件
       if (event.detail.index == 2) {
         if(this.data.price_label == 0){
+          // 第一次点击设置成^
           this.setData({price_label: 1})
-          console.log(this.data.price_label)
         }else{
+          // 第二次点击取现在的相反值
           this.setData({ price_label: - this.data.price_label });
-          console.log(this.data.price_label)
         }
-       
+      }else{
+        // 点击其他改变回原值
+        this.setData({ price_label:0 });
       }
 
       // 点击筛选事件

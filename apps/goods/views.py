@@ -63,18 +63,16 @@ class GoodsListView(APIView):
 
     def get(self, request):
         # 获取所有产品
-        goods = Goods.objects.filter(is_delete=0).values('id', 'create_time', 'update_time', 'is_delete', 'title',
-                                                         'sales', 'putaway', 'hits', 'classify_id', 'sort_id',
-                                                         'featured')
-        gs = GoodsSerializers(goods, many=True)
-
-        img_data = []
+        data_list = []
+        goods = Goods.objects.filter(is_delete=0).values()
         for g in goods:
-            gi = GoodsImage.objects.filter(goods_id=g['id'], show_region=0, is_delete=0).order_by('index')
-            gis = GoodsImageSerializers(gi, many=True)
-            img_data.append(gis.data)
+            goods_image = GoodsImage.objects.filter(goods_id=g['id'],is_delete=0).values()
+            commodity = Commodity.objects.filter(goods_id=g['id'],is_delete=0).values()
+            sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
+            data_list.append([{'goods':g,'goods_image':goods_image,'commodity':commodity,'sort':sort,'classify':classify}])
 
-        data = {'data': {'goods':gs.data,'goods_img':img_data}}
+        data = {'data':data_list}
         return Response(data)
 
 
@@ -88,3 +86,6 @@ class CommodityListView(APIView):
         cs = CommoditySerializers(commodity, many=True)
         data = {'data': cs.data}
         return Response(data)
+
+
+

@@ -11,17 +11,23 @@
   custom-style="width:200rpx;height:100%"
   bind:click-overlay='onClosePopupLeft'
 >
-  <van-row>全部商品</van-row>
+  <van-row>
+    <view style='padding-top:20rpx;padding-left:20rpx'>全部商品</view>
+  </van-row>
   <block wx:for='{{popup}}' wx:key='{{item.id}}'>
     <block wx:for='{{item.sort}}' wx:key='{{item.id}}'>
       <van-row>
-        {{item.name}}
+        <view style='padding-top:20rpx;padding-left:20rpx'>
+          {{item.name}}
+        </view>
       </van-row>
     </block>
     <block wx:for='{{item.classify}}' wx:key='{{item.id}}'>
       <block wx:for='{{item}}' wx:key='{{item.id}}'>
         <van-row>
-        {{item.name}}
+          <view  style='padding-top:20rpx;padding-left:20rpx;font-size:25rpx;color:rgb(119, 119, 119)'>
+            {{item.name}}
+          </view>
         </van-row>
       </block>
     </block>
@@ -57,7 +63,7 @@
 <!-- 搜索栏 -->
 <van-row>
   <van-col span="2">
-    <view bindtap='onShowPopup' style='padding-top:15rpx;padding-left: 15rpx'><van-icon name="bars" size='65rpx' /></view>
+    <view bindtap='onShowPopup' style='padding-top:20rpx;padding-left: 18rpx'><van-icon name="bars" size='65rpx' /></view>
   </van-col>
   <van-col span="22">
     <van-search value="{{ value }}" placeholder="请输入搜索关键词" />
@@ -80,9 +86,18 @@
 <!-- 产品列表 -->
 <van-row>
   <block  wx:for='{{goods_list}}'>
-    <van-col span='12'>
-      {{item.goods_img[0].image}}
-      {{item.goods.title}}
+    <van-col span='11' offset='1'>
+      <van-col span='24'>
+        <image src='{{item.goods_img[0].image}}' style='width:90%; height:300rpx;'></image>
+      </van-col>
+      <van-col span='18'>
+        <text style='word-break:break-all;'>{{item.goods.title}}111111111111111111111111111111</text>
+      </van-col>
+      <van-col span='6'>
+        <van-icon name="cart-o" size='70rpx'/>
+      </van-col>
+      
+      
     </van-col>
   </block>
 

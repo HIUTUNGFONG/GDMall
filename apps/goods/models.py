@@ -80,8 +80,8 @@ class Goods(BaseModel):
     '''
     title = models.CharField(max_length=60, verbose_name='产品标题')
     sales = models.IntegerField(default=0, verbose_name='销量')
-    sort_id = models.ForeignKey(Sort, on_delete=models.CASCADE, verbose_name='所属类别id')
-    classify_id = models.ForeignKey(Classify, on_delete=models.CASCADE, verbose_name='所属分类id')
+    sort = models.ForeignKey(Sort, on_delete=models.CASCADE, verbose_name='所属类别id')
+    classify = models.ForeignKey(Classify, on_delete=models.CASCADE, verbose_name='所属分类id')
     hits = models.IntegerField(default=0, verbose_name='点击量')
     featured = models.BooleanField(default=False, verbose_name='是否主推')
     putaway = models.BooleanField(default=False, verbose_name='是否上架')
@@ -104,7 +104,7 @@ class GoodsImage(BaseModel):
         (1, '产品图文'),
     )
 
-    goods_id = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
+    goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
     show_region = models.SmallIntegerField(choices=status_choices, verbose_name='展示区域')
     image = models.ImageField(upload_to='GoodsImg', blank=True, verbose_name='图片')
     index = models.SmallIntegerField(default=0, verbose_name='展示顺序')
@@ -123,7 +123,7 @@ class Attribute(BaseModel):
     产品属性模型类
     '''
 
-    goods_id = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
+    goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
     brand = models.CharField(max_length=10, blank=True, verbose_name='品牌')
     color = models.CharField(max_length=10, blank=True, verbose_name='颜色')
     code = models.CharField(max_length=10, blank=True, verbose_name='尺码')
@@ -146,7 +146,7 @@ class Commodity(BaseModel):
     '''
     商品模型类
     '''
-    goods_id = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
+    goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
     colour = models.CharField(max_length=10, verbose_name='颜色')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='单价')
     code = models.CharField(max_length=10, verbose_name='尺码')
