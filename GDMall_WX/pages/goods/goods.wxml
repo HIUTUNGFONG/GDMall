@@ -16,7 +16,7 @@
   </van-row>
   <block wx:for='{{popup}}' wx:key='{{item.id}}'>
     <block wx:for='{{item.sort}}' wx:key='{{item.id}}'>
-      <van-row bindtap='onSort' data-id='{{item.id}}'>
+      <van-row bindtap='onSort' data-sort_id='{{item.id}}'>
         <view style='padding-top:20rpx;padding-left:20rpx'>
           {{item.name}}
         </view>
@@ -24,7 +24,7 @@
     </block>
     <block wx:for='{{item.classify}}' wx:key='{{item.id}}'>
       <block wx:for='{{item}}' wx:key='{{item.id}}'>
-        <van-row bindtap='onClassify' data-id='{{item.id}}'>
+        <van-row bindtap='onClassify' data-classify_id='{{item.id}}'>
           <view  style='padding-top:20rpx;padding-left:20rpx;font-size:25rpx;color:rgb(119, 119, 119)'>
             {{item.name}}
           </view>

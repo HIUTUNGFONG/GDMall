@@ -83,15 +83,21 @@ Component({
       }
     },
     onSort: function(event){
-      var id = goods.getDataset(event,id)
-      goods.getGoodsDataBySort(id, (res) =>{
+      // var id = goods.getDataset(event,id)
+      var sortId = event.currentTarget.dataset.sort_id
+      console.log(sortId)
+      goods.getGoodsDataBySort(sortId, (res) =>{
           this.setData({ goods_list: res.data });
         }
       )
     },
     onClassify: function(event){
-      var id = goods.getDataset(event,id)
-      goods.getGoodsDataBySort(id, (res) =>{
+      // var id = goods.getDataset(event,id)
+      var sortId = event.currentTarget.dataset.sort_id
+      var classifyId = event.currentTarget.dataset.classify_id
+      console.log(sortId)
+      console.log(classifyId)
+      goods.getGoodsDataByClassify(id, (res) =>{
           this.setData({ goods_list: res.data });
         }
       )

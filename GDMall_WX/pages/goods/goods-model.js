@@ -42,8 +42,8 @@ class Goods extends Base{
     this.request(params);
   }
 
-    getGoodsDataByClassify(id,callBack) {
-    //获取产品列表(类别id)
+  getGoodsDataByClassify(id,callBack) {
+    //获取产品列表(分类id)
     var params = {
       url: 'goods/classify/' + id,
       sCallBack: function (res) {

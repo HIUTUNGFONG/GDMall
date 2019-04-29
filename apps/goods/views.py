@@ -79,17 +79,39 @@ class GoodsListView(APIView):
         return Response(data)
 
 
-class GoodsListViewScreening(APIView):
+
+class GoodsListViewBySort(APIView):
     '''
-    获取产品列表(条件筛选)sort-classify
+    获取产品列表(条件筛选)sort
     '''
 
-    def get(self, request,type,id):
-        if type =='sort':
-            goods = Goods.objects.filter(is_delete=0,sort=id).values()
-            print(goods)
-        elif type == 'classify':
-            goods = Goods.objects.filter(is_delete=0,classify=id).values()
+    def get(self, request,sort_id):
+        goods = Goods.objects.filter(is_delete=0,classify=id).values()
+
+
+        # 获取所有产品
+        data_list = []
+
+        for g in goods:
+            # goods_image = GoodsImage.objects.filter(goods_id=g['id'],is_delete=0).values()
+            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
+            commodity = Commodity.objects.filter(goods_id=g['id'],is_delete=0).values()
+            sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
+            data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity,'sort':sort,'classify':classify}])
+
+        data = {'data':data_list}
+        return Response(data)
+
+
+class GoodsListViewByClassify(APIView):
+    '''
+    获取产品列表(条件筛选)classify
+    '''
+
+    def get(self, request,sort_id,classify_id):
+
+        goods = Goods.objects.filter(is_delete=0,sort=sort_id,classify=classify_id).values()
 
         # 获取所有产品
         data_list = []
