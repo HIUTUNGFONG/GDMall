@@ -88,10 +88,10 @@
   <block  wx:for='{{goods_list}}'>
     <van-col span='11' offset='1'>
       <van-col span='24'>
-        <image src='{{item.goods_img[0].image}}' style='width:90%; height:300rpx;'></image>
+        <image src='{{item[0].goods_image[0].image}}' style='width:90%; height:300rpx;'></image>
       </van-col>
       <van-col span='18'>
-        <text style='word-break:break-all;'>{{item.goods.title}}111111111111111111111111111111</text>
+        <text style='word-break:break-all;'>{{item[0].goods.title}}111111111111111111111111111111</text>
       </van-col>
       <van-col span='6'>
         <van-icon name="cart-o" size='70rpx'/>

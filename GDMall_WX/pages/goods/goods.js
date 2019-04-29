@@ -37,12 +37,14 @@ Component({
     goods.getGoodsData((res)=>{
       // console.log(res.data)
       // this.setData({'goods_list':res.data});
+
       // 整理后端json格式
-      var data_list = []
-      for (var i = 0; i < res.data.goods.length; i++) {
-        data_list.push({'goods':res.data.goods[i],'goods_img':res.data.goods_img[i]})
-      }
-      this.setData({ goods_list: data_list });
+      // var data_list = []
+      // for (var i = 0; i < res.data.goods.length; i++) {
+      //   data_list.push({'goods':res.data.goods[i],'goods_img':res.data.goods_img[i]})
+      // }
+      this.setData({ goods_list: res.data });
+      console.log(res.data)
     })
 
   },
