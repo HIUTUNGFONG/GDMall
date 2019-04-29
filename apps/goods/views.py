@@ -60,7 +60,7 @@ class GoodsListView(APIView):
     '''
     获取产品列表
     '''
-    def get(self):
+    def get(self,request):
 
         goods = Goods.objects.filter(is_delete=0).values()
 
