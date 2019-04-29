@@ -35,14 +35,6 @@ Component({
 
     // 查询产品列表
     goods.getGoodsData((res)=>{
-      // console.log(res.data)
-      // this.setData({'goods_list':res.data});
-
-      // 整理后端json格式
-      // var data_list = []
-      // for (var i = 0; i < res.data.goods.length; i++) {
-      //   data_list.push({'goods':res.data.goods[i],'goods_img':res.data.goods_img[i]})
-      // }
       this.setData({ goods_list: res.data });
       console.log(res.data)
     })
@@ -89,7 +81,23 @@ Component({
       if(event.detail.index==4){
         this.setData({ show_right: true });
       }
+    },
+    onSort: function(event){
+      var id = goods.getDataset(event,id)
+      goods.getGoodsDataBySort(id, (res) =>{
+          this.setData({ goods_list: res.data });
+        }
+      )
+    },
+    onClassify: function(event){
+      var id = goods.getDataset(event,id)
+      goods.getGoodsDataBySort(id, (res) =>{
+          this.setData({ goods_list: res.data });
+        }
+      )
     }
+
+    
 
   }
 })

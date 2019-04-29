@@ -16,7 +16,7 @@
   </van-row>
   <block wx:for='{{popup}}' wx:key='{{item.id}}'>
     <block wx:for='{{item.sort}}' wx:key='{{item.id}}'>
-      <van-row>
+      <van-row bindtap='onSort' data-id='{{item.id}}'>
         <view style='padding-top:20rpx;padding-left:20rpx'>
           {{item.name}}
         </view>
@@ -24,7 +24,7 @@
     </block>
     <block wx:for='{{item.classify}}' wx:key='{{item.id}}'>
       <block wx:for='{{item}}' wx:key='{{item.id}}'>
-        <van-row>
+        <van-row bindtap='onClassify' data-id='{{item.id}}'>
           <view  style='padding-top:20rpx;padding-left:20rpx;font-size:25rpx;color:rgb(119, 119, 119)'>
             {{item.name}}
           </view>
@@ -90,8 +90,11 @@
       <van-col span='24'>
         <image src='{{item[0].goods_image[0].image}}' style='width:90%; height:300rpx;'></image>
       </van-col>
-      <van-col span='18'>
+      <van-col span='24'>
         <text style='word-break:break-all;'>{{item[0].goods.title}}111111111111111111111111111111</text>
+      </van-col>
+      <van-col span='18'>
+        <text>{{item[0].commodity[0].price}}</text>
       </van-col>
       <van-col span='6'>
         <van-icon name="cart-o" size='70rpx'/>

@@ -33,6 +33,11 @@ class Base {
     })
   }
 
+  // 获得元素上绑定的值
+  getDataset(event,key){
+    return event.currentTarget.dataset[key]
+  }
+
 }
 
 export {Base}

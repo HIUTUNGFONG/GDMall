@@ -61,10 +61,21 @@ class GoodsListView(APIView):
     获取产品列表
     '''
 
-    def get(self, request):
+    def get(self, request,type,id):
+        if type =='sort':
+            goods = Goods.objects.filter(is_delete=0,sort=id).values()
+            print(goods)
+        elif type == 'classify':
+            goods = Goods.objects.filter(is_delete=0,classify=id).values()
+        else:
+            goods = Goods.objects.filter(is_delete=0).values()
+
+
+
+
         # 获取所有产品
         data_list = []
-        goods = Goods.objects.filter(is_delete=0).values()
+
         for g in goods:
             # goods_image = GoodsImage.objects.filter(goods_id=g['id'],is_delete=0).values()
             goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
@@ -77,6 +88,7 @@ class GoodsListView(APIView):
         return Response(data)
 
 
+
 class CommodityListView(APIView):
     '''
     获取商品列表
@@ -87,6 +99,27 @@ class CommodityListView(APIView):
         cs = CommoditySerializers(commodity, many=True)
         data = {'data': cs.data}
         return Response(data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
