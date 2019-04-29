@@ -32,6 +32,7 @@ mwImageUrl:'https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_w
       this.setData({
         'ics':res.ics
       })
+      console.log(res.ics)
       this.setData({
         'ivobs': res.ivobs[0]
       })
