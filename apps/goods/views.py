@@ -61,7 +61,7 @@ class GoodsListView(APIView):
     获取产品列表
     '''
 
-    def get(self, request,type=0,id=0):
+    def get(self, request,type=None,id=None):
         if type =='sort':
             goods = Goods.objects.filter(is_delete=0,sort=id).values()
             print(goods)
