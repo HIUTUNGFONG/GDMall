@@ -45,10 +45,12 @@ class PopupListView(APIView):
                 classify_list = Goods.objects.values('classify_id').filter(sort_id=sort['sort_id']).distinct()
                 for classify in classify_list:
                     # 根据classify_id获取classify分类表中的id,name信息
-                    classify_data = Classify.objects.filter(id=classify['classify_id'])
-                    # 序列化
-                    classifys = ClassifySerializers(classify_data, many=True)
-                    classifys_data_list.append(classifys.data)
+                    classify_data = Classify.objects.filter(id=classify['classify_id']).values()
+                    # 将sort_id添加进classify中
+                    for c in classify_data:
+                        c['sort_id'] = sort['sort_id']
+                    classifys_data_list.append(classify_data)
+
                 data_list.append({'sort': sorts.data,
                                   'classify': classifys_data_list})
             data = {'data': data_list}
@@ -86,7 +88,8 @@ class GoodsListViewBySort(APIView):
     '''
 
     def get(self, request,sort_id):
-        goods = Goods.objects.filter(is_delete=0,classify=id).values()
+        goods = Goods.objects.filter(is_delete=0,sort=sort_id).values()
+
 
 
         # 获取所有产品
@@ -110,6 +113,8 @@ class GoodsListViewByClassify(APIView):
     '''
 
     def get(self, request,sort_id,classify_id):
+        print(sort_id)
+        print(classify_id)
 
         goods = Goods.objects.filter(is_delete=0,sort=sort_id,classify=classify_id).values()
 

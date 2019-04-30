@@ -27,16 +27,14 @@ Component({
   attached(){
     // 查询左侧类别分类栏
     goods.getPopupData((res) => {
-      // console.log(res.data)
-      this.setData({
-        'popup': res.data
-      })
+      this.setData({'popup': res.data})
+      console.log(res.data)
     });
 
     // 查询产品列表
     goods.getGoodsData((res)=>{
       this.setData({ goods_list: res.data });
-      console.log(res.data)
+      // console.log(res.data)
     })
 
   },
@@ -83,21 +81,24 @@ Component({
       }
     },
     onSort: function(event){
+      // 点击类别事件
       // var id = goods.getDataset(event,id)
-      var sortId = event.currentTarget.dataset.sort_id
-      console.log(sortId)
-      goods.getGoodsDataBySort(sortId, (res) =>{
+      var sort = event.currentTarget.dataset.sort
+      console.log(sort)
+      goods.getGoodsDataBySort(sort, (res) =>{
           this.setData({ goods_list: res.data });
         }
       )
     },
     onClassify: function(event){
+      // 点击分类事件
       // var id = goods.getDataset(event,id)
-      var sortId = event.currentTarget.dataset.sort_id
-      var classifyId = event.currentTarget.dataset.classify_id
-      console.log(sortId)
-      console.log(classifyId)
-      goods.getGoodsDataByClassify(id, (res) =>{
+      // var id = event.currentTarget.dataset.id
+      var sort = event.currentTarget.dataset.sort
+      var classify = event.currentTarget.dataset.classify
+      console.log(sort)
+      console.log(classify)
+      goods.getGoodsDataByClassify(sort,classify, (res) =>{
           this.setData({ goods_list: res.data });
         }
       )
