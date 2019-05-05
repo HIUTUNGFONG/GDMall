@@ -1,4 +1,7 @@
 //index.js
+
+var app = getApp();
+
 //获取应用实例
 import {Index} from 'index-model.js';
 
@@ -53,11 +56,22 @@ mwImageUrl:'https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_w
     })
 
   },
+  onWomen: function(){
+    // 跳转女装产品列表页
+    console.log(app.globalData.is_query)
+    app.globalData.is_query = 1
+    
+    wx.reLaunch({
+      url: '../goods/goods',
+    })
+  },
   onVip: function () {
+    // 跳转vip页面
     wx.navigateTo({
       url: '../vip/vip',
     })
   }
+  
 
   
 })

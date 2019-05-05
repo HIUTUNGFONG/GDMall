@@ -1,2 +1,27 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+
+<!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+<!-- <open-data type="userAvatarUrl"></open-data>
+<open-data type="userNickName"></open-data> -->
+<i-row>
+  <i-col span='4'>
+    <i-avatar src="{{avatarUrl}}" size="large"></i-avatar>
+  </i-col>
+  <i-col span='20'> 
+    <view>{{nickName}}</view>
+  </i-col>
+</i-row>
+
+<i-row>
+  <i-col span='12'>
+    积分
+  </i-col>
+  <i-col span='12'> 
+    优惠券
+  </i-col>
+</i-row>
+
+
+
+
+

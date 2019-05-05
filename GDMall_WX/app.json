@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/user/user",
     "pages/index/index",
-    "pages/product/product",
     "pages/goods/goods",
     "pages/cart/cart",
-    "pages/user/user",
+    "pages/product/product",
     "pages/vip/vip"
   ],
   "window": {
@@ -45,5 +45,4 @@
     ]
   },
   "sitemapLocation": "sitemap.json"
-
 }

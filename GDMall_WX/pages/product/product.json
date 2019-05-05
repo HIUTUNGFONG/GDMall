@@ -1,4 +1,6 @@
 {
-  "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+      "van-row": "/common/vant/dist/row/index",
+      "van-col": "/common/vant/dist/col/index"
+  }
 }

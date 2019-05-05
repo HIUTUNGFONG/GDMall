@@ -21,7 +21,7 @@
 <view class='man_woman'>
   <image src='{{mwImageUrl}}' class='man_woman'>男装女装</image>
   <view class='mw_1' bindtap='on_mw_1'></view>
-  <view class='mw_2'></view>
+  <view class='mw_2' bindtap='onWomen'></view>
 </view>
 
 <view class='{{showManType?"man_type":"man_type_none"}}'>

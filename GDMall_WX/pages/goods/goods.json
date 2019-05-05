@@ -8,6 +8,8 @@
     "van-col": "/common/vant/dist/col/index",
     "van-tab": "/common/vant/dist/tab/index",
     "van-tabs": "/common/vant/dist/tabs/index",
-    "van-icon": "/common/vant/dist/icon/index"
+    "van-icon": "/common/vant/dist/icon/index",
+    "van-field": "/common/vant/dist/field/index",  
+    "van-button": "/common/vant/dist/button/index" 
   }
 }

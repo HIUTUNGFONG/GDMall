@@ -110,7 +110,7 @@
   top: -230rpx;  
   width: 400rpx;
   height: 90%;
-  background-color: rgb(187, 41, 41);
+  /* background-color: rgb(187, 41, 41); */
   z-index: 999;
 }
 /* 女装 */
@@ -120,7 +120,7 @@
   top: -430rpx;
   width: 210rpx;
   height: 90%;
-  background-color: rgb(46, 179, 86);
+  /* background-color: rgb(46, 179, 86); */
   z-index: 999;
 }
 
@@ -128,7 +128,7 @@
   margin-left: 18rpx;
   width: 95%;
   height: 230rpx;
-  background-color: rgb(34, 68, 160);
+  /* background-color: rgb(34, 68, 160); */
 }
 .man_type_none {
   display: none;

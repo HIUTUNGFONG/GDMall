@@ -1,2 +1,15 @@
 <!--pages/product/product.wxml-->
-<text>pages/product/product.wxml</text>
+
+<swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
+  <swiper-item wx:for='{{ics}}' wx:key='{{index}}'>
+    <image src='{{item.image}}' class='index_swiper' bindtap='onProduct'>商品详细页-轮播图</image>
+  </swiper-item>
+</swiper>
+
+
+<van-row>
+  <van-col span="20">标题</van-col>
+  <van-col span="4">分享</van-col>
+  <van-col span="17">价格：</van-col>
+  <van-col span="7">销量：</van-col>
+</van-row>

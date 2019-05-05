@@ -2,6 +2,13 @@
 .sss{
   padding-top: 50rpx
 }
-.test{
-  color: rgb(119, 119, 119)
+/* 产品列表标题样式 */
+.goods_title{
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 30rpx;
 }

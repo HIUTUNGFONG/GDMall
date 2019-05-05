@@ -1,1 +1,8 @@
 /* pages/product/product.wxss */
+
+/* 商品详情页-轮播图 */
+.index_swiper {
+  width: 100%;
+  height: 560rpx;
+  background-color: black; 
+}

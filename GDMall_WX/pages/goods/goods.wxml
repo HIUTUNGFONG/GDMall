@@ -1,8 +1,6 @@
 <!-- 商品页面 -->
 
 
-
-
 <!-- 左侧隐藏栏 -->
 <van-popup
   show="{{ show_left }}"
@@ -12,7 +10,7 @@
   bind:click-overlay='onClosePopupLeft'
 >
   <van-row>
-    <view style='padding-top:20rpx;padding-left:20rpx'>全部商品</view>
+    <view style='padding-top:20rpx;padding-left:20rpx' bindtap='onAllGoods'>全部商品</view>
   </van-row>
   <block wx:for='{{popup}}' wx:key='{{item.id}}'>
     <block wx:for='{{item.sort}}' wx:key='{{item.id}}'>
@@ -24,7 +22,7 @@
     </block>
     <block wx:for='{{item.classify}}' wx:key='{{item.id}}'>
       <block wx:for='{{item}}' wx:key='{{item.id}}'>
-        <van-row bindtap='onClassify' data-classify='{{item.id}}'>
+        <van-row bindtap='onClassify'data-sort='{{item.sort_id}}' data-classify='{{item.id}}'>
           <view  style='padding-top:20rpx;padding-left:20rpx;font-size:25rpx;color:rgb(119, 119, 119)'>
             {{item.name}}
           </view>
@@ -39,7 +37,7 @@
 
 
 <!-- 标签栏 -->
-<van-tabs  bind:click="onChange" swipe-threshold='5' sticky='true'>
+<van-tabs  bind:click="onChange" swipe-threshold='5' sticky='true' active="{{ active }}">
   <van-tab title="综合"></van-tab>
 
   <van-tab title="销量"></van-tab>
@@ -80,7 +78,54 @@
   custom-style="width:400rpx;height:100%"
   bind:click-overlay='onClosePopupRight'
 >
-<van-row>价格区间：</van-row>
+<van-row>
+  <van-col offset='2'>价格区间：</van-col>
+</van-row>
+<!-- 价格输入框 -->
+<van-row>
+  <!-- 最小价格 -->
+  <van-col span='11'>
+    <van-cell-group>
+      <van-field
+        value="{{ pvalue }}"
+        placeholder="0"
+        border="{{ false }}"
+        bind:change="onChange"
+        type='number'
+        bind:blur='minPrice'
+      />
+    </van-cell-group>
+  </van-col>
+  <van-col span='2'>
+    <view style='padding-top:20rpx'>-</view>
+  </van-col>
+
+  <!-- 最大价格 -->
+  <van-col span='11'>
+    <van-cell-group>
+      <van-field
+        value="{{ pvalue }}"
+        placeholder="0"
+        border="{{ false }}"
+        bind:change="onChange"
+        type='number'
+        bind:blur='maxPrice'
+      />
+    </van-cell-group>
+  </van-col>
+
+</van-row>
+<van-row>
+
+  <view style="position:fixed; bottom:0;width: 100%;">
+    <van-col span='12'>
+      <van-button square type="danger" size='large' bind:click='onPriceReset'>重置</van-button>
+    </van-col>
+    <van-col span='12'>
+      <van-button square type="primary" size='large' bind:click='onPriceConfirm'>确认</van-button>
+    </van-col>
+  </view>
+</van-row>
 </van-popup>
 
 <!-- 产品列表 -->
@@ -91,13 +136,13 @@
         <image src='{{item[0].goods_image[0].image}}' style='width:90%; height:300rpx;'></image>
       </van-col>
       <van-col span='24'>
-        <text style='word-break:break-all;'>{{item[0].goods.title}}111111111111111111111111111111</text>
+        <view class='goods_title'>{{item[0].goods.title}}</view>
       </van-col>
       <van-col span='18'>
-        <text>{{item[0].commodity[0].price}}</text>
+        <text>￥{{item[0].commodity[0].price}}</text>
       </van-col>
       <van-col span='6'>
-        <van-icon name="cart-o" size='70rpx'/>
+        <van-icon name="cart-o" size='65rpx'/>
       </van-col>
       
       
