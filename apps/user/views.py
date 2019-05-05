@@ -23,7 +23,7 @@ class TokenView(APIView):
 
         # 获取redis连接
         conn = get_redis_connection('default')
-        conn.set(session_key,data['openid'] + data['session_key'],timeout=60*60*24*7)
+        conn.set(session_key,data['openid'] + data['session_key'],timeout=(60*60*24*7))
 
 
         return Response(data)
