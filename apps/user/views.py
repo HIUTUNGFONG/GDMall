@@ -17,14 +17,12 @@ class TokenView(APIView):
         app_id = 'wxd2352a7b57c51606'
         app_secret = 'ef6117603e0cd75c1b280f35ed288994'
         url = 'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code'%(app_id,app_secret,code)
-        result = requests.get(url)
-        data = result.json()
-        print(result)
+        result = requests.get(url).json()
 
         # 获取redis连接
         conn = get_redis_connection('default')
-        conn.set(session_key,data['openid'] + data['session_key'],timeout=604800)
-
+        conn.set(session_key,result['openid'] + result['session_key'])
+        data = {'session_key':session_key}
 
         return Response(data)
 
