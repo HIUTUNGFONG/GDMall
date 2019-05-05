@@ -8,7 +8,7 @@ from django_redis import get_redis_connection
 
 class TokenView(APIView):
     '''
-    Token认证令牌
+    Token认证令牌，返回session_key
     '''
 
     def get(self,request, code):
@@ -22,6 +22,7 @@ class TokenView(APIView):
         # 获取redis连接
         conn = get_redis_connection('default')
         conn.set(session_key,result['openid'] + result['session_key'])
+        conn.expire(session_key, 60*60*24*7)
         data = {'session_key':session_key}
 
         return Response(data)
