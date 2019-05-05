@@ -3,9 +3,6 @@ import os
 
 class PublicFunction(object):
 
-    def __init__(self):
-        pass
-
     def get3rd_session(self):
         '''
         生成一个3rd随机数
