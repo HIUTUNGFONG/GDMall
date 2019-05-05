@@ -3,7 +3,8 @@
 import requests
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.core.cache import cache
+
+from django_redis import get_redis_connection
 from common.public_function import PublicFunction
 
 class TokenView(APIView):
@@ -21,7 +22,9 @@ class TokenView(APIView):
         data = result.json()
         print(result)
 
-        cache.set(session_key,data['openid'],60)
+        conn = get_redis_connection('default')
+        conn.hset(session_key,data['openid'],'test')
+
 
         return Response(data)
 
