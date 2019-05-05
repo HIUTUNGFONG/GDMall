@@ -22,8 +22,9 @@ class TokenView(APIView):
         # 获取redis连接
         conn = get_redis_connection('default')
         conn.set(session_key,result['openid'] + result['session_key'])
+        # 设置过期时间7天
         conn.expire(session_key, 60*60*24*7)
-        data = {'session_key':session_key}
+        data = {'token':session_key}
 
         return Response(data)
 

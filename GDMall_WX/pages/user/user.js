@@ -43,6 +43,7 @@ Page({
           user.getOpenid(res.code,(res)=>{
             success:{
               console.log(res)
+              wx.setStorageSync('sessionid', res.data.token)
             }
           })
         }
