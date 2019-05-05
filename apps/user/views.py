@@ -22,7 +22,7 @@ class TokenView(APIView):
         print(result)
 
         conn = get_redis_connection('default')
-        conn.hset(session_key,data['openid'] + '&&&&' + data['session_key'])
+        conn.set(session_key,data['openid'] + '&&&&' + data['session_key'])
 
 
         return Response(data)
