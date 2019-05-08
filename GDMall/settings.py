@@ -45,6 +45,10 @@ INSTALLED_APPS = [
 ]
 
 
+
+# 配置使用到的用户模型类
+AUTH_USER_MODEL = 'user.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

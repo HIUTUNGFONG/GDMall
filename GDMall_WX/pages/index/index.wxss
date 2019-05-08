@@ -99,35 +99,37 @@
 .man_woman {
   /* display: flex; */
   width: 100%;
-  height: 230rpx;
+  height: 190rpx;
   /* background: url(https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_woman.png?sign=72791a10240bdea152091aabb1875cdb&t=1555514508) no-repeat;  */
 
 }
+
 /* 男装 */
 .mw_1 {
   position:relative;
   left: 20rpx;
-  top: -230rpx;  
-  width: 400rpx;
-  height: 90%;
-  /* background-color: rgb(187, 41, 41); */
+  top: -190rpx;  
+  width: 350rpx;
+  height: 170rpx;
+  background-color: rgb(187, 41, 41);
   z-index: 999;
 }
 /* 女装 */
 .mw_2 {
   position:relative;
-  left: 520rpx;
-  top: -430rpx;
-  width: 210rpx;
-  height: 90%;
-  /* background-color: rgb(46, 179, 86); */
+  left: 450rpx;
+  top: -360rpx;
+  width: 270rpx;
+  height: 170rpx;
+  background-color: rgb(46, 179, 86);
   z-index: 999;
 }
 
 .man_type {
-  margin-left: 18rpx;
-  width: 95%;
-  height: 230rpx;
+  /* margin-left: 50rpx;
+  padding-top: 30rpx; */
+  width: 100%;
+  /* height: 600rpx; */
   /* background-color: rgb(34, 68, 160); */
 }
 .man_type_none {

@@ -13,7 +13,7 @@ Page({
 
     vp:true,  //视频或图片栏控制显示参数
     showManType:false,
-mwImageUrl:'https://6772-grotesquery-e9db0d-1259050260.tcb.qcloud.la/index/man_woman.png?sign=72791a10240bdea152091aabb1875cdb&t=1555514508'
+    mwImageUrl:'https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/mw.png'
 
   },
   //事件处理函数
