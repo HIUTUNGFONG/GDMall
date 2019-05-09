@@ -13,10 +13,10 @@ class User(BaseModel, AbstractUser):
     nick_name = models.CharField(max_length=50, blank=True, verbose_name='昵称')
     head_portrait = models.CharField(max_length=255, blank=True, verbose_name='用户头像')
     birthday = models.CharField(max_length=50, blank=True, verbose_name='出生日期')
-    height = models.CharField(max_length=30, blank=True, verbose_name='身高')
-    weight = models.CharField(max_length=30, blank=True, verbose_name='体重')
-    phone = models.CharField(max_length=11, null=True, verbose_name='手机号码')
-    integral = models.IntegerField(max_length=20, default=0, verbose_name='会员积分')
+    height = models.CharField(max_length=30,default=0, blank=True, verbose_name='身高')
+    weight = models.CharField(max_length=30,default=0, blank=True, verbose_name='体重')
+    phone = models.CharField(max_length=11, default=0, verbose_name='手机号码')
+    integral = models.IntegerField(default=0, verbose_name='会员积分')
 
     class Meta:
         db_table = 'gd_user'
