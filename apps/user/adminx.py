@@ -1,5 +1,6 @@
 from xadmin import views
 import xadmin             # 导入xadmin
+from apps.user.models import *
 
 
 
@@ -33,3 +34,12 @@ xadmin.site.register(views.CommAdminView,GlobalSetting) #注册标题
 #     verbose_name = "授课机构"     #  自定义名称
 # #2. 找到app应用下的 __init__.py 添加:
 # default_app_config = 'app名称.apps.app名称Config'      # 添加代码，应用名称加Config
+
+
+class AddressAdmin(object):
+    pass
+class VipLevelAdmin(object):
+    pass
+
+xadmin.site.register(Address, AddressAdmin)
+xadmin.site.register(VipLevel, VipLevelAdmin)
