@@ -1,3 +1,4 @@
+import json
 import os
 
 import requests
@@ -38,19 +39,23 @@ class CreateUser(APIView):
     '''
 
     def post(self, request):
-        data = request.Data
+        data = request.body
+        print(json.loads(data))
+        data = json.loads(data)
+        data = data['Data']
+        print(data)
         # 获取openid
         openid = data['openid']
         # 获取session
         session = data['session']
         # 判断数据库是否存在该openid
-        user = User.objects.filter(openid=openid)
+        user = WxUser.objects.filter(openid=openid)
         # 存在：返回用户已存在msg
         if user:
             data = {'msg': '用户已存在'}
             return Response(data)
         # 不存在：
         # 添加到用户表
-        User.objects.create(openid=openid).save()
+        WxUser.objects.create(openid=openid).save()
         data = {'msg': 'success'}
         return Response(data)

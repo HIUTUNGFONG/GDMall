@@ -9,6 +9,21 @@ class User(BaseModel, AbstractUser):
     '''
     用户信息模型
     '''
+    birthday = models.CharField(max_length=50, blank=True, verbose_name='出生日期')
+    height = models.CharField(max_length=30,default=0, blank=True, verbose_name='身高')
+    weight = models.CharField(max_length=30,default=0, blank=True, verbose_name='体重')
+    phone = models.CharField(max_length=11, default=0, verbose_name='手机号码')
+
+    class Meta:
+        db_table = 'gd_user'
+        verbose_name = '员工信息'
+        verbose_name_plural = verbose_name
+
+
+class WxUser(BaseModel):
+    '''
+    用户信息模型
+    '''
     openid = models.CharField(max_length=50, verbose_name='用户openid')
     nick_name = models.CharField(max_length=50, blank=True, verbose_name='昵称')
     head_portrait = models.CharField(max_length=255, blank=True, verbose_name='用户头像')
@@ -17,9 +32,10 @@ class User(BaseModel, AbstractUser):
     weight = models.CharField(max_length=30,default=0, blank=True, verbose_name='体重')
     phone = models.CharField(max_length=11, default=0, verbose_name='手机号码')
     integral = models.IntegerField(default=0, verbose_name='会员积分')
+    is_active = models.BooleanField(default=1,verbose_name='是否激活')
 
     class Meta:
-        db_table = 'gd_user'
+        db_table = 'gd_wx_user'
         verbose_name = '用户信息'
         verbose_name_plural = verbose_name
 

@@ -36,10 +36,13 @@ xadmin.site.register(views.CommAdminView,GlobalSetting) #注册标题
 # default_app_config = 'app名称.apps.app名称Config'      # 添加代码，应用名称加Config
 
 
+class WxUserAdmin(object):
+    pass
 class AddressAdmin(object):
     pass
 class VipLevelAdmin(object):
     pass
 
+xadmin.site.register(WxUser, WxUserAdmin)
 xadmin.site.register(Address, AddressAdmin)
 xadmin.site.register(VipLevel, VipLevelAdmin)
