@@ -163,7 +163,7 @@ CACHES = {
     },
     "UserToken": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://:123456@192.168.1.43:6379/1",
+        "LOCATION": "redis://:123456@192.168.3.47:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }

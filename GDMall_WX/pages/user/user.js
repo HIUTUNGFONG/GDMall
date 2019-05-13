@@ -38,6 +38,7 @@ Page({
       if(user.getToken().length == 64){
         console.log('ok')
         user.findToken((res)=>{
+          console.log('token')
           console.log(res)
         })
       }
