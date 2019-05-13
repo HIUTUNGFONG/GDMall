@@ -38,6 +38,28 @@ class Base {
     return event.currentTarget.dataset[key]
   }
 
+  // 获取token方法
+  getToken(){
+    return wx.getStorageSync('token')
+  }
+  // 查找redis
+  findToken(callBack){
+    var url = this.baseRequestUrl + 'getRedisToken/' + wx.getStorageSync('token');
+    wx.request({
+      url: url,
+      data: {},
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        callBack && callBack(res);
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  }
+
 }
 
 export {Base}

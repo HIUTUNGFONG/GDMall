@@ -35,7 +35,12 @@ Page({
                 }
             }
         })
-
+      if(user.getToken().length == 64){
+        console.log('ok')
+        user.findToken((res)=>{
+          console.log(res)
+        })
+      }
       //获取openid
       wx.login({
         success: res => {
@@ -43,8 +48,9 @@ Page({
           user.getOpenid(res.code,(res)=>{
             success:{
               console.log(res)
-              wx.setStorageSync('sessionid', res.token)
-              console.log(wx.getStorageSync('sessionid'))
+              // 将返回的token加入到微信session中
+              wx.setStorageSync('token', res.token)
+              console.log(user.getToken())
             }
           })
         }

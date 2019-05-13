@@ -11,7 +11,7 @@ from apps.user.models import *
 
 class TokenView(APIView):
     '''
-    Token认证令牌，返回session_key
+    Token认证令牌
     '''
 
     def get(self, request, code):
@@ -24,7 +24,7 @@ class TokenView(APIView):
         result = requests.get(url).json()
 
         # 获取redis连接
-        conn = get_redis_connection('default')
+        conn = get_redis_connection('UserToken')
         conn.set(session_key, result['openid'] + result['session_key'])
         # 设置过期时间7天
         conn.expire(session_key, 60 * 60 * 24 * 7)
@@ -33,17 +33,18 @@ class TokenView(APIView):
         return Response(data)
 
 
-class CreateUser(APIView):
+class CreateUserView(APIView):
     '''
     POST:创建用户
     '''
 
     def post(self, request):
+        # 获取请求数据
         data = request.body
-        print(json.loads(data))
+        # print(json.loads(data))
         data = json.loads(data)
         data = data['Data']
-        print(data)
+        # print(data)
         # 获取openid
         openid = data['openid']
         # 获取session
@@ -59,3 +60,17 @@ class CreateUser(APIView):
         WxUser.objects.create(openid=openid).save()
         data = {'msg': 'success'}
         return Response(data)
+
+class RedisTokenView(APIView):
+
+    '''
+    GET：查询Redis中是否存在WxUser
+    '''
+    def get(self,request,token):
+        print(token)
+        conn = get_redis_connection('UserToken')
+        result = conn.get(token)
+        print(result)
+        if result:
+            return Response({'msg': 'success'})
+        return Response({'msg': 'failure'})
