@@ -35,28 +35,33 @@ Page({
                 }
             }
         })
+      // 获取用户token
       if(user.getToken().length == 64){
+        // 存在
         console.log('ok')
         user.findToken((res)=>{
           console.log('token')
           console.log(res)
         })
+      }else{
+        // 不存在
+        //获取openid
+        wx.login({
+          success: res => {
+            console.log(res)
+            user.getOpenid(res.code, (res) => {
+              success: {
+                console.log(res)
+                // 将返回的token加入到微信session中
+                wx.setStorageSync('token', res.token)
+                console.log(user.getToken())
+              }
+            })
+          }
+        })
+
       }
-      //获取openid
-      wx.login({
-        success: res => {
-          console.log(res)
-          user.getOpenid(res.code,(res)=>{
-            success:{
-              console.log(res)
-              // 将返回的token加入到微信session中
-              wx.setStorageSync('token', res.token)
-              console.log(user.getToken())
-            }
-          })
-        }
-      })
-    
+      
     },
     bindGetUserInfo(e) {
         console.log(e.detail.userInfo)
