@@ -45,7 +45,7 @@ class CreateUserView(APIView):
         data = data['Data']
         # 获取redis连接
         conn = get_redis_connection('UserToken')
-        result = conn.keys(data['token'])
+        result = conn.get(data['token'])
         # # 获取openid
         # openid = result.split('$$$$')[0]
         # print(openid)
