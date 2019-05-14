@@ -46,24 +46,24 @@ class CreateUserView(APIView):
         # 获取redis连接
         conn = get_redis_connection('UserToken')
         result = conn.get(data['token'])
-        # # 获取openid
-        # openid = result.split('$$$$')[0]
-        # print(openid)
-        # # openid = data['openid']
-        # # 获取session
-        # session = result.split('$$$$')[1]
-        # print(session)
-        # # session = data['session']
-        # # 判断数据库是否存在该openid
-        # user = WxUser.objects.filter(openid=openid)
-        # # 存在：返回用户已存在msg
-        # if user:
-        #     data = {'msg': '用户已存在'}
-        #     return Response(data)
-        # # 不存在：
-        # # 添加到用户表
-        # WxUser.objects.create(openid=openid).save()
-        # data = {'msg': 'success'}
+        # 获取openid
+        openid = result.split('$$$$')[0]
+        print(openid)
+        # openid = data['openid']
+        # 获取session
+        session = result.split('$$$$')[1]
+        print(session)
+        # session = data['session']
+        # 判断数据库是否存在该openid
+        user = WxUser.objects.filter(openid=openid)
+        # 存在：返回用户已存在msg
+        if user:
+            data = {'msg': '用户已存在'}
+            return Response(data)
+        # 不存在：
+        # 添加到用户表
+        WxUser.objects.create(openid=openid).save()
+        data = {'msg': 'success'}
         return Response({'data':result})
 
 class RedisTokenView(APIView):
