@@ -64,7 +64,7 @@ class CreateUserView(APIView):
         # 添加到用户表
         WxUser.objects.create(openid=openid).save()
         data = {'msg': 'success'}
-        return Response({'data':result})
+        return Response(data)
 
 class RedisTokenView(APIView):
 
