@@ -39,9 +39,19 @@ Page({
       if(user.getToken().length == 64){
         // 存在
         console.log('ok')
-        user.findToken((res)=>{
-          console.log('token')
-          console.log(res)
+        user.findToken((res) => {
+        // 查找redis是否存在对应token
+          console.log(res.msg)
+          if(res.msg=='success'){
+            console.log('登录成功')
+          }else if(res.msg=='failure'){
+            // 获取code，添加到用户表
+            wx.login({
+              success: res=>{
+                
+              }
+            })
+          }
         })
       }else{
         // 不存在

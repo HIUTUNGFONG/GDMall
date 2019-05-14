@@ -53,7 +53,7 @@ class Base {
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        callBack && callBack(res);
+        callBack && callBack(res.data);
       },
       fail: function (res) { },
       complete: function (res) { },
