@@ -262,5 +262,9 @@ Page({
             this.setData({goods_list: res.data});
             // console.log(res.data)
         })
+    },
+    // 搜索框搜索事件
+    onSearch: function(event){
+      console.log(event.detail)
     }
 })

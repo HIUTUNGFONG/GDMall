@@ -10,7 +10,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        is_sq:true  //授权
     },
 
     /**
@@ -38,17 +39,28 @@ Page({
       // 获取用户token
       if(user.getToken().length == 64){
         // 存在
-        console.log('ok')
+        console.log('成功获取token')
         user.findToken((res) => {
         // 查找redis是否存在对应token
-          console.log(res.msg)
+          // console.log(res.msg)
           if(res.msg=='success'){
-            console.log('登录成功')
+            console.log('redis存在对应token')
           }else if(res.msg=='failure'){
             // 获取code，添加到用户表
             wx.login({
-              success: res=>{
-                
+              success: res => {
+                console.log(res)
+                user.getOpenid(res.code, (res) => {
+                  success: {
+                    console.log(res)
+                    // 将返回的token加入到微信session中
+                    wx.setStorageSync('token', res.token)
+                    console.log(user.getToken())
+                    user.findWxUser((res) => {
+                      console.log(res)
+                    })
+                  }
+                })
               }
             })
           }
@@ -65,6 +77,9 @@ Page({
                 // 将返回的token加入到微信session中
                 wx.setStorageSync('token', res.token)
                 console.log(user.getToken())
+                user.findWxUser((res)=>{
+                  console.log(res)
+                })
               }
             })
           }

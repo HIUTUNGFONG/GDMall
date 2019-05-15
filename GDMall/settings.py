@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',  # xadmin后台管理
     'apps.user',  # 用户模块
     'apps.goods',   # 商品模块
+    'apps.cart',   # 购物车模块
     # 'werkzeug_debugger_runserver',    # https
     # 'django_extensions',  # https
     'rest_framework',  # 添加rest_framework

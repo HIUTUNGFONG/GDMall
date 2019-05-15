@@ -121,7 +121,33 @@ class GoodsListViewByClassify(APIView):
         data_list = []
 
         for g in goods:
-            # goods_image = GoodsImage.objects.filter(goods_id=g['id'],is_delete=0).values()
+            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
+            commodity = Commodity.objects.filter(goods_id=g['id'],is_delete=0).values()
+            sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
+            data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity,'sort':sort,'classify':classify}])
+
+        data = {'data':data_list}
+        return Response(data)
+
+class GoodsListViewBySearch(APIView):
+    '''
+    获取产品列表(条件筛选)search
+    '''
+
+    def post(self, request):
+
+        # 获取请求数据
+        data = request.body
+        data = json.loads(data)
+        data = data['Data']
+
+        goods = Goods.objects.filter(is_delete=0,title__icontains=data).values()
+
+        # 获取所有产品
+        data_list = []
+
+        for g in goods:
             goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
             commodity = Commodity.objects.filter(goods_id=g['id'],is_delete=0).values()
             sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()

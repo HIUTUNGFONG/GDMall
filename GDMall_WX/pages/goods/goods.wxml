@@ -61,10 +61,10 @@
 <!-- 搜索栏 -->
 <van-row>
   <van-col span="2">
-    <view bindtap='onShowPopup' style='padding-top:20rpx;padding-left: 18rpx'><van-icon name="bars" size='65rpx' /></view>
+    <view bindtap='onShowPopup' style='padding-top:25rpx;padding-left: 18rpx'><van-icon name="bars" size='65rpx' /></view>
   </van-col>
   <van-col span="22">
-    <van-search value="{{ value }}" placeholder="请输入搜索关键词" />
+      <van-search  value="{{search_value}}" placeholder="请输入搜索关键词" bind:search='onSearch' />
   </van-col>
 </van-row>
 
