@@ -142,7 +142,7 @@
         <text>￥{{item[0].commodity[0].price}}</text>
       </van-col>
       <van-col span='6'>
-        <van-icon name="cart-o" size='65rpx'/>
+        <van-icon name="cart-o" size='65rpx' bind:click='onAddCommodity' data-commodity='{{item}}'/>
       </van-col>
       
       

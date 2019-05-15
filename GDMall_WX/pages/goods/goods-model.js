@@ -43,7 +43,7 @@ class Goods extends Base{
   }
 
   getGoodsDataByClassify(sort,classify,callBack) {
-    //获取产品列表(分类id)
+    //获取产品列表(类别id,分类id)
     var params = {
       url: 'goods/' + sort + '/' + classify,
       sCallBack: function (res) {
@@ -53,6 +53,18 @@ class Goods extends Base{
     this.request(params);
   }
 
+  getGoodsDataBySearch(search_value, callBack) {
+    //获取产品列表(关键字)
+    var params = {
+      url: 'goods/search',
+      method:'POST',
+      data: { 'Data': search_value},
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    }
+    this.request(params);
+  }
 }
 
 export{Goods};

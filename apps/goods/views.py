@@ -71,7 +71,7 @@ class GoodsListView(APIView):
 
         for g in goods:
             goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            commodity = Commodity.objects.filter(goods_id=g['id'],is_delete=0).values()
+            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'],is_delete=0),many=True)
             sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
             classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
             data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity,'sort':sort,'classify':classify}])
@@ -141,7 +141,7 @@ class GoodsListViewBySearch(APIView):
         data = request.body
         data = json.loads(data)
         data = data['Data']
-
+        print(data)
         goods = Goods.objects.filter(is_delete=0,title__icontains=data).values()
 
         # 获取所有产品

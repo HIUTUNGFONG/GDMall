@@ -265,6 +265,15 @@ Page({
     },
     // 搜索框搜索事件
     onSearch: function(event){
-      console.log(event.detail)
-    }
+      var search_value = event.detail
+      console.log(search_value)
+      goods.getGoodsDataBySearch(search_value,(res)=>{
+        this.setData({ goods_list: res.data });
+        console.log(res.data)
+      })
+    },
+  onAddCommodity: function(event){
+    var commodity = event.currentTarget.dataset.commodity
+    console.log(commodity)
+  }
 })
