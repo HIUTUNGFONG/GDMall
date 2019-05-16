@@ -6,7 +6,7 @@ class Base {
   constructor(){
     this.baseRequestUrl = Config.restUrl;
   }
-
+  // 封装请求方法
   request(params){
     var url = this.baseRequestUrl + params.url;
     if (!params.method){
@@ -59,6 +59,7 @@ class Base {
       complete: function (res) { }
     })
   }
+  // 查询用户是否存在
   findWxUser(callBack){
     var url = this.baseRequestUrl + 'createUser';
     wx.request({
@@ -75,6 +76,8 @@ class Base {
       complete: function (res) { }
     })
   }
+
+  
 
 }
 

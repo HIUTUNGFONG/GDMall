@@ -156,6 +156,53 @@ class GoodsListViewBySearch(APIView):
         data = {'data':data_list}
         return Response(data)
 
+class CommodityListViewByGoodsId(APIView):
+    '''
+    获取商品列表(条件筛选)goods_id
+    '''
+
+    def get(self, request,goods_id):
+        # 根据goodsId获取对应的goods
+        goods = Goods.objects.filter(is_delete=0,id=goods_id).values()
+        # 根据goodsId获取对应的商品
+        commodity = Commodity.objects.filter(goods_id=goods_id,is_delete=0).values()
+        code_list = set()
+        color_list = set()
+        code_dict = {}
+        color_dict = {}
+        for c in commodity:
+            code_list.add(c.code)
+            color_list.add(c.color)
+            if (c.code in code_dict.keys()):
+                code_dict[c.code].append(c.color)
+            else:
+                code_dict[c.code] = [c.color]
+            if (c.color in color_dict.keys()):
+                code_dict[c.color].append(c.code)
+            else:
+                code_dict[c.color] = [c.code]
+        # dict去重
+        for code in code_dict:
+            code_dict[code] = set(code_dict[code])
+        for color in color_dict:
+            color_dict[color] = set(color_dict[color])
+        choose_element = {'code_list':code_list,'color_list':color_list,'code_dict':code_dict,'color_dict':color_dict}
+
+
+        # goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
+
+        # # 获取所有产品
+        # data_list = []
+        #
+        # goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
+        # commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'],is_delete=0),many=True)
+        # sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
+        # classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
+        # data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity.data,'sort':sort,'classify':classify}])
+        #
+        # data = {'data':data_list}
+        return Response(choose_element)
+
 
 
 class CommodityListView(APIView):

@@ -74,7 +74,7 @@
 <van-popup
   show="{{ show_right }}"
   position="right"
-  overlay="{{ true }}"
+  overlay="{{ overlay_rigth }}"
   custom-style="width:400rpx;height:100%"
   bind:click-overlay='onClosePopupRight'
 >
@@ -145,8 +145,27 @@
         <van-icon name="cart-o" size='65rpx' bind:click='onAddCommodity' data-commodity='{{item}}'/>
       </van-col>
       
-      
     </van-col>
   </block>
 
 </van-row>
+
+<!-- 底部弹出层 -->
+<van-popup
+  show="{{ show_bottom }}"
+  position="bottom"
+  overlay="{{ overlay_bottom }}"
+  bind:close="onClosePopupBottom"
+  custom-style="width:100%;height:600rpx"
+>
+  
+</van-popup>
+
+
+<!-- 底部tabbar -->
+<i-tab-bar current="{{ current }}" color="rgb(66, 66, 66)" bindchange="handleChange" fixed='true'>
+    <i-tab-bar-item key="indexpage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
+    <i-tab-bar-item key="goodspage" icon="keyboard" current-icon="shop_fill" title="全部商品"></i-tab-bar-item>
+    <i-tab-bar-item key="cartpage" icon="service" current-icon="service_fill" title="购物车"></i-tab-bar-item>
+    <i-tab-bar-item key="userpage" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+</i-tab-bar>

@@ -1,9 +1,5 @@
 {
   "usingComponents": {
-    "i-avatar": "/common/iview/dist/avatar/index",
-    "i-row": "/common/iview/dist/row/index",
-    "i-col": "/common/iview/dist/col/index",
-    "i-cell-group": "/common/iview/dist/cell-group/index",
-    "i-cell": "/common/iview/dist/cell/index"
+    
   }
 }

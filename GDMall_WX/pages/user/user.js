@@ -11,7 +11,9 @@ Page({
      */
     data: {
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        is_sq:true  //授权
+        is_sq:true,  //授权
+        current: 'userpage',  //底部导航栏参数
+        
     },
 
     /**
@@ -86,59 +88,29 @@ Page({
         })
 
       }
-      
+
     },
     bindGetUserInfo(e) {
         console.log(e.detail.userInfo)
     },
-    
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
+    // 底部导航栏跳转
+    handleChange({ detail }) {
+      this.setData({
+        current: detail.key
+      });
+      console.log(detail.key)
+      var tourl = ''
+      if (detail.key == 'indexpage') {
+        tourl = '../index/index'
+      } else if (detail.key == 'goodspage') {
+        tourl = '../goods/goods'
+      } else if (detail.key == 'cartpage') {
+        tourl = '../cart/cart'
+      } else if (detail.key == 'userpage') {
+        tourl = '../user/user'
+      }
+      wx.redirectTo({
+        url: tourl
+      })
     }
 })

@@ -13,6 +13,8 @@ Page({
         overlay_left: true,   //左侧蒙层显示
         show_right: false,    //右侧栏显示
         overlay_rigth: true,  //右侧蒙层显示
+        show_bottom: false,    //底部栏显示
+        overlay_bottom: true,  //底部蒙层显示
         popup_data: '',       //左侧栏数据
         active: 0,            //标签栏激活索引
         price_label: 0,       //价格标签状态
@@ -20,6 +22,7 @@ Page({
         is_query: 0,          //是否查询参数
         minPrice: 0,          //筛选最低价格
         maxPrice: 0,          //筛选最高价格
+        current: 'goodspage',  //底部导航栏参数
 
     },
 
@@ -72,6 +75,10 @@ Page({
     onClosePopupRight() {
         //点击右侧蒙层时触发
         this.setData({show_right: false});
+    },
+    onClosePopupBottom(){
+        //点击底部蒙层时触发
+        this.setData({show_bottom: false});
     },
     // 右侧筛选栏最小价格失去焦点事件
     minPrice(event) {
@@ -272,8 +279,34 @@ Page({
         console.log(res.data)
       })
     },
+  // 点击添加购物车图标事件
   onAddCommodity: function(event){
+    // 获取点击的产品信息
     var commodity = event.currentTarget.dataset.commodity
     console.log(commodity)
+    // 显示底部栏
+    this.setData({
+      show_bottom: true
+    });
+  },
+  // 底部导航栏跳转
+  handleChange({ detail }) {
+    this.setData({
+      current: detail.key
+    });
+    console.log(detail.key)
+    var tourl = ''
+    if (detail.key == 'indexpage') {
+      tourl = '../index/index'
+    } else if (detail.key == 'goodspage') {
+      tourl = '../goods/goods'
+    } else if (detail.key == 'cartpage') {
+      tourl = '../cart/cart'
+    } else if (detail.key == 'userpage') {
+      tourl = '../user/user'
+    }
+    wx.redirectTo({
+      url: tourl
+    })
   }
 })

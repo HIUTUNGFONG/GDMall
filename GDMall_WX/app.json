@@ -13,36 +13,23 @@
     "navigationBarTitleText": "Grotesquery",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "backgroundColor": "#FFFFFF",
-    "color": "#000",
-    "selectedColor": "#000",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "icons/index2.png",
-        "selectedIconPath": "icons/index1.png"
-      },
-      {
-        "pagePath": "pages/goods/goods",
-        "text": "全部商品",
-        "iconPath": "icons/index2.png",
-        "selectedIconPath": "icons/index1.png"
-      },
-      {
-        "pagePath": "pages/cart/cart",
-        "text": "购物车",
-        "iconPath": "icons/cart2.png",
-        "selectedIconPath": "icons/cart1.png"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "text": "我的",
-        "iconPath": "icons/user2.png",
-        "selectedIconPath": "icons/user1.png"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "i-avatar": "/common/iview/dist/avatar/index",
+    "i-row": "/common/iview/dist/row/index",
+    "i-col": "/common/iview/dist/col/index",
+    "i-cell-group": "/common/iview/dist/cell-group/index",
+    "i-cell": "/common/iview/dist/cell/index",
+    "i-tab-bar": "/common/iview/dist/tab-bar/index",
+    "i-tab-bar-item": "/common/iview/dist/tab-bar-item/index",
+    "van-search": "/common/vant/dist/search/index",
+    "van-popup": "/common/vant/dist/popup/index",
+    "van-icon": "/common/vant/dist/icon/index",
+    "van-row": "/common/vant/dist/row/index",
+    "van-col": "/common/vant/dist/col/index",
+    "van-tab": "/common/vant/dist/tab/index",
+    "van-tabs": "/common/vant/dist/tabs/index",
+    "van-field": "/common/vant/dist/field/index",
+    "van-button": "/common/vant/dist/button/index"
+  }
 }

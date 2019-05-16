@@ -13,7 +13,8 @@ Page({
 
     vp:true,  //视频或图片栏控制显示参数
     showManType:false,
-    mwImageUrl:'https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/mw.png'
+    mwImageUrl:'https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/mw.png',
+    current: 'indexpage',  //底部导航栏参数
 
   },
   //事件处理函数
@@ -69,6 +70,26 @@ Page({
     // 跳转vip页面
     wx.navigateTo({
       url: '../vip/vip',
+    })
+  },
+  // 底部导航栏跳转
+  handleChange({ detail }) {
+    this.setData({
+      current: detail.key
+    });
+    console.log(detail.key)
+    var tourl = ''
+    if (detail.key == 'indexpage') {
+      tourl = '../index/index'
+    } else if (detail.key == 'goodspage') {
+      tourl = '../goods/goods'
+    } else if (detail.key == 'cartpage') {
+      tourl = '../cart/cart'
+    } else if (detail.key == 'userpage') {
+      tourl = '../user/user'
+    }
+    wx.redirectTo({
+      url: tourl
     })
   }
   
