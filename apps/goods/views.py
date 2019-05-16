@@ -191,19 +191,14 @@ class CommodityListViewByGoodsId(APIView):
         choose_element = {'code_list':code_list,'color_list':color_list,'code_dict':code_dict,'color_dict':color_dict}
 
 
-        # goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-
-        # # 获取所有产品
-        # data_list = []
-        #
-        # goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-        # commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'],is_delete=0),many=True)
+        goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=goods_id,is_delete=0),many=True)
+        commodity = CommoditySerializers(Commodity.objects.filter(goods_id=goods_id,is_delete=0),many=True)
         # sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
         # classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
         # data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity.data,'sort':sort,'classify':classify}])
         #
-        # data = {'data':data_list}
-        return Response(choose_element)
+        data = {'data':{'choose_element':choose_element,'goods_image':goods_image.data,'commodity':commodity.data}}
+        return Response(data)
 
 
 
