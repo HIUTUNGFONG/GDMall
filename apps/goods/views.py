@@ -182,9 +182,9 @@ class CommodityListViewByGoodsId(APIView):
             else:
                 code_dict[c.color] = [c.code]
         # dict去重
-        for code in code_dict:
+        for code in code_dict.keys():
             code_dict[code] = set(code_dict[code])
-        for color in color_dict:
+        for color in color_dict.keys():
             color_dict[color] = set(color_dict[color])
         choose_element = {'code_list':code_list,'color_list':color_list,'code_dict':code_dict,'color_dict':color_dict}
 
