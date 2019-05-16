@@ -147,7 +147,7 @@ class Commodity(BaseModel):
     商品模型类
     '''
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
-    colour = models.CharField(max_length=10, verbose_name='颜色')
+    color = models.CharField(max_length=10, verbose_name='颜色')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='单价')
     code = models.CharField(max_length=10, verbose_name='尺码')
     image = models.ImageField(upload_to='CommdityImg', verbose_name='商品小图')

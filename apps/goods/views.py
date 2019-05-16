@@ -171,16 +171,18 @@ class CommodityListViewByGoodsId(APIView):
         code_dict = {}
         color_dict = {}
         for c in commodity:
-            code_list.add(c.code)
-            color_list.add(c.color)
-            if (c.code in code_dict.keys()):
-                code_dict[c.code].append(c.color)
+            code = c.get('code')
+            color = c.get('color')
+            code_list.add(code)
+            color_list.add(color)
+            if (code in code_dict.keys()):
+                code_dict[code].append(color)
             else:
-                code_dict[c.code] = [c.color]
-            if (c.color in color_dict.keys()):
-                code_dict[c.color].append(c.code)
+                code_dict[code] = [color]
+            if (color in color_dict.keys()):
+                color_dict[color].append(code)
             else:
-                code_dict[c.color] = [c.code]
+                color_dict[color] = [code]
         # dict去重
         for code in code_dict.keys():
             code_dict[code] = set(code_dict[code])
