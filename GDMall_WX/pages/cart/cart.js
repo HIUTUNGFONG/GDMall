@@ -1,4 +1,9 @@
 // pages/cart/cart.js
+
+import { Cart } from './cart-model.js'
+
+var cart = new Cart();
+
 Page({
 
   /**
@@ -9,77 +14,62 @@ Page({
     //数据结构：以一组一组的数据来进行设定 
     commodityAttr: [
       {
-       
         "attrValueList": [
           {
-            "attrKey": "规格：",
-            "attrValue": "+免费配料",
-        
+            "attrKey": "尺码:",
+            "attrValue": "XL"
           },
           {
-            "attrKey": "甜度：",
-            "attrValue": "七分甜",
-   
+            "attrKey": "颜色:",
+            "attrValue": "黑色"
           }
         ]
       },
       {
-        
         "attrValueList": [
           {
-            "attrKey": "规格：",
-            "attrValue": "+燕麦",
-       
+            "attrKey": "尺码:",
+            "attrValue": "均码"
           },
           {
-            "attrKey": "甜度：",
-            "attrValue": "五分甜",
-        
+            "attrKey": "颜色:",
+            "attrValue": "黄色"
           }
         ]
       },
       {
-        
         "attrValueList": [
           {
-            "attrKey": "规格：",
-            "attrValue": "+布丁",
-          
+            "attrKey": "尺码:",
+            "attrValue": "S"
           },
           {
-            "attrKey": "甜度：",
-            "attrValue": "无糖",
-            
+            "attrKey": "颜色:",
+            "attrValue": "灰色"
           }
         ]
       },
       {
-        
         "attrValueList": [
           {
-            "attrKey": "规格：",
-            "attrValue": "再加一份奶霜",
-           
+            "attrKey": "尺码:",
+            "attrValue": "XL"
           },
           {
-            "attrKey": "甜度：",
-            "attrValue": "无糖",
-            
+            "attrKey": "颜色:",
+            "attrValue": "橘色"
           }
         ]
       },
       {
-       
         "attrValueList": [
           {
-            "attrKey": "规格：",
-            "attrValue": "+免费配料",
-            
+            "attrKey": "尺码:",
+            "attrValue": "S"
           },
           {
-            "attrKey": "甜度：",
-            "attrValue": "五分甜",
-            
+            "attrKey": "颜色:",
+            "attrValue": "黑色"
           }
         ]
       }
@@ -92,7 +82,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var id = 2;
+    cart.getCommodityList(id,(res)=>{
+      this.commodityAttr = res.data.commodityAttr
+      console.log(this.commodityAttr)
+      // console.log(res.data.commodityAttr)
+    })
+    
   },
   // 底部导航栏跳转
   handleChange({ detail }) {
