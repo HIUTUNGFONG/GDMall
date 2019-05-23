@@ -186,18 +186,14 @@ class CommodityListViewByGoodsId(APIView):
         # 根据goodsId获取对应的商品
         commodity = Commodity.objects.filter(goods_id=goods_id, is_delete=0).values()
         commodityAttr = []
-        attrValueList = []
-        # code_list = set()
-        # color_list = set()
-        # code_dict = {}
-        # color_dict = {}
         for c in commodity:
+            attrValueList = []
             code = c.get('code')
             color = c.get('color')
-            attrValueList.append(
+            attrValueList.append({
                 {'attrKey': '尺码:', 'attrValue': code},
                 {'attrKey': '颜色:', 'attrValue': color}
-            )
+            })
             commodityAttr.append({'attrValueList':attrValueList})
 
         goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=goods_id, is_delete=0), many=True)
