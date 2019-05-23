@@ -12,3 +12,20 @@
   -webkit-line-clamp: 2;
   font-size: 30rpx;
 }
+.line{
+width: 100%;
+margin-top: 20rpx;
+border-top:1px #eeecec solid;
+}
+/* 元素参数 */
+.params_element{
+  border: 0.4rpx solid #d6d2d2;
+  padding:4rpx 10rpx;
+  border-radius:20rpx;
+}
+.params_element_on{
+  border: 0.4rpx solid #353535;
+  padding:4rpx 10rpx;
+  border-radius:20rpx;
+  background-color: #d4d4d4
+}

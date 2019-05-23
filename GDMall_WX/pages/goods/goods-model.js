@@ -65,6 +65,17 @@ class Goods extends Base{
     }
     this.request(params);
   }
+
+  getCommodityList(goodsId,callBack){
+    //获取商品列表，选择元素列表
+    var params = {
+      url: 'commodity/' + goodsId,
+      sCallBack: function(res) {
+        callBack && callBack(res);
+      }
+    }
+    this.request(params);
+  }
 }
 
 export{Goods};

@@ -23,6 +23,11 @@ Page({
         minPrice: 0,          //筛选最低价格
         maxPrice: 0,          //筛选最高价格
         current: 'goodspage',  //底部导航栏参数
+        commodity_data:'',      //底部弹出栏参数
+        on_code: '',
+        
+
+        
 
     },
 
@@ -65,6 +70,7 @@ Page({
         // 显示侧边栏,查询类别和分类
         this.setData({
             show_left: true
+            
         });
 
     },
@@ -78,7 +84,10 @@ Page({
     },
     onClosePopupBottom(){
         //点击底部蒙层时触发
-        this.setData({show_bottom: false});
+        this.setData({
+          show_bottom: false,
+          code_style: ''  //清空code属性选择
+        });
     },
     // 右侧筛选栏最小价格失去焦点事件
     minPrice(event) {
@@ -283,7 +292,32 @@ Page({
   onAddCommodity: function(event){
     // 获取点击的产品信息
     var commodity = event.currentTarget.dataset.commodity
-    console.log(commodity)
+    console.log(commodity[0].goods.id)
+    var goodsId = commodity[0].goods.id
+
+    // 获取商品列表，选择元素列表
+    goods.getCommodityList(goodsId,(res)=>{
+      
+      // 获取总件数
+      var commodity_count=0;
+      for(var i=0;i<(res.data.commodity.length);i++){
+        commodity_count += res.data.commodity[i].stock
+      }
+      this.commodity_data = res.data
+      // console.log(this.commodity_data)
+      this.setData({ 'commodity_data': res.data,
+                      'commodity_count': commodity_count,
+        code_dict: res.data.choose_element.code_dict,
+        color_dict: res.data.choose_element.color_dict
+
+       });
+      console.log(res.data.choose_element.color_dict)
+      console.log(res.data.choose_element.code_dict)
+
+      // console.log(res.data.goods_image[0].image)
+    })
+    
+
     // 显示底部栏
     this.setData({
       show_bottom: true
@@ -308,5 +342,42 @@ Page({
     wx.redirectTo({
       url: tourl
     })
+  },
+  // 点击尺码元素事件
+  onCode: function(event){
+    console.log(event.currentTarget.dataset.code)
+    console.log(this.commodity_data.choose_element.code_list)
+    var code = event.currentTarget.dataset.code
+    var code_list = this.commodity_data.choose_element.code_list
+    for(var i=0;i<code_list.length;i++){
+      // console.log("code_list"+code_list[i])
+      // console.log("code"+code)
+      if(code_list[i]==code){
+        if (this.on_code != code) {
+          console.log('第一次')
+          this.on_code = code
+          this.setData({
+            'code_style': code
+          })
+        } else {
+          console.log('第二次')
+          this.on_code = ''
+          this.setData({
+            'code_style': ''
+          })
+        }
+        console.log(this.commodity_data.choose_element.code_dict)
+        
+        
+        // console.log(queryNode)
+      
+      }
+    }
+
+
+    // 改变点击的尺码元素样式
+    // 获取该尺码的数据
+    // 到code_dict查询出该尺码对应的颜色
+    // 将没有的颜色改变样式
   }
 })

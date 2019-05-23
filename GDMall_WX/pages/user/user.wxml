@@ -1,5 +1,4 @@
 
-
 <block wx:if='{{is_sq==false}}'>
   <button>授权</button>
 </block>
@@ -33,6 +32,10 @@
     </i-col>
   </i-row>
 </block>
+
+
+
+
 
 <!-- 底部tabbar -->
 <i-tab-bar current="{{ current }}" color="rgb(66, 66, 66)" bindchange="handleChange" fixed='true'>

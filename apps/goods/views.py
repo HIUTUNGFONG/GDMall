@@ -62,23 +62,23 @@ class GoodsListView(APIView):
     '''
     获取产品列表
     '''
-    def get(self,request):
 
+    def get(self, request):
         goods = Goods.objects.filter(is_delete=0).values()
 
         # 获取所有产品
         data_list = []
 
         for g in goods:
-            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
-            classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
-            data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity.data,'sort':sort,'classify':classify}])
+            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            sort = Sort.objects.filter(id=g['sort_id'], is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'], is_delete=0).values()
+            data_list.append([{'goods': g, 'goods_image': goods_image.data, 'commodity': commodity.data, 'sort': sort,
+                               'classify': classify}])
 
-        data = {'data':data_list}
+        data = {'data': data_list}
         return Response(data)
-
 
 
 class GoodsListViewBySort(APIView):
@@ -86,22 +86,21 @@ class GoodsListViewBySort(APIView):
     获取产品列表(条件筛选)sort
     '''
 
-    def get(self, request,sort_id):
-        goods = Goods.objects.filter(is_delete=0,sort=sort_id).values()
-
-
+    def get(self, request, sort_id):
+        goods = Goods.objects.filter(is_delete=0, sort=sort_id).values()
 
         # 获取所有产品
         data_list = []
 
         for g in goods:
-            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
-            classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
-            data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity.data,'sort':sort,'classify':classify}])
+            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            sort = Sort.objects.filter(id=g['sort_id'], is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'], is_delete=0).values()
+            data_list.append([{'goods': g, 'goods_image': goods_image.data, 'commodity': commodity.data, 'sort': sort,
+                               'classify': classify}])
 
-        data = {'data':data_list}
+        data = {'data': data_list}
         return Response(data)
 
 
@@ -110,24 +109,26 @@ class GoodsListViewByClassify(APIView):
     获取产品列表(条件筛选)classify
     '''
 
-    def get(self, request,sort_id,classify_id):
+    def get(self, request, sort_id, classify_id):
         print(sort_id)
         print(classify_id)
 
-        goods = Goods.objects.filter(is_delete=0,sort=sort_id,classify=classify_id).values()
+        goods = Goods.objects.filter(is_delete=0, sort=sort_id, classify=classify_id).values()
 
         # 获取所有产品
         data_list = []
 
         for g in goods:
-            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
-            classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
-            data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity.data,'sort':sort,'classify':classify}])
+            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            sort = Sort.objects.filter(id=g['sort_id'], is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'], is_delete=0).values()
+            data_list.append([{'goods': g, 'goods_image': goods_image.data, 'commodity': commodity.data, 'sort': sort,
+                               'classify': classify}])
 
-        data = {'data':data_list}
+        data = {'data': data_list}
         return Response(data)
+
 
 class GoodsListViewBySearch(APIView):
     '''
@@ -135,71 +136,74 @@ class GoodsListViewBySearch(APIView):
     '''
 
     def post(self, request):
-
         # 获取请求数据
         data = request.body
         data = json.loads(data)
         data = data['Data']
         print(data)
-        goods = Goods.objects.filter(is_delete=0,title__icontains=data).values()
+        goods = Goods.objects.filter(is_delete=0, title__icontains=data).values()
 
         # 获取所有产品
         data_list = []
 
         for g in goods:
-            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'],is_delete=0),many=True)
-            sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
-            classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
-            data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity.data,'sort':sort,'classify':classify}])
+            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            sort = Sort.objects.filter(id=g['sort_id'], is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'], is_delete=0).values()
+            data_list.append([{'goods': g, 'goods_image': goods_image.data, 'commodity': commodity.data, 'sort': sort,
+                               'classify': classify}])
 
-        data = {'data':data_list}
+        data = {'data': data_list}
         return Response(data)
+
 
 class CommodityListViewByGoodsId(APIView):
     '''
     获取商品列表(条件筛选)goods_id
+    commodityAttr: [
+      {
+
+        "attrValueList": [
+          {
+            "attrKey": "规格：",
+            "attrValue": "+免费配料",
+
+          },
+          {
+            "attrKey": "甜度：",
+            "attrValue": "七分甜",
+
+          }
+        ]
+      }
+    ]
     '''
 
-    def get(self, request,goods_id):
+    def get(self, request, goods_id):
         # 根据goodsId获取对应的goods
-        goods = Goods.objects.filter(is_delete=0,id=goods_id).values()
+        goods = Goods.objects.filter(is_delete=0, id=goods_id).values()
         # 根据goodsId获取对应的商品
-        commodity = Commodity.objects.filter(goods_id=goods_id,is_delete=0).values()
-        code_list = set()
-        color_list = set()
-        code_dict = {}
-        color_dict = {}
+        commodity = Commodity.objects.filter(goods_id=goods_id, is_delete=0).values()
+        commodityAttr = []
+        attrValueList = []
+        # code_list = set()
+        # color_list = set()
+        # code_dict = {}
+        # color_dict = {}
         for c in commodity:
             code = c.get('code')
             color = c.get('color')
-            code_list.add(code)
-            color_list.add(color)
-            if (code in code_dict.keys()):
-                code_dict[code].append(color)
-            else:
-                code_dict[code] = [color]
-            if (color in color_dict.keys()):
-                color_dict[color].append(code)
-            else:
-                color_dict[color] = [code]
-        # dict去重
-        for code in code_dict.keys():
-            code_dict[code] = set(code_dict[code])
-        for color in color_dict.keys():
-            color_dict[color] = set(color_dict[color])
-        choose_element = {'code_list':code_list,'color_list':color_list,'code_dict':code_dict,'color_dict':color_dict}
+            attrValueList.append(
+                {'attrKey': '尺码:', 'attrValue': code},
+                {'attrKey': '颜色:', 'attrValue': color}
+            )
+            commodityAttr.append({'attrValueList':attrValueList})
 
-
-        goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=goods_id,is_delete=0),many=True)
-        commodity = CommoditySerializers(Commodity.objects.filter(goods_id=goods_id,is_delete=0),many=True)
-        # sort = Sort.objects.filter(id=g['sort_id'],is_delete=0).values()
-        # classify = Classify.objects.filter(id=g['classify_id'],is_delete=0).values()
-        # data_list.append([{'goods':g,'goods_image':goods_image.data,'commodity':commodity.data,'sort':sort,'classify':classify}])
-        #
-        data = {'data':{'choose_element':choose_element,'goods_image':goods_image.data,'commodity':commodity.data}}
+        goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=goods_id, is_delete=0), many=True)
+        commodity = CommoditySerializers(Commodity.objects.filter(goods_id=goods_id, is_delete=0), many=True)
+        data = {'data': {'commodityAttr': commodityAttr, 'goods_image': goods_image.data, 'commodity': commodity.data}}
         return Response(data)
-
 
 
 class CommodityListView(APIView):
@@ -212,27 +216,3 @@ class CommodityListView(APIView):
         cs = CommoditySerializers(commodity, many=True)
         data = {'data': cs.data}
         return Response(data)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
