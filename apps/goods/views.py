@@ -190,10 +190,10 @@ class CommodityListViewByGoodsId(APIView):
             attrValueList = []
             code = c.get('code')
             color = c.get('color')
-            attrValueList.append({
-                {'attrKey': '尺码:', 'attrValue': code},
-                {'attrKey': '颜色:', 'attrValue': color}
-            })
+            code_dict = {'attrKey': '尺码:', 'attrValue': code}
+            color_dict = {'attrKey': '颜色:', 'attrValue': color}
+            attrValueList.append(code_dict)
+            attrValueList.append(color_dict)
             commodityAttr.append({'attrValueList':attrValueList})
 
         goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=goods_id, is_delete=0), many=True)
