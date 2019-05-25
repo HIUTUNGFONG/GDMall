@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from apps.goods.models import Commodity
+from apps.user.models import WxUser
 
 '''
 添加商品到购物车
@@ -48,7 +49,10 @@ class CartAddView(APIView):
         # 业务处理：添加购物车记录
 
         conn_ut = get_redis_connection('UserToken')
-        user_id = conn_ut.get(token)
+        result = conn_ut.get(token)
+        openid = result.split('$$$$')[0]
+        user = WxUser.objects.filter(openid=openid)
+        user_id = user.id
         conn = get_redis_connection('Cart')
         cart_key = 'cart_%d' % user_id
         # 先尝试获取commodity_id的值 hget cart_key 属性
