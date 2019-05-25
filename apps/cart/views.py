@@ -52,6 +52,7 @@ class CartAddView(APIView):
         result = str(conn_ut.get(token))
         openid = result.split('$$$$')[0]
         user = WxUser.objects.filter(openid=openid).values()
+        print(user['id'])
         user_id = user['id']
         conn = get_redis_connection('Cart')
         cart_key = 'cart_%d' % user_id
