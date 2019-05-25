@@ -49,7 +49,7 @@ class CartAddView(APIView):
         # 业务处理：添加购物车记录
 
         conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
+        result = str(conn_ut.get(token))
         openid = result.split('$$$$')[0]
         user = WxUser.objects.filter(openid=openid)
         user_id = user.id
