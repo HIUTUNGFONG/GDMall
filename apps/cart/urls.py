@@ -6,6 +6,6 @@ from apps.user.views import *
 app_name = 'cart'
 
 urlpatterns = [
-    path('cart/add/', CartAddView.as_view(), name='add'),  # 购物车记录添加
+    path('cart/add', CartAddView.as_view(), name='add'),  # 购物车记录添加
 
 ]

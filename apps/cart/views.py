@@ -1,3 +1,5 @@
+import json
+
 from django_redis import get_redis_connection
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -19,9 +21,13 @@ class CartAddView(APIView):
         '''购物车记录添加'''
 
         # 接收数据
-        commodity_id = request.POST.get('commodity_id')
-        count = request.POST.get('commodity_count')
-        token = request.POST.get('token')
+        data = json.loads(request.body)
+        commodity_id = data['commodity_id']
+        count = data['commodity_count']
+        token = data['token']
+        # commodity_id = request.POST.get('commodity_id')
+        # count = request.POST.get('commodity_count')
+        # token = request.POST.get('token')
 
         # 数据校验
         if not all([commodity_id, count,token]):
