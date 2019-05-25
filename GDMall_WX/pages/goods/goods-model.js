@@ -76,6 +76,21 @@ class Goods extends Base{
     }
     this.request(params);
   }
+
+  addCommdityToCart(commodity_id,commodity_count,callBack){
+    var params = {
+      url: 'cart/add',
+      method: 'POST',
+      data: {
+        'token': wx.getStorageSync('token'),
+         'commodity_id': commodity_id,
+        'commodity_count': commodity_count
+       },
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    }
+  }
 }
 
 export{Goods};

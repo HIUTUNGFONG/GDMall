@@ -629,6 +629,11 @@ Page({
                 })
             }else {
                 //加入购物车
+              console.log(this.commodity_id)
+              console.log(this.stepperAttr)
+              goods.addCommdityToCart(this.commodity_id, this.stepperAttr,(res)=>{
+                  console.log(res.data)
+                })
                 wx.showToast({
                     title: '成功加入购物车',
                     icon: 'success',
