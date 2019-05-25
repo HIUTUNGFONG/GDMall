@@ -47,7 +47,7 @@
     <van-tab title="筛选 ☰"></van-tab>
   </block>
   <block wx:if='{{price_label==1}}'>
-    <van-tab title="价格∧"></van-tab> 
+    <van-tab title="价格∧"></van-tab>
     <van-tab title="新品"></van-tab>
     <van-tab title="筛选 ☰"></van-tab>
   </block>
@@ -144,7 +144,7 @@
       <van-col span='6'>
         <van-icon name="cart-o" size='65rpx' bind:click='onAddCommodity' data-commodity='{{item}}'/>
       </van-col>
-      
+
     </van-col>
 
   </block>
@@ -157,11 +157,11 @@
   position="bottom"
   overlay="{{ overlay_bottom }}"
   bind:close="onClosePopupBottom"
-  custom-style="width:100%;height:800rpx"
+  custom-style="width:100%;height:810rpx"
   safe-area-inset-top='true'
 >
   <!-- 商品小图,价格,库存,选择参数 -->
-  <van-row>
+<van-row>
   <van-col span="9">
     <view style='padding-top:20rpx;padding-left:60rpx'>
       <image src='{{commodity_data.goods_image[0].image}}'  style='width:180rpx;height:180rpx'>
@@ -170,59 +170,50 @@
   </van-col>
   <van-col span="15">
     <van-row>
-      <view style='line-height:80rpx;font-size:40rpx;font-weight:900'>￥ 999.99</view>
+      <view style='line-height:80rpx;font-size:40rpx;font-weight:900'>￥ {{price}}</view>
     </van-row>
     <van-row>
       <view style='color:#aaa;font-size:25rpx;'>库存{{commodity_count}}件</view>
     </van-row>
     <van-row>
-      <view style='color:#aaa;font-size:25rpx;line-height:40rpx'>请选择颜色</view>
+      <view style='color:#aaa;font-size:25rpx;line-height:40rpx'>{{CodeColorAttr}}</view>
     </van-row>
   </van-col>
+
 </van-row>
-  <view class='line'></view>
-  <!-- 尺码 -->
-  <van-row style='line-height:85rpx'>
-    <van-col offset='2'>尺码</van-col>
-  </van-row>
-  <van-row>
-    <van-col span='1'>　</van-col>
-    <van-col offset='1' wx:for='{{commodity_data.choose_element.code_list}}'>
-      <view class='{{item==code_style?"params_element_on" :"params_element"}}' id='{{item}}' data-code='{{item}}'  bindtap='onCode'>{{item}}</view>
-    </van-col>
-  </van-row>
-  <view class='line'></view>
-  <!-- 颜色 -->
-  <van-row style='line-height:85rpx'>
-    <van-col offset='2'>颜色</van-col>
-  </van-row>
-  <van-row >
-    <van-col span='1'>　</van-col>
-    <van-col offset='1' wx:for='{{commodity_data.choose_element.color_list}}'>
-      <view class='{{item==code_style?"params_element_on" :"params_element"}}' data-color='{{item}}' bindtap='onColor'>{{item}}</view>
-    </van-col>
-  </van-row>
-  <view class='line'></view>
-  <!-- 数量 -->
-  <van-row style='line-height:85rpx' >
-    <van-col offset='2' span='13'>数量</van-col>
-    <van-col span='9'>
-      <view >
-        <van-stepper value="{{ 1 }}" bind:change="onChange" />
+
+  <view class="commodity_attr_list">
+    <!--每组属性-->
+    <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex">
+      <!--属性名-->
+      <view class="attr_name">{{attrValueObj.attrKey}}</view>
+
+      <!--属性值-->
+      <view class="attr_value_box">
+          <!--每个属性值-->
+          <view class="attr_value {{attrIndex==firstIndex || attrValueObj.attrValueStatus[valueIndex]?(value==attrValueObj.selectedValue?'attr_value_active':''):'attr_value_disabled'}}" bindtap="selectAttrValue" data-status="{{attrValueObj.attrValueStatus[valueIndex]}}"
+          data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-code="{{attrCode}}" data-index="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}" wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value}}</view>
       </view>
-    </van-col>
-  </van-row>
+  </view>
+    <view class="attr_name">数量:</view>
+      <view class="'attr_stepper">
+        <van-stepper value="{{ stepperAttr }}" max='{{commodity_count}}' bind:change="onStepper" />
+      </view>
+</view>
+
+
 
   <!-- 加入购物车,提交订单按钮 -->
   <view style="position:fixed; bottom:0;width: 100%;">
     <van-col span='12'>
-      <van-button square type="danger" size='large' bind:click='onPriceReset'>加入购物车</van-button>
+      <van-button square type="danger" size='large' bind:click='submit' >加入购物车</van-button>
     </van-col>
     <van-col span='12'>
-      <van-button square type="primary" size='large' bind:click='onPriceConfirm'>提交订单</van-button>
+      <van-button square type="primary" size='large' bind:click='submit'>提交订单</van-button>
     </van-col>
   </view>
-  
+
+
 </van-popup>
 
 

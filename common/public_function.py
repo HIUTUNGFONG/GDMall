@@ -1,0 +1,4 @@
+
+class PublicFunction(object):
+
+    pass

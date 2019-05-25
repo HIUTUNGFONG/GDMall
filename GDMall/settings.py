@@ -38,14 +38,12 @@ INSTALLED_APPS = [
     'xadmin',  # xadmin后台管理
     'crispy_forms',  # xadmin后台管理
     'apps.user',  # 用户模块
-    'apps.goods',   # 商品模块
-    'apps.cart',   # 购物车模块
+    'apps.goods',  # 商品模块
+    'apps.cart',  # 购物车模块
     # 'werkzeug_debugger_runserver',    # https
     # 'django_extensions',  # https
     'rest_framework',  # 添加rest_framework
 ]
-
-
 
 # 配置使用到的用户模型类
 AUTH_USER_MODEL = 'user.User'
@@ -74,7 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'common.processor.ali_media',    # aliyun
+                'common.processor.ali_media',  # aliyun
             ],
         },
     },
@@ -133,7 +131,7 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # 指定收集静态文件的路径
-STATIC_ROOT='/opt/static/GDMall'
+STATIC_ROOT = '/opt/static/GDMall'
 
 # 证书配置
 # SESSION_COOKIE_SECURE=True
@@ -165,6 +163,13 @@ CACHES = {
     "UserToken": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://:123456@127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    "Cart": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://:123456@127.0.0.1:6379/2",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
