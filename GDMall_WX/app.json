@@ -35,6 +35,11 @@
     "van-button": "/common/vant/dist/button/index",
     "van-stepper": "/common/vant/dist/stepper/index",
     "van-radio": "/common/vant/dist/radio/index",
-    "van-radio-group": "/common/vant/dist/radio-group/index"
+    "van-radio-group": "/common/vant/dist/radio-group/index",
+    "van-goods-action": "/common/vant/dist/goods-action/index",
+    "van-goods-action-icon": "/common/vant/dist/goods-action-icon/index",
+    "van-goods-action-button": "/common/vant/dist/goods-action-button/index",
+    "van-cell": "/common/vant/dist/cell/index",
+    "van-cell-group": "/common/vant/dist/cell-group/index"
   }
 }

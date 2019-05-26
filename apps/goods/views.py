@@ -81,6 +81,29 @@ class GoodsListView(APIView):
         return Response(data)
 
 
+class GoodsListViewById(APIView):
+    '''
+    获取产品列表
+    '''
+
+    def get(self, request,goods_id):
+        goods = Goods.objects.filter(id=goods_id,is_delete=0).values()
+
+        # 获取所有产品
+        data_list = []
+
+        for g in goods:
+            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            sort = Sort.objects.filter(id=g['sort_id'], is_delete=0).values()
+            classify = Classify.objects.filter(id=g['classify_id'], is_delete=0).values()
+            data_list.append([{'goods': g, 'goods_image': goods_image.data, 'commodity': commodity.data, 'sort': sort,
+                               'classify': classify}])
+
+        data = {'data': data_list}
+        return Response(data)
+
+
 class GoodsListViewBySort(APIView):
     '''
     获取产品列表(条件筛选)sort

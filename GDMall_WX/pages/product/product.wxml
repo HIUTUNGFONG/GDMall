@@ -1,15 +1,38 @@
 <!--pages/product/product.wxml-->
 
-<swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
-  <swiper-item wx:for='{{ics}}' wx:key='{{index}}'>
-    <image src='{{item.image}}' class='index_swiper' bindtap='onProduct'>商品详细页-轮播图</image>
+<swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true' class='product_swiper'>
+  <swiper-item wx:for='{{goods_data.commodity}}' wx:key='{{index}}'>
+    <image src='{{item.image}}' class='swiper_img'>商品详细页-轮播图</image>
   </swiper-item>
 </swiper>
 
 
 <van-row>
-  <van-col span="20">标题</van-col>
-  <van-col span="4">分享</van-col>
-  <van-col span="17">价格：</van-col>
-  <van-col span="7">销量：</van-col>
+  <van-col offset='1' span="20" class='product_title'>{{goods_data.goods.title}}</van-col>
+  <van-col span="3"><van-icon name="smile-comment-o" size='60rpx'/></van-col>
+  <van-col offset='1' span="18" >价格:￥{{goods_data.commodity[0].price}}</van-col>
+  <van-col span="5" class='product_sales'>销量:{{goods_data.goods.sales}}件</van-col>
 </van-row>
+
+
+<van-cell title="选择" is-link value="商品参数" />
+
+<van-tabs bind:click="onClick">
+  <van-tab title="图文详情">
+  <block wx:for='{{goods_data.goods_image}}'>
+    <image src='{{item.image}}'></image>
+  </block>
+
+  </van-tab>
+  <van-tab title="商品参数">商品参数</van-tab>
+</van-tabs>
+
+
+
+<van-goods-action>
+  <van-goods-action-icon icon="contact" text="我的" />
+  <van-goods-action-icon icon="cart-o" text="购物车" />
+  <van-goods-action-icon icon="shop-o" text="店铺" />
+  <van-goods-action-button text="加入购物车" type="danger" />
+  <van-goods-action-button text="立即购买" type="primary"/>
+</van-goods-action>

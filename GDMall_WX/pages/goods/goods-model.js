@@ -90,6 +90,7 @@ class Goods extends Base{
         callBack && callBack(res);
       }
     }
+    this.request(params);
   }
 }
 

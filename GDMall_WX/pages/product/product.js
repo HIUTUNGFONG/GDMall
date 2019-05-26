@@ -1,4 +1,9 @@
 // pages/product/product.js
+
+import {Goods} from '../goods/goods-model.js'
+
+var goods = new Goods();
+
 Page({
 
   /**
@@ -12,7 +17,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.sortid)
+    this.goodsId = options.goodsId;
+    // console.log(this.goodsId)
+    // goods.getGoodsDataBySort(this.goodsId,(res)=>{
+    //   console.log(res.data[0][0])
+    //   this.setData({
+    //     goods_data : res.data[0][0]
+    //   })
+    // })
   },
 
   /**
@@ -26,7 +38,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(this.goodsId)
+    goods.getGoodsDataBySort(this.goodsId, (res) => {
+      console.log(res.data[0][0])
+      this.setData({
+        goods_data: res.data[0][0]
+      })
+    })
   },
 
   /**
