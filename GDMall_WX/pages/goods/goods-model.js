@@ -30,6 +30,18 @@ class Goods extends Base{
     this.request(params);
   }
 
+
+  getGoodsDataById(goods_id,callBack){
+    //获取产品列表
+    var params = {
+      url: 'goods/id/' + goods_id,
+      sCallBack: function(res) {
+        callBack && callBack(res);
+      }
+    }
+    this.request(params);
+  }
+
   
   getGoodsDataBySort(id,callBack) {
     //获取产品列表(类别id)

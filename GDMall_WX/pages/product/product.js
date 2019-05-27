@@ -39,7 +39,7 @@ Page({
    */
   onShow: function () {
     console.log(this.goodsId)
-    goods.getGoodsDataBySort(this.goodsId, (res) => {
+    goods.getGoodsDataById(this.goodsId, (res) => {
       console.log(res.data[0][0])
       this.setData({
         goods_data: res.data[0][0]

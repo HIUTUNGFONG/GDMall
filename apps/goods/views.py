@@ -225,6 +225,17 @@ class CommodityListViewByGoodsId(APIView):
         return Response(data)
 
 
+class GoodsAttributeView(APIView):
+    '''
+    获取产品属性
+    '''
+    def get(self,request,goods_id):
+
+        goods = Goods.objects.filter(id=goods_id).values()
+        data = {'data':goods}
+        return Response(data)
+
+
 class CommodityListView(APIView):
     '''
     获取商品列表
@@ -235,3 +246,6 @@ class CommodityListView(APIView):
         cs = CommoditySerializers(commodity, many=True)
         data = {'data': cs.data}
         return Response(data)
+
+
+

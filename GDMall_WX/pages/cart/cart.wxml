@@ -1,5 +1,7 @@
 <!--pages/cart/cart.wxml-->
-
+<view class='top'>
+<van-checkbox value="{{ checked }}" bind:change="onChange" checked-color='black'>Grotesquery</van-checkbox>
+</view>
 
 
 

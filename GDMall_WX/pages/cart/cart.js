@@ -12,10 +12,19 @@ Page({
   data: {
     current: 'cartpage',  //底部导航栏参数
     //数据结构：以一组一组的数据来进行设定 
-
+    checked: true,
+    icon: {
+      normal: '//img.yzcdn.cn/icon-normal.png',
+      active: '//img.yzcdn.cn/icon-active.png'
+    }
   
   },
 
+  onChange(event) {
+    this.setData({
+      checked: event.detail
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

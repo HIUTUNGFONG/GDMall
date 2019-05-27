@@ -17,3 +17,6 @@
 .product_title{
   font-size: 45rpx;
 }
+.line{
+  color: rgb(204, 201, 201);
+}

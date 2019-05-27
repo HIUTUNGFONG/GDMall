@@ -12,6 +12,7 @@ urlpatterns = [
     re_path('goods/(?P<sort_id>\d)/(?P<classify_id>\d)', GoodsListViewByClassify.as_view(), name='GoodsListViewByClassify'),  # GET
     re_path('goods/(?P<sort_id>\d)', GoodsListViewBySort.as_view(), name='GoodsListViewScreening'),  # GET
     path('goods/search', GoodsListViewBySearch.as_view(), name='GoodsListViewBySearch'),  # POST 查询关键字产品
+    re_path('goods/attribute/(?P<goods_id>\d)', GoodsAttributeView.as_view(), name='GoodsAttributeView'),  # GET 查询产品属性
     path('commodity/', CommodityListView.as_view(), name='CommodityListView'),  # GET
     re_path('commodity/(?P<goods_id>\d)', CommodityListViewByGoodsId.as_view(), name='CommodityListViewByGoodsId'), # GET
 
