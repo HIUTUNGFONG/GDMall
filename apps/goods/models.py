@@ -160,4 +160,4 @@ class Commodity(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.goods_id)
+        return str(self.goods.title)
