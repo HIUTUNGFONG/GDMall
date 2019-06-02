@@ -217,9 +217,9 @@ class CartInfoView(APIView):
             commodity_list.append({
                 'id':commodity.id,
                 'title':title,
-                'num':count,
+                'num':int(count),
                 'price':commodity.price,
-                'selected':False
+                'selected':True
             })
 
         data = {'commodity_list': commodity_list}
