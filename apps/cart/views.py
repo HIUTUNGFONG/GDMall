@@ -213,7 +213,7 @@ class CartInfoView(APIView):
         for commodity_id, count in cart_dict.items():
             # 根据商品的id获取商品的信息
             commodity = Commodity.objects.filter(id=commodity_id).values()
-            commodity.count = count
+            commodity['count'] = count
             commodity_list.append(commodity)
 
         data = {'commodity_list': commodity_list}
