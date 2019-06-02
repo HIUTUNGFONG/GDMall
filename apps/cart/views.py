@@ -219,7 +219,10 @@ class CartInfoView(APIView):
                 'title':title,
                 'num':int(count),
                 'price':commodity.price,
-                'selected':True
+                'selected':False,
+                'image':commodity.image,
+                'color':commodity.color,
+                'code':commodity.code
             })
 
         data = {'commodity_list': commodity_list}

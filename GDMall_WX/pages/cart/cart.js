@@ -30,7 +30,7 @@ Page({
         // ],
         //  hasList: tue,          // 列表是否有数据
         totalPrice: 0,           // 总价，初始为0
-        selectAll: true,    // 全选状态，默认不全选
+        selectAll: false,    // 全选状态，默认不全选
         selectNum: 0         //选中的件数
 
     },
@@ -77,7 +77,6 @@ Page({
 
 
     totlePrice: function () {
-        console.log(this.carts)
         let carts = this.carts;
         let total = 0;
         let num = 0;
@@ -85,11 +84,10 @@ Page({
             if (carts[i].selected) {                   // 判断选中才会计算价格
                 total += carts[i].num * carts[i].price;
                 num += carts[i].num;
-                console.log(total)
-                console.log(num)
             }
         }
         this.setData({
+            carts:carts,
             selectNum: num,
             totalPrice: total.toFixed(2)
         });
