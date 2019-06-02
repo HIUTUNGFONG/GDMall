@@ -42,6 +42,7 @@
     "van-cell": "/common/vant/dist/cell/index",
     "van-cell-group": "/common/vant/dist/cell-group/index",
     "van-checkbox": "/common/vant/dist/checkbox/index",
-    "van-checkbox-group": "/common/vant/dist/checkbox-group/index"
+    "van-checkbox-group": "/common/vant/dist/checkbox-group/index",
+    "van-swipe-cell": "/common/vant/dist/swipe-cell/index"
   }
 }

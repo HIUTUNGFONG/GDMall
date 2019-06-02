@@ -8,32 +8,132 @@
 
 
 <van-row>
-  <van-col offset='1' span="20" class='product_title'>{{goods_data.goods.title}}</van-col>
-  <van-col span="3"><van-icon name="smile-comment-o" size='60rpx'/></van-col>
-  <van-col offset='1' span="18" >价格:￥{{goods_data.commodity[0].price}}</van-col>
+  <van-col offset='1' span="18" class='product_title'>{{goods_data.goods.title}}</van-col>
+  <van-col span="5">
+    <button open-type='share' plain='true' style='border:none;height:30px'>
+      <van-icon name="smile-comment-o" size='60rpx' />
+    </button>
+  </van-col>
+  <van-col offset='1' span="18">价格:￥{{goods_data.commodity[0].price}}</van-col>
   <van-col span="5" class='product_sales'>销量:{{goods_data.goods.sales}}件</van-col>
   <view class='line'></view>
 </van-row>
 
 
-<van-cell title="选择" is-link value="商品参数" />
+<van-cell title="选择" is-link value="商品参数" bind:click='ontype' />
 
 <van-tabs bind:click="onClick">
   <van-tab title="图文详情">
-  <block wx:for='{{goods_data.goods_image}}'>
-    <image src='{{item.image}}'></image>
-  </block>
+    <block wx:for='{{goods_data.goods_image}}'>
+      <image src='{{item.image}}'></image>
+    </block>
 
   </van-tab>
-  <van-tab title="商品参数">商品参数</van-tab>
+  <van-tab title="商品参数">
+    <view class='attribute'>
+      <view style='padding-top:50rpx;'>
+        <text class='attribute_title'>品牌</text>
+        <text class='attribute_value'>{{goods_attribute.brand}}</text>
+      </view>
+      <view class='attribute_line'>
+        <text class='attribute_title'>颜色</text>
+        <text class='attribute_value'>{{goods_attribute.color}}</text>
+      </view>
+      <view>
+        <text class='attribute_title'>尺码</text>
+        <text class='attribute_value'>{{goods_attribute.code}}</text>
+      </view>
+      <view class='attribute_line'>
+        <text class='attribute_title'>货号</text>
+        <text class='attribute_value'>{{goods_attribute.art_no}}</text>
+      </view>
+      <view>
+        <text class='attribute_title'>版型</text>
+        <text class='attribute_value'>{{goods_attribute.pattern}}</text>
+      </view>
+      <view class='attribute_line'>
+        <text class='attribute_title'>领型</text>
+        <text class='attribute_value'>{{goods_attribute.collar}}</text>
+      </view>
+      <view>
+        <text class='attribute_title'>季节</text>
+        <text class='attribute_value'>{{goods_attribute.season}}</text>
+      </view>
+      <view class='attribute_line'>
+        <text class='attribute_title'>上市时间</text>
+        <text class='attribute_value' style='padding-left:140rpx'>{{goods_attribute.ttm}}</text>
+      </view>
+    </view>
+  </van-tab>
 </van-tabs>
 
 
+<!-- 底部弹出层 -->
+<van-popup show="{{ show_bottom }}" position="bottom" overlay="{{ overlay_bottom }}" bind:close="onClosePopupBottom" custom-style="width:100%;height:810rpx" safe-area-inset-top='true'>
+  <!-- 商品小图,价格,库存,选择参数 -->
+  <van-row>
+    <van-col span="9">
+      <view style='padding-top:20rpx;padding-left:60rpx'>
+        <image src='{{commodity_data.goods_image[0].image}}' style='width:180rpx;height:180rpx'>
+        </image>
+      </view>
+    </van-col>
+    <van-col span="15">
+      <van-row>
+        <view style='line-height:80rpx;font-size:40rpx;font-weight:900'>￥ {{price}}</view>
+      </van-row>
+      <van-row>
+        <view style='color:#aaa;font-size:25rpx;'>库存{{commodity_count}}件</view>
+      </van-row>
+      <van-row>
+        <view style='color:#aaa;font-size:25rpx;line-height:40rpx'>{{CodeColorAttr}}</view>
+      </van-row>
+    </van-col>
 
+  </van-row>
+
+  <view class="commodity_attr_list">
+    <!--每组属性-->
+    <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex">
+      <!--属性名-->
+      <view class="attr_name">{{attrValueObj.attrKey}}</view>
+
+      <!--属性值-->
+      <view class="attr_value_box">
+        <!--每个属性值-->
+        <view class="attr_value {{attrIndex==firstIndex || attrValueObj.attrValueStatus[valueIndex]?(value==attrValueObj.selectedValue?'attr_value_active':''):'attr_value_disabled'}}" bindtap="selectAttrValue" data-status="{{attrValueObj.attrValueStatus[valueIndex]}}"
+          data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-code="{{attrCode}}" data-index="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}" wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value}}</view>
+      </view>
+    </view>
+    <view class="attr_name">数量:</view>
+    <view class="'attr_stepper">
+      <van-stepper value="{{ stepperAttr }}" max='{{commodity_count}}' bind:change="onStepper" />
+    </view>
+  </view>
+
+
+
+  <!-- 加入购物车,提交订单按钮 -->
+  <view style="position:fixed; bottom:0;width: 100%;">
+    <van-col span='12'>
+      <van-button square type="danger" size='large' bind:click='submit'>加入购物车</van-button>
+    </van-col>
+    <van-col span='12'>
+      <van-button square type="primary" size='large' bind:click='submit'>提交订单</van-button>
+    </van-col>
+  </view>
+
+
+</van-popup>
+
+
+
+
+<!-- 底部导航栏 -->
 <van-goods-action>
-  <van-goods-action-icon icon="contact" text="我的" url="../user/user"/>
-  <van-goods-action-icon icon="cart-o" text="购物车" url="../cart/cart"/>
-  <van-goods-action-icon icon="shop-o" text="店铺" url="../index/index"/>
-  <van-goods-action-button text="加入购物车" type="danger" />
-  <van-goods-action-button text="立即购买" type="primary"/>
+  <van-goods-action-icon icon="contact" text="我的" url="../user/user" />
+  <van-goods-action-icon icon="cart-o" text="购物车" url="../cart/cart" />
+  <van-goods-action-icon icon="shop-o" text="店铺" url="../index/index" />
+  <van-goods-action-button text="加入购物车" type="danger" bind:click='ontype'/>
+  <van-goods-action-button text="立即购买" type="primary" bind:click='ontype'/>
 </van-goods-action>

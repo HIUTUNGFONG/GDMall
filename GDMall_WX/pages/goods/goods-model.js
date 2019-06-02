@@ -15,7 +15,7 @@ class Goods extends Base{
       sCallBack: function (res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   };
 
@@ -26,7 +26,7 @@ class Goods extends Base{
       sCallBack: function(res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   }
 
@@ -38,7 +38,7 @@ class Goods extends Base{
       sCallBack: function(res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   }
 
@@ -50,7 +50,7 @@ class Goods extends Base{
       sCallBack: function (res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   }
 
@@ -61,7 +61,7 @@ class Goods extends Base{
       sCallBack: function (res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   }
 
@@ -74,7 +74,7 @@ class Goods extends Base{
       sCallBack: function (res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   }
 
@@ -85,7 +85,7 @@ class Goods extends Base{
       sCallBack: function(res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   }
 
@@ -101,9 +101,21 @@ class Goods extends Base{
       sCallBack: function (res) {
         callBack && callBack(res);
       }
-    }
+    };
     this.request(params);
   }
+
+  getGoodsAttribute(goodsId,callBack){
+    //获取商品列表，选择元素列表
+    var params = {
+      url: 'goods/attribute/' + goodsId,
+      sCallBack: function(res) {
+        callBack && callBack(res);
+      }
+    };
+    this.request(params);
+  }
+  // 获取产品属性
 }
 
 export{Goods};

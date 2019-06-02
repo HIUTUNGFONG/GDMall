@@ -124,14 +124,14 @@ class Attribute(BaseModel):
     '''
 
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品id')
-    brand = models.CharField(max_length=10, blank=True, verbose_name='品牌')
-    color = models.CharField(max_length=10, blank=True, verbose_name='颜色')
-    code = models.CharField(max_length=10, blank=True, verbose_name='尺码')
-    art_no = models.CharField(max_length=30, blank=True, verbose_name='货号')
-    pattern = models.CharField(max_length=10, blank=True, verbose_name='版型')
-    collar = models.CharField(max_length=10, blank=True, verbose_name='领型')
-    season = models.CharField(max_length=10, blank=True, verbose_name='季节')
-    ttm = models.CharField(max_length=20, blank=True, verbose_name='上市时间')
+    brand = models.CharField(max_length=255, blank=True, verbose_name='品牌')
+    color = models.CharField(max_length=255, blank=True, verbose_name='颜色')
+    code = models.CharField(max_length=255, blank=True, verbose_name='尺码')
+    art_no = models.CharField(max_length=255, blank=True, verbose_name='货号')
+    pattern = models.CharField(max_length=255, blank=True, verbose_name='版型')
+    collar = models.CharField(max_length=255, blank=True, verbose_name='领型')
+    season = models.CharField(max_length=255, blank=True, verbose_name='季节')
+    ttm = models.CharField(max_length=255, blank=True, verbose_name='上市时间')
 
     class Meta:
         db_table = 'gd_attribute'
@@ -152,6 +152,7 @@ class Commodity(BaseModel):
     code = models.CharField(max_length=10, verbose_name='尺码')
     image = models.ImageField(upload_to='CommdityImg', verbose_name='商品小图')
     stock = models.IntegerField(default=0, verbose_name='库存')
+    selected = models.BooleanField(default=False,verbose_name='是否选中')
 
     class Meta:
         db_table = 'gd_commodity'
