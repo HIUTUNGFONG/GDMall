@@ -220,7 +220,7 @@ class CartInfoView(APIView):
                 'num':int(count),
                 'price':commodity.price,
                 'selected':False,
-                'image':commodity.image,
+                # 'image':commodity.image,
                 'color':commodity.color,
                 'code':commodity.code
             })
