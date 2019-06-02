@@ -4,7 +4,7 @@ from django_redis import get_redis_connection
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from apps.goods.models import Commodity
+from apps.goods.models import *
 from apps.user.models import WxUser
 
 '''
@@ -212,9 +212,15 @@ class CartInfoView(APIView):
 
         for commodity_id, count in cart_dict.items():
             # 根据商品的id获取商品的信息
-            commodity = Commodity.objects.filter(id=commodity_id).values()
-            commodity['count'] = count
-            commodity_list.append(commodity)
+            commodity = Commodity.objects.get(id=commodity_id)
+            title = Goods.objects.get(id=commodity.goods_id).title
+            commodity_list.append({
+                'id':commodity.id,
+                'title':title,
+                'num':count,
+                'price':commodity.price,
+                'selected':False
+            })
 
         data = {'commodity_list': commodity_list}
 
