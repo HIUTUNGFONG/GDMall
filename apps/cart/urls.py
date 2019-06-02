@@ -7,7 +7,7 @@ app_name = 'cart'
 
 urlpatterns = [
     path('cart/add', CartAddView.as_view(), name='add'),  # 购物车记录添加
-    path('cart/getlist', CartInfoView.as_view(), name='getlist'),  # 获取购物车商品列表
+    re_path('cart/get/(?P<token>\*)', CartInfoView.as_view(), name='getlist'),  # 获取购物车商品列表
     path('cart/updata', CartUpdateView.as_view(), name='updata'),  # 更新购物车商品
     path('cart/delete', CartDeleteView.as_view(), name='delete'),  # 删除购物车商品
 ]
