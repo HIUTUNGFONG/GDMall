@@ -171,7 +171,7 @@ class CartUpdateView(APIView):
 
 
         # 校验商品库存
-        if count > commodity.stock:
+        if count > int(commodity.stock):
             return Response({'errmsg': '商品库存不足'})
 
         # 更新
