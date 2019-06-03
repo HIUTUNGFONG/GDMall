@@ -138,7 +138,8 @@ Page({
     changeNum:function(e){
       const index = e.currentTarget.dataset.num;
       let carts = this.carts;
-      var cnum = e.detail;
+      var cnum = e.detail.value;
+      console.log(cnum)
       cart.updataCommodityCount(carts[index].id,cnum,(res)=>{
         console.log(res)
         if (res.errmsg!=''){
