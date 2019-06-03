@@ -42,14 +42,15 @@ page {
     height: 14px;
     width: 14px;
     border-radius: 50%;
-    border: 1px solid #999;
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .list .choose .option.selected {
-    border-color: #e3393a;
-    background: url(https://st.360buyimg.com/order/images/cart5.0/shopping.cart.spirits.icns2.png?t=0719) no-repeat #fff;
-    background-size: 41px;
-    background-position-x: -21px;
+    border-color: #000000;
+    background-image: url(https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/icons/dagou.png);
+
+    background-size: 16px;
+    background-position-x: -1px;
     background-position-y: -1px;
 }
 
@@ -103,7 +104,7 @@ page {
 .list .info .buy-num {
     position: absolute;
     bottom: 4px;
-    right: 0;
+    right: -200rpx;
     background: #fff;
     border: 1px solid #eee;
     border-radius: 5px;
@@ -149,16 +150,17 @@ page {
     height: 14px;
     width: 14px;
     border-radius: 50%;
-    border: 1px solid #999;
+    border: 1px solid rgb(0, 0, 0);
     margin: 0 auto;
 }
 
 
 .footer .allchoice .option.selectedall {
-    border-color: #e3393a;
-    background: url(https://st.360buyimg.com/order/images/cart5.0/shopping.cart.spirits.icns2.png?t=0719) no-repeat #fff;
-    background-size: 41px;
-    background-position-x: -21px;
+    border-color: #000000;
+    background-image: url(https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/icons/dagou.png);
+
+    background-size: 16px;
+    background-position-x: -1px;
     background-position-y: -1px;
 }
 
@@ -172,7 +174,7 @@ page {
 
 .footer .total .money {
     text-align: right;
-    color: #e3393a;
+    color: #000000;
     font-size: 18px;
 }
 
@@ -188,7 +190,7 @@ page {
     height: 50px;
     line-height: 50px;
     padding: 0 10px 0 15px;
-    background: #e3393a;
+    background: #000000;
     font-size: 16px;
     color: #fff;
 }

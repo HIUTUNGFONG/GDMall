@@ -146,10 +146,10 @@ class CartUpdateView(APIView):
             return Response({'errmsg': '数据不完整'})
 
         # 校验添加的商品数量
-        try:
-            count = int(count)
-        except Exception as e:
-            return Response({'errmsg': '商品数目出错'})
+        # try:
+        #     count = int(count)
+        # except Exception as e:
+        #     return Response({'errmsg': '商品数目出错'})
 
         # 校验商品是否存在
         try:

@@ -133,9 +133,31 @@ Page({
             carts: carts
         });
         this.totlePrice();     // 获取总价
-    }
+    },
+    // 改变数值
+    changeNum:function(e){
+      const index = e.currentTarget.dataset.num;
+      let carts = this.carts;
+      var cnum = e.detail;
+      cart.updataCommodityCount(carts[index].id,cnum,(res)=>{
+        console.log(res)
+        if (res.errmsg!=''){
+          this.setData({
+            carts: carts
+          });
+          this.totlePrice();
+        }else{
+          carts[index].num = cnum;
+          this.setData({
+            carts: carts
+          });
+          this.totlePrice();
+        }
+      })
+      
+    },
     //增加
-    , addNum: function (e) {
+    addNum: function (e) {
         const index = e.currentTarget.dataset.num;
         let carts = this.carts;
         let num = carts[index].num;

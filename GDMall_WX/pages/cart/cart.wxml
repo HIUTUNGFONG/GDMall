@@ -7,20 +7,23 @@
 
     <view class="list" wx:for="{{ carts }}">
         <view class="choose">
-            <view class="option {{ item.selected == true?'selected':'selected1'}}" data-num="{{ index }}"
+            <view class="option {{ item.selected == true?'selected':'selected1'}}" data-num="{{ index }}" data-id="{{ item.id }}"
                   bindtap="selected"></view>
         </view>
         <view class="imgages">
-            <image class="navimg" src="http://k.zol-img.com.cn/sjbbs/7692/a7691515_s.jpg"></image>
+            <image class="navimg" src="{{ item.image }}"></image>
         </view>
         <view class="info">
             <text class="title">{{ item.title }}</text>
-            <text class="specify">颜色：xxx 码数：xxx</text>
+            <text class="specify">颜色：{{ item.color }} 码数：{{ item.code }}</text>
             <text class="charge">￥{{ item.price }}</text>
-            <view class="buy-num">
+            <!-- <view class="buy-num">
                 <text class="add" bindtap="addNum" data-num="{{ index }}">+</text>
                 <text class="goodsNum">{{ item.num }}</text>
                 <text class="sub" bindtap="subNum" data-num="{{ index }}">-</text>
+            </view> -->
+            <view style='padding-left:220rpx'>
+            <van-stepper value="{{ item.num }}" bind:blur="changeNum" bind:plus='addNum' bind:minus='subNum' data-num="{{ index }}" max='200'/>
             </view>
         </view>
     </view>

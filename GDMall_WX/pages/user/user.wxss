@@ -1,1 +1,33 @@
 /* pages/user/user.wxss */
+
+.user_info{
+  width: 100%;
+  height: 300rpx;
+  background-color: black;
+  background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559553283164&di=d25bfe149496aebad4523f21cbeafc7d&imgtype=0&src=http%3A%2F%2Fp0.qhimgs4.com%2Ft015cf7b924f6b72d29.jpg);
+}
+
+.user_avatar{
+  padding-top: 40px;
+  padding-left: 20px;
+}
+.user_name{
+  color: white;
+  padding-top: 50px;
+  padding-left: 20px;
+}
+.solid{
+  border-right: solid 1px rgb(240, 240, 240);
+}
+.bigsolid{
+  border-bottom: solid 4px rgb(240, 240, 240);
+}
+.type_icon{
+padding-top:10rpx;
+padding-left:70rpx;
+}
+.type_text{
+padding-left:60rpx;
+font-size:28rpx;
+color: rgb(133, 133, 133);
+}
