@@ -35,7 +35,9 @@
     <view class="allchoice choose">
         <view class="option {{ selectAll == true?'selectedall':'selected1'}}" bindtap="selectedAll"></view>
         全选
+        
     </view>
+    <view class='delete' bindtap='ondelete'>删除</view>
     <view class="gotonext">结算({{ selectNum }}件)</view>
     <view class="total">总计:
         <text class="money">￥{{ totalPrice }}</text>

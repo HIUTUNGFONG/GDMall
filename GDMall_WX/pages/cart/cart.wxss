@@ -200,3 +200,10 @@ page {
     padding-bottom: 300rpx;
 }
 
+.delete{
+  position:fixed;
+  left:120rpx;
+padding-top:48rpx;
+font-size:40rpx;
+
+}

@@ -90,7 +90,7 @@
 
 <!-- 收货地址 -->
 <view class='solid'>
-<van-cell icon="hotel-o" title="收货地址" is-link url="/pages/order/index" link-type="navigateTo" />
+<van-cell icon="hotel-o" title="收货地址" is-link url="/pages/address/address" link-type="navigateTo" />
 </view>
 
 <!-- 个人信息 -->

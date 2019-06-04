@@ -2,6 +2,7 @@ import json
 import os
 
 import requests
+from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_redis import get_redis_connection
@@ -72,10 +73,54 @@ class RedisTokenView(APIView):
     GET：查询Redis中是否存在WxUser
     '''
     def get(self,request,token):
-        print(token)
         conn = get_redis_connection('UserToken')
         result = conn.get(token)
-        print(result)
         if result:
             return Response({'msg': 'success'})
         return Response({'msg': 'failure'})
+
+
+
+class AddressView(APIView):
+
+    '''
+    获取用户收货地址
+    '''
+    def get(self,request,token):
+        conn = get_redis_connection('UserToken')
+        result = conn.get(token)
+        if result:
+            openid = result.split('$$$$')[0]
+            address_list = Address.objects.filter(openid=openid).values()
+            return Response({'address_list':address_list})
+        return Response({'err':'no_user'})
+
+    '''
+    新增用户收货地址
+    '''
+    def post(self,request):
+        # 获取请求数据
+        data = request.body
+        data = json.loads(data)
+        token = data['token']
+        name = data['name']
+        phone = data['phone']
+        address = data['address']
+        address_code = data['address_code']
+        is_default = data['is_default']
+
+        # 数据校验
+        if not all([token,name,phone,address,address_code]):
+            return Response({'errmsg': '数据不完整'})
+
+        conn = get_redis_connection('UserToken')
+        result = conn.get(token)
+        if result:
+            openid = result.split('$$$$')[0]
+            obj = Address.objects.create(openid=openid,addressee=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
+            obj.save()
+            if(is_default):
+                Address.objects.filter(Q(openid=openid)&Q(is_default=True)&~Q(id=obj.id)&Q(is_delete=False)).updata(is_default=False)
+            return Response({'msg':'success'})
+        return Response({'err': 'no_user'})
+

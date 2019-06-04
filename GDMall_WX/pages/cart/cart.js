@@ -87,7 +87,7 @@ Page({
             }
         }
         this.setData({
-            carts:carts,
+            carts: carts,
             selectNum: num,
             totalPrice: total.toFixed(2)
         });
@@ -135,53 +135,91 @@ Page({
         this.totlePrice();     // 获取总价
     },
     // 改变数值
-    changeNum:function(e){
-      const index = e.currentTarget.dataset.num;
-      let carts = this.carts;
-      var cnum = e.detail.value;
-      console.log(cnum)
-      cart.updataCommodityCount(carts[index].id,cnum,(res)=>{
-        console.log(res)
-        if (res.errmsg!=''){
-          this.setData({
-            carts: carts
-          });
-          this.totlePrice();
-        }else{
-          carts[index].num = cnum;
-          this.setData({
-            carts: carts
-          });
-          this.totlePrice();
-        }
-      })
-      
+    changeNum: function (e) {
+        const index = e.currentTarget.dataset.num;
+        let carts = this.carts;
+        var cnum = parseInt(e.detail.value);
+        cart.updataCommodityCount(carts[index].id, cnum, (res) => {
+            if (res.errmsg) {
+                console.log('aaa')
+                this.setData({
+                    carts: carts
+                });
+                this.totlePrice();
+            } else {
+                carts[index].num = cnum;
+                console.log('bbb')
+                this.setData({
+                    carts: carts
+                });
+                this.totlePrice();
+            }
+        })
+
+
     },
     //增加
     addNum: function (e) {
         const index = e.currentTarget.dataset.num;
         let carts = this.carts;
-        let num = carts[index].num;
-        num = num + 1;
-        carts[index].num = num;
-        this.setData({
-            carts: carts
-        });
-        this.totlePrice();
+        let num = parseInt(carts[index].num);
+        cart.updataCommodityCount(carts[index].id, num + 1, (res) => {
+            if (res.errmsg) {
+                this.setData({
+                    carts: carts
+                });
+                this.totlePrice();
+            } else {
+
+                num = num + 1;
+                carts[index].num = num;
+                this.setData({
+                    carts: carts
+                });
+                this.totlePrice();
+            }
+        })
+
     }
     //减少
     , subNum: function (e) {
         const index = e.currentTarget.dataset.num;
         let carts = this.carts;
-        let num = carts[index].num;
+        let num = parseInt(carts[index].num);
         if (num <= 1) {
             return false;
         }
-        num = num - 1;
-        carts[index].num = num;
-        this.setData({
-            carts: carts
-        });
-        this.totlePrice();
+        cart.updataCommodityCount(carts[index].id, num - 1, (res) => {
+            if (res.errmsg) {
+                this.setData({
+                    carts: carts
+                });
+                this.totlePrice();
+            } else {
+
+                num = num - 1;
+                carts[index].num = num;
+                this.setData({
+                    carts: carts
+                });
+                this.totlePrice();
+            }
+        })
+    },
+    // 删除
+    ondelete: function (e) {
+        let carts = this.carts;
+        for (var i = 0; i < carts.length; i++) {
+            if (carts[i].selected == true) {
+                cart.deleteCommodity(carts[i].id, (res) => {
+                    console.log(res)
+                })
+            }
+        }
+        cart.getCartList((res) => {
+            this.carts = res.commodity_list
+            this.totlePrice()
+        })
+
     }
 })

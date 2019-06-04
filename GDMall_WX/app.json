@@ -1,11 +1,13 @@
 {
   "pages": [
     "pages/user/user",
+    "pages/address/address",
     "pages/index/index",
     "pages/goods/goods",
     "pages/cart/cart",
     "pages/product/product",
-    "pages/vip/vip"
+    "pages/vip/vip",
+    "pages/addressforms/addressforms"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,8 +26,8 @@
     "i-tab-bar-item": "/common/iview/dist/tab-bar-item/index",
     "i-card": "common/iview/dist/card/index",
     "i-input-number": "common/iview/dist/input-number/index",
-        "i-tabs": "/common/iview/dist/tabs/index",
-        "i-tab": "/common/iview/dist/tab/index",
+    "i-tabs": "/common/iview/dist/tabs/index",
+    "i-tab": "/common/iview/dist/tab/index",
     "van-search": "/common/vant/dist/search/index",
     "van-popup": "/common/vant/dist/popup/index",
     "van-icon": "/common/vant/dist/icon/index",
@@ -45,6 +47,8 @@
     "van-cell-group": "/common/vant/dist/cell-group/index",
     "van-checkbox": "/common/vant/dist/checkbox/index",
     "van-checkbox-group": "/common/vant/dist/checkbox-group/index",
-    "van-swipe-cell": "/common/vant/dist/swipe-cell/index"
+    "van-swipe-cell": "/common/vant/dist/swipe-cell/index",
+    "van-area": "/common/vant/dist/area/index",
+    "van-card": "/common/vant/dist/card/index"
   }
 }
