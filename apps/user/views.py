@@ -91,7 +91,8 @@ class AddressView(APIView):
         result = conn.get(token)
         if result:
             openid = result.split('$$$$')[0]
-            address_list = Address.objects.filter(openid=openid).values()
+            address_list = []
+            address_list.append(Address.objects.filter(openid=openid).values())
             return Response({'address_list':address_list})
         return Response({'err':'no_user'})
 
