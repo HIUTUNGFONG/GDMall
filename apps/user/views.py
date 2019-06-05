@@ -112,7 +112,7 @@ class AddressView(APIView):
         is_default = data['is_default']
 
         # 数据校验
-        if not all([token,name,phone,address,address_code]):
+        if not all([token,name,phone,address]):
             return Response({'errmsg': '数据不完整'})
 
         conn_ut = get_redis_connection('UserToken')
