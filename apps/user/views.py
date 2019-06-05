@@ -93,7 +93,7 @@ class AddressView(APIView):
         openid = result.split('$$$$')[0]
         # print(openid)
         if result:
-            address_list = Address.objects.filter(openid=openid).values()
+            address_list = Address.objects.filter(openid=openid,is_delete=False).order_by('-is_default').values()
             return Response({'address_list':address_list})
         return Response({'err':'no_user'})
 
@@ -116,14 +116,15 @@ class AddressView(APIView):
             return Response({'errmsg': '数据不完整'})
 
         conn_ut = get_redis_connection('UserToken')
-        result = str(conn_ut.get(token))
+        result = conn_ut.get(token)
         result = str(result, encoding="utf8")
         openid = result.split('$$$$')[0]
         if result:
-            obj = Address.objects.create(openid=openid,addressee=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
+            if (is_default):
+                Address.objects.filter(Q(openid=openid) & Q(is_default=True) & Q(is_delete=False)).update(is_default=False)
+            obj = Address.objects.create(openid=openid,addressee=name,phone=phone,shipping_address=address,address_code=address_code,is_default=is_default)
             obj.save()
-            if(is_default):
-                Address.objects.filter(Q(openid=openid)&Q(is_default=True)&Q(is_delete=False)).updata(is_default=False)
             return Response({'msg':'success'})
         return Response({'err': 'no_user'})
+
 
