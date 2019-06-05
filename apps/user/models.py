@@ -45,9 +45,9 @@ class Address(BaseModel):
     用户收货地址
     '''
     openid = models.CharField(max_length=255, verbose_name='用户openid')
-    addressee = models.CharField(max_length=30, verbose_name='收件人')
+    name = models.CharField(max_length=30, verbose_name='收件人')
     phone = models.CharField(max_length=11, null=True, verbose_name='联系人电话')
-    shipping_address = models.CharField(max_length=255, verbose_name='收件地址')
+    address = models.CharField(max_length=255, verbose_name='收件地址')
     address_code = models.CharField(max_length=10,default='',verbose_name='邮编号')
     is_default = models.BooleanField(default=0, verbose_name='是否默认')
 

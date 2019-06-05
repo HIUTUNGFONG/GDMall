@@ -122,7 +122,7 @@ class AddressView(APIView):
         if result:
             if (is_default):
                 Address.objects.filter(Q(openid=openid) & Q(is_default=True) & Q(is_delete=False)).update(is_default=False)
-            obj = Address.objects.create(openid=openid,addressee=name,phone=phone,shipping_address=address,address_code=address_code,is_default=is_default)
+            obj = Address.objects.create(openid=openid,name=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
             obj.save()
             return Response({'msg':'success'})
         return Response({'err': 'no_user'})
