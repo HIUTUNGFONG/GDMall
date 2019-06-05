@@ -87,12 +87,11 @@ class AddressView(APIView):
     获取用户收货地址
     '''
     def get(self,request,token):
-        conn = get_redis_connection('UserToken')
-        result = str(conn.get(token))
+        conn_ut = get_redis_connection('UserToken')
+        result = str(conn_ut.get(token))
+        openid = result.split('$$$$')[0]
         if result:
-            openid = result.split('$$$$')[0]
-            address_list = []
-            address_list.append(Address.objects.filter(openid=openid).values())
+            address_list = Address.objects.filter(openid=openid).values()
             return Response({'address_list':address_list})
         return Response({'err':'no_user'})
 
@@ -114,10 +113,10 @@ class AddressView(APIView):
         if not all([token,name,phone,address,address_code]):
             return Response({'errmsg': '数据不完整'})
 
-        conn = get_redis_connection('UserToken')
-        result = str(conn.get(token))
+        conn_ut = get_redis_connection('UserToken')
+        result = str(conn_ut.get(token))
+        openid = result.split('$$$$')[0]
         if result:
-            openid = result.split('$$$$')[0]
             obj = Address.objects.create(openid=openid,addressee=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
             obj.save()
             if(is_default):
