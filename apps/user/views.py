@@ -88,8 +88,10 @@ class AddressView(APIView):
     '''
     def get(self,request,token):
         conn_ut = get_redis_connection('UserToken')
-        result = str(conn_ut.get(token))
+        result = conn_ut.get(token)
+        result = str(result, encoding = "utf8")
         openid = result.split('$$$$')[0]
+        # print(openid)
         if result:
             address_list = Address.objects.filter(openid=openid).values()
             return Response({'address_list':address_list})
@@ -115,6 +117,7 @@ class AddressView(APIView):
 
         conn_ut = get_redis_connection('UserToken')
         result = str(conn_ut.get(token))
+        result = str(result, encoding="utf8")
         openid = result.split('$$$$')[0]
         if result:
             obj = Address.objects.create(openid=openid,addressee=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
