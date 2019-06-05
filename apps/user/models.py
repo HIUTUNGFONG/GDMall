@@ -44,7 +44,7 @@ class Address(BaseModel):
     '''
     用户收货地址
     '''
-    openid = models.ForeignKey(WxUser, on_delete=models.CASCADE, verbose_name='用户openid')
+    openid = models.CharField(max_length=255, verbose_name='用户openid')
     addressee = models.CharField(max_length=30, verbose_name='收件人')
     phone = models.CharField(max_length=11, null=True, verbose_name='联系人电话')
     shipping_address = models.CharField(max_length=255, verbose_name='收件地址')
