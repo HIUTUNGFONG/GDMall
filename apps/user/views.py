@@ -88,7 +88,7 @@ class AddressView(APIView):
     '''
     def get(self,request,token):
         conn = get_redis_connection('UserToken')
-        result = conn.get(token)
+        result = str(conn.get(token))
         if result:
             openid = result.split('$$$$')[0]
             address_list = []
@@ -115,7 +115,7 @@ class AddressView(APIView):
             return Response({'errmsg': '数据不完整'})
 
         conn = get_redis_connection('UserToken')
-        result = conn.get(token)
+        result = str(conn.get(token))
         if result:
             openid = result.split('$$$$')[0]
             obj = Address.objects.create(openid=openid,addressee=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
