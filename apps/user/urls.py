@@ -12,5 +12,5 @@ urlpatterns = [
     path('address/add', AddressView.as_view(), name='createAddress'),  # POST添加用户地址
     path('address/delete', DeleteAddress.as_view(), name='deleteAddress'),  # POST删除用户地址
     path('address/update', UpdateAddress.as_view(), name='updateAddress'),  # POST修改用户地址
-    re_path('address/default/(?P<token>.*)/(?P<address_id>\d)', UpdateAddress.as_view(), name='updateAddress'),  # GET修改用户默认地址
+    re_path('address/update/(?P<token>.*)/(?P<address_id>\d)', UpdateAddress.as_view(), name='updateAddress'),  # GET修改用户默认地址
 ]
