@@ -157,23 +157,6 @@ class DeleteAddress(APIView):
 class UpdateAddress(APIView):
 
     '''
-    设为默认地址
-    '''
-    def get(self,token,address_id):
-        conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
-        result = str(result, encoding="utf8")
-        openid = result.split('$$$$')[0]
-        # print(openid)
-        if result:
-            Address.objects.filter(Q(openid=openid) & Q(is_default=True) & Q(is_delete=False)).update(is_default=False)
-            Address.objects.filter(id=address_id).update(is_default=True)
-            return Response({'msg': 'success'})
-        return Response({'err': 'no_user'})
-
-
-
-    '''
     修改用户地址
     '''
 
@@ -208,6 +191,27 @@ class UpdateAddress(APIView):
             # addr.address_code = address_code
             # addr.is_default = is_default
             # addr.save()
+            return Response({'msg': 'success'})
+        return Response({'err': 'no_user'})
+
+class UpdateDefault(APIView):
+
+    '''
+    设为默认地址
+    '''
+    def post(self,request):
+        # 获取请求数据
+        data = request.body
+        data = json.loads(data)
+        token = data['token']
+        address_id = data['address_id']
+        conn_ut = get_redis_connection('UserToken')
+        result = conn_ut.get(token)
+        result = str(result, encoding="utf8")
+        openid = result.split('$$$$')[0]
+        if result:
+            Address.objects.filter(Q(openid=openid) & Q(is_default=True) & Q(is_delete=False)).update(is_default=False)
+            Address.objects.filter(id=address_id).update(is_default=True)
             return Response({'msg': 'success'})
         return Response({'err': 'no_user'})
 
