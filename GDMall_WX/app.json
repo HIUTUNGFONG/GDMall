@@ -1,13 +1,15 @@
 {
   "pages": [
+    "pages/cart/cart",
+    "pages/order/order",
     "pages/user/user",
     "pages/address/address",
     "pages/index/index",
     "pages/goods/goods",
-    "pages/cart/cart",
     "pages/product/product",
     "pages/vip/vip",
     "pages/addressforms/addressforms"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -49,6 +51,7 @@
     "van-checkbox-group": "/common/vant/dist/checkbox-group/index",
     "van-swipe-cell": "/common/vant/dist/swipe-cell/index",
     "van-area": "/common/vant/dist/area/index",
-    "van-card": "/common/vant/dist/card/index"
+    "van-card": "/common/vant/dist/card/index",
+    "van-submit-bar": "/common/vant/dist/submit-bar/index"
   }
 }

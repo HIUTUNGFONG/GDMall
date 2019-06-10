@@ -38,7 +38,8 @@
         
     </view>
     <view class='delete' bindtap='ondelete'>删除</view>
-    <view class="gotonext">结算({{ selectNum }}件)</view>
+    <!-- <view class="gotonext">结算({{ selectNum }}件)</view> -->
+    <view class="gotonext" bindtap='toSettlement'>去结算</view>
     <view class="total">总计:
         <text class="money">￥{{ totalPrice }}</text>
         <text class="other">不含运费</text>

@@ -241,8 +241,8 @@ class CommodityListView(APIView):
     获取商品列表
     '''
 
-    def get(self, request):
-        commodity = Commodity.objects.all()
+    def get(self, request,commodity_id):
+        commodity = Commodity.objects.filter(id=commodity_id).values()
         cs = CommoditySerializers(commodity, many=True)
         data = {'data': cs.data}
         return Response(data)

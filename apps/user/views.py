@@ -215,3 +215,6 @@ class UpdateDefault(APIView):
             return Response({'msg': 'success'})
         return Response({'err': 'no_user'})
 
+
+
+

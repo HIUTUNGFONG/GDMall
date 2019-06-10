@@ -92,11 +92,8 @@ Page({
             totalPrice: total.toFixed(2)
         });
     },
-    onShow: function () {
-
-    }
     //选中反选
-    , selected: function (e) {
+    selected: function (e) {
         const index = e.currentTarget.dataset.num;
         let carts = this.carts;
         let selectAll = this.data.selectAll;
@@ -221,5 +218,33 @@ Page({
             this.totlePrice()
         })
 
+    },
+  toSettlement:function(){
+    // 获取已勾选的商品id、数量
+    let carts = this.carts;
+    var commodityId_list = [];
+    var commodityCount_list = [];
+    for (let i = 0; i < carts.length; i++) {         // 循环列表得到每个数据
+      if (carts[i].selected) { 
+        //将选中的商品加入到数组中                  
+        commodityId_list.push(carts[i].id);
+        commodityCount_list.push(carts[i].num);
+      }
     }
+    //判断是否有选择商品
+    if(commodityId_list==''||commodityCount_list==''){
+      console.log('请选择商品')
+    }else{
+      // 将数据放入缓存中
+      // console.log(commodityId_list)
+      // console.log(commodityCount_list)
+      wx.setStorageSync('commodityId_list', commodityId_list)
+      wx.setStorageSync('commodityCount_list', commodityCount_list)
+      // 跳转到订单页面
+      wx.navigateTo({
+        url: '../order/order',
+      })
+    }
+    
+  }
 })

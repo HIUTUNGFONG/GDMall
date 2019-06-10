@@ -115,7 +115,7 @@ class Goods extends Base{
     };
     this.request(params);
   }
-  // 获取产品属性
+  // 根据id，获取商品信息
 }
 
 export{Goods};
