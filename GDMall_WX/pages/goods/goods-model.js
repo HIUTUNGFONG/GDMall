@@ -115,7 +115,17 @@ class Goods extends Base{
     };
     this.request(params);
   }
-  // 根据id，获取商品信息
+  // 根据商品id，获取商品信息
+  getCommodityById(commodityId, callBack) {
+    //获取商品列表，选择元素列表
+    var params = {
+      url: 'commodity/get/' + commodityId,
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    };
+    this.request(params);
+  }
 }
 
 export{Goods};

@@ -242,7 +242,7 @@ class CommodityListView(APIView):
     '''
 
     def get(self, request,commodity_id):
-        commodity = Commodity.objects.filter(id=commodity_id).values()
+        commodity = Commodity.objects.filter(id=commodity_id)
         cs = CommoditySerializers(commodity, many=True)
         data = {'data': cs.data}
         return Response(data)
