@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.user',  # 用户模块
     'apps.goods',  # 商品模块
     'apps.cart',  # 购物车模块
+    'apps.pay',  # 支付模块
     # 'werkzeug_debugger_runserver',    # https
     # 'django_extensions',  # https
     'rest_framework',  # 添加rest_framework
@@ -88,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gdmall',
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': 'Gd123456',
         'HOST': '127.0.0.1'
     }
 }
