@@ -45,6 +45,8 @@ class WxPayView(APIView):
         params['sign'] = sign
         print(params)
         xmlmsg = PublicFunction().send_xml_request(pay_url, params)
+        print(xmlmsg)
+        print(xmlmsg['xml'])
         if xmlmsg['xml']['return_code'] == 'SUCCESS':
             prepay_id = xmlmsg['xml']['prepay_id']
             timeStamp = str(int(time.time()))
