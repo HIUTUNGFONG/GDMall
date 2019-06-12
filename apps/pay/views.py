@@ -24,8 +24,8 @@ class WxPayView(APIView):
         data = json.loads(request.body)
         token = data['token']
         conn_ut = get_redis_connection('UserToken')
-        result = str(conn_ut.get(token))
-
+        result = conn_ut.get(token)
+        result = str(result, encoding="utf8")
         openid = result.split('$$$$')[0]
         str32 = PublicFunction().randomStr()
         orderNum = PublicFunction().orderNum()

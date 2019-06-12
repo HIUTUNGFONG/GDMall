@@ -2,9 +2,11 @@
 
 import { Goods } from '../goods/goods-model.js'
 import { Address } from '../address/address-model.js'
+import { Order } from './order-model.js'
 
 var address = new Address();
 var goods = new Goods();
+var order = new Order();
 
 Page({
 
@@ -75,16 +77,18 @@ Page({
   },
   onSubmit:function(){
     // 获取支付签名信息
-    
-    wx.requestPayment({
-      timeStamp: '',
-      nonceStr: '',
-      package: '',
-      signType: 'MD5',
-      paySign: '',
-      success(res) { },
-      fail(res) { }
+    order.toPay((res)=>{
+      console.log(res)
     })
+    // wx.requestPayment({
+    //   timeStamp: '',
+    //   nonceStr: '',
+    //   package: '',
+    //   signType: 'MD5',
+    //   paySign: '',
+    //   success(res) { },
+    //   fail(res) { }
+    // })
   }
 
 
