@@ -8,8 +8,8 @@
     "pages/goods/goods",
     "pages/product/product",
     "pages/vip/vip",
-    "pages/addressforms/addressforms"
-    
+    "pages/addressforms/addressforms",
+    "pages/orderlist/orderlist"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -127,7 +127,11 @@ Page({
         wx.redirectTo({
             url: tourl
         })
-    }
+    },
+  noToOrder:function(){
+    // 将缓存的toOrder设置为空
+    wx.setStorageSync('toOrder', '')
+  }
 
 
 })

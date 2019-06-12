@@ -52,7 +52,7 @@
 
 <!-- 全部订单 -->
 <view class='solid'>
-<van-cell icon="orders-o" title="订单信息" value='全部订单' is-link url="/pages/order/index" link-type="navigateTo" />
+<van-cell icon="orders-o" title="订单信息" value='全部订单' is-link url="/pages/orderlist/orderlist" link-type="navigateTo" />
 </view>
 
 <view class='bigsolid'>
@@ -90,7 +90,7 @@
 
 <!-- 收货地址 -->
 <view class='solid'>
-<van-cell icon="hotel-o" title="收货地址" is-link url="/pages/address/address" link-type="navigateTo" />
+<van-cell icon="hotel-o" title="收货地址" is-link url="/pages/address/address" link-type="navigateTo" bind:click='noToOrder' />
 </view>
 
 <!-- 个人信息 -->
