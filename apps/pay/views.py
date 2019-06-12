@@ -36,7 +36,7 @@ class WxPayView(APIView):
             'nonce_str': str32,
             'body': 'test支付',
             'out_trade_no': orderNum,
-            'total_fee': 1,
+            'total_fee': '100',
             'spbill_create_ip': '47.112.147.15',
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
             'trade_type': 'JSAPI'
