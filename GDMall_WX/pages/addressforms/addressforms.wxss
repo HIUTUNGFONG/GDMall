@@ -1,0 +1,7 @@
+/* pages/addressforms/addressforms.wxss */
+
+.button{
+  position:fixed;
+  bottom: 0px;
+  width: 100%;
+}

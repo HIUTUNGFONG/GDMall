@@ -1,0 +1,51 @@
+/* pages/address.wxss */
+
+page{
+background-color: rgb(233, 233, 233)
+}
+
+
+.body{
+  width: 100%;
+  background-color: #fff;
+  margin-top: 4px;
+}
+
+
+.button{
+  position:fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.address_body{
+      height:100%;
+    padding-bottom: 300rpx;
+}
+
+.button_box{
+  border-top: 1px solid #eee;
+  border-bottom: 5px solid rgb(233, 233, 233);
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.name{
+  padding-left:30rpx;
+  padding-top:10rpx;
+
+}
+.phone{
+  padding-left:30rpx;
+  padding-top:10rpx;
+  color: rgb(148, 148, 148);
+  font-size:28rpx;
+
+
+}
+.address{
+  padding-left:30rpx;
+  padding-top:10rpx;
+  color: rgb(148, 148, 148);
+  font-size:28rpx;
+}

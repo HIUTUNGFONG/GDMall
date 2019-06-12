@@ -1,0 +1,62 @@
+<!--pages/address.wxml-->
+
+<view class='address_body'>
+
+<block wx:if='{{ addr_list_type }}'>
+  <view style='padding-left:300rpx;padding-top:250rpx;'>
+    <van-icon name="location-o" size='150rpx' color='rgb(185, 185, 185)' />
+  </view>
+
+  <view style='padding-left:200rpx;padding-top:40rpx;color:rgb(185, 185, 185);'>您还没有收货地址哦!</view>
+</block>
+<block wx:else>
+  <view class='body'>
+    <block wx:for="{{ address_list }}">
+      <view>
+          <!-- <block wx:if='{{click}}'>
+          <view bindtap='toOrder' data-name='{{item.name}}' data-phone='{{item.phone}}' data-address='{{item.address}}'>
+          </block>
+          <block wx:else>
+          
+          </block> -->
+          <block wx:if='{{click}}'>
+          <view bindtap='toOrder' data-name='{{item.name}}' data-phone='{{item.phone}}' data-address='{{item.address}}'>
+          <view class='name'>{{ item.name }}</view>
+                <view class='phone'>{{ item.phone }}</view>
+                <view class='address'>{{ item.address }}</view>   
+          </view></block>
+          <block wx:else>
+          <view>
+                <view class='name'>{{ item.name }}</view>
+                <view class='phone'>{{ item.phone }}</view>
+                <view class='address'>{{ item.address }}</view>
+          </view>
+          </block>
+        <view>
+
+          <block wx:if='{{item.is_default}}'>
+              <view style='padding-left:515rpx;' class='button_box'>
+                <text style='position: absolute;top:180rpx;right:580rpx'>默认地址</text>
+                <van-button size="mini" bind:click='onUpdate' data-id='{{item.id}}'>修改</van-button>
+                <van-button size="mini" bind:click='onDelete' data-id='{{item.id}}'>删除</van-button>
+              </view>
+          </block>
+          <block wx:else>
+              <view style='padding-left:400rpx;' class='button_box'>
+                <van-button size="mini" bind:click='onDefault' data-id='{{item.id}}'>设为默认</van-button>
+                <van-button size="mini" bind:click='onUpdate' data-id='{{item.id}}'>修改</van-button>
+                <van-button size="mini" bind:click='onDelete' data-id='{{item.id}}'>删除</van-button>
+              </view>
+          </block>
+
+        </view>
+      </view>
+    </block>
+  </view>
+</block>
+
+</view>
+
+<view class='button'>
+  <van-button size="large" type='primary' square='true' bind:click='addAddress'>新增收货地址</van-button>
+</view>

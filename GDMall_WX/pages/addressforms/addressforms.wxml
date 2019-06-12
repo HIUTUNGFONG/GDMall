@@ -1,0 +1,50 @@
+<!--pages/addressforms/addressforms.wxml-->
+<van-cell-group>
+  <van-field
+    value="{{ name }}"
+    label="收件人"
+    placeholder="请输入收件人姓名"
+    error-message="{{name_err}}"
+    required='ture'
+    bind:blur='setName'
+  />
+  <van-field
+    value="{{ phone }}"
+    label="手机号"
+    placeholder="请输入手机号"
+    error-message="{{phone_err}}"
+    type='digit'
+    required='ture'
+    maxlength='11'
+    bind:blur='setPhone'
+  />
+  <van-field
+    value="{{ address }}"
+    label="收货地址"
+    placeholder="请输入收货地址"
+    error-message="{{addr_err}}"
+    type='textarea'
+    autosize='ture'
+    required='ture'
+    bind:blur='setAddress'
+  />
+  <van-field
+    value="{{ code }}"
+    label="邮编号"
+    placeholder="请输入邮编号(选填)"
+    bind:blur='setCode'
+  />
+</van-cell-group>
+
+<!-- 是否默认 -->
+<view>
+<van-checkbox value="{{ set_default }}" bind:change="onDefault" label-position	='left' checked-color='#000000'>
+<text style='font-size:14px;padding-left:14px;padding-right:400rpx;'>设为默认地址</text>
+
+</van-checkbox>
+</view>
+
+<view class='button'>
+<van-button size="large" type='primary' square='true' bind:click='onSave' data-name='{{name}}' data-phone='{{phone}}' data-address='{{address}}' data-code='code' data-setdefault='{{set_default}}' data-resetid='{{reset_id}}'>保存</van-button>
+</view>
+

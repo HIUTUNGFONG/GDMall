@@ -1,0 +1,93 @@
+<!--pages/order/order.wxml-->
+<view class='order_body'>
+
+<!-- 收货地址 -->
+<view>
+<van-cell icon="location-o" is-link bind:click='selectAddress'>
+  <view slot="title">
+    <view>
+      <view style='width:60%;display:inline-block;'>收货人：{{address.name}}</view>
+      <view style='width:40%;display:inline-block;text-align:right;'>{{address.phone}}</view>
+    </view>
+    <view>收货地址：{{address.address}}</view>
+  </view>
+</van-cell>
+</view>
+
+
+<!-- 商品清单 -->
+<view class='body title bottom_solid'>
+    <van-icon name='bill-o' size='60rpx'/>
+    <text style='position:absolute;left:95rpx;font-size:14px;'>购物清单</text>
+</view>
+
+<block wx:for='{{commodity_list}}'>
+    <view class='body bottom_solid'>
+    <van-row>
+      <van-col span="5" offset='1'><image src='{{item.image}}' style='width:150rpx;height:150rpx;padding-top:20rpx;'></image></van-col>
+      <van-col span="13" offset='1'>
+        <van-row><view style='font-size:35rpx;padding-top:20rpx;'>{{item.title}}</view></van-row>
+        <van-row><view style='font-size:26rpx;'>{{item.code}} {{item.color}}</view></van-row>
+      </van-col>
+      <van-col span="4">
+        <van-row><view style='font-size:26rpx;padding-top:20rpx;'>￥{{item.price}}</view></van-row>
+        <van-row><view style='font-size:26rpx;'>x{{item.num}}</view></van-row>
+      </van-col>
+    </van-row>
+
+    </view>
+</block>
+
+
+<van-cell-group>
+  <van-field
+    value="{{ username }}"
+    clearable
+    label="备注"
+  />
+
+ 
+</van-cell-group>
+
+<view class='body' style='font-size:30rpx;height:70rpx;'>
+  <view style='display:inline-block;padding-top:20rpx;width:65%;text-align:right;padding-right:5px;'>共计{{count}}件商品</view>
+  <view style='display:inline-block;'>合计：￥{{sum}}</view>
+</view>
+
+<view class='body' style='margin-top:6px;'>
+  <van-cell title="优惠券" is-link value="无" />
+</view>
+
+<view class='body' style='margin-top:6px;'>
+  <van-cell title="支付方式" is-link value="微信支付" />
+</view>
+
+<view class='body' style='margin-top:6px;'>
+  <view>
+    <view class='bottom_text bottom_text_l'>商品金额</view>
+    <view class='bottom_text bottom_text_r'>{{sum}}</view>
+  </view>
+  <view>
+    <view class='bottom_text bottom_text_l'>优惠抵扣</view>
+    <view class='bottom_text bottom_text_r'>0</view>
+  </view>
+  <view>
+    <view class='bottom_text bottom_text_l'>运费</view>
+    <view class='bottom_text bottom_text_r'>0</view>
+  </view>
+  <view>
+    <view class='bottom_text bottom_text_l'>实际支付</view>
+    <view class='bottom_text bottom_text_r'>{{sum}}</view>
+  </view>
+</view>
+
+
+<van-submit-bar
+  price="{{sums}}"
+  button-text="提交订单"
+  bind:submit="onSubmit"
+  button-type='primary'
+/>
+
+
+</view>
