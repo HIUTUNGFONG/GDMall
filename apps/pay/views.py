@@ -58,6 +58,6 @@ class WxPayView(APIView):
                 'timeStamp': timeStamp
             }
             # 再次签名
-            paySign = PublicFunction().wx_sign(pay_data)
+            paySign = PublicFunction().wx_sign(pay_data,wxinfo['MCHKEY'])
             pay_data['paySign'] = paySign
         return Response(pay_data)
