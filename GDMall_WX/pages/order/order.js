@@ -79,16 +79,19 @@ Page({
     // 获取支付签名信息
     order.toPay((res)=>{
       console.log(res)
+      wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: 'MD5',
+        paySign: res.paySign,
+        success(res) { 
+          console.log('支付成功')
+        },
+        fail(res) { }
+      })
     })
-    // wx.requestPayment({
-    //   timeStamp: '',
-    //   nonceStr: '',
-    //   package: '',
-    //   signType: 'MD5',
-    //   paySign: '',
-    //   success(res) { },
-    //   fail(res) { }
-    // })
+    
   }
 
 
