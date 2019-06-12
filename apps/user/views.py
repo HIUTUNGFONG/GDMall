@@ -18,8 +18,8 @@ class TokenView(APIView):
     def get(self, request, code):
         # 生成一个随机3rd_session
         session_key = os.popen('head -n 80 /dev/urandom | tr -dc A-Za-z0-9 | head -c 64').read()
-        app_id = 'wxd2352a7b57c51606'
-        app_secret = 'ef6117603e0cd75c1b280f35ed288994'
+        app_id = 'wxc999b4ac2adc328e'
+        app_secret = '8b4f824b7d81a2a2b091eca8c9eeb2ba'
         url = 'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code' % (
         app_id, app_secret, code)
         result = requests.get(url).json()
