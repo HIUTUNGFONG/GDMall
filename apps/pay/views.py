@@ -41,7 +41,7 @@ class WxPayView(APIView):
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
             'trade_type': 'JSAPI'
         }
-        sign = PublicFunction.wx_sign(params, wxinfo['MCHKEY'])
+        sign = PublicFunction().wx_sign(params, wxinfo['MCHKEY'])
         params['sign'] = sign
         print(params)
         xmlmsg = PublicFunction.send_xml_request(pay_url, params)
