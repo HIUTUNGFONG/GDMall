@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gdmall',
         'USER': 'root',
-        'PASSWORD': 'Gd123456',
+        'PASSWORD': '123456',
         'HOST': '127.0.0.1'
     }
 }

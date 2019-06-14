@@ -28,8 +28,8 @@ class OrderInfo(BaseModel):
     transit_price = models.FloatField(default=0, verbose_name='运费')
     state = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='订单状态')
     courier_number = models.IntegerField(null=True, verbose_name='快递单号')
-    cancel_time = models.CharField(null=True, verbose_name='取消时间')
-    complete_time = models.CharField(null=True, verbose_name='完成时间')
+    cancel_time = models.CharField(max_length=255,null=True, verbose_name='取消时间')
+    complete_time = models.CharField(max_length=255,null=True, verbose_name='完成时间')
 
     class Meta:
         db_table = 'gd_order_info'
