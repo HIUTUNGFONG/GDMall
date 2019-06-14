@@ -21,7 +21,7 @@ from apps.user.models import Address
 from common.public_function import PublicFunction
 
 
-class CreateOrder(APIView):
+class CreateOrderView(APIView):
     '''
     创建订单
     '''
