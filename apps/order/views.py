@@ -115,8 +115,9 @@ class CreateOrderView(APIView):
             order.save()
         except Exception as e:
             # 数据库操作出错，回滚到sid事务保存点
+            print(e)
             transaction.savepoint_rollback(sid)
-            return Response({'errmsg': '下单失败','err':e})
+            return Response({'errmsg': '下单失败'})
 
         # 删除购物车中对应的记录 sku_ids=[1,2]
         conn.hdel(open_id, *commodityId_list)
