@@ -97,7 +97,7 @@ Page({
     //   })
     // })
     // 创建订单
-    order.createOrder(this.commodityId_list, 15,(res)=>{
+    order.createOrder(this.commodityId_list, 1,(res)=>{
       console.log(res)
     })
     
