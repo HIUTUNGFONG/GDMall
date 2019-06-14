@@ -23,7 +23,8 @@ Page({
   onLoad: function (options) {
     // 获取缓存中的地址
     this.address = wx.getStorageSync('address')
-    console.log(this.address)
+    this.addressId = ''
+    console.log('缓存获取地址数据'+this.address)
     if(this.address==''){
 
     // 获取用户地址
@@ -35,6 +36,8 @@ Page({
           this.setData({
             address:this.address_list[i]
           })
+          this.addressId= this.address_list[i].id
+          console.log(this.addressId)
         }
       }
     })
@@ -44,7 +47,6 @@ Page({
       })
       wx.setStorageSync('address', '')
     }
-
   
 
 
@@ -52,10 +54,13 @@ Page({
     this.commodity_list = wx.getStorageSync('commodity_list');
     this.count = 0;
     this.sum = 0;
+    this.commodityId_list = [];
     for(var i=0;i<this.commodity_list.length;i++){
+      this.commodityId_list.push(this.commodity_list[i].id);
       this.count+=this.commodity_list[i].num;
       this.sum += this.commodity_list[i].num * this.commodity_list[i].price;
     }
+    console.log(this.commodityId_list)
     console.log(this.count)
     console.log(this.sum)
     // console.log(this.commodity_list)
@@ -77,19 +82,23 @@ Page({
   },
   onSubmit:function(){
     // 获取支付签名信息
-    order.toPay((res)=>{
+    // order.toPay((res)=>{
+    //   console.log(res)
+    //   wx.requestPayment({
+    //     timeStamp: res.timeStamp,
+    //     nonceStr: res.nonceStr,
+    //     package: res.package,
+    //     signType: 'MD5',
+    //     paySign: res.paySign,
+    //     success(res) { 
+    //       console.log('支付成功')
+    //     },
+    //     fail(res) { }
+    //   })
+    // })
+    // 创建订单
+    order.createOrder(this.commodityId_list, 15,(res)=>{
       console.log(res)
-      wx.requestPayment({
-        timeStamp: res.timeStamp,
-        nonceStr: res.nonceStr,
-        package: res.package,
-        signType: 'MD5',
-        paySign: res.paySign,
-        success(res) { 
-          console.log('支付成功')
-        },
-        fail(res) { }
-      })
     })
     
   }

@@ -33,7 +33,7 @@ class CreateOrderView(APIView):
         commodityId_list = data['commodityId_list']
         address_id = data['address_id']
         token = data['token']
-        open_id = PublicFunction.getOpenIdByToken(token)
+        open_id = PublicFunction().getOpenIdByToken(token)
 
         if open_id == None:
             return Response({'errmsg':'openId不存在'})
@@ -51,7 +51,7 @@ class CreateOrderView(APIView):
 
         # 业务逻辑
         # 生成订单号
-        order_id = PublicFunction.orderNum()
+        order_id = PublicFunction().orderNum()
 
         # 运费
         transit_price = 0
