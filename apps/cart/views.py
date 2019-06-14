@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from apps.goods.models import *
-from apps.user.models import WxUser
+from common.public_function import PublicFunction
 
 '''
 添加商品到购物车
@@ -26,9 +26,6 @@ class CartAddView(APIView):
         commodity_id = data['commodity_id']
         count = data['commodity_count']
         token = data['token']
-        # commodity_id = request.POST.get('commodity_id')
-        # count = request.POST.get('commodity_count')
-        # token = request.POST.get('token')
 
         # 数据校验
         if not all([commodity_id, count,token]):
@@ -47,15 +44,9 @@ class CartAddView(APIView):
             return Response({'errmsg': '商品不存在'})
 
         # 业务处理：添加购物车记录
-
-        conn_ut = get_redis_connection('UserToken')
-        result = str(conn_ut.get(token))
-        openid = result.split('$$$$')[0]
-        # user = WxUser.objects.get(openid=openid)
-        # print(user.id)
-        # user_id = user.id
+        open_id = PublicFunction.getOpenIdByToken(token)
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%s' % openid
+        cart_key = 'cart_%s' % open_id
         # 先尝试获取commodity_id的值 hget cart_key 属性
         # 如果commodity_id在hash中不存在，hget返回None
         cart_count = conn.hget(cart_key, commodity_id)
@@ -105,14 +96,9 @@ class CartDeleteView(APIView):
 
 
         # 业务处理：删除购物车记录
-        conn_ut = get_redis_connection('UserToken')
-        result = str(conn_ut.get(token))
-        openid = result.split('$$$$')[0]
-        # user = WxUser.objects.get(openid=openid)
-        # print(user.id)
-        # user_id = user.id
+        open_id = PublicFunction.getOpenIdByToken(token)
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%s' % openid
+        cart_key = 'cart_%s' % open_id
         # 删除商品
         conn.hdel(cart_key, commodity_id)
 
@@ -160,14 +146,9 @@ class CartUpdateView(APIView):
 
 
         # 业务处理：更新购物车记录
-        conn_ut = get_redis_connection('UserToken')
-        result = str(conn_ut.get(token))
-        openid = result.split('$$$$')[0]
-        # user = WxUser.objects.get(openid=openid)
-        # # print(user.id)
-        # user_id = user.id
+        open_id = PublicFunction.getOpenIdByToken(token)
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%s' % openid
+        cart_key = 'cart_%s' % open_id
 
 
         # 校验商品库存
@@ -195,14 +176,10 @@ class CartInfoView(APIView):
     def get(self, request,token):
         '''显示'''
         # 获取登录的用户
-        conn_ut = get_redis_connection('UserToken')
-        result = str(conn_ut.get(token))
-        openid = result.split('$$$$')[0]
-        # user = WxUser.objects.get(openid=openid)
-        # user_id = user.id
+        open_id = PublicFunction.getOpenIdByToken(token)
         # 获取用户购物车的商品信息
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%s' % openid
+        cart_key = 'cart_%s' % open_id
         # {'商品id':商品数量}
         cart_dict = conn.hgetall(cart_key)
         # 遍历获取商品的信息
