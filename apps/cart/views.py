@@ -44,7 +44,7 @@ class CartAddView(APIView):
             return Response({'errmsg': '商品不存在'})
 
         # 业务处理：添加购物车记录
-        open_id = PublicFunction.getOpenIdByToken(token)
+        open_id = PublicFunction().getOpenIdByToken(token)
         conn = get_redis_connection('Cart')
         cart_key = 'cart_%s' % open_id
         # 先尝试获取commodity_id的值 hget cart_key 属性
@@ -96,7 +96,7 @@ class CartDeleteView(APIView):
 
 
         # 业务处理：删除购物车记录
-        open_id = PublicFunction.getOpenIdByToken(token)
+        open_id = PublicFunction().getOpenIdByToken(token)
         conn = get_redis_connection('Cart')
         cart_key = 'cart_%s' % open_id
         # 删除商品
@@ -146,7 +146,7 @@ class CartUpdateView(APIView):
 
 
         # 业务处理：更新购物车记录
-        open_id = PublicFunction.getOpenIdByToken(token)
+        open_id = PublicFunction().getOpenIdByToken(token)
         conn = get_redis_connection('Cart')
         cart_key = 'cart_%s' % open_id
 
@@ -176,7 +176,7 @@ class CartInfoView(APIView):
     def get(self, request,token):
         '''显示'''
         # 获取登录的用户
-        open_id = PublicFunction.getOpenIdByToken(token)
+        open_id = PublicFunction().getOpenIdByToken(token)
         # 获取用户购物车的商品信息
         conn = get_redis_connection('Cart')
         cart_key = 'cart_%s' % open_id
