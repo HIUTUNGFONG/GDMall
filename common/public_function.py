@@ -5,6 +5,7 @@ import time
 
 import requests
 import xmltodict as xmltodict
+from django_redis import get_redis_connection
 
 
 class PublicFunction(object):
@@ -37,6 +38,13 @@ class PublicFunction(object):
         msg = response.text
         xmlmsg = xmltodict.parse(msg)
         return xmlmsg
+
+    def getOpenIdByToken(self,token):
+        conn_ut = get_redis_connection('UserToken')
+        result = conn_ut.get(token)
+        result = str(result, encoding="utf8")
+        openid = result.split('$$$$')[0]
+        return openid
 
 # p = PublicFunction()
 # str = p.randomStr()

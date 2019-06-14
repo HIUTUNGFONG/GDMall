@@ -51,11 +51,11 @@ class CartAddView(APIView):
         conn_ut = get_redis_connection('UserToken')
         result = str(conn_ut.get(token))
         openid = result.split('$$$$')[0]
-        user = WxUser.objects.get(openid=openid)
-        print(user.id)
-        user_id = user.id
+        # user = WxUser.objects.get(openid=openid)
+        # print(user.id)
+        # user_id = user.id
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%d' % user_id
+        cart_key = 'cart_%d' % openid
         # 先尝试获取commodity_id的值 hget cart_key 属性
         # 如果commodity_id在hash中不存在，hget返回None
         cart_count = conn.hget(cart_key, commodity_id)
@@ -108,11 +108,11 @@ class CartDeleteView(APIView):
         conn_ut = get_redis_connection('UserToken')
         result = str(conn_ut.get(token))
         openid = result.split('$$$$')[0]
-        user = WxUser.objects.get(openid=openid)
-        print(user.id)
-        user_id = user.id
+        # user = WxUser.objects.get(openid=openid)
+        # print(user.id)
+        # user_id = user.id
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%d' % user.id
+        cart_key = 'cart_%d' % openid
         # 删除商品
         conn.hdel(cart_key, commodity_id)
 
@@ -163,11 +163,11 @@ class CartUpdateView(APIView):
         conn_ut = get_redis_connection('UserToken')
         result = str(conn_ut.get(token))
         openid = result.split('$$$$')[0]
-        user = WxUser.objects.get(openid=openid)
-        print(user.id)
-        user_id = user.id
+        # user = WxUser.objects.get(openid=openid)
+        # # print(user.id)
+        # user_id = user.id
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%d' % user.id
+        cart_key = 'cart_%d' % openid
 
 
         # 校验商品库存
@@ -198,12 +198,11 @@ class CartInfoView(APIView):
         conn_ut = get_redis_connection('UserToken')
         result = str(conn_ut.get(token))
         openid = result.split('$$$$')[0]
-        user = WxUser.objects.get(openid=openid)
-        print(user.id)
-        user_id = user.id
+        # user = WxUser.objects.get(openid=openid)
+        # user_id = user.id
         # 获取用户购物车的商品信息
         conn = get_redis_connection('Cart')
-        cart_key = 'cart_%d' % user.id
+        cart_key = 'cart_%d' % openid
         # {'商品id':商品数量}
         cart_dict = conn.hgetall(cart_key)
         # 遍历获取商品的信息
