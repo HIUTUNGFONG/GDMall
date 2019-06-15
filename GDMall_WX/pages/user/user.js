@@ -15,12 +15,6 @@ Page({
         current: 'userpage',  //底部导航栏参数
 
 
-
-
-
-    
-
-
     },
 
     /**
@@ -54,7 +48,7 @@ Page({
                 // console.log(res.msg)
                 if (res.msg == 'success') {
                     console.log('redis存在对应token')
-                } else if (res.msg == 'failure') {
+                } else if (res.msg == 'fail') {
                     // 获取code，添加到用户表
                     wx.login({
                         success: res => {

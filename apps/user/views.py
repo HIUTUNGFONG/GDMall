@@ -8,99 +8,69 @@ from rest_framework.views import APIView
 from django_redis import get_redis_connection
 
 from apps.user.models import *
-
-
-class TokenView(APIView):
-    '''
-    Token认证令牌
-    '''
-
-    def get(self, request, code):
-        # 生成一个随机3rd_session
-        session_key = os.popen('head -n 80 /dev/urandom | tr -dc A-Za-z0-9 | head -c 64').read()
-        app_id = 'wxc999b4ac2adc328e'
-        app_secret = '8b4f824b7d81a2a2b091eca8c9eeb2ba'
-        url = 'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code' % (
-        app_id, app_secret, code)
-        result = requests.get(url).json()
-
-        # 获取redis连接
-        conn = get_redis_connection('UserToken')
-        conn.set(session_key, result['openid'] + '$$$$' + result['session_key'])
-        # 设置过期时间7天
-        conn.expire(session_key, 60 * 60 * 24 * 7)
-        data = {'token': session_key}
-
-        return Response(data)
+from common.public_function import PublicFunction
 
 
 class CreateUserView(APIView):
     '''
-    POST:创建用户
+    根据code换取openid、session_key，查找wx_user表是否存在该wx用户
     '''
 
-    def post(self, request):
-        # 获取请求数据
-        data = request.body
-        data = json.loads(data)
-        data = data['Data']
-        # 获取redis连接
-        conn = get_redis_connection('UserToken')
-        result = str(conn.get(data['token']))
-        # 获取openid
-        openid = result.split('$$$$')[0]
-        print(openid)
-        # openid = data['openid']
-        # 获取session
-        session = result.split('$$$$')[1]
-        print(session)
-        # session = data['session']
-        # 判断数据库是否存在该openid
-        user = WxUser.objects.filter(openid=openid)
-        # 存在：返回用户已存在msg
-        if user:
-            data = {'msg': '用户已存在'}
-            return Response(data)
-        # 不存在：
-        # 添加到用户表
-        WxUser.objects.create(openid=openid).save()
-        data = {'msg': 'success'}
-        return Response(data)
+    def get(self, code):
+        # 获取open_id、session_key
+        data = PublicFunction().getOpenIdAndSessionKey(code)
+        open_id = data[0]
+        session_key = data[1]
+        # 如果获取的open_id不为空
+        if open_id:
+            # 查找是否存在该wx用户
+            try:
+                # 存在用户，直接返回token
+                wx_user = WxUser.objects.get(open_id=open_id)
+                data = PublicFunction().createRedisToken(open_id, session_key)
+                return Response(data)
+            except:
+                # 创建用户，返回token
+                WxUser.objects.create(open_id=open_id).save()
+                data = PublicFunction().createRedisToken(open_id, session_key)
+                return Response(data)
+
 
 class RedisTokenView(APIView):
+    '''
+    GET：查询Redis中是否存Token
+    '''
 
-    '''
-    GET：查询Redis中是否存在WxUser
-    '''
-    def get(self,request,token):
+    def get(self, request, token):
         conn = get_redis_connection('UserToken')
         result = conn.get(token)
         if result:
             return Response({'msg': 'success'})
-        return Response({'msg': 'failure'})
-
+        return Response({'msg': 'fail'})
 
 
 class AddressView(APIView):
-
     '''
     获取用户收货地址
     '''
-    def get(self,request,token):
-        conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
-        result = str(result, encoding = "utf8")
-        openid = result.split('$$$$')[0]
-        # print(openid)
-        if result:
-            address_list = Address.objects.filter(openid=openid,is_delete=False).order_by('-is_default').values()
-            return Response({'address_list':address_list})
-        return Response({'err':'no_user'})
+
+    def get(self, request, token):
+        # 获取open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            address_list = Address.objects.filter(wx_user=wx_user, is_delete=False).order_by('-is_default').values()
+            return Response({'address_list': address_list})
+        return Response({'err': 'no_user'})
 
     '''
     新增用户收货地址
     '''
-    def post(self,request):
+
+    def post(self, request):
         # 获取请求数据
         data = request.body
         data = json.loads(data)
@@ -112,28 +82,33 @@ class AddressView(APIView):
         is_default = data['is_default']
 
         # 数据校验
-        if not all([token,name,phone,address]):
-            return Response({'errmsg': '数据不完整'})
-
-        conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
-        result = str(result, encoding="utf8")
-        openid = result.split('$$$$')[0]
-        if result:
+        if not all([token, name, phone, address]):
+            return Response({'msg': '数据不完整'})
+        # 获取open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
             if (is_default):
-                Address.objects.filter(Q(openid=openid) & Q(is_default=True) & Q(is_delete=False)).update(is_default=False)
-            obj = Address.objects.create(openid=openid,name=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
-            obj.save()
-            return Response({'msg':'success'})
-        return Response({'err': 'no_user'})
+                try:
+                    Address.objects.filter(Q(wx_user=wx_user) & Q(is_default=True) & Q(is_delete=False)).update(
+                        is_default=False)
+                    Address.objects.create(wx_user=wx_user, name=name, phone=phone, address=address,
+                                           address_code=address_code, is_default=is_default).save()
+                    return Response({'msg': 'success'})
+                except:
+                    return Response({'msg': '新增地址失败'})
+        return Response({'msg': '没有该用户，添加地址失败'})
+
 
 class DeleteAddress(APIView):
-
     '''
     删除用户地址
     '''
 
-    def post(self,request):
+    def post(self, request):
         # 获取请求数据
         data = request.body
         data = json.loads(data)
@@ -144,23 +119,25 @@ class DeleteAddress(APIView):
         if not all([token, address_id]):
             return Response({'errmsg': '数据不完整'})
 
-        conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
-        result = str(result, encoding="utf8")
-        openid = result.split('$$$$')[0]
-        if result:
-            Address.objects.filter(openid=openid,id=address_id).delete()
+        # 获取open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            # 伪删除
+            Address.objects.filter(wx_user=wx_user, id=address_id).update(is_delete=True)
             return Response({'msg': 'success'})
         return Response({'err': 'no_user'})
 
 
 class UpdateAddress(APIView):
-
     '''
     修改用户地址
     '''
 
-    def post(self,request):
+    def post(self, request):
         # 获取请求数据
         data = request.body
         data = json.loads(data)
@@ -173,48 +150,45 @@ class UpdateAddress(APIView):
         is_default = data['is_default']
 
         # 数据校验
-        if not all([token,address_id, name, phone, address]):
+        if not all([token, address_id, name, phone, address]):
             return Response({'errmsg': '数据不完整'})
 
-        conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
-        result = str(result, encoding="utf8")
-        openid = result.split('$$$$')[0]
-        if result:
+        # 获取open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
             if (is_default):
-                Address.objects.filter(Q(openid=openid) & Q(is_default=True) & Q(is_delete=False)).update(
+                Address.objects.filter(Q(wx_user=wx_user) & Q(is_default=True) & Q(is_delete=False)).update(
                     is_default=False)
-            Address.objects.filter(id=address_id).update(openid=openid,name=name,phone=phone,address=address,address_code=address_code,is_default=is_default)
-            # addr.name = name
-            # addr.phone = phone
-            # addr.address = address
-            # addr.address_code = address_code
-            # addr.is_default = is_default
-            # addr.save()
+            Address.objects.filter(id=address_id).update(wx_user=wx_user, name=name, phone=phone, address=address,
+                                                         address_code=address_code, is_default=is_default)
+
             return Response({'msg': 'success'})
         return Response({'err': 'no_user'})
 
-class UpdateDefault(APIView):
 
+class UpdateDefault(APIView):
     '''
     设为默认地址
     '''
-    def post(self,request):
+
+    def post(self, request):
         # 获取请求数据
         data = request.body
         data = json.loads(data)
         token = data['token']
         address_id = data['address_id']
-        conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
-        result = str(result, encoding="utf8")
-        openid = result.split('$$$$')[0]
-        if result:
-            Address.objects.filter(Q(openid=openid) & Q(is_default=True) & Q(is_delete=False)).update(is_default=False)
+        # 获取open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            Address.objects.filter(Q(wx_user=wx_user) & Q(is_default=True) & Q(is_delete=False)).update(is_default=False)
             Address.objects.filter(id=address_id).update(is_default=True)
             return Response({'msg': 'success'})
         return Response({'err': 'no_user'})
-
-
-
-

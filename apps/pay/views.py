@@ -5,6 +5,7 @@ from django_redis import get_redis_connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.user.models import WxUser
 from common.public_function import *
 
 pay_url = 'https://api.mch.weixin.qq.com/pay/unifiedorder'
@@ -23,14 +24,17 @@ class WxPayView(APIView):
         # 接收数据
         data = json.loads(request.body)
         token = data['token']
-        conn_ut = get_redis_connection('UserToken')
-        result = conn_ut.get(token)
-        result = str(result, encoding="utf8")
-        openid = result.split('$$$$')[0]
+        # 获取open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
         str32 = PublicFunction().randomStr()
         orderNum = PublicFunction().orderNum()
         params = {
-            'openid': openid,
+            'openid': open_id,
             'appid': wxinfo['APPID'],
             'mch_id': wxinfo['MCHID'],
             'nonce_str': str32,

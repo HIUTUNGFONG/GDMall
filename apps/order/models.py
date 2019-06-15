@@ -1,7 +1,7 @@
 from django.db import models
 
 from apps.goods.models import Commodity
-from apps.user.models import Address
+from apps.user.models import Address, WxUser
 from common.base_model import BaseModel
 
 
@@ -19,8 +19,10 @@ class OrderInfo(BaseModel):
         (5, '退款'),
         (6, '已关闭')
     )
-    open_id = models.CharField(max_length=255, verbose_name='微信用户id')
-    address_id = models.ForeignKey(Address, on_delete=models.CASCADE, verbose_name='用户地址id')
+    wx_user = models.ForeignKey(WxUser,on_delete=models.CASCADE, verbose_name='微信用户')
+    address = models.CharField(max_length=255,null=True, verbose_name='收件地址')
+    name = models.CharField(max_length=30, null=True,verbose_name='收件人姓名')
+    phone = models.CharField(max_length=11, null=True,verbose_name='收件人手机')
     order_id = models.CharField(max_length=255, verbose_name='订单号')
     commodity_total_price = models.FloatField(verbose_name='商品总价')
     order_total_price = models.FloatField(verbose_name='订单总价')
@@ -28,8 +30,8 @@ class OrderInfo(BaseModel):
     transit_price = models.FloatField(default=0, verbose_name='运费')
     state = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='订单状态')
     courier_number = models.IntegerField(null=True, verbose_name='快递单号')
-    cancel_time = models.CharField(max_length=255,null=True, verbose_name='取消时间')
-    complete_time = models.CharField(max_length=255,null=True, verbose_name='完成时间')
+    cancel_time = models.CharField(max_length=30,null=True, verbose_name='取消时间')
+    complete_time = models.CharField(max_length=30,null=True, verbose_name='完成时间')
 
     class Meta:
         db_table = 'gd_order_info'
@@ -37,16 +39,16 @@ class OrderInfo(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.order_id)
+        return str(self.id)
 
 
 class OrderList():
     '''
     订单清单表
     '''
-    open_id = models.CharField(max_length=255, verbose_name='微信用户id')
-    order_id = models.ForeignKey(OrderInfo, on_delete=models.CASCADE, verbose_name='订单号')
-    commodity_id = models.ForeignKey(Commodity, on_delete=models.CASCADE, verbose_name='商品id')
+    wx_user = models.ForeignKey(WxUser,on_delete=models.CASCADE, verbose_name='微信用户')
+    order_info = models.ForeignKey(OrderInfo, on_delete=models.CASCADE, verbose_name='订单号')
+    commodity = models.ForeignKey(Commodity, on_delete=models.CASCADE, verbose_name='所属商品')
     commodity_name = models.CharField(verbose_name='商品名称')
     commodity_specifications = models.CharField(verbose_name='商品规格')
     commodity_price = models.FloatField(verbose_name='商品单价')
@@ -59,4 +61,4 @@ class OrderList():
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.order_id)
+        return str(self.id)

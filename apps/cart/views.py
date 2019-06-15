@@ -29,19 +29,19 @@ class CartAddView(APIView):
 
         # 数据校验
         if not all([commodity_id, count,token]):
-            return Response({'errmsg': '数据不完整'})
+            return Response({'msg': '数据不完整'})
 
         # 校验添加的商品数量
         try:
             count = int(count)
         except Exception as e:
-            return Response({'errmsg': '商品数目出错'})
+            return Response({'msg': '商品数目出错'})
 
         # 校验商品是否存在
         try:
             commodity = Commodity.objects.get(id=commodity_id)
         except commodity.DoesNotExist:
-            return Response({'errmsg': '商品不存在'})
+            return Response({'msg': '商品不存在'})
 
         # 业务处理：添加购物车记录
         open_id = PublicFunction().getOpenIdByToken(token)
@@ -55,7 +55,7 @@ class CartAddView(APIView):
             count += int(cart_count)
         # 校验商品库存
         if count > commodity.stock:
-            return Response({'errmsg': '商品库存不足'})
+            return Response({'msg': '商品库存不足'})
 
         # 设置hash中sku_id对应的值
         conn.hset(cart_key, commodity_id, count)
@@ -64,7 +64,7 @@ class CartAddView(APIView):
         total_count = conn.hlen(cart_key)
 
         # 返回应答
-        return Response({'message': '添加成功', 'total_count': total_count})
+        return Response({'msg': '添加成功', 'total_count': total_count})
 
 
 
@@ -86,13 +86,13 @@ class CartDeleteView(APIView):
 
         # 数据校验
         if not all([commodity_id, token]):
-            return Response({'errmsg': '数据不完整'})
+            return Response({'msg': '数据不完整'})
 
         # 校验商品是否存在
         try:
             commodity = Commodity.objects.get(id=commodity_id)
         except commodity.DoesNotExist:
-            return Response({'errmsg': '商品不存在'})
+            return Response({'msg': '商品不存在'})
 
 
         # 业务处理：删除购物车记录
@@ -105,7 +105,7 @@ class CartDeleteView(APIView):
         # 计算用户购物车商品的条目数
         total_count = conn.hlen(cart_key)
 
-        return Response({'message': '删除成功', 'total_count': total_count})
+        return Response({'msg': '删除成功', 'total_count': total_count})
 
 
 
@@ -129,19 +129,19 @@ class CartUpdateView(APIView):
 
         # 数据校验
         if not all([commodity_id, count, token]):
-            return Response({'errmsg': '数据不完整'})
+            return Response({'msg': '数据不完整'})
 
         # 校验添加的商品数量
         try:
             count = int(count)
         except Exception as e:
-            return Response({'errmsg': '商品数目出错'})
+            return Response({'msg': '商品数目出错'})
 
         # 校验商品是否存在
         try:
             commodity = Commodity.objects.get(id=commodity_id)
         except commodity.DoesNotExist:
-            return Response({'errmsg': '商品不存在'})
+            return Response({'msg': '商品不存在'})
 
 
 
@@ -153,7 +153,7 @@ class CartUpdateView(APIView):
 
         # 校验商品库存
         if count > commodity.stock:
-            return Response({'errmsg': '商品库存不足'})
+            return Response({'msg': '商品库存不足'})
 
         # 更新
         conn.hset(cart_key, commodity_id, count)
@@ -163,7 +163,7 @@ class CartUpdateView(APIView):
         total_count = conn.hlen(cart_key)
 
         # 返回应答
-        return Response({'message': '更新成功', 'total_count': total_count})
+        return Response({'msg': '更新成功', 'total_count': total_count})
 
 
 '''

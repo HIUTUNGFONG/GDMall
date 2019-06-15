@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 
 from apps.goods.models import Commodity, Goods
 from apps.order.models import OrderInfo, OrderList
-from apps.user.models import Address
+from apps.user.models import Address, WxUser
 from common.public_function import PublicFunction
 
 
@@ -35,19 +35,23 @@ class CreateOrderView(APIView):
         token = data['token']
         open_id = PublicFunction().getOpenIdByToken(token)
 
-        if open_id == None:
-            return Response({'errmsg':'openId不存在'})
-
         # 参数校验
         if not all([commodityId_list, address_id,token]):
-            return Response({'errmsg': '数据不完整'})
+            return Response({'msg': '数据不完整'})
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+
 
         #  校验地址信息
         try:
-            addr = Address.objects.get(id=address_id)
+            address = Address.objects.get(id=address_id)
         except Address.DoesNotExist:
             # 地址不存在
-            return Response({'errmsg': '地址信息错误'})
+            return Response({'msg': '地址信息错误'})
 
         # 业务逻辑
         # 生成订单号
@@ -66,8 +70,10 @@ class CreateOrderView(APIView):
         try:
             # 向gd_order_info表中添加一条记录
             order = OrderInfo.objects.create(order_id=order_id,
-                                             open_id=open_id,
-                                             address_id=address_id,
+                                             wx_user=wx_user,
+                                             address=address.address,
+                                             name=address.name,
+                                             phone=address.phone,
                                              total_count=total_count,
                                              total_price=total_price,
                                              transit_price=transit_price)
@@ -80,7 +86,7 @@ class CreateOrderView(APIView):
                 except Commodity.DoesNotExist:
                     # 商品不存在，回滚到sid事务保存点
                     transaction.savepoint_rollback(sid)
-                    return Response({'errmsg': '商品不存在'})
+                    return Response({'msg': '商品不存在'})
 
                 # 获取用户要购买商品的数量
                 conn = get_redis_connection('Cart')
@@ -90,12 +96,13 @@ class CreateOrderView(APIView):
                 if int(count) > commodity.stock:
                     # 商品库存不足，回滚到sid事务保存点
                     transaction.savepoint_rollback(sid)
-                    return Response({'errmsg': '商品库存不足'})
+                    return Response({'msg': '商品库存不足'})
 
                 # 向gd_order_list中添加一条记录
-                OrderList.objects.create(order_id=order_id,
-                                          commodity_id=commodity.id,
-                                         commodity_specifications=commodity.code + commodity.color,
+                OrderList.objects.create(order_info=order,
+                                         wx_user=wx_user,
+                                         commodity=commodity,
+                                         commodity_specifications=commodity.code + ' ' + commodity.color,
                                          commodity_price=commodity.price,
                                          commodity_count = count,
                                          commodity_image = commodity.image)
@@ -117,10 +124,10 @@ class CreateOrderView(APIView):
             # 数据库操作出错，回滚到sid事务保存点
             print(e)
             transaction.savepoint_rollback(sid)
-            return Response({'errmsg': '下单失败'})
+            return Response({'msg': '下单失败'})
 
         # 删除购物车中对应的记录 sku_ids=[1,2]
         conn.hdel(open_id, *commodityId_list)
 
         # 返回应答
-        return Response({'message': '订单创建成功'})
+        return Response({'msg': '订单创建成功'})

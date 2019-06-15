@@ -44,7 +44,7 @@ class Base {
   }
   // 查找redis是否存在token
   findToken(callBack){
-    var url = this.baseRequestUrl + 'getRedisToken/' + wx.getStorageSync('token');
+    var url = this.baseRequestUrl + 'findRedisToken/' + wx.getStorageSync('token');
     wx.request({
       url: url,
       data: {},
@@ -59,7 +59,7 @@ class Base {
       complete: function (res) { }
     })
   }
-  // 查询用户是否存在
+  // 创建用户
   findWxUser(callBack){
     var url = this.baseRequestUrl + 'createUser';
     wx.request({
