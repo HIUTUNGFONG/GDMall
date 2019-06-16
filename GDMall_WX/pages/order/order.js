@@ -112,7 +112,12 @@ Page({
                 url: '../user/user',
               })
             },
-            fail(res) { }
+            fail(res) { 
+              // 取消付款，跳转到订单详情页
+              wx.navigateTo({
+                url: '../cart/cart',
+              })
+            }
           })
         })
       }

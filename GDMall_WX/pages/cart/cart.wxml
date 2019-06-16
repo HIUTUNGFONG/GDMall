@@ -22,8 +22,8 @@
                 <text class="goodsNum">{{ item.num }}</text>
                 <text class="sub" bindtap="subNum" data-num="{{ index }}">-</text>
             </view> -->
-            <view style='padding-left:220rpx'>
-            <van-stepper value="{{ item.num }}" bind:blur="changeNum" bind:plus='addNum' bind:minus='subNum' data-num="{{ index }}" max='200'/>
+            <view style='padding-left:280rpx'>
+            <van-stepper value="{{ item.num }}" bind:blur="changeNum" bind:plus='addNum' bind:minus='subNum' data-num="{{ index }}" max='{{ item.stock }}'/>
             </view>
         </view>
     </view>

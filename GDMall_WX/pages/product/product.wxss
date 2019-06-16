@@ -111,3 +111,18 @@
 .attr_stepper{
     padding-left: 470rpx;
 }
+
+.product_body{
+    height:100%;
+    padding-bottom: 300rpx;
+}
+
+.image-container{
+
+ align-items: center;/** 垂直居中*/
+
+ display: flex;
+
+ justify-content: center; /** flex 属性， 水平居中**/
+
+}

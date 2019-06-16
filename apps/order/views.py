@@ -136,7 +136,7 @@ class CreateOrderView(APIView):
             return Response({'msg': '下单失败'})
 
         # 删除购物车中对应的记录 sku_ids=[1,2]
-        conn.hdel(open_id, *commodityId_list)
+        conn.hdel(cart_key, *commodityId_list)
 
         # 返回应答
         return Response({'msg': '订单创建成功'})
