@@ -46,7 +46,10 @@ Page({
     onLoad: function (options) {
         cart.getCartList((res) => {
             this.carts = res.commodity_list
+          if (res.commodity_list != undefined){
             this.totlePrice()
+          }
+          
         })
 
     },

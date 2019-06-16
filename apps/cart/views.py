@@ -182,25 +182,25 @@ class CartInfoView(APIView):
         cart_key = 'cart_%s' % open_id
         # {'商品id':商品数量}
         cart_dict = conn.hgetall(cart_key)
-        # 遍历获取商品的信息
+        if cart_dict:
+            # 遍历获取商品的信息
+            commodity_list = []
 
-        commodity_list = []
+            for commodity_id, count in cart_dict.items():
+                # 根据商品的id获取商品的信息
+                commodity = Commodity.objects.get(id=commodity_id)
+                title = Goods.objects.get(id=commodity.goods_id).title
+                commodity_list.append({
+                    'id':commodity.id,
+                    'title':title,
+                    'num':int(count),
+                    'price':commodity.price,
+                    'selected':False,
+                    'image':commodity.image.url,
+                    'color':commodity.color,
+                    'code':commodity.code
+                })
 
-        for commodity_id, count in cart_dict.items():
-            # 根据商品的id获取商品的信息
-            commodity = Commodity.objects.get(id=commodity_id)
-            title = Goods.objects.get(id=commodity.goods_id).title
-            commodity_list.append({
-                'id':commodity.id,
-                'title':title,
-                'num':int(count),
-                'price':commodity.price,
-                'selected':False,
-                'image':commodity.image.url,
-                'color':commodity.color,
-                'code':commodity.code
-            })
-
-        data = {'commodity_list': commodity_list}
-
-        return Response(data)
+            data = {'commodity_list': commodity_list}
+            return Response(data)
+        return Response({'msg':'购物车无商品'})

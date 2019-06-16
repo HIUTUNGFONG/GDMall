@@ -26,6 +26,8 @@ App({
                             // 获取用户code，返回token
                             login.findWxUser(res.code, (res) => {
                                 console.log(res)
+                                // 保存到缓存
+                                wx.setStorageSync('token', res.token)
                             })
                         }
                     })
@@ -33,7 +35,9 @@ App({
                     // 不存在token
                     // 获取用户code，返回token
                     login.findWxUser(res.code, (res) => {
-                        console.log(res)
+                      console.log(res)
+                      // 保存到缓存
+                      wx.setStorageSync('token', res.token)
                     })
                 }
 
