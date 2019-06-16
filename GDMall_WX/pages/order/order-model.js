@@ -6,13 +6,14 @@ class Order extends Base {
   constructor() {
     super();
   }
-  toPay(callBack){
+  toPay(order_id,callBack){
     // 获取购物车列表
     var params = {
       url: 'toPay',
       method:'POST',
       data:{
-        'token': wx.getStorageSync('token')
+        'token': wx.getStorageSync('token'),
+        'order_id': order_id
       },
       sCallBack: function (res) {
         callBack && callBack(res);
