@@ -83,7 +83,7 @@ class PayView(APIView):
     获取微信返回的支付消息
     '''
 
-    def get(self, request):
+    def post(self, request):
         msg = request.body.decode('utf-8')
         xmlmsg = xmltodict.parse(msg)
         print(msg)
