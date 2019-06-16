@@ -33,7 +33,6 @@ class CreateOrderView(APIView):
         address_id = data['address_id']
         token = data['token']
         open_id = PublicFunction().getOpenIdByToken(token)
-        print(open_id)
 
         # 参数校验
         if not all([commodityId_list, address_id, token]):
@@ -93,7 +92,7 @@ class CreateOrderView(APIView):
 
                 # 获取用户要购买商品的数量
                 conn = get_redis_connection('Cart')
-                cart_key = 'cart'+open_id
+                cart_key = 'cart_'+open_id
                 count = conn.hget(cart_key, commodity_id)
 
                 # 判断商品的库存
@@ -112,8 +111,6 @@ class CreateOrderView(APIView):
                                          commodity_price=commodity.price,
                                          commodity_count=int(count),
                                          commodity_image=commodity.image)
-
-                print('向gd_order_list中添加一条记录2')
 
 
 
