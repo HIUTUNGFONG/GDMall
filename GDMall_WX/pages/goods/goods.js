@@ -635,12 +635,9 @@ Page({
             console.log(this.commodity_id)
             console.log(this.stepperAttr)
             goods.addCommdityToCart(this.commodity_id, this.stepperAttr, (res) => {
-                console.log(res.message)
-                console.log(res.errmsg)
-                var msg = res.message
-                var err = res.errmsg
+                var msg = res.msg
 
-                if (this.stepperAttr > this.commodity_stock || err == '商品库存不足') {
+              if (this.stepperAttr > this.commodity_stock || msg == '商品库存不足') {
                     wx.showToast({
                         title: '库存不足',
                         image: '/icons/cross.png',

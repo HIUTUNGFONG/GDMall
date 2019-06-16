@@ -28,7 +28,7 @@ class WxPayView(APIView):
         token = data['token']
         order_id = data['order_id']
         # 支付金额
-        total_price = 0
+        _total_price = 0
         # 获取open_id
         open_id = PublicFunction().getOpenIdByToken(token)
         if open_id:
@@ -39,7 +39,7 @@ class WxPayView(APIView):
             try:
                 order = OrderInfo.objects.get(order_id=order_id)
                 # 根据订单号获取订单金额
-                total_price = str(order.total_price*100)
+                _total_price = str(order.total_price*100)
             except:
                 return Response({'msg':'订单不存在'})
 
@@ -53,7 +53,7 @@ class WxPayView(APIView):
             'nonce_str': str32,
             'body': 'test支付',
             'out_trade_no': orderNum,
-            'total_fee': total_price,
+            'total_fee': _total_price,
             'spbill_create_ip': '47.112.147.15',
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
             'trade_type': 'JSAPI'
