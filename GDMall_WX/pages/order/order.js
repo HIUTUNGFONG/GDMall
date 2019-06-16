@@ -81,24 +81,26 @@ Page({
     })
   },
   onSubmit:function(){
-    // 获取支付签名信息
-    // order.toPay((res)=>{
-    //   console.log(res)
-    //   wx.requestPayment({
-    //     timeStamp: res.timeStamp,
-    //     nonceStr: res.nonceStr,
-    //     package: res.package,
-    //     signType: 'MD5',
-    //     paySign: res.paySign,
-    //     success(res) { 
-    //       console.log('支付成功')
-    //     },
-    //     fail(res) { }
-    //   })
-    // })
     // 创建订单
     order.createOrder(this.commodityId_list, 1,(res)=>{
       console.log(res)
+      if (res.msg =='订单创建成功'){
+        // 获取支付签名信息
+        order.toPay((res)=>{
+          console.log(res)
+          wx.requestPayment({
+            timeStamp: res.timeStamp,
+            nonceStr: res.nonceStr,
+            package: res.package,
+            signType: 'MD5',
+            paySign: res.paySign,
+            success(res) { 
+              console.log('支付成功')
+            },
+            fail(res) { }
+          })
+        })
+      }
     })
     
   }

@@ -42,7 +42,7 @@ class OrderInfo(BaseModel):
         return str(self.id)
 
 
-class OrderList():
+class OrderList(BaseModel):
     '''
     订单清单表
     '''
