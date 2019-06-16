@@ -6,6 +6,7 @@ from django_redis import get_redis_connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.order.models import OrderInfo
 from apps.user.models import WxUser
 from common.public_function import *
 
@@ -25,7 +26,7 @@ class WxPayView(APIView):
         # 接收数据
         data = json.loads(request.body)
         token = data['token']
-        total_fee = data['total_fee']
+        order_id = data['order_id']
         # 获取open_id
         open_id = PublicFunction().getOpenIdByToken(token)
         if open_id:
@@ -33,6 +34,14 @@ class WxPayView(APIView):
                 wx_user = WxUser.objects.get(open_id=open_id)
             except:
                 return Response({'msg': '用户不存在'})
+            try:
+                order = OrderInfo.objects.get(order_id=order_id)
+                # 根据订单号获取订单金额
+                total_price = order.total_price
+            except:
+                return Response({'msg':'订单不存在'})
+
+
         str32 = PublicFunction().randomStr()
         orderNum = PublicFunction().orderNum()
         params = {
@@ -42,7 +51,7 @@ class WxPayView(APIView):
             'nonce_str': str32,
             'body': 'test支付',
             'out_trade_no': orderNum,
-            'total_fee': total_fee,
+            'total_fee': total_price,
             'spbill_create_ip': '47.112.147.15',
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
             'trade_type': 'JSAPI'

@@ -38,6 +38,9 @@ Page({
           })
           this.addressId= this.address_list[i].id
           console.log(this.addressId)
+          // 将addressId放入缓存中
+          wx.setStorageSync('addressId', this.addressId)
+          
         }
       }
     })
@@ -81,8 +84,10 @@ Page({
     })
   },
   onSubmit:function(){
+    // 获取收货地址id
+    var addressId = wx.getStorageSync('addressId')
     // 创建订单
-    order.createOrder(this.commodityId_list, 1,(res)=>{
+    order.createOrder(this.commodityId_list, addressId,(res)=>{
       console.log(res)
       if(res.msg=='商品库存不足'){
         wx.showToast({
@@ -93,7 +98,7 @@ Page({
 
       }else if (res.msg =='订单创建成功'){
         // 获取支付签名信息
-        order.toPay((res)=>{
+        order.toPay(res.order_id,(res)=>{
           console.log(res)
           wx.requestPayment({
             timeStamp: res.timeStamp,

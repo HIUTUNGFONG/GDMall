@@ -140,7 +140,7 @@ class CreateOrderView(APIView):
         conn.hdel(cart_key, *commodityId_list)
 
         # 返回应答
-        return Response({'msg': '订单创建成功'})
+        return Response({'msg': '订单创建成功','order_id':order_id})
 
 
 class OrderView(APIView):

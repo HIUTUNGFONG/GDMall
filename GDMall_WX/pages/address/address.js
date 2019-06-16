@@ -69,19 +69,20 @@ Page({
     })
     this.getAddressList()
   },
+  // 跳转回订单页面
   toOrder:function(e){
+    var addressId = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
     var phone = e.currentTarget.dataset.phone
     var address = e.currentTarget.dataset.address
     var data = {
+      'addressId':addressId,
       'name':name,
       'phone':phone,
       'address':address
     }
     wx.setStorageSync('address', data)
-    // console.log(name)
-    // console.log(phone)
-    // console.log(address)
+    wx.setStorageSync('addressId', addressId)
     wx.navigateTo({
       url: '../order/order',
     })
