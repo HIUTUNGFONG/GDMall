@@ -182,8 +182,8 @@ class CartInfoView(APIView):
         cart_key = 'cart_%s' % open_id
         # {'商品id':商品数量}
         cart_dict = conn.hgetall(cart_key)
-        print(cart_dict)
-        if cart_dict:
+        print('$$$$$$$' + cart_dict)
+        if cart_dict !=None:
             # 遍历获取商品的信息
             commodity_list = []
 
