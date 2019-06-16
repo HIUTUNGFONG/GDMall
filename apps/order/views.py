@@ -3,7 +3,6 @@ import json
 from django.db import transaction
 from django.shortcuts import render
 
-
 # 生成订单逻辑（传入token、商品id列表、商品数量列表、收货地址id）
 # 判断是否有库存
 # 创建订单号
@@ -27,7 +26,7 @@ class CreateOrderView(APIView):
     '''
 
     @transaction.atomic
-    def post(self,request):
+    def post(self, request):
         # 接收数据
         data = json.loads(request.body)
         commodityId_list = data['commodityId_list']
@@ -36,7 +35,7 @@ class CreateOrderView(APIView):
         open_id = PublicFunction().getOpenIdByToken(token)
 
         # 参数校验
-        if not all([commodityId_list, address_id,token]):
+        if not all([commodityId_list, address_id, token]):
             return Response({'msg': '数据不完整'})
         # 校验用户
         if open_id:
@@ -44,7 +43,6 @@ class CreateOrderView(APIView):
                 wx_user = WxUser.objects.get(open_id=open_id)
             except:
                 return Response({'msg': '用户不存在'})
-
 
         #  校验地址信息
         try:
@@ -69,13 +67,14 @@ class CreateOrderView(APIView):
 
         try:
             # 向gd_order_info表中添加一条记录
-            order = OrderInfo.objects.create(order_id=order_id,
-                                             wx_user=wx_user,
+            order = OrderInfo.objects.create(wx_user=wx_user,
                                              address=address.address,
                                              name=address.name,
                                              phone=address.phone,
+                                             order_id=order_id,
+                                             commodity_total_price=total_price,
+                                             total_price=total_price + transit_price,
                                              total_count=total_count,
-                                             total_price=total_price,
                                              transit_price=transit_price)
 
             # 遍历向gd_order_list中添加记录
@@ -104,8 +103,8 @@ class CreateOrderView(APIView):
                                          commodity=commodity,
                                          commodity_specifications=commodity.code + ' ' + commodity.color,
                                          commodity_price=commodity.price,
-                                         commodity_count = count,
-                                         commodity_image = commodity.image)
+                                         commodity_count=count,
+                                         commodity_image=commodity.image)
 
                 # 减少商品的库存，增加销量
                 commodity.stock -= int(count)
@@ -114,11 +113,11 @@ class CreateOrderView(APIView):
 
                 # 加计算用户要购买的商品的总数目和总价格
                 total_count += int(count)
-                total_price += commodity.price*int(count)
+                total_price += commodity.price * int(count)
 
             # 更新order对应记录中的total_count和total_price
             order.total_count = total_count
-            order.total_price = total_price
+            order.total_price = total_price + transit_price
             order.save()
         except Exception as e:
             # 数据库操作出错，回滚到sid事务保存点
