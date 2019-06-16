@@ -101,10 +101,14 @@ class CreateOrderView(APIView):
                 OrderList.objects.create(order_info=order,
                                          wx_user=wx_user,
                                          commodity=commodity,
+                                         commodity_name=commodity.name,
                                          commodity_specifications=commodity.code + ' ' + commodity.color,
                                          commodity_price=commodity.price,
                                          commodity_count=int(count),
                                          commodity_image=commodity.image)
+
+                print('向gd_order_list中添加一条记录')
+
 
 
                 # 减少商品的库存，增加销量
