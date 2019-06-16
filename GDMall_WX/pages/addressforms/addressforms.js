@@ -73,7 +73,7 @@ Page({
   },
   setCode: function (e) {
     this.code = e.detail.value
-    console.log(this.code)
+    // console.log(this.code)
   },
   onSave:function(e){
     if (this.reset_id == undefined){

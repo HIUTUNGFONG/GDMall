@@ -95,15 +95,16 @@ class AddressView(APIView):
                 wx_user = WxUser.objects.get(open_id=open_id)
             except:
                 return Response({'msg': '用户不存在'})
-            if (is_default):
-                try:
+
+            try:
+                if (is_default):
                     Address.objects.filter(Q(wx_user=wx_user) & Q(is_default=True) & Q(is_delete=False)).update(
                         is_default=False)
-                    Address.objects.create(wx_user=wx_user, name=name, phone=phone, address=address,
-                                           address_code=address_code, is_default=is_default).save()
-                    return Response({'msg': 'success'})
-                except:
-                    return Response({'msg': '新增地址失败'})
+                Address.objects.create(wx_user=wx_user, name=name, phone=phone, address=address,
+                                       address_code=address_code, is_default=is_default).save()
+                return Response({'msg': 'success'})
+            except:
+                return Response({'msg': '新增地址失败'})
         return Response({'msg': '没有该用户，添加地址失败'})
 
 

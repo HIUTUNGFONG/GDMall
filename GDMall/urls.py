@@ -28,4 +28,5 @@ urlpatterns = [
     path('api/', include('apps.cart.urls', namespace='cart')),  # 购物车模块
     path('api/', include('apps.pay.urls', namespace='pay')),  # 支付模块
     path('api/', include('apps.order.urls', namespace='order')),  # 订单模块
+    path('mdeditor/', include('mdeditor.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
