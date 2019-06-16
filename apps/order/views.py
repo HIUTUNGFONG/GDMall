@@ -94,6 +94,8 @@ class CreateOrderView(APIView):
                 conn = get_redis_connection('Cart')
                 cart_key = 'cart_'+open_id
                 count = conn.hget(cart_key, commodity_id)
+                print(count)
+                print(commodity.stock)
 
                 # 判断商品的库存
                 if int(count) > commodity.stock:
