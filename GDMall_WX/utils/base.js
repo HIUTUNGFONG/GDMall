@@ -42,40 +42,7 @@ class Base {
   getToken(){
     return wx.getStorageSync('token')
   }
-  // 查找redis是否存在token
-  findToken(callBack){
-    var url = this.baseRequestUrl + 'findRedisToken/' + wx.getStorageSync('token');
-    wx.request({
-      url: url,
-      data: {},
-      header: {},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function (res) {
-        callBack && callBack(res.data);
-      },
-      fail: function (res) { },
-      complete: function (res) { }
-    })
-  }
-  // 创建用户
-  findWxUser(callBack){
-    var url = this.baseRequestUrl + 'createUser';
-    wx.request({
-      url: url,
-      data: { "Data": {'token':wx.getStorageSync('token')}},
-      heaader:{},
-      method:'POST',
-      dataType:'json',
-      responseType:'text',
-      success: function (res) {
-        callBack && callBack(res.data);
-      },
-      fail: function (res) { },
-      complete: function (res) { }
-    })
-  }
+  
 
 
 
