@@ -67,6 +67,7 @@ class CreateOrderView(APIView):
 
         try:
             # 向gd_order_info表中添加一条记录
+            print('向gd_order_info表中添加一条记录1')
             order = OrderInfo.objects.create(wx_user=wx_user,
                                              address=address.address,
                                              name=address.name,
@@ -76,6 +77,23 @@ class CreateOrderView(APIView):
                                              total_price=total_price,
                                              total_count=total_count,
                                              transit_price=transit_price)
+            print('向gd_order_info表中添加一条记录2')
+
+            # wx_user = models.ForeignKey(WxUser, on_delete=models.CASCADE, verbose_name='微信用户')
+            # address = models.CharField(max_length=255, null=True, verbose_name='收件地址')
+            # name = models.CharField(max_length=30, null=True, verbose_name='收件人姓名')
+            # phone = models.CharField(max_length=11, null=True, verbose_name='收件人手机')
+            # order_id = models.CharField(max_length=255, verbose_name='订单号')
+            # commodity_total_price = models.FloatField(verbose_name='商品总价')
+            # total_price = models.FloatField(verbose_name='订单总价')
+            # total_count = models.IntegerField(verbose_name='订单总件数')
+            # transit_price = models.FloatField(default=0, verbose_name='运费')
+            # state = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='订单状态')
+            # courier_number = models.IntegerField(null=True, verbose_name='快递单号')
+            # cancel_time = models.CharField(max_length=30, null=True, verbose_name='取消时间')
+            # complete_time = models.CharField(max_length=30, null=True, verbose_name='完成时间')
+
+
 
             # 遍历向gd_order_list中添加记录
             for commodity_id in commodityId_list:
