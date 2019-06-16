@@ -86,7 +86,7 @@ class PayView(APIView):
     def get(self, request):
         msg = request.body.decode('utf-8')
         xmlmsg = xmltodict.parse(msg)
-        print(xmlmsg)
+        print(msg)
         return_code = xmlmsg['xml']['return_code']
 
         if return_code == 'FAIL':
