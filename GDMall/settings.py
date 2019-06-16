@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     # 'werkzeug_debugger_runserver',    # https
     # 'django_extensions',  # https
     'rest_framework',  # 添加rest_framework
+    'stdimage',  # 上传图片
+    'mdeditor',  # markdown
 ]
 
 # 配置使用到的用户模型类

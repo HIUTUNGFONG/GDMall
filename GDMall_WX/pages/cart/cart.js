@@ -45,9 +45,12 @@ Page({
      */
     onLoad: function (options) {
         cart.getCartList((res) => {
-            this.carts = res.commodity_list
-          if (res.commodity_list != undefined){
-            this.totlePrice()
+          // console.log(res)
+          if(res.msg=='购物车无商品'){
+            //添加变量控制跳转到首页
+          }else{
+            this.carts = res.commodity_list;
+            this.totlePrice();
           }
           
         })
