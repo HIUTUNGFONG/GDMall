@@ -155,6 +155,7 @@ class Commodity(BaseModel):
     code = models.CharField(max_length=10, verbose_name='尺码')
     image = models.ImageField(upload_to='CommdityImg', verbose_name='商品小图')
     stock = models.IntegerField(default=0, verbose_name='库存')
+    sales = models.IntegerField(default=0, verbose_name='商品销量')
     selected = models.BooleanField(default=False,verbose_name='是否选中')
 
     class Meta:

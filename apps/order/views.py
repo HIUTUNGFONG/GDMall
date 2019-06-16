@@ -106,6 +106,7 @@ class CreateOrderView(APIView):
                                          commodity_count=int(count),
                                          commodity_image=commodity.image)
 
+
                 # 减少商品的库存，增加销量
                 commodity.stock -= int(count)
                 commodity.sales += int(count)
