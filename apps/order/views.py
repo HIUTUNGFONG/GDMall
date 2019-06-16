@@ -73,9 +73,23 @@ class CreateOrderView(APIView):
                                              phone=address.phone,
                                              order_id=order_id,
                                              commodity_total_price=total_price,
-                                             total_price=total_price + transit_price,
+                                             total_price=total_price,
                                              total_count=total_count,
                                              transit_price=transit_price)
+
+            wx_user = models.ForeignKey(WxUser, on_delete=models.CASCADE, verbose_name='微信用户')
+            address = models.CharField(max_length=255, null=True, verbose_name='收件地址')
+            name = models.CharField(max_length=30, null=True, verbose_name='收件人姓名')
+            phone = models.CharField(max_length=11, null=True, verbose_name='收件人手机')
+            order_id = models.CharField(max_length=255, verbose_name='订单号')
+            commodity_total_price = models.FloatField(verbose_name='商品总价')
+            total_price = models.FloatField(verbose_name='订单总价')
+            total_count = models.IntegerField(verbose_name='订单总件数')
+            transit_price = models.FloatField(default=0, verbose_name='运费')
+            state = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='订单状态')
+            courier_number = models.IntegerField(null=True, verbose_name='快递单号')
+            cancel_time = models.CharField(max_length=30, null=True, verbose_name='取消时间')
+            complete_time = models.CharField(max_length=30, null=True, verbose_name='完成时间')
 
             # 遍历向gd_order_list中添加记录
             for commodity_id in commodityId_list:
@@ -103,7 +117,7 @@ class CreateOrderView(APIView):
                                          commodity=commodity,
                                          commodity_specifications=commodity.code + ' ' + commodity.color,
                                          commodity_price=commodity.price,
-                                         commodity_count=count,
+                                         commodity_count=int(count),
                                          commodity_image=commodity.image)
 
                 # 减少商品的库存，增加销量
@@ -117,7 +131,7 @@ class CreateOrderView(APIView):
 
             # 更新order对应记录中的total_count和total_price
             order.total_count = total_count
-            order.total_price = total_price + transit_price
+            order.total_price = total_price
             order.save()
         except Exception as e:
             # 数据库操作出错，回滚到sid事务保存点
