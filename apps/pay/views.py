@@ -26,7 +26,7 @@ class WxPayView(APIView):
         # 接收数据
         data = json.loads(request.body)
         token = data['token']
-        order_id = data['order_id']
+        # order_id = data['order_id']
         # 获取open_id
         open_id = PublicFunction().getOpenIdByToken(token)
         if open_id:
@@ -34,11 +34,11 @@ class WxPayView(APIView):
                 wx_user = WxUser.objects.get(open_id=open_id)
             except:
                 return Response({'msg': '用户不存在'})
-            try:
-                order = OrderInfo.objects.get(order_id=order_id)
-                print(str(order.total_price * 100))
-            except:
-                return Response({'msg':'订单不存在'})
+            # try:
+            #     order = OrderInfo.objects.get(order_id=order_id)
+            #     print(str(order.total_price * 100))
+            # except:
+            #     return Response({'msg':'订单不存在'})
 
 
         str32 = PublicFunction().randomStr()
