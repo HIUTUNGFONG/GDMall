@@ -84,7 +84,14 @@ Page({
     // 创建订单
     order.createOrder(this.commodityId_list, 1,(res)=>{
       console.log(res)
-      if (res.msg =='订单创建成功'){
+      if(res.msg=='商品库存不足'){
+        wx.showToast({
+          title: '库存不足',
+          image: '/icons/cross.png',
+          duration: 1000
+        })
+
+      }else if (res.msg =='订单创建成功'){
         // 获取支付签名信息
         order.toPay((res)=>{
           console.log(res)
@@ -96,6 +103,14 @@ Page({
             paySign: res.paySign,
             success(res) { 
               console.log('支付成功')
+              wx.showToast({
+                title: '支付成功',
+                icon: 'success',
+                duration: 1000
+              })
+              wx.navigateTo({
+                url: '../user/user',
+              })
             },
             fail(res) { }
           })

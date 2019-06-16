@@ -50,6 +50,7 @@ Page({
             //添加变量控制跳转到首页
           }else{
             this.carts = res.commodity_list;
+            console.log(this.carts)
             this.totlePrice();
           }
           
@@ -243,6 +244,11 @@ Page({
     // if(commodityId_list==''||commodityCount_list==''){
     if(commodity_list==''){
       console.log('请选择商品')
+      wx.showToast({
+        title: '请选择商品',
+        image: '/icons/cross.png',
+        duration: 1000
+      })
     }else{
       // 将数据放入缓存中
       // console.log(commodityId_list)

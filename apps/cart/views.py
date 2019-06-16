@@ -198,7 +198,8 @@ class CartInfoView(APIView):
                     'selected':False,
                     'image':commodity.image.url,
                     'color':commodity.color,
-                    'code':commodity.code
+                    'code':commodity.code,
+                    'stock':commodity.stock
                 })
 
             data = {'commodity_list': commodity_list}
