@@ -127,7 +127,8 @@ class CreateOrderView(APIView):
 
             # 更新order对应记录中的total_count和total_price
             order.total_count = total_count
-            order.total_price = total_price
+            order.total_price = total_price + transit_price
+            order.commodity_total_price = total_price
             order.save()
         except Exception as e:
             # 数据库操作出错，回滚到sid事务保存点
@@ -140,3 +141,68 @@ class CreateOrderView(APIView):
 
         # 返回应答
         return Response({'msg': '订单创建成功'})
+
+
+class OrderView(APIView):
+
+    '''
+    获取订单信息
+    '''
+    def get(self,request,token):
+
+        # 参数校验
+        if not all([token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+
+        data = {}
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                order = OrderInfo.objects.filter(wx_user=wx_user).order_by('create_time').values()
+                data['order_list'] = order
+            except:
+                return Response({'msg':'无订单信息'})
+
+        return Response(data)
+
+    '''
+    获取订单清单信息
+    '''
+    def post(self,request):
+        # 接收数据
+        data = json.loads(request.body)
+        order_id = data['order_id']
+        token = data['token']
+
+        # 参数校验
+        if not all([order_id, token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+
+        data = {}
+
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                order_info = OrderInfo.objects.get(order_id=order_id)
+            except:
+                return Response({'msg':'订单不存在'})
+            try:
+                order_list = OrderList.objects.filter(wx_user=wx_user,order_info=order_info).values()
+                data['order_list'] = order_list
+            except:
+                return Response({'msg':'获取订单清单失败'})
+        return  Response(data)

@@ -1,5 +1,6 @@
 import json
 
+from django.http import HttpResponse
 from django.shortcuts import render
 from django_redis import get_redis_connection
 from rest_framework.response import Response
@@ -24,6 +25,7 @@ class WxPayView(APIView):
         # 接收数据
         data = json.loads(request.body)
         token = data['token']
+        total_fee = data['total_fee']
         # 获取open_id
         open_id = PublicFunction().getOpenIdByToken(token)
         if open_id:
@@ -40,7 +42,7 @@ class WxPayView(APIView):
             'nonce_str': str32,
             'body': 'test支付',
             'out_trade_no': orderNum,
-            'total_fee': '1',
+            'total_fee': total_fee,
             'spbill_create_ip': '47.112.147.15',
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
             'trade_type': 'JSAPI'
@@ -62,6 +64,31 @@ class WxPayView(APIView):
                 'timeStamp': timeStamp
             }
             # 再次签名
-            paySign = PublicFunction().wx_sign(pay_data,wxinfo['MCHKEY'])
+            paySign = PublicFunction().wx_sign(pay_data, wxinfo['MCHKEY'])
             pay_data['paySign'] = paySign
         return Response(pay_data)
+
+
+class PayView(APIView):
+    '''
+    获取微信返回的支付消息
+    '''
+
+    def get(self, request):
+        msg = request.body.decode('utf-8')
+        xmlmsg = xmltodict.parse(msg)
+
+        return_code = xmlmsg['xml']['return_code']
+        if return_code == 'FAIL':
+            # 官方发出错误
+            return HttpResponse(
+                """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[Signature_Error]]></return_msg></xml>""",
+                content_type='text/xml', status=200)
+        elif return_code == 'SUCCESS':
+            # 拿到这次支付的订单号
+            out_trade_no = xmlmsg['xml']['out_trade_no']
+            print(out_trade_no)
+            # 根据需要处理业务逻辑
+            return HttpResponse(
+                """<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>""",
+                content_type='text/xml', status=200)

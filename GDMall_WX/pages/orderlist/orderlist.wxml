@@ -1,2 +1,9 @@
 <!--pages/orderlist/orderlist.wxml-->
-<text>pages/orderlist/orderlist.wxml</text>
+
+<van-tabs active="{{ active }}" bind:change="onChange" swipe-threshold='5'>
+  <van-tab title="全部订单">全部订单</van-tab>
+  <van-tab title="待支付">待支付</van-tab>
+  <van-tab title="待发货">待发货</van-tab>
+  <van-tab title="待收货">待收货</van-tab>
+  <van-tab title="退款维权">退款维权</van-tab>
+</van-tabs>

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/orderlist/orderlist",
     "pages/user/user",
     "pages/cart/cart",
     "pages/order/order",
@@ -8,8 +9,7 @@
     "pages/goods/goods",
     "pages/product/product",
     "pages/vip/vip",
-    "pages/addressforms/addressforms",
-    "pages/orderlist/orderlist"
+    "pages/addressforms/addressforms"
   ],
   "window": {
     "backgroundTextStyle": "light",
