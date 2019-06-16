@@ -37,7 +37,7 @@ class WxPayView(APIView):
             try:
                 order = OrderInfo.objects.get(order_id=order_id)
                 # 根据订单号获取订单金额
-                total_price = order.total_price*100
+                total_price = int(order.total_price*100)
             except:
                 return Response({'msg':'订单不存在'})
 
