@@ -32,12 +32,12 @@ class CreateUserView(APIView):
                 # 存在用户，直接返回token
                 wx_user = WxUser.objects.get(open_id=open_id)
                 data = PublicFunction().createRedisToken(open_id, session_key)
-                return Response(data)
             except:
                 # 创建用户，返回token
                 WxUser.objects.create(open_id=open_id).save()
                 data = PublicFunction().createRedisToken(open_id, session_key)
-                return Response(data)
+        return Response(data)
+
 
 
 class RedisTokenView(APIView):

@@ -49,13 +49,13 @@ class PublicFunction(object):
         openid = result.split('$$$$')[0]
         return openid
 
-    def createRedisToken(self,open_id,session_key):
+    def createRedisToken(self,open_id,session_id):
         # 生成一个随机3rd_session
         session_key = os.popen('head -n 80 /dev/urandom | tr -dc A-Za-z0-9 | head -c 64').read()
 
         # 获取redis连接
         conn = get_redis_connection('UserToken')
-        conn.set(session_key, open_id + '$$$$' + session_key)
+        conn.set(session_key, open_id + '$$$$' + session_id)
         # 设置过期时间7天
         conn.expire(session_key, 60 * 60 * 24 * 7)
         data = {'token': session_key}
