@@ -116,7 +116,7 @@ Page({
                 duration: 1000
               })
               wx.navigateTo({
-                url: '../user/user',
+                url: '../orderlist/orderlist',
               })
             },
             fail(res) { 
