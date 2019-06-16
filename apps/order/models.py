@@ -49,11 +49,11 @@ class OrderList(BaseModel):
     wx_user = models.ForeignKey(WxUser,on_delete=models.CASCADE, verbose_name='微信用户')
     order_info = models.ForeignKey(OrderInfo, on_delete=models.CASCADE, verbose_name='订单号')
     commodity = models.ForeignKey(Commodity, on_delete=models.CASCADE, verbose_name='所属商品')
-    commodity_name = models.CharField(verbose_name='商品名称')
-    commodity_specifications = models.CharField(verbose_name='商品规格')
+    commodity_name = models.CharField(max_length=255,verbose_name='商品名称')
+    commodity_specifications = models.CharField(max_length=255,verbose_name='商品规格')
     commodity_price = models.FloatField(verbose_name='商品单价')
     commodity_count = models.IntegerField(verbose_name='商品数量')
-    commodity_image = models.URLField(verbose_name='商品图片')
+    commodity_image = models.CharField(max_length=255,verbose_name='商品图片')
 
     class Meta:
         db_table = 'gd_order_list'
