@@ -16,7 +16,11 @@ class CreateUserView(APIView):
     根据code换取openid、session_key，查找wx_user表是否存在该wx用户
     '''
 
-    def get(self, code):
+    def post(self,request):
+        # 获取请求数据
+        data = request.body
+        data = json.loads(data)
+        code = data['code']
         # 获取open_id、session_key
         data = PublicFunction().getOpenIdAndSessionKey(code)
         open_id = data[0]

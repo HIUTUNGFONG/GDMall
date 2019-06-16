@@ -10,7 +10,7 @@ class Login extends Base{
   // 查找redis是否存在token
   findToken(callBack) {
     var params = {
-      url: this.baseRequestUrl + 'findRedisToken/' + wx.getStorageSync('token'),
+      url: 'findRedisToken/' + wx.getStorageSync('token'),
       sCallBack: function (res) {
         callBack && callBack(res);
       }
@@ -20,7 +20,11 @@ class Login extends Base{
   // 根据code换取openid、session_key，查找wx_user表是否存在该wx用户
   findWxUser(code,callBack) {
     var params = {
-      url: this.baseRequestUrl + 'createUser',
+      url: 'createUser',
+      method:'POST',
+      data:{
+        'code':code
+      },
       sCallBack: function (res) {
         callBack && callBack(res);
       }

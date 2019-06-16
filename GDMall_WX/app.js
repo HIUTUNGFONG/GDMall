@@ -19,7 +19,7 @@ App({
                 var token = login.getToken();
                 if (token.length == 64) {
                     // 存在token,查询redis是否存在该token
-                    login.findToken(token, (res) => {
+                    login.findToken((res) => {
                         if (res.msg == 'success') {
                             console.log('登录成功！')
                         } else {
