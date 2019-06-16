@@ -33,6 +33,7 @@ class CreateOrderView(APIView):
         address_id = data['address_id']
         token = data['token']
         open_id = PublicFunction().getOpenIdByToken(token)
+        print(open_id)
 
         # 参数校验
         if not all([commodityId_list, address_id, token]):
@@ -67,7 +68,6 @@ class CreateOrderView(APIView):
 
         try:
             # 向gd_order_info表中添加一条记录
-            print('向gd_order_info表中添加一条记录1')
             order = OrderInfo.objects.create(wx_user=wx_user,
                                              address=address.address,
                                              name=address.name,
@@ -77,7 +77,6 @@ class CreateOrderView(APIView):
                                              total_price=total_price,
                                              total_count=total_count,
                                              transit_price=transit_price)
-            print('向gd_order_info表中添加一条记录2')
 
 
 
@@ -96,6 +95,7 @@ class CreateOrderView(APIView):
                 conn = get_redis_connection('Cart')
                 count = conn.hget(open_id, commodity_id)
                 print(count)
+                print(commodity_id)
 
                 # 判断商品的库存
                 if int(count) > commodity.stock:
@@ -105,7 +105,6 @@ class CreateOrderView(APIView):
 
                 # 向gd_order_list中添加一条记录
 
-                print('向gd_order_list中添加一条记录1')
                 OrderList.objects.create(order_info=order,
                                          wx_user=wx_user,
                                          commodity=commodity,
