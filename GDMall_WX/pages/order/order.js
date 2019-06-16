@@ -99,7 +99,7 @@ Page({
       }else if (res.msg =='订单创建成功'){
         // 获取支付签名信息
         var orderId = res.order_id
-        order.toPay(orderId,(res)=>{
+        order.toPay((res)=>{
           console.log(res)
           wx.requestPayment({
             timeStamp: res.timeStamp,

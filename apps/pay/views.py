@@ -26,7 +26,7 @@ class WxPayView(APIView):
         # 接收数据
         data = json.loads(request.body)
         token = data['token']
-        order_id = data['order_id']
+        # order_id = data['order_id']
         # 获取open_id
         open_id = PublicFunction().getOpenIdByToken(token)
         if open_id:
