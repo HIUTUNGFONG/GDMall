@@ -184,7 +184,7 @@ class OrderView(APIView):
                 order_info = OrderInfo.objects.filter(wx_user=wx_user,is_delete=False).order_by('create_time')
                 for order in order_info:
                     orders = OrderList.objects.filter(order_info=order).values()
-                    data= {'order_list':order,
+                    data= {'order_list':order.values(),
                            'orders':orders}
             except:
                 return Response({'msg':'无订单信息'})
