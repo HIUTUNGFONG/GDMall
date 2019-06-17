@@ -181,9 +181,11 @@ class OrderView(APIView):
                     }
                 }
                 '''
-                order_info = OrderInfo.objects.get(wx_user=wx_user,is_delete=False).order_by('create_time')
+                order_info = OrderInfo.objects.filter(wx_user=wx_user,is_delete=False).order_by('create_time')
                 for order in order_info:
+                    print(order)
                     orders = OrderList.objects.filter(order_info=order).values()
+                    print(orders)
                     data= {'order_list':order,
                            'orders':orders}
             except:
