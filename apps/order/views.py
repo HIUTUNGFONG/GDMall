@@ -159,7 +159,7 @@ class OrderView(APIView):
         # 获取用户open_id
         open_id = PublicFunction().getOpenIdByToken(token)
 
-        data = {}
+        data_list = []
         # 校验用户
         if open_id:
             try:
@@ -182,6 +182,7 @@ class OrderView(APIView):
                 }
                 '''
                 order_info = OrderInfo.objects.filter(wx_user=wx_user,is_delete=False).order_by('create_time')
+
                 for order in order_info:
                     orders = OrderList.objects.filter(order_info=order).values()
                     data= {
@@ -191,10 +192,11 @@ class OrderView(APIView):
                         'state':order.total_price,
                         'order_list':orders,
                            }
+                    data_list.append(data)
             except:
                 return Response({'msg':'无订单信息'})
 
-        return Response(data)
+        return Response(data_list)
 
     '''
     获取订单清单信息
