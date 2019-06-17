@@ -1,7 +1,42 @@
 <!--pages/orderlist/orderlist.wxml-->
 
 <van-tabs active="{{ active }}" bind:change="onChange" swipe-threshold='5'>
-  <van-tab title="全部订单">全部订单</van-tab>
+  <van-tab title="全部订单">
+    <view style='background-color: white;margin-top: 15rpx;'>
+      <view style='padding-bottom:10rpx;'>
+        <van-row>
+          <van-col span="19" offset='1'><text class='text'>下单时间：</text></van-col>
+          <van-col span="4"><text class='text'>未支付</text></van-col>
+        </van-row>
+      </view>
+      
+
+
+      <van-row>
+        <van-col span="6" offset='1'><image src='http://img2.imgtn.bdimg.com/it/u=51546540,143390474&fm=26&gp=0.jpg' style='width:150rpx;height:150rpx;'></image></van-col>
+        <van-col span="13" offset='1'>
+          <van-row>
+            <text class='text'>商品名称啊啊啊啊啊啊啊啊啊商品啊啊</text>
+          </van-row>
+          <van-row><text class='small_text'>商品规格</text></van-row>
+        </van-col>
+        <van-col span="3">
+          <van-row><text class='small_text'>商品价格</text></van-row>
+          <van-row><text class='small_text'>商品数量</text></van-row>
+        </van-col>
+      </van-row>
+
+
+      <view style='text-align: right;border-top: solid 1px rgb(221, 221, 221);'><text class='text' style='padding-right:20rpx;'>共x件商品   实付：￥xxx</text></view>
+
+      <view>
+        <van-row>
+          <van-col offset="12" span="12"><button>aa</button></van-col>
+        </van-row>    
+      </view>
+
+    </view>
+  </van-tab>
   <van-tab title="待支付">待支付</van-tab>
   <van-tab title="待发货">待发货</van-tab>
   <van-tab title="待收货">待收货</van-tab>

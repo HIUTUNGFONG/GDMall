@@ -41,9 +41,11 @@
 
 <van-cell-group>
   <van-field
-    value="{{ username }}"
+    value="{{ note }}"
     clearable
     label="备注"
+    bind:blur='setNote'
+    placeholder="备注信息"
   />
 
  

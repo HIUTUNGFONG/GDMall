@@ -83,11 +83,16 @@ Page({
       url: '../address/address',
     })
   },
+  // 获取备注信息
+  setNote: function (e) {
+    this.setNote = e.detail.value
+    console.log(this.setNote)
+  },
   onSubmit:function(){
     // 获取收货地址id
     var addressId = wx.getStorageSync('addressId')
     // 创建订单
-    order.createOrder(this.commodityId_list, addressId,(res)=>{
+    order.createOrder(this.commodityId_list, addressId, this.setNote,(res)=>{
       console.log(res)
       if(res.msg=='商品库存不足'){
         wx.showToast({

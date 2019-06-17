@@ -167,8 +167,25 @@ class OrderView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                order = OrderInfo.objects.filter(wx_user=wx_user,is_delete=False).order_by('create_time').values()
-                data['order_list'] = order
+                '''
+                {
+                    order_list{
+                        ...
+                        order_info:{
+                            ...
+                            
+                        }
+                        商品清单列表{
+                                [商品，商品]
+                        }
+                    }
+                }
+                '''
+                order_info = OrderInfo.objects.filter(wx_user=wx_user,is_delete=False).order_by('create_time')
+                for order in order_info:
+                    orders = OrderList.objects.filter(order_info=order).values()
+                    data= {'order_list':order,
+                           'orders':orders}
             except:
                 return Response({'msg':'无订单信息'})
 

@@ -22,7 +22,7 @@ class Order extends Base {
     this.request(params);
   }
 
-  createOrder(commodityId_list,address_id,callBack){
+  createOrder(commodityId_list,address_id,note,callBack){
     // 创建订单
     var params = {
       url: 'order/create',
@@ -30,7 +30,8 @@ class Order extends Base {
       data : {
         'token': wx.getStorageSync('token'),
         'commodityId_list': commodityId_list,
-        'address_id': address_id
+        'address_id': address_id,
+        'note':note
       },
       sCallBack: function(res){
         callBack && callBack(res);
@@ -39,10 +40,13 @@ class Order extends Base {
       this.request(params);
   }
   getOrderInfoList(callBack){
-    url: 'order/get/' + wx.getStorageSync('token'),
-      sCallBack: function(res) {
+    var params = {
+      url: 'order/get/' + wx.getStorageSync('token'),
+      sCallBack: function (res) {
         callBack && callBack(res);
       }
+    }
+    this.request(params);
   }
 }
 
