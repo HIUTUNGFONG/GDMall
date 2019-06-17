@@ -188,8 +188,8 @@ class OrderView(APIView):
                     data= {
                         'create_time': order.create_time,
                         'state':order.state,
-                        'state':order.total_count,
-                        'state':order.total_price,
+                        'total_count':order.total_count,
+                        'total_price':order.total_price,
                         'order_list':orders,
                            }
                     data_list.append(data)
