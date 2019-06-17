@@ -75,13 +75,75 @@ class PublicFunction(object):
         return data
 
 
+    def AuthSignByXml(self,xml):
+        xmlmsg = xmltodict.parse(xml)
+        appid = xmlmsg['xml']['appid']
+        bank_type = xmlmsg['xml']['bank_type']
+        cash_fee = xmlmsg['xml']['cash_fee']
+        fee_type = xmlmsg['xml']['fee_type']
+        is_subscribe = xmlmsg['xml']['is_subscribe']
+        mch_id = xmlmsg['xml']['mch_id']
+        nonce_str = xmlmsg['xml']['nonce_str']
+        openid = xmlmsg['xml']['openid']
+        out_trade_no = xmlmsg['xml']['out_trade_no']
+        result_code = xmlmsg['xml']['result_code']
+        return_code = xmlmsg['xml']['return_code']
+        # sign = xmlmsg['xml']['sign']
+        time_end = xmlmsg['xml']['time_end']
+        total_fee = xmlmsg['xml']['total_fee']
+        trade_type = xmlmsg['xml']['trade_type']
+        transaction_id = xmlmsg['xml']['transaction_id']
+
+        strs = []
+        strs.append("appid=")
+        strs.append(appid)
+        strs.append("&bank_type=")
+        strs.append(bank_type)
+        strs.append("&cash_fee=")
+        strs.append(cash_fee)
+        strs.append("&fee_type=")
+        strs.append(fee_type)
+        strs.append("&is_subscribe=")
+        strs.append(is_subscribe)
+        strs.append("&mch_id=")
+        strs.append(mch_id)
+        strs.append("&nonce_str=")
+        strs.append(nonce_str)
+        strs.append("&openid=")
+        strs.append(openid)
+        strs.append("&out_trade_no=")
+        strs.append(out_trade_no)
+        strs.append("&result_code=")
+        strs.append(result_code)
+        strs.append("&return_code=")
+        strs.append(return_code)
+        strs.append("&time_end=")
+        strs.append(time_end)
+        strs.append("&total_fee=")
+        strs.append(total_fee)
+        strs.append("&trade_type=")
+        strs.append(trade_type)
+        strs.append("&transaction_id=")
+        strs.append(transaction_id)
+        strs.append("&key=")
+        strs.append('guanxinguanxinguanxinguanxin3344')
+        longstr = ''
+        for s in strs:
+            longstr += s
 
 
+        # md5加密
+        hash_md5 = hashlib.md5(longstr.encode('utf8'))
+        sign = hash_md5.hexdigest().upper()
+        return sign
 
-# p = PublicFunction()
-# str = p.randomStr()
-# print(str)
-# print(time.asctime(time.localtime(time.time())))
-# print(time.localtime().tm_year)
-# print(time.strftime('%Y%m%d%H%M%S'))
-# print(p.orderNum())
+    def timeout(self, time):
+        '''
+        判断是否超时
+        '''
+        import time
+        time = str(time)[0:19]
+        timeArray = time.strptime(time, "%Y-%m-%d %H:%M:%S")
+        timeStamp = int(time.mktime(timeArray))
+        is_timeout = (timeStamp + (60 * 60 * 24) - time.time() <= 0)
+        return is_timeout

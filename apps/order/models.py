@@ -62,3 +62,24 @@ class OrderList(BaseModel):
 
     def __str__(self):
         return str(self.id)
+
+
+class WxOrder(BaseModel):
+    '''
+    微信支付订单信息
+    '''
+    wx_user = models.ForeignKey(WxUser, on_delete=models.CASCADE, verbose_name='微信用户')
+    order_info = models.ForeignKey(OrderInfo, on_delete=models.CASCADE, verbose_name='订单号')
+    wx_order = models.CharField(max_length=255,verbose_name='微信支付订单号')
+    pay_time = models.CharField(max_length=30, null=True, verbose_name='支付完成时间')
+
+
+    class Meta:
+        db_table = 'gd_wx_order'
+        verbose_name = '微信支付订单'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str(self.id)
+
+

@@ -6,7 +6,7 @@ from django_redis import get_redis_connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.order.models import OrderInfo
+from apps.order.models import OrderInfo, WxOrder
 from apps.user.models import WxUser
 from common.public_function import *
 
@@ -35,8 +35,10 @@ class WxPayView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                order = OrderInfo.objects.get(order_id=order_id)
-                total_fee = str(int(order.total_price * 100))
+                order_info = OrderInfo.objects.get(order_id=order_id)
+                total_fee = str(int(order_info.total_price * 100))
+                # 创建微信订单
+                WxOrder.objects.create(wx_user=wx_user,order_info=order_info).save()
             except:
                 return Response({'msg':'订单不存在'})
 
@@ -51,7 +53,6 @@ class WxPayView(APIView):
             'body': 'test支付',
             'out_trade_no': orderNum,
             'total_fee': total_fee,
-            # 'total_fee': '1',
             'spbill_create_ip': '47.112.147.15',
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
             'trade_type': 'JSAPI'
@@ -84,9 +85,8 @@ class PayView(APIView):
     '''
 
     def post(self, request):
-        msg = request.body.decode('utf-8')
-        xmlmsg = xmltodict.parse(msg)
-        print(msg)
+        xml = request.body.decode('utf-8')
+        xmlmsg = xmltodict.parse(xml)
         return_code = xmlmsg['xml']['return_code']
 
         if return_code == 'FAIL':
@@ -95,10 +95,40 @@ class PayView(APIView):
                 """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[Signature_Error]]></return_msg></xml>""",
                 content_type='text/xml', status=200)
         elif return_code == 'SUCCESS':
-            # 拿到这次支付的订单号
+            # 获取支付的订单号
             out_trade_no = xmlmsg['xml']['out_trade_no']
-            print(out_trade_no)
-            # 根据需要处理业务逻辑
+            # 获取订单金额
+            cash_fee = xmlmsg['xml']['cash_fee']
+            # 获取签名
+            sign = xmlmsg['xml']['sign']
+            # 获取支付完成时间
+            time_end = xmlmsg['xml']['time_end']
+            # 获取交易单号
+            transaction_id = xmlmsg['xml']['transaction_id']
+            # 获取自己的数据
+            try:
+                order_info = OrderInfo.objects.get(order_id=out_trade_no)
+                # 订单金额
+                total_price = str(int(order_info.total_price*100))
+                # 订单签名
+                mysign = PublicFunction.AuthSignByXml(xml)
+                if sign != mysign and total_price != cash_fee:
+                    return HttpResponse(
+                        """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>""",
+                        content_type='text/xml', status=200)
+            except:
+                return HttpResponse(
+                    """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>""",
+                    content_type='text/xml', status=200)
+            # 比对成功，修改订单状态
+            order_info.state = 1
+            order_info.save()
+            # 加入到微信订单表
+            wx_order = WxOrder.objects.get(order_info=order_info)
+            wx_order.wx_order=transaction_id
+            wx_order.pay_time = time_end
+            wx_order.save()
+
             return HttpResponse(
                 """<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>""",
                 content_type='text/xml', status=200)

@@ -165,7 +165,7 @@ class OrderView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                order = OrderInfo.objects.filter(wx_user=wx_user).order_by('create_time').values()
+                order = OrderInfo.objects.filter(wx_user=wx_user,is_delete=False).order_by('create_time').values()
                 data['order_list'] = order
             except:
                 return Response({'msg':'无订单信息'})
@@ -201,8 +201,82 @@ class OrderView(APIView):
             except:
                 return Response({'msg':'订单不存在'})
             try:
-                order_list = OrderList.objects.filter(wx_user=wx_user,order_info=order_info).values()
+                order_list = OrderList.objects.filter(wx_user=wx_user,order_info=order_info,is_delete=False).values()
                 data['order_list'] = order_list
             except:
                 return Response({'msg':'获取订单清单失败'})
         return  Response(data)
+
+
+class DeleteOrderView(APIView):
+
+    '''
+    删除订单
+    '''
+    def post(self,request):
+        # 接收数据
+        data = json.loads(request.body)
+        order_id = data['order_id']
+        token = data['token']
+
+        # 参数校验
+        if not all([order_id, token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                order_info = OrderInfo.objects.get(order_id=order_id)
+                order_info.is_delete=True
+                order_info.save()
+            except:
+                return Response({'msg': '订单不存在'})
+        return Response({'msg': '删除订单成功'})
+
+
+
+
+
+
+class CleanInvalidOrderView(APIView):
+
+    '''
+    清理无效的订单
+    '''
+    def post(self,request):
+        # 接收数据
+        data = json.loads(request.body)
+        token = data['token']
+
+        # 参数校验
+        if not all([token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                # 查询未支付状态的订单
+                order_info = OrderInfo.objects.filter(wx_user=wx_user,state=0,is_delete=False)
+                if order_info:
+                    for order in order_info:
+                        # 判断是否超时
+                        if PublicFunction.timeout(order.create_time):
+                            order.state=6
+                            order.save()
+
+            except:
+                return Response({'msg':'无订单信息'})
+
