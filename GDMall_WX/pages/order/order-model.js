@@ -38,6 +38,12 @@ class Order extends Base {
     };
       this.request(params);
   }
+  getOrderInfoList(callBack){
+    url: 'order/get/' + wx.getStorageSync('token'),
+      sCallBack: function(res) {
+        callBack && callBack(res);
+      }
+  }
 }
 
 export { Order };

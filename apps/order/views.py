@@ -31,6 +31,7 @@ class CreateOrderView(APIView):
         data = json.loads(request.body)
         commodityId_list = data['commodityId_list']
         address_id = data['address_id']
+        note = data['note']
         token = data['token']
         open_id = PublicFunction().getOpenIdByToken(token)
 
@@ -75,7 +76,8 @@ class CreateOrderView(APIView):
                                              commodity_total_price=total_price,
                                              total_price=total_price,
                                              total_count=total_count,
-                                             transit_price=transit_price)
+                                             transit_price=transit_price,
+                                             note=note)
 
 
 
