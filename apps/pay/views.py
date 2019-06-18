@@ -87,6 +87,7 @@ class PayView(APIView):
     def post(self, request):
         xml = request.body.decode('utf-8')
         xmlmsg = xmltodict.parse(xml)
+        print(xmlmsg)
         return_code = xmlmsg['xml']['return_code']
         print('return_code:'+return_code)
 

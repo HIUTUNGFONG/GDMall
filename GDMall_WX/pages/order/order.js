@@ -24,6 +24,7 @@ Page({
     // 获取缓存中的地址
     this.address = wx.getStorageSync('address')
     this.addressId = ''
+    this.setNote = ''
     console.log('缓存获取地址数据'+this.address)
     if(this.address==''){
 

@@ -1,8 +1,8 @@
-# import hashlib
-#
-# import weixin
-# from bs4 import BeautifulSoup
-# import xmltodict
+import hashlib
+
+import weixin
+from bs4 import BeautifulSoup
+import xmltodict
 #
 #
 # def get_sign(data_dict, key):
@@ -41,101 +41,97 @@
 #   return data_dict
 #
 #
-# xml = """
-# <xml>
-# <appid><![CDATA[wxc999b4ac2adc328e]]></appid>
-# <bank_type><![CDATA[CFT]]></bank_type>
-# <cash_fee><![CDATA[1]]></cash_fee>
-# <fee_type><![CDATA[CNY]]></fee_type>
-# <is_subscribe><![CDATA[N]]></is_subscribe>
-# <mch_id><![CDATA[1535717001]]></mch_id>
-# <nonce_str><![CDATA[0reyRZXV1moq6tpUjiawPO4xDNbBsA3E]]></nonce_str>
-# <openid><![CDATA[oxkaL5VgOfci-vg8_PvqEpS28xeI]]></openid>
-# <out_trade_no><![CDATA[20190616235404443277]]></out_trade_no>
-# <result_code><![CDATA[SUCCESS]]></result_code>
-# <return_code><![CDATA[SUCCESS]]></return_code>
-# <sign><![CDATA[9E1A15EBAEA28861C52F83AEF723C428]]></sign>
-# <time_end><![CDATA[20190616235412]]></time_end>
-# <total_fee>1</total_fee>
-# <trade_type><![CDATA[JSAPI]]></trade_type>
-# <transaction_id><![CDATA[4200000310201906169381847514]]></transaction_id>
-# </xml>
-# """
-# # msg = ss.decode('utf-8')
-# # print(msg)
-# xmlmsg = xmltodict.parse(xml)
-# print(xmlmsg)
-# xmlmsg = xmltodict.parse(xml)
-# appid = xmlmsg['xml']['appid']
-# bank_type = xmlmsg['xml']['bank_type']
-# cash_fee = xmlmsg['xml']['cash_fee']
-# fee_type = xmlmsg['xml']['fee_type']
-# is_subscribe = xmlmsg['xml']['is_subscribe']
-# mch_id = xmlmsg['xml']['mch_id']
-# nonce_str = xmlmsg['xml']['nonce_str']
-# openid = xmlmsg['xml']['openid']
-# out_trade_no = xmlmsg['xml']['out_trade_no']
-# result_code = xmlmsg['xml']['result_code']
-# return_code = xmlmsg['xml']['return_code']
-# sign = xmlmsg['xml']['sign']
-# time_end = xmlmsg['xml']['time_end']
-# total_fee = xmlmsg['xml']['total_fee']
-# trade_type = xmlmsg['xml']['trade_type']
-# transaction_id = xmlmsg['xml']['transaction_id']
+xml = """<xml>
+<appid><![CDATA[wxc999b4ac2adc328e]]></appid>
+<bank_type><![CDATA[CFT]]></bank_type>
+<cash_fee><![CDATA[1]]></cash_fee>
+<fee_type><![CDATA[CNY]]></fee_type>
+<is_subscribe><![CDATA[N]]></is_subscribe>
+<mch_id><![CDATA[1535717001]]></mch_id>
+<nonce_str><![CDATA[0reyRZXV1moq6tpUjiawPO4xDNbBsA3E]]></nonce_str>
+<openid><![CDATA[oxkaL5VgOfci-vg8_PvqEpS28xeI]]></openid>
+<out_trade_no><![CDATA[20190616235404443277]]></out_trade_no>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<sign><![CDATA[9E1A15EBAEA28861C52F83AEF723C428]]></sign>
+<time_end><![CDATA[20190616235412]]></time_end>
+<total_fee>1</total_fee>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+<transaction_id><![CDATA[4200000310201906169381847514]]></transaction_id>
+</xml>
+"""
+# msg = ss.decode('utf-8')
+# print(msg)
+xmlmsg = xmltodict.parse(xml)
+print(xmlmsg)
+appid = xmlmsg['xml']['appid']
+bank_type = xmlmsg['xml']['bank_type']
+cash_fee = xmlmsg['xml']['cash_fee']
+fee_type = xmlmsg['xml']['fee_type']
+is_subscribe = xmlmsg['xml']['is_subscribe']
+mch_id = xmlmsg['xml']['mch_id']
+nonce_str = xmlmsg['xml']['nonce_str']
+openid = xmlmsg['xml']['openid']
+out_trade_no = xmlmsg['xml']['out_trade_no']
+result_code = xmlmsg['xml']['result_code']
+return_code = xmlmsg['xml']['return_code']
+sign = xmlmsg['xml']['sign']
+time_end = xmlmsg['xml']['time_end']
+total_fee = xmlmsg['xml']['total_fee']
+trade_type = xmlmsg['xml']['trade_type']
+transaction_id = xmlmsg['xml']['transaction_id']
+
+strs = []
+strs.append("appid=")
+strs.append(appid)
+strs.append("&bank_type=")
+strs.append(bank_type)
+strs.append("&cash_fee=")
+strs.append(cash_fee)
+strs.append("&fee_type=")
+strs.append(fee_type)
+strs.append("&is_subscribe=")
+strs.append(is_subscribe)
+strs.append("&mch_id=")
+strs.append(mch_id)
+strs.append("&nonce_str=")
+strs.append(nonce_str)
+strs.append("&openid=")
+strs.append(openid)
+strs.append("&out_trade_no=")
+strs.append(out_trade_no)
+strs.append("&result_code=")
+strs.append(result_code)
+strs.append("&return_code=")
+strs.append(return_code)
+strs.append("&time_end=")
+strs.append(time_end)
+strs.append("&total_fee=")
+strs.append(total_fee)
+strs.append("&trade_type=")
+strs.append(trade_type)
+strs.append("&transaction_id=")
+strs.append(transaction_id)
+strs.append("&key=")
+strs.append('guanxinguanxinguanxinguanxin3344')
+longstr = ''
+for s in strs:
+  longstr += s
+print(longstr)
+
+
+# md5加密
+hash_md5 = hashlib.md5(longstr.encode('utf8'))
+sign = hash_md5.hexdigest().upper()
+print(sign)
+
+
 #
-# strs = []
-# strs.append("appid=")
-# strs.append(appid)
-# strs.append("&bank_type=")
-# strs.append(bank_type)
-# strs.append("&cash_fee=")
-# strs.append(cash_fee)
-# strs.append("&fee_type=")
-# strs.append(fee_type)
-# strs.append("&is_subscribe=")
-# strs.append(is_subscribe)
-# strs.append("&mch_id=")
-# strs.append(mch_id)
-# strs.append("&nonce_str=")
-# strs.append(nonce_str)
-# strs.append("&openid=")
-# strs.append(openid)
-# strs.append("&out_trade_no=")
-# strs.append(out_trade_no)
-# strs.append("&result_code=")
-# strs.append(result_code)
-# strs.append("&return_code=")
-# strs.append(return_code)
-# strs.append("&time_end=")
-# strs.append(time_end)
-# strs.append("&total_fee=")
-# strs.append(total_fee)
-# strs.append("&trade_type=")
-# strs.append(trade_type)
-# strs.append("&transaction_id=")
-# strs.append(transaction_id)
-# strs.append("&key=")
-# strs.append('guanxinguanxinguanxinguanxin3344')
-# longstr = ''
-# for s in strs:
-#   longstr += s
-# print(longstr)
 #
-# # 拼接商户key
-# # stringSignTemp = stringA + 'key=' + mchkey
-#
-# # md5加密
-# hash_md5 = hashlib.md5(longstr.encode('utf8'))
-# sign = hash_md5.hexdigest().upper()
+# sss= trans_xml_to_dict(ss)
+# print(sss)
+# sign = get_sign(xmlmsg,'guanxinguanxinguanxinguanxin3344')
 # print(sign)
-#
-#
-# # #
-# # #
-# # # sss= trans_xml_to_dict(ss)
-# # # print(sss)
-# # sign = get_sign(xmlmsg,'guanxinguanxinguanxinguanxin3344')
-# # print(sign)
 #
 # # from weixin.pay import WeixinPay, WeixinPayError
 # # # 或者

@@ -75,8 +75,7 @@ class PublicFunction(object):
         return data
 
 
-    def AuthSignByXml(self,xml):
-        xmlmsg = xmltodict.parse(xml)
+    def AuthSignByXml(self,xmlmsg):
         appid = xmlmsg['xml']['appid']
         bank_type = xmlmsg['xml']['bank_type']
         cash_fee = xmlmsg['xml']['cash_fee']
