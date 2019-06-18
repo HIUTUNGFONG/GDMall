@@ -48,7 +48,7 @@ Page({
   },
   onUpdate:function(e){
     var id = e.currentTarget.dataset.id;
-    console.log(id)
+    // console.log(id)
     wx.navigateTo({
       url: '../addressforms/addressforms?reset_id=' + id,
     })
@@ -57,17 +57,21 @@ Page({
     var id = e.currentTarget.dataset.id;
     console.log(id)
     address.deleteAddress(id, (res) => {
-      console.log(res)      
+      if (res.msg=='success'){
+        this.getAddressList()
+      }
     })
-    this.getAddressList()
   },
   onDefault: function (e) {
     var id = e.currentTarget.dataset.id;
     console.log(id)
     address.updateDefaultAddress(id, (res) => {
-      console.log(res)
+      // console.log(res)
+      if (res.msg=='success'){
+        this.getAddressList()
+      }
     })
-    this.getAddressList()
+
   },
   // 跳转回订单页面
   toOrder:function(e){

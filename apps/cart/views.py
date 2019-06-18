@@ -81,16 +81,18 @@ class CartDeleteView(APIView):
 
         # 接收数据
         data = json.loads(request.body)
-        commodity_id = data['commodity_id']
+        # 获取要删除的商品id列表
+        commodityId_list = data['commodityId_list']
         token = data['token']
 
         # 数据校验
-        if not all([commodity_id, token]):
+        if not all([commodityId_list, token]):
             return Response({'msg': '数据不完整'})
 
         # 校验商品是否存在
         try:
-            commodity = Commodity.objects.get(id=commodity_id)
+            for commodity_id in commodityId_list:
+                commodity = Commodity.objects.get(id=commodity_id)
         except commodity.DoesNotExist:
             return Response({'msg': '商品不存在'})
 
@@ -100,7 +102,7 @@ class CartDeleteView(APIView):
         conn = get_redis_connection('Cart')
         cart_key = 'cart_%s' % open_id
         # 删除商品
-        conn.hdel(cart_key, commodity_id)
+        conn.hdel(cart_key, *commodityId_list)
 
         # 计算用户购物车商品的条目数
         total_count = conn.hlen(cart_key)

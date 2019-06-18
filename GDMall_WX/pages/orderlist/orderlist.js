@@ -5,22 +5,55 @@ var order = new Order();
 Page({
 
   data: {
-    active: 0
+    
   },
   onLoad: function (options) {
     // 获取订单信息
-    order.getOrderInfoList((res)=>{
-      console.log(res)
-    })
-    
+    if (options.select==undefined){
+      this.getOrderInfoList()
+      this.setData({
+        active:0
+      })
+    }else{
+      var order_list = this.getOrderListByState(options.select-1);
+      this.setData({
+        active:options.select,
+        order_list:order_list
+      })
+    }
   },
 
 
-  // onChange(event) {
-    // wx.showToast({
-    //   title: `切换到标签 ${event.detail.index + 1}`,
-    //   icon: 'none'
-    // });
-  // }
+  onChange(event) {
+
+
+    if (event.detail.index==0){
+      // 获取订单信息
+      this.getOrderInfoList();
+    }else {
+      this.getOrderListByState(event.detail.index-1);
+    }
+  },
+  getOrderListByState: function(state){
+    var data_list = []
+    order.getOrderInfoList((res)=>{
+      for (var i = 0; i < res.length; i++) {
+        if (res[i].state == state) {
+          data_list.push(res[i])
+        }
+      }
+      this.setData({
+        order_list:data_list
+      })
+    })
+  },
+  getOrderInfoList:function(){
+    order.getOrderInfoList((res)=>{
+      this.setData({
+        order_list:res
+      })
+    })
+  }
+
 
 })

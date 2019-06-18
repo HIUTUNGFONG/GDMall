@@ -213,17 +213,23 @@ Page({
     // 删除
     ondelete: function (e) {
         let carts = this.carts;
+        var commodityId_list = []
         for (var i = 0; i < carts.length; i++) {
             if (carts[i].selected == true) {
-                cart.deleteCommodity(carts[i].id, (res) => {
-                    console.log(res)
-                })
+                // 将要删除选中的商品id加入到list
+                commodityId_list.push(carts[i].id)
             }
         }
-        cart.getCartList((res) => {
-            this.carts = res.commodity_list
-            this.totlePrice()
+        cart.deleteCommodity(commodityId_list, (res) => {
+          console.log(res)
+          if (res.msg == '删除成功') {
+            cart.getCartList((res) => {
+              this.carts = res.commodity_list
+              this.totlePrice()
+            })
+          }
         })
+        
 
     },
   toSettlement:function(){

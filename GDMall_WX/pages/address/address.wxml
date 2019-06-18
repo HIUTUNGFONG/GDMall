@@ -36,7 +36,7 @@
 
           <block wx:if='{{item.is_default}}'>
               <view style='padding-left:515rpx;' class='button_box'>
-                <text style='position: absolute;top:180rpx;right:580rpx'>默认地址</text>          
+                <text style='position:relative;top:30rpx;right:480rpx;'>默认地址</text>          
                 <view style='display: inline-block;'>
                 <van-button size="mini" bind:click='onUpdate' data-id='{{item.id}}'>修改</van-button>
                 </view>

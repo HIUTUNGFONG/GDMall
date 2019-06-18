@@ -34,13 +34,13 @@ class Cart extends Base {
     this.request(params);
   }
   // 删除商品
-  deleteCommodity(commodity_id,callBack){
+  deleteCommodity(commodityId_list,callBack){
     var params={
       url: 'cart/delete',
       method:'POST',
       data:{
         "token": wx.getStorageSync('token'),
-        "commodity_id": commodity_id
+        "commodityId_list": commodityId_list
       },
       sCallBack: function (res) {
         callBack && callBack(res);

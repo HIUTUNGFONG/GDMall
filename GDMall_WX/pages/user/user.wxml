@@ -58,28 +58,28 @@
 <view class='bigsolid'>
 <van-row>
   <van-col span='6'>
-    <view class='solid'>
+    <view class='solid' bindtap='to_order_state_1'>
       <view class='type_icon'><van-icon name="credit-pay"  size='60rpx'/></view>
       <view class='type_text'>待支付</view>
     </view>
   </van-col>
 
     <van-col span='6'>
-    <view class='solid'>
+    <view class='solid' bindtap='to_order_state_2'>
       <view class='type_icon'><van-icon name="logistics"  size='60rpx'/></view>
       <view class='type_text'>待发货</view>
     </view>
   </van-col>
 
     <van-col span='6'>
-    <view class='solid'>
+    <view class='solid' bindtap='to_order_state_3'>
       <view class='type_icon'><van-icon name="certificate"  size='60rpx'/></view>
       <view class='type_text'>待收货</view>
     </view>
   </van-col>
 
     <van-col span='6'>
-    <view class='solid'>
+    <view class='solid' bindtap='to_order_state_4'>
       <view class='type_icon'><van-icon name="after-sale"  size='60rpx'/></view>
       <view style='padding-left:40rpx;font-size:28rpx;color: rgb(133, 133, 133);'>退款/维权</view>
     </view>

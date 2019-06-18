@@ -93,12 +93,14 @@ Page({
     // 右侧筛选栏最小价格失去焦点事件
     minPrice(event) {
         this.setData({minPrice: event.detail.value})
-        console.log(this.data.minPrice)
+        this.min_price = event.detail.value
+        // console.log(this.data.minPrice)
     },
     // 右侧筛选栏最大价格失去焦点事件
     maxPrice(event) {
         this.setData({maxPrice: event.detail.value})
-        console.log(this.data.maxPrice)
+        this.max_price = event.detail.value
+        // console.log(this.data.maxPrice)
     },
     // 右侧筛选栏重置事件
     onPriceReset() {
@@ -110,33 +112,35 @@ Page({
     // 右侧筛选栏确定事件
     onPriceConfirm() {
         // 根据产品价格区间筛选结果
-        var goods_list = this.data.goods_list;
-        console.log(goods_list)
-        var minPrice = this.data.minPrice
-        var maxPrice = this.data.maxPrice
+        var goods_list = this.goods_list;
+        // console.log(goods_list);
+        var minPrice = this.min_price;
+        // console.log(minPrice);
+        var maxPrice = this.max_price;
+        // console.log(maxPrice);
         var temp = [];
-        if (minPrice == 0 && maxPrice == 0) {
+        if (minPrice == undefined && maxPrice == undefined || minPrice == '' && maxPrice == '' ) {
             temp = goods_list
-        } else if (minPrice == 0) {
+        } else if (minPrice == undefined || minPrice == '' ) {
             for (var i = 0; i < goods_list.length; i++) {
                 if (goods_list[i][0].commodity[0].price <= maxPrice) {
                     temp.push(goods_list[i])
                 }
-                console.log(temp)
+                // console.log(temp)
             }
-        } else if (maxPrice == 0) {
+        } else if (maxPrice == undefined || maxPrice == '' ) {
             for (var i = 0; i < goods_list.length; i++) {
                 if (goods_list[i][0].commodity[0].price >= minPrice) {
                     temp.push(goods_list[i])
                 }
-                console.log(temp)
+                // console.log(temp)
             }
         } else {
             for (var i = 0; i < goods_list.length; i++) {
                 if (goods_list[i][0].commodity[0].price >= minPrice && goods_list[i][0].commodity[0].price <= maxPrice) {
                     temp.push(goods_list[i])
                 }
-                console.log(temp)
+                // console.log(temp)
             }
         }
 
@@ -151,30 +155,30 @@ Page({
         // 点击综合事件
         if (event.detail.index == 0) {
             // 根据产品发布排序
-            var goods_list = this.data.goods_list
+            var goods_list = this.goods_list;
             for (var i = 0; i < goods_list.length; i++)
                 for (var j = 0; j < goods_list.length - i - 1; j++)
                     if (goods_list[j][0].goods.create_time < goods_list[j + 1][0].goods.create_time) {
-                        var temp = goods_list[j + 1]
-                        goods_list[j + 1] = goods_list[j]
+                        var temp = goods_list[j + 1];
+                        goods_list[j + 1] = goods_list[j];
                         goods_list[j] = temp
                     }
-            console.log(goods_list)
+            console.log(goods_list);
             this.setData({goods_list: goods_list})
         }
 
         // 点击销量事件
         if (event.detail.index == 1) {
             // 根据产品销量排序
-            var goods_list = this.data.goods_list
+            var goods_list = this.goods_list;
             for (var i = 0; i < goods_list.length; i++)
                 for (var j = 0; j < goods_list.length - i - 1; j++)
                     if (goods_list[j][0].goods.sales < goods_list[j + 1][0].goods.sales) {
-                        var temp = goods_list[j + 1]
-                        goods_list[j + 1] = goods_list[j]
+                        var temp = goods_list[j + 1];
+                        goods_list[j + 1] = goods_list[j];
                         goods_list[j] = temp
                     }
-            console.log(goods_list)
+            console.log(goods_list);
             this.setData({goods_list: goods_list})
         }
 
@@ -188,31 +192,31 @@ Page({
             ;
             if (this.data.price_label == -1) {
                 // 根据产品价格升序排序
-                var goods_list = this.data.goods_list
+                var goods_list = this.goods_list;
                 for (var i = 0; i < goods_list.length; i++)
                     for (var j = 0; j < goods_list.length - i - 1; j++)
                         if (goods_list[j][0].commodity[0].price > goods_list[j + 1][0].commodity[0].price) {
-                            var temp = goods_list[j + 1]
-                            goods_list[j + 1] = goods_list[j]
+                            var temp = goods_list[j + 1];
+                            goods_list[j + 1] = goods_list[j];
                             goods_list[j] = temp
                         }
-                console.log(goods_list)
-                this.setData({goods_list: goods_list})
+                console.log(goods_list);
+                this.setData({goods_list: goods_list});
                 // 第二次点击取现在的相反值
                 this.setData({price_label: -this.data.price_label});
 
             } else if (this.data.price_label == 1) {
                 // 根据产品价格升序排序
-                var goods_list = this.data.goods_list
+                var goods_list = this.goods_list;
                 for (var i = 0; i < goods_list.length; i++)
                     for (var j = 0; j < goods_list.length - i - 1; j++)
                         if (goods_list[j][0].commodity[0].price < goods_list[j + 1][0].commodity[0].price) {
-                            var temp = goods_list[j + 1]
-                            goods_list[j + 1] = goods_list[j]
+                            var temp = goods_list[j + 1];
+                            goods_list[j + 1] = goods_list[j];
                             goods_list[j] = temp
                         }
-                console.log(goods_list)
-                this.setData({goods_list: goods_list})
+                console.log(goods_list);
+                this.setData({goods_list: goods_list});
                 // 第二次点击取现在的相反值
                 this.setData({price_label: -this.data.price_label});
             }
@@ -223,15 +227,15 @@ Page({
         // 点击新品事件
         if (event.detail.index == 3) {
             // 根据产品发布事件排序
-            var goods_list = this.data.goods_list
+            var goods_list = this.goods_list;
             for (var i = 0; i < goods_list.length; i++)
                 for (var j = 0; j < goods_list.length - i - 1; j++)
                     if (goods_list[j][0].goods.create_time < goods_list[j + 1][0].goods.create_time) {
-                        var temp = goods_list[j + 1]
-                        goods_list[j + 1] = goods_list[j]
+                        var temp = goods_list[j + 1];
+                        goods_list[j + 1] = goods_list[j];
                         goods_list[j] = temp
                     }
-            console.log(goods_list)
+            console.log(goods_list);
             this.setData({goods_list: goods_list})
         }
 
@@ -245,10 +249,11 @@ Page({
     onSort: function (event) {
         // 点击类别事件
         // var id = goods.getDataset(event,id)
-        var sort = event.currentTarget.dataset.sort
+        var sort = event.currentTarget.dataset.sort;
         // console.log(sort)
         goods.getGoodsDataBySort(sort, (res) => {
             this.setData({goods_list: res.data});
+            this.goods_list = res.data;
         })
         this.setData({show_left: false});
         this.setData({active: 0});  //标签栏位置设置回综合
@@ -256,12 +261,13 @@ Page({
     },
     onClassify: function (event) {
         // 点击分类事件
-        var sort = event.currentTarget.dataset.sort
-        var classify = event.currentTarget.dataset.classify
-        console.log(sort)
-        console.log(classify)
+        var sort = event.currentTarget.dataset.sort;
+        var classify = event.currentTarget.dataset.classify;
+        console.log(sort);
+        console.log(classify);
         goods.getGoodsDataByClassify(sort, classify, (res) => {
                 this.setData({goods_list: res.data});
+                this.goods_list = res.data;
             }
         )
         this.setData({show_left: false});
@@ -278,7 +284,8 @@ Page({
     getAllGoods: function () {
         goods.getGoodsData((res) => {
             this.setData({goods_list: res.data});
-            console.log(res.data)
+            this.goods_list = res.data
+            // console.log(res.data)
         })
     },
     // 搜索框搜索事件
@@ -303,7 +310,7 @@ Page({
     // 点击添加购物车图标事件
     onAddCommodity: function (event) {
         // 获取点击的产品信息
-        var commodity = event.currentTarget.dataset.commodity
+        var commodity = event.currentTarget.dataset.commodity;
         // console.log(commodity[0].goods.id);
         var goodsId = commodity[0].goods.id;
         this.attrValueList = [];

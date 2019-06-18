@@ -39,8 +39,8 @@ Page({
                 }
             }
         })
-        
-        
+
+
     },
 
     bindGetUserInfo(e) {
@@ -66,10 +66,28 @@ Page({
             url: tourl
         })
     },
-  noToOrder:function(){
-    // 将缓存的toOrder设置为空
-    wx.setStorageSync('toOrder', '')
-  }
-
-
+    noToOrder: function () {
+        // 将缓存的toOrder设置为空
+        wx.setStorageSync('toOrder', '')
+    },
+    to_order_state_1: function () {
+        wx.navigateTo({
+            url: '../orderlist/orderlist?select=1'
+        })
+    },
+    to_order_state_2: function () {
+        wx.navigateTo({
+            url: '../orderlist/orderlist?select=2'
+        })
+    },
+    to_order_state_3: function () {
+        wx.navigateTo({
+            url: '../orderlist/orderlist?select=3'
+        })
+    },
+    to_order_state_4: function () {
+        wx.navigateTo({
+            url: '../orderlist/orderlist?select=4'
+        })
+    },
 })
