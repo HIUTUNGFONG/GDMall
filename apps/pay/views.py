@@ -121,7 +121,7 @@ class PayView(APIView):
                 total_price = str(int(order_info.total_price*100))
                 print('total_price:'+total_price)
                 # 订单签名
-                mysign = PublicFunction.AuthSignByXml(xml)
+                mysign = PublicFunction.AuthSignByXml(xmlmsg['xml'])
                 print('mysign:'+mysign)
                 if sign != mysign and total_price != cash_fee:
                     return HttpResponse(
