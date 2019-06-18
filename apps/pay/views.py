@@ -115,6 +115,7 @@ class PayView(APIView):
             # 获取自己的数据
             try:
                 order_info = OrderInfo.objects.get(order_id=out_trade_no)
+                print(order_info)
                 # 订单金额
                 total_price = str(int(order_info.total_price*100))
                 # 订单签名
@@ -126,6 +127,7 @@ class PayView(APIView):
                         """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>""",
                         content_type='text/xml', status=200)
             except:
+                print('订单错误！')
                 return HttpResponse(
                     """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>""",
                     content_type='text/xml', status=200)
