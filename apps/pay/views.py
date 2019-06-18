@@ -114,14 +114,14 @@ class PayView(APIView):
             print('transaction_id:'+transaction_id)
             # 获取自己的数据
             try:
-                order_info = OrderInfo.objects.filter(order_id=out_trade_no)
+                order_info = OrderInfo.objects.get(order_id=out_trade_no)
                 print(order_info)
                 # 订单金额
                 total_price = str(int(order_info.total_price*100))
+                print('total_price:'+total_price)
                 # 订单签名
                 mysign = PublicFunction.AuthSignByXml(xml)
                 print('mysign:'+mysign)
-                print('total_price:'+total_price)
                 if sign != mysign and total_price != cash_fee:
                     return HttpResponse(
                         """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>""",
