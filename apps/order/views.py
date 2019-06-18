@@ -186,7 +186,7 @@ class OrderView(APIView):
                 for order in order_info:
                     orders = OrderList.objects.filter(order_info=order).values()
                     data= {
-                        'create_time': order.create_time,
+                        'create_time': str(order.create_time)[0:19],
                         'state':order.state,
                         'total_count':order.total_count,
                         'total_price':order.total_price,

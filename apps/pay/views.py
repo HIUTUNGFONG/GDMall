@@ -88,6 +88,7 @@ class PayView(APIView):
         xml = request.body.decode('utf-8')
         xmlmsg = xmltodict.parse(xml)
         return_code = xmlmsg['xml']['return_code']
+        print('return_code:'+return_code)
 
         if return_code == 'FAIL':
             # 官方发出错误
@@ -97,14 +98,20 @@ class PayView(APIView):
         elif return_code == 'SUCCESS':
             # 获取支付的订单号
             out_trade_no = xmlmsg['xml']['out_trade_no']
+            print('out_trade_no:'+out_trade_no)
             # 获取订单金额
             cash_fee = xmlmsg['xml']['cash_fee']
+            print('cash_fee:' + cash_fee)
             # 获取签名
             sign = xmlmsg['xml']['sign']
+            print('sign:' + sign)
+
             # 获取支付完成时间
             time_end = xmlmsg['xml']['time_end']
+            print('time_end:'+time_end)
             # 获取交易单号
             transaction_id = xmlmsg['xml']['transaction_id']
+            print('transaction_id:'+transaction_id)
             # 获取自己的数据
             try:
                 order_info = OrderInfo.objects.get(order_id=out_trade_no)
@@ -112,10 +119,8 @@ class PayView(APIView):
                 total_price = str(int(order_info.total_price*100))
                 # 订单签名
                 mysign = PublicFunction.AuthSignByXml(xml)
-                print('sign:'+sign)
                 print('mysign:'+mysign)
                 print('total_price:'+total_price)
-                print('cash_fee:'+cash_fee)
                 if sign != mysign and total_price != cash_fee:
                     return HttpResponse(
                         """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>""",
