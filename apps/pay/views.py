@@ -37,6 +37,7 @@ class WxPayView(APIView):
             try:
                 order_info = OrderInfo.objects.get(order_id=order_id)
                 total_fee = str(int(order_info.total_price * 100))
+                order_id = order_info.order_id
                 # 创建微信订单
                 WxOrder.objects.create(wx_user=wx_user,order_info=order_info).save()
             except:
@@ -44,14 +45,13 @@ class WxPayView(APIView):
 
 
         str32 = PublicFunction().randomStr()
-        orderNum = PublicFunction().orderNum()
         params = {
             'openid': open_id,
             'appid': wxinfo['APPID'],
             'mch_id': wxinfo['MCHID'],
             'nonce_str': str32,
             'body': 'test支付',
-            'out_trade_no': orderNum,
+            'out_trade_no': order_id,
             'total_fee': total_fee,
             'spbill_create_ip': '47.112.147.15',
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
