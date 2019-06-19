@@ -48,6 +48,20 @@ class Order extends Base {
     }
     this.request(params);
   }
+  getOrderInfoListById(order_info_id,callBack) {
+    var params = {
+      url: 'order/getById',
+      method:'POST',
+      data:{
+        'order_info_id': order_info_id,
+        'token': wx.getStorageSync('token')
+      },
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    }
+    this.request(params);
+  }
 }
 
 export { Order };

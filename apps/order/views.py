@@ -275,14 +275,14 @@ class OrderByOrderIdView(APIView):
                 '''
                 order_info = OrderInfo.objects.get(wx_user=wx_user, is_delete=False,id=order_info_id)
 
-
                 orders = OrderList.objects.filter(order_info=order_info).values()
+
                 data = {
                     'order_id':order_info.order_id,
                     'note':order_info.note,
                     'create_time': str(order_info.create_time)[0:19],
                     'cancel_time':order_info.cancel_time,
-                    'state': order_info.state,
+                    'state': order_info.status_choices[order_info.state],
                     'total_count': order_info.total_count,
                     'commodity_total_price':order_info.commodity_total_price,
                     'total_price': order_info.total_price,
