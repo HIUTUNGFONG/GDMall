@@ -278,6 +278,7 @@ class OrderByOrderIdView(APIView):
                     'order_id': order_info.order_id,
                     'name': order_info.name,
                     'phone': order_info.phone,
+                    'address':order_info.address,
                     'note': order_info.note,
                     'create_time': str(order_info.create_time)[0:19],
                     'cancel_time': order_info.cancel_time,
