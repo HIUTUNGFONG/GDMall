@@ -79,9 +79,6 @@ class CreateOrderView(APIView):
                                              transit_price=transit_price,
                                              note=note)
 
-
-
-
             # 遍历向gd_order_list中添加记录
             for commodity_id in commodityId_list:
                 # 获取商品的信息(行锁查询)
@@ -94,7 +91,7 @@ class CreateOrderView(APIView):
 
                 # 获取用户要购买商品的数量
                 conn = get_redis_connection('Cart')
-                cart_key = 'cart_'+open_id
+                cart_key = 'cart_' + open_id
                 count = conn.hget(cart_key, commodity_id)
                 print(count)
                 print(commodity.stock)
@@ -115,8 +112,6 @@ class CreateOrderView(APIView):
                                          commodity_price=commodity.price,
                                          commodity_count=int(count),
                                          commodity_image=commodity.image)
-
-
 
                 # 减少商品的库存，增加销量
                 commodity.stock -= int(count)
@@ -142,15 +137,15 @@ class CreateOrderView(APIView):
         conn.hdel(cart_key, *commodityId_list)
 
         # 返回应答
-        return Response({'msg': '订单创建成功','order_id':order_id})
+        return Response({'msg': '订单创建成功', 'order_id': order_id})
 
 
 class OrderView(APIView):
-
     '''
     获取订单信息
     '''
-    def get(self,request,token):
+
+    def get(self, request, token):
 
         # 参数校验
         if not all([token]):
@@ -181,27 +176,28 @@ class OrderView(APIView):
                     }
                 }
                 '''
-                order_info = OrderInfo.objects.filter(wx_user=wx_user,is_delete=False).order_by('-create_time')
+                order_info = OrderInfo.objects.filter(wx_user=wx_user, is_delete=False).order_by('-create_time')
 
                 for order in order_info:
                     orders = OrderList.objects.filter(order_info=order).values()
-                    data= {
+                    data = {
                         'create_time': str(order.create_time)[0:19],
-                        'state':order.state,
-                        'total_count':order.total_count,
-                        'total_price':order.total_price,
-                        'order_list':orders,
-                           }
+                        'state': order.state,
+                        'total_count': order.total_count,
+                        'total_price': order.total_price,
+                        'order_list': orders,
+                    }
                     data_list.append(data)
             except:
-                return Response({'msg':'无订单信息'})
+                return Response({'msg': '无订单信息'})
 
         return Response(data_list)
 
     '''
     获取订单清单信息
     '''
-    def post(self,request):
+
+    def post(self, request):
         # 接收数据
         data = json.loads(request.body)
         order_id = data['order_id']
@@ -225,13 +221,14 @@ class OrderView(APIView):
             try:
                 order_info = OrderInfo.objects.get(order_id=order_id)
             except:
-                return Response({'msg':'订单不存在'})
+                return Response({'msg': '订单不存在'})
             try:
-                order_list = OrderList.objects.filter(wx_user=wx_user,order_info=order_info,is_delete=False).values()
+                order_list = OrderList.objects.filter(wx_user=wx_user, order_info=order_info, is_delete=False).values()
                 data['order_list'] = order_list
             except:
-                return Response({'msg':'获取订单清单失败'})
-        return  Response(data)
+                return Response({'msg': '获取订单清单失败'})
+        return Response(data)
+
 
 class OrderByOrderIdView(APIView):
     '''
@@ -245,7 +242,7 @@ class OrderByOrderIdView(APIView):
         token = data['token']
 
         # 参数校验
-        if not all([token,order_info_id]):
+        if not all([token, order_info_id]):
             return Response({'msg': '数据不完整'})
 
         # 获取用户open_id
@@ -273,20 +270,22 @@ class OrderByOrderIdView(APIView):
                     }
                 }
                 '''
-                order_info = OrderInfo.objects.get(wx_user=wx_user, is_delete=False,id=order_info_id)
+                order_info = OrderInfo.objects.get(wx_user=wx_user, is_delete=False, id=order_info_id)
 
                 orders = OrderList.objects.filter(order_info=order_info).values()
 
                 data = {
-                    'order_id':order_info.order_id,
-                    'note':order_info.note,
+                    'order_id': order_info.order_id,
+                    'name': order_info.name,
+                    'phone': order_info.phone,
+                    'note': order_info.note,
                     'create_time': str(order_info.create_time)[0:19],
-                    'cancel_time':order_info.cancel_time,
+                    'cancel_time': order_info.cancel_time,
                     'state': order_info.status_choices[order_info.state],
                     'total_count': order_info.total_count,
-                    'commodity_total_price':order_info.commodity_total_price,
+                    'commodity_total_price': order_info.commodity_total_price,
                     'total_price': order_info.total_price,
-                    'transit_price':order_info.transit_price,
+                    'transit_price': order_info.transit_price,
                     'order_list': orders,
                 }
             except:
@@ -294,12 +293,13 @@ class OrderByOrderIdView(APIView):
 
         return Response(data)
 
-class DeleteOrderView(APIView):
 
+class DeleteOrderView(APIView):
     '''
     删除订单
     '''
-    def post(self,request):
+
+    def post(self, request):
         # 接收数据
         data = json.loads(request.body)
         order_id = data['order_id']
@@ -320,23 +320,19 @@ class DeleteOrderView(APIView):
                 return Response({'msg': '用户不存在'})
             try:
                 order_info = OrderInfo.objects.get(order_id=order_id)
-                order_info.is_delete=True
+                order_info.is_delete = True
                 order_info.save()
             except:
                 return Response({'msg': '订单不存在'})
         return Response({'msg': '删除订单成功'})
 
 
-
-
-
-
 class CleanInvalidOrderView(APIView):
-
     '''
     清理无效的订单
     '''
-    def post(self,request):
+
+    def post(self, request):
         # 接收数据
         data = json.loads(request.body)
         token = data['token']
@@ -355,14 +351,13 @@ class CleanInvalidOrderView(APIView):
                 return Response({'msg': '用户不存在'})
             try:
                 # 查询未支付状态的订单
-                order_info = OrderInfo.objects.filter(wx_user=wx_user,state=0,is_delete=False)
+                order_info = OrderInfo.objects.filter(wx_user=wx_user, state=0, is_delete=False)
                 if order_info:
                     for order in order_info:
                         # 判断是否超时
                         if PublicFunction.timeout(order.create_time):
-                            order.state=6
+                            order.state = 6
                             order.save()
 
             except:
-                return Response({'msg':'无订单信息'})
-
+                return Response({'msg': '无订单信息'})
