@@ -224,8 +224,17 @@ Page({
           console.log(res)
           if (res.msg == '删除成功') {
             cart.getCartList((res) => {
-              this.carts = res.commodity_list
-              this.totlePrice()
+              if (res.msg =='购物车无商品'){
+                this.carts = [];
+                this.setData({
+                  carts: this.carts,
+                  totalPrice: 0,
+                });
+              }else{
+                this.carts = res.commodity_list
+                this.totlePrice()
+              }
+              
             })
           }
         })

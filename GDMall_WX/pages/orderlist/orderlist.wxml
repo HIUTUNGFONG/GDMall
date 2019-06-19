@@ -1,6 +1,6 @@
 <!--pages/orderlist/orderlist.wxml-->
 <view class='orderlist_body'>
-<import src="../../common/template/template.wxml"/>
+<import src="../../common/template/order.wxml"/>
 
 
 

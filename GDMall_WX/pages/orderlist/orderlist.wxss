@@ -3,10 +3,10 @@ page{
 background-color: rgb(233, 233, 233);
 }
 .text{
-  font-size: 25rpx;
+  font-size: 26rpx;
 }
 .small_text{
-  font-size: 18rpx;
+  font-size: 21rpx;
   
 }
 .orderlist_body{

@@ -49,9 +49,17 @@ Page({
   },
   getOrderInfoList:function(){
     order.getOrderInfoList((res)=>{
+      // console.log(res)
       this.setData({
         order_list:res
       })
+    })
+  },
+  toOrdertails:function(e){
+    var order_info_id = order.getDataset(e,'id')
+    console.log(order_info_id)
+    wx.navigateTo({
+      url: '../orderdetails/orderdetails?order_info_id='+order_info_id,
     })
   }
 

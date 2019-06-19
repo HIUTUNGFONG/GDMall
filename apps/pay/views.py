@@ -97,22 +97,35 @@ class PayView(APIView):
                 """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[Signature_Error]]></return_msg></xml>""",
                 content_type='text/xml', status=200)
         elif return_code == 'SUCCESS':
-            # 获取支付的订单号
-            out_trade_no = xmlmsg['xml']['out_trade_no']
-            print('out_trade_no:'+out_trade_no)
-            # 获取订单金额
-            cash_fee = xmlmsg['xml']['cash_fee']
-            print('cash_fee:' + cash_fee)
-            # 获取签名
-            sign = xmlmsg['xml']['sign']
-            print('sign:' + sign)
+            # # 获取支付的订单号
+            # out_trade_no = xmlmsg['xml']['out_trade_no']
+            # # 获取订单金额
+            # cash_fee = xmlmsg['xml']['cash_fee']
+            # # 获取签名
+            # sign = xmlmsg['xml']['sign']
+            # # 获取支付完成时间
+            # time_end = xmlmsg['xml']['time_end']
+            # # 获取交易单号
+            # transaction_id = xmlmsg['xml']['transaction_id']
 
-            # 获取支付完成时间
+            # 获取返回的数据
+            appid = xmlmsg['xml']['appid']
+            bank_type = xmlmsg['xml']['bank_type']
+            cash_fee = xmlmsg['xml']['cash_fee']
+            fee_type = xmlmsg['xml']['fee_type']
+            is_subscribe = xmlmsg['xml']['is_subscribe']
+            mch_id = xmlmsg['xml']['mch_id']
+            nonce_str = xmlmsg['xml']['nonce_str']
+            openid = xmlmsg['xml']['openid']
+            out_trade_no = xmlmsg['xml']['out_trade_no']
+            result_code = xmlmsg['xml']['result_code']
+            return_code = xmlmsg['xml']['return_code']
+            sign = xmlmsg['xml']['sign']
             time_end = xmlmsg['xml']['time_end']
-            print('time_end:'+time_end)
-            # 获取交易单号
+            total_fee = xmlmsg['xml']['total_fee']
+            trade_type = xmlmsg['xml']['trade_type']
             transaction_id = xmlmsg['xml']['transaction_id']
-            print('transaction_id:'+transaction_id)
+
             # 获取自己的数据
             try:
                 order_info = OrderInfo.objects.get(order_id=out_trade_no)
@@ -123,23 +136,6 @@ class PayView(APIView):
                 # 订单签名
                 # mysign = PublicFunction.AuthSignByXml(xmlmsg)
                 # print('mysign:'+mysign)
-
-                appid = xmlmsg['xml']['appid']
-                bank_type = xmlmsg['xml']['bank_type']
-                cash_fee = xmlmsg['xml']['cash_fee']
-                fee_type = xmlmsg['xml']['fee_type']
-                is_subscribe = xmlmsg['xml']['is_subscribe']
-                mch_id = xmlmsg['xml']['mch_id']
-                nonce_str = xmlmsg['xml']['nonce_str']
-                openid = xmlmsg['xml']['openid']
-                out_trade_no = xmlmsg['xml']['out_trade_no']
-                result_code = xmlmsg['xml']['result_code']
-                return_code = xmlmsg['xml']['return_code']
-                sign = xmlmsg['xml']['sign']
-                time_end = xmlmsg['xml']['time_end']
-                total_fee = xmlmsg['xml']['total_fee']
-                trade_type = xmlmsg['xml']['trade_type']
-                transaction_id = xmlmsg['xml']['transaction_id']
 
                 strs = []
                 strs.append("appid=")
@@ -183,7 +179,7 @@ class PayView(APIView):
                 print(mysign)
 
 
-
+                # 校验签名
                 if sign != mysign and total_price != cash_fee:
                     return HttpResponse(
                         """<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>""",

@@ -11,18 +11,41 @@ App({
         logs.unshift(Date.now())
         wx.setStorageSync('logs', logs)
 
-
-        // 登录
-        wx.login({
-            success: res => {
-                // 获取用户token
-                var token = login.getToken();
-                if (token.length == 64) {
-                    // 存在token,查询redis是否存在该token
-                    login.findToken((res) => {
-                        if (res.msg == 'success') {
-                            console.log('登录成功！')
+        // 判断是否登录
+        wx.checkSession({
+            success: function (res) {
+                // console.log(res, '登录未过期')
+                // wx.showToast({
+                //     title: '登录未过期啊',
+                // })
+            },
+            fail: function (res) {
+                // console.log(res, '登录过期了')
+                // wx.showModal({
+                //     title: '提示',
+                //     content: '你的登录信息过期了，请重新登录',
+                // })
+                // 登录
+                wx.login({
+                    success: res => {
+                        // 获取用户token
+                        var token = login.getToken();
+                        if (token.length == 64) {
+                            // 存在token,查询redis是否存在该token
+                            login.findToken((res) => {
+                                if (res.msg == 'success') {
+                                    console.log('登录成功！')
+                                } else {
+                                    // 获取用户code，返回token
+                                    login.findWxUser(res.code, (res) => {
+                                        console.log(res)
+                                        // 保存到缓存
+                                        wx.setStorageSync('token', res.token)
+                                    })
+                                }
+                            })
                         } else {
+                            // 不存在token
                             // 获取用户code，返回token
                             login.findWxUser(res.code, (res) => {
                                 console.log(res)
@@ -30,20 +53,14 @@ App({
                                 wx.setStorageSync('token', res.token)
                             })
                         }
-                    })
-                } else {
-                    // 不存在token
-                    // 获取用户code，返回token
-                    login.findWxUser(res.code, (res) => {
-                      console.log(res)
-                      // 保存到缓存
-                      wx.setStorageSync('token', res.token)
-                    })
-                }
 
 
+                    }
+                })
             }
         })
+
+
         // 获取用户信息
         wx.getSetting({
             success: res => {

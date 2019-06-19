@@ -233,6 +233,66 @@ class OrderView(APIView):
                 return Response({'msg':'获取订单清单失败'})
         return  Response(data)
 
+class OrderByOrderIdView(APIView):
+    '''
+    获取订单信息---根据order_info_id
+    '''
+
+    def post(self, request):
+        # 接收数据
+        data = json.loads(request.body)
+        order_info_id = data['order_info_id']
+        token = data['token']
+
+        # 参数校验
+        if not all([token,order_info_id]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+
+        data = {}
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                '''
+                {
+                    order_list{
+                        ...
+                        order_info:{
+                            ...
+
+                        }
+                        商品清单列表{
+                                [商品，商品]
+                        }
+                    }
+                }
+                '''
+                order_info = OrderInfo.objects.get(wx_user=wx_user, is_delete=False,id=order_info_id)
+
+
+                orders = OrderList.objects.filter(order_info=order_info).values()
+                data = {
+                    'order_id':order_info.order_id,
+                    'note':order_info.note,
+                    'create_time': str(order_info.create_time)[0:19],
+                    'cancel_time':order_info.cancel_time,
+                    'state': order_info.state,
+                    'total_count': order_info.total_count,
+                    'commodity_total_price':order_info.commodity_total_price,
+                    'total_price': order_info.total_price,
+                    'transit_price':order_info.transit_price,
+                    'order_list': orders,
+                }
+            except:
+                return Response({'msg': '无订单信息'})
+
+        return Response(data)
 
 class DeleteOrderView(APIView):
 
