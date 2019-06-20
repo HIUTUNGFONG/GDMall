@@ -15,8 +15,8 @@ class OrderInfo(BaseModel):
         (1, '已支付'),
         (2, '待发货'),
         (3, '已发货'),
-        (4, '待收货'),
-        (5, '退款'),
+        (4, '已确认'),
+        (5, '待退款'),
         (6, '已关闭')
     )
     wx_user = models.ForeignKey(WxUser,on_delete=models.CASCADE, verbose_name='微信用户')

@@ -182,6 +182,7 @@ class OrderView(APIView):
                     orders = OrderList.objects.filter(order_info=order).values()
                     data = {
                         'order_info_id':order.id,
+                        'order_id':order.order_id,
                         'create_time': str(order.create_time)[0:19],
                         'state': order.state,
                         'total_count': order.total_count,
@@ -304,11 +305,11 @@ class DeleteOrderView(APIView):
     def post(self, request):
         # 接收数据
         data = json.loads(request.body)
-        order_id = data['order_id']
+        order_info_id = data['order_info_id']
         token = data['token']
 
         # 参数校验
-        if not all([order_id, token]):
+        if not all([order_info_id, token]):
             return Response({'msg': '数据不完整'})
 
         # 获取用户open_id
@@ -321,7 +322,7 @@ class DeleteOrderView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                order_info = OrderInfo.objects.get(order_id=order_id)
+                order_info = OrderInfo.objects.get(id=order_info_id)
                 order_info.is_delete = True
                 order_info.save()
             except:
