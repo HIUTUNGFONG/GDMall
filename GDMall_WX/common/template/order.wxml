@@ -1,0 +1,117 @@
+<template name="order">
+<view wx:for='{{order_list}}'>
+    <view style='background-color: white;margin-top: 15rpx;'>
+      <view style='padding-bottom:10rpx;'>
+        <van-row>
+          <van-col span="19" offset='1'><text class='text'>下单时间：{{item.create_time}}</text></van-col>
+          <van-col span="4"><text class='text'>
+          <block wx:if='{{item.state==0}}'>未支付</block>
+          <block wx:elif='{{item.state==1}}'>待发货</block>
+          <block wx:elif='{{item.state==2}}'>待收货</block>
+          <block wx:elif='{{item.state==3}}'>待确认</block>
+          <block wx:elif='{{item.state==4}}'>已完成</block>
+          <block wx:elif='{{item.state==5}}'>待退款</block>
+          <block wx:elif='{{item.state==6}}'>已关闭</block>
+          </text></van-col>
+        </van-row>
+      </view>
+      
+
+      <view wx:for='{{item.order_list}}' style='border-bottom: solid 1px rgb(221, 221, 221);' data-id='{{item.order_info_id}}' bindtap='toOrdertails' >
+      <van-row>
+        <van-col span="6" offset='1'><image src='https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/{{item.commodity_image}}' style='width:150rpx;height:150rpx;'></image></van-col>
+        <van-col span="14">
+          <van-row>
+            <text class='text'>{{item.commodity_name}}</text>
+          </van-row>
+          <van-row><text class='small_text'>{{item.commodity_specifications}}</text></van-row>
+        </van-col>
+        <van-col span="3">
+          <van-row><text class='small_text'>{{item.commodity_price}}</text></van-row>
+          <van-row><text class='small_text'>x{{item.commodity_count}}</text></van-row>
+        </van-col>
+      </van-row>
+      </view>
+
+      <view style='text-align: right;'><text class='text' style='padding-right:40rpx;'>共{{item.total_count}}件商品   实付：￥{{item.total_price}}</text></view>
+
+      <view style='padding-top:15rpx;padding-bottom:20rpx;'>
+            <!-- 待付款-显示按钮 -->
+            <block wx:if='{{item.state==0}}'>
+                <view style='padding-left:310rpx;'>
+                  <view style='padding-right:10rpx;display:inline-block;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='deleteOrder' >删除订单</button>
+                  </view>
+                  <view style='display: inline-block;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-orderid='{{item.order_id}}' data-id='{{item.order_info_id}}' bindtap='toPay'>支付</button>
+                  </view>
+                </view>
+            </block>
+
+            <!-- 已支付-显示按钮 -->
+            <block wx:elif='{{item.state==1}}'>
+                <view style='padding-left:460rpx;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='toOrdertails' >查看订单</button>
+                </view>
+            </block>
+            <!-- 已发货-显示按钮 -->
+            <block wx:elif='{{item.state==2}}'>
+                <view style='padding-left:460rpx;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='toOrdertails' >查看订单</button>
+                </view>
+            </block>
+
+            <!-- 待收货-显示按钮 -->
+            <block wx:elif='{{item.state==3}}'>
+                <view style='padding-left:460rpx;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='toOrdertails' >确认收货</button>
+                </view>
+            </block>
+
+
+            <!-- 已确认-显示按钮 -->
+            <block wx:elif='{{item.state==4}}'>
+                <view style='padding-left:460rpx;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='toOrdertails' >申请退款</button>
+                </view>
+            </block>
+
+            <!-- 已确认-显示按钮 -->
+            <block wx:elif='{{item.state==5}}'>
+                <view style='padding-left:460rpx;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='toOrdertails' >修改单号</button>
+                </view>
+            </block>
+          <!-- 已关闭-显示按钮 -->
+            <block wx:elif='{{item.state==6}}'>
+                <view style='padding-left:460rpx;'>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='deleteOrder' >删除订单</button>
+                </view>
+            </block>
+
+
+      </view>
+
+    </view>
+
+  </view>
+</template>
+
+<template name='order_commodity'>
+
+   <view wx:for='{{order_list}}' style='padding-top:20rpx;border-bottom: solid 1px rgb(221, 221, 221);'>
+      <van-row>
+        <van-col span="6" offset='1'><image src='https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/{{item.commodity_image}}' style='width:150rpx;height:150rpx;'></image></van-col>
+        <van-col span="14">
+          <van-row>
+            <text class='text'>{{item.commodity_name}}</text>
+          </van-row>
+          <van-row><text class='small_text'>{{item.commodity_specifications}}</text></van-row>
+        </van-col>
+        <van-col span="3">
+          <van-row><text class='small_text'>{{item.commodity_price}}</text></van-row>
+          <van-row><text class='small_text'>x{{item.commodity_count}}</text></van-row>
+        </van-col>
+      </van-row>
+      </view>
+</template>

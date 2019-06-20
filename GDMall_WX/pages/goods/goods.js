@@ -121,23 +121,31 @@ Page({
         var temp = [];
         if (minPrice == undefined && maxPrice == undefined || minPrice == '' && maxPrice == '' ) {
             temp = goods_list
+            console.log(goods_list)
         } else if (minPrice == undefined || minPrice == '' ) {
             for (var i = 0; i < goods_list.length; i++) {
-                if (goods_list[i][0].commodity[0].price <= maxPrice) {
+              var price = parseFloat(goods_list[i][0].commodity[0].price);
+                if (price <= maxPrice) {
                     temp.push(goods_list[i])
                 }
                 // console.log(temp)
             }
         } else if (maxPrice == undefined || maxPrice == '' ) {
             for (var i = 0; i < goods_list.length; i++) {
-                if (goods_list[i][0].commodity[0].price >= minPrice) {
+              var price = parseFloat(goods_list[i][0].commodity[0].price);
+                if (price >= minPrice) {
                     temp.push(goods_list[i])
                 }
                 // console.log(temp)
             }
         } else {
             for (var i = 0; i < goods_list.length; i++) {
-                if (goods_list[i][0].commodity[0].price >= minPrice && goods_list[i][0].commodity[0].price <= maxPrice) {
+              var price = parseFloat(goods_list[i][0].commodity[0].price);
+              // console.log('商品价格'+price)
+              // console.log(minPrice)
+              // console.log(maxPrice)
+              // console.log(temp)
+                if (price >= minPrice && price <= maxPrice) {
                     temp.push(goods_list[i])
                 }
                 // console.log(temp)

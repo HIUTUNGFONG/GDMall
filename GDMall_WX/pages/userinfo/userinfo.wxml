@@ -1,0 +1,53 @@
+<!--pages/userinfo/userinfo.wxml-->
+
+<view class='userinfo_body bottom_solid' style='padding-top:20rpx;padding-bottom:20rpx;font-size:28rpx;color:rgb(90,90,90);'>
+<i-row>
+
+        <i-col span='17' offset='1'> 
+      <view  style='padding-top:40rpx;dispay:inline-block;'>我的头像</view> 
+    </i-col>
+
+
+    <i-col span='6'>
+    <view class='user_avatar'>
+      <i-avatar src="{{avatarUrl}}" size="large">
+        
+          <open-data type="userAvatarUrl"></open-data>
+       
+      </i-avatar>
+       </view>
+    </i-col>
+
+  </i-row>
+</view>
+
+<view class='userinfo_body bottom_solid' style='padding-top:30rpx;padding-bottom:30rpx;font-size:28rpx;color:rgb(90,90,90);dispay:inline-block;'>
+  <i-row>
+    <i-col span='6' offset='1'>
+        <view>我的昵称</view>
+    </i-col>
+    <i-col span='8' offset='9'> 
+      <view class='user_name'><open-data type="userNickName"></open-data></view>
+    </i-col>
+  </i-row>
+</view>
+
+<view>
+  <van-cell-group>
+  <van-field
+    value="{{ user_info.phone }}"
+    clearable
+    label="手机号"
+    bind:blur='setNote'
+    type='number'
+    input-align="right"
+    icon="phone-o"
+    maxlength="11"
+    bind:blur='setPhone'
+  />
+</van-cell-group>
+</view>
+
+<view style='position:fixed; bottom:0;width:100%;'>
+  <van-button type="primary" size='large' bind:click='onSave'>保存</van-button>
+</view>

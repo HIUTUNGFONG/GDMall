@@ -1,0 +1,11 @@
+/* pages/userinfo/userinfo.wxss */
+
+page{
+background-color: rgb(233, 233, 233);
+}
+.userinfo_body{
+  background-color: white;
+}
+.bottom_solid{
+  border-bottom: solid 1px rgb(233, 233, 233);
+}

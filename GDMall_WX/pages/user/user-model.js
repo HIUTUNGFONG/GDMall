@@ -30,7 +30,7 @@ class User extends Base {
   }
   updataWxuser(phone,callBack){
     var params = {
-      url: 'getWxUserInfo/',
+      url: 'updataWxUserInfo',
       method:'POST',
       data:{
         'phone':phone,
