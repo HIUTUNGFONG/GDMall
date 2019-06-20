@@ -214,7 +214,7 @@ class WxUserInfo(APIView):
         # 校验用户
         if open_id:
             try:
-                wx_user = WxUser.objects.get(open_id=open_id)
+                wx_user = WxUser.objects.filter(open_id=open_id).values()
             except:
                 return Response({'msg': '用户不存在'})
         return Response(wx_user)
