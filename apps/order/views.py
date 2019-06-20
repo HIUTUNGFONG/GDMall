@@ -429,4 +429,4 @@ class ReturnsOrderView(APIView):
                 order_info.save()
             except:
                 return Response({'msg': '订单不存在'})
-        return Response({'msg':'订单已确认'})
+        return Response({'msg':'申请退款成功'})

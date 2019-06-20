@@ -1,82 +1,116 @@
-
-import { Base } from '../../utils/base.js'
+import {Base} from '../../utils/base.js'
 
 class Order extends Base {
 
-  constructor() {
-    super();
-  }
-  toPay(order_id,callBack){
-    // 获取购物车列表
-    var params = {
-      url: 'toPay',
-      method:'POST',
-      data:{
-        'token': wx.getStorageSync('token'),
-        'order_id': order_id
-      },
-      sCallBack: function (res) {
-        callBack && callBack(res);
-      }
-    };
-    this.request(params);
-  }
+    constructor() {
+        super();
+    }
 
-  createOrder(commodityId_list,address_id,note,callBack){
-    // 创建订单
-    var params = {
-      url: 'order/create',
-      method : 'POST',
-      data : {
-        'token': wx.getStorageSync('token'),
-        'commodityId_list': commodityId_list,
-        'address_id': address_id,
-        'note':note
-      },
-      sCallBack: function(res){
-        callBack && callBack(res);
-      }
-    };
-      this.request(params);
-  }
-  getOrderInfoList(callBack){
-    var params = {
-      url: 'order/get/' + wx.getStorageSync('token'),
-      sCallBack: function (res) {
-        callBack && callBack(res);
-      }
+    toPay(order_id, callBack) {
+        // 获取购物车列表
+        var params = {
+            url: 'toPay',
+            method: 'POST',
+            data: {
+                'token': wx.getStorageSync('token'),
+                'order_id': order_id
+            },
+            sCallBack: function (res) {
+                callBack && callBack(res);
+            }
+        };
+        this.request(params);
     }
-    this.request(params);
-  }
-  getOrderInfoListById(order_info_id,callBack) {
-    var params = {
-      url: 'order/getById',
-      method:'POST',
-      data:{
-        'order_info_id': order_info_id,
-        'token': wx.getStorageSync('token')
-      },
-      sCallBack: function (res) {
-        callBack && callBack(res);
-      }
-    }
-    this.request(params);
-  }
 
-  deleteOrder(order_info_id,callBack) {
-      var params = {
-      url: 'order/del',
-      method:'POST',
-      data:{
-        'order_info_id': order_info_id,
-        'token': wx.getStorageSync('token')
-      },
-      sCallBack: function (res) {
-        callBack && callBack(res);
-      }
+    createOrder(commodityId_list, address_id, note, callBack) {
+        // 创建订单
+        var params = {
+            url: 'order/create',
+            method: 'POST',
+            data: {
+                'token': wx.getStorageSync('token'),
+                'commodityId_list': commodityId_list,
+                'address_id': address_id,
+                'note': note
+            },
+            sCallBack: function (res) {
+                callBack && callBack(res);
+            }
+        };
+        this.request(params);
     }
-    this.request(params);
-  }
+
+    getOrderInfoList(callBack) {
+        var params = {
+            url: 'order/get/' + wx.getStorageSync('token'),
+            sCallBack: function (res) {
+                callBack && callBack(res);
+            }
+        }
+        this.request(params);
+    }
+
+    getOrderInfoListById(order_info_id, callBack) {
+        var params = {
+            url: 'order/getById',
+            method: 'POST',
+            data: {
+                'order_info_id': order_info_id,
+                'token': wx.getStorageSync('token')
+            },
+            sCallBack: function (res) {
+                callBack && callBack(res);
+            }
+        }
+        this.request(params);
+    }
+
+    deleteOrder(order_info_id, callBack) {
+        var params = {
+            url: 'order/del',
+            method: 'POST',
+            data: {
+                'order_info_id': order_info_id,
+                'token': wx.getStorageSync('token')
+            },
+            sCallBack: function (res) {
+                callBack && callBack(res);
+            }
+        }
+        this.request(params);
+    }
+    // 确认订单
+    ConfirmOrder(order_id, callBack) {
+
+        var params = {
+            url: 'order/confirm',
+            method: 'POST',
+            data: {
+                'order_info_id': order_info_id,
+                'token': wx.getStorageSync('token')
+            },
+            sCallBack: function (res) {
+                callBack && callBack(res);
+            }
+        }
+        this.request(params);
+    }
+    // 申请退货
+    ReturnsOrder(order_id, callBack) {
+
+        var params = {
+            url: 'order/returns',
+            method: 'POST',
+            data: {
+                'order_info_id': order_info_id,
+                'token': wx.getStorageSync('token')
+            },
+            sCallBack: function (res) {
+                callBack && callBack(res);
+            }
+        }
+        this.request(params);
+    }
 }
 
-export { Order };
+export {Order};

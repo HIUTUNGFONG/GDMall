@@ -107,6 +107,22 @@ Page({
             }
         })
     },
+    confirmOrder: function (e) {
+        var order_info_id = order.getDataset(e, 'id');
+        order.deleteOrder(order_info_id, (res) => {
+            if (res.msg == '订单已确认') {
+                this.getOrderInfoList();
+            }
+        })
+    },
+    returnsOrder: function (e) {
+        var order_info_id = order.getDataset(e, 'id');
+        order.deleteOrder(order_info_id, (res) => {
+            if (res.msg == '申请退款成功') {
+                this.getOrderInfoList();
+            }
+        })
+    },
     toPay: function (e) {
         var order_id = order.getDataset(e, 'orderid');
         var order_info_id = order.getDataset(e, 'id');
