@@ -80,7 +80,7 @@ class Order extends Base {
         this.request(params);
     }
     // 确认订单
-    ConfirmOrder(order_id, callBack) {
+    confirmOrder(order_id, callBack) {
 
         var params = {
             url: 'order/confirm',
@@ -96,7 +96,7 @@ class Order extends Base {
         this.request(params);
     }
     // 申请退货
-    ReturnsOrder(order_id, callBack) {
+    returnsOrder(order_id, callBack) {
 
         var params = {
             url: 'order/returns',

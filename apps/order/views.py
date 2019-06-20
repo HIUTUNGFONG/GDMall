@@ -376,10 +376,10 @@ class ConfirmOrderView(APIView):
     def post(self,request):
         data = json.loads(request.body)
         token = data['token']
-        order_id = data['order_id']
+        order_info_id = data['order_info_id']
 
         # 参数校验
-        if not all([token]):
+        if not all([token,order_info_id]):
             return Response({'msg': '数据不完整'})
 
         # 获取用户open_id
@@ -391,7 +391,7 @@ class ConfirmOrderView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                order_info = OrderInfo.objects.get(order_id=order_id)
+                order_info = OrderInfo.objects.get(id=order_info_id)
                 order_info.state=4
                 order_info.complete_time= time.strftime('%Y-%m-%d- %H:%M:%S')
                 order_info.save()
@@ -407,11 +407,11 @@ class ReturnsOrderView(APIView):
     def post(self,request):
         data = json.loads(request.body)
         token = data['token']
-        order_id = data['order_id']
+        order_info_id = data['order_info_id']
         returns_num = data['returns_num']
 
         # 参数校验
-        if not all([token]):
+        if not all([token,order_info_id,returns_num]):
             return Response({'msg': '数据不完整'})
 
         # 获取用户open_id
@@ -423,7 +423,7 @@ class ReturnsOrderView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                order_info = OrderInfo.objects.get(order_id=order_id)
+                order_info = OrderInfo.objects.get(id=order_info_id)
                 order_info.returns_number = returns_num
                 order_info.state=5
                 order_info.save()

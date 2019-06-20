@@ -107,17 +107,17 @@ Page({
             }
         })
     },
-    confirmOrder: function (e) {
+  onConfirm: function (e) {
         var order_info_id = order.getDataset(e, 'id');
-        order.deleteOrder(order_info_id, (res) => {
+        order.confirmOrder(order_info_id, (res) => {
             if (res.msg == '订单已确认') {
                 this.getOrderInfoList();
             }
         })
     },
-    returnsOrder: function (e) {
+    onReturns: function (e) {
         var order_info_id = order.getDataset(e, 'id');
-        order.deleteOrder(order_info_id, (res) => {
+        order.returnsOrder(order_info_id, (res) => {
             if (res.msg == '申请退款成功') {
                 this.getOrderInfoList();
             }
