@@ -15,7 +15,7 @@ class OrderInfo(BaseModel):
         (1, '已支付'),
         (2, '待发货'),
         (3, '已发货'),
-        (4, '已确认'),
+        (4, '已完成'),
         (5, '待退款'),
         (6, '已关闭')
     )
@@ -29,7 +29,8 @@ class OrderInfo(BaseModel):
     total_count = models.IntegerField(verbose_name='订单总件数')
     transit_price = models.FloatField(default=0, verbose_name='运费')
     state = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='订单状态')
-    courier_number = models.IntegerField(null=True, verbose_name='快递单号')
+    courier_number = models.CharField(max_length=255,default='', verbose_name='快递单号')
+    returns_number = models.CharField(max_length=255,default='', verbose_name='退货单号')
     note = models.CharField(max_length=255,default='', verbose_name='备注')
     cancel_time = models.CharField(max_length=30,null=True, verbose_name='取消时间')
     complete_time = models.CharField(max_length=30,null=True, verbose_name='完成时间')

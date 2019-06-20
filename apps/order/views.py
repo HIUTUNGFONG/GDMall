@@ -1,4 +1,5 @@
 import json
+import time
 
 from django.db import transaction
 from django.shortcuts import render
@@ -360,6 +361,7 @@ class CleanInvalidOrderView(APIView):
                         # 判断是否超时
                         if PublicFunction.timeout(order.create_time):
                             order.state = 6
+                            order.cancel_time = time.time
                             order.save()
 
             except:

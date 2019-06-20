@@ -197,3 +197,24 @@ class UpdateDefault(APIView):
             Address.objects.filter(id=address_id).update(is_default=True)
             return Response({'msg': 'success'})
         return Response({'err': 'no_user'})
+
+
+class WxUserInfo(APIView):
+    '''
+    获取微信用户信息
+    '''
+    def get(self,request,token):
+        # 参数校验
+        if not all([token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+        return Response(wx_user)

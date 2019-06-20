@@ -4,14 +4,14 @@
     "pages/orderdetails/orderdetails",
     "pages/orderlist/orderlist",
     "pages/cart/cart",
-    "pages/order/order",    
+    "pages/order/order",
     "pages/address/address",
     "pages/index/index",
     "pages/goods/goods",
     "pages/product/product",
     "pages/vip/vip",
-    "pages/addressforms/addressforms"
-    
+    "pages/addressforms/addressforms",
+    "pages/userinfo/userinfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

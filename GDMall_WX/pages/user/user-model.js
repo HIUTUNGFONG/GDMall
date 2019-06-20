@@ -19,6 +19,16 @@ class User extends Base {
     this.request(params);
 
   }
+  getWxUserInfo(callBack){
+    // 获取openid
+    var params = {
+      url: 'getWxUserInfo/' + wx.getStorageSync('token'),
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    }
+    this.request(params);
+  }
 
 }
 
