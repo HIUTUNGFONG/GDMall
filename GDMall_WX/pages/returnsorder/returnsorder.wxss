@@ -1,0 +1,5 @@
+/* pages/returnsorder/returnsorder.wxss */
+
+page{
+background-color: rgb(233, 233, 233);
+}

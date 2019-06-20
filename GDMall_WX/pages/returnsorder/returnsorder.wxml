@@ -1,0 +1,15 @@
+<!--pages/returnsorder/returnsorder.wxml-->
+
+<van-cell-group>
+  <van-field
+    value="{{returns_num}}"
+    label='运单编号'
+    placeholder="请填写退货运单编号"
+    border="{{ false }}"
+    bind:blur="setReturnsNum"
+  />
+</van-cell-group>
+
+<view style='position:fixed; bottom:0;width:100%;'>
+  <van-button type="primary" size='large' bind:click='onSave'>保存</van-button>
+</view>
