@@ -49,7 +49,7 @@ Page({
   },
   getOrderInfoList:function(){
     order.getOrderInfoList((res)=>{
-      // console.log(res)
+      console.log(res)
       this.setData({
         order_list:res
       })
