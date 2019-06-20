@@ -80,7 +80,7 @@ class Order extends Base {
         this.request(params);
     }
     // 确认订单
-    confirmOrder(order_id, callBack) {
+  confirmOrder(order_info_id, callBack) {
 
         var params = {
             url: 'order/confirm',
@@ -96,13 +96,14 @@ class Order extends Base {
         this.request(params);
     }
     // 申请退货
-    returnsOrder(order_id, callBack) {
+  returnsOrder(order_info_id,returns_num, callBack) {
 
         var params = {
             url: 'order/returns',
             method: 'POST',
             data: {
                 'order_info_id': order_info_id,
+              'returns_num': returns_num,
                 'token': wx.getStorageSync('token')
             },
             sCallBack: function (res) {

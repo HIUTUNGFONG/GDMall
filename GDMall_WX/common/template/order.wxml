@@ -72,7 +72,7 @@
             <!-- 已确认-显示按钮 -->
             <block wx:elif='{{item.state==4}}'>
                 <view style='padding-left:460rpx;'>
-                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='onReturns' >申请退款</button>
+                  <button style='width:190rpx;font-size:25rpx;height:60rpx;' plain='true' data-id='{{item.order_info_id}}' bindtap='toReturnsOrder' >申请退款</button>
                 </view>
             </block>
 

@@ -30,8 +30,8 @@ Page({
 
     // 获取用户地址
     address.getAddressList((res)=>{
-      console.log(res)
-      this.address_list = res.address_list
+      console.log(res);
+      this.address_list = res.address_list;
       for(var i=0;i<this.address_list.length;i++){
         if (this.address_list[i].is_default==true){
           this.setData({
@@ -46,6 +46,7 @@ Page({
       }
     })
     }else{
+      
       this.setData({
         address:this.address
       })
@@ -85,15 +86,18 @@ Page({
     })
   },
   // 获取备注信息
-  setNote: function (e) {
-    this.setNote = e.detail.value
-    console.log(this.setNote)
+  setnote: function (e) {
+    this.note = e.detail.value
+    console.log(this.note)
   },
   onSubmit:function(){
     // 获取收货地址id
     var addressId = wx.getStorageSync('addressId')
     // 创建订单
-    order.createOrder(this.commodityId_list, addressId, this.setNote,(res)=>{
+    if(this.note==''||this.note==undefined){
+      this.note = '无备注'
+    }
+    order.createOrder(this.commodityId_list, addressId, this.note,(res)=>{
       console.log(res)
       if(res.msg=='商品库存不足'){
         wx.showToast({

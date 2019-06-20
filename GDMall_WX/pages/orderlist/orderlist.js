@@ -115,13 +115,12 @@ Page({
             }
         })
     },
-    onReturns: function (e) {
+    toReturnsOrder:function(e){
         var order_info_id = order.getDataset(e, 'id');
-        order.returnsOrder(order_info_id, (res) => {
-            if (res.msg == '申请退款成功') {
-                this.getOrderInfoList();
-            }
+        wx.navigateTo({
+          url: '../returnsorder/returnsorder?order_info_id=' + order_info_id,
         })
+        
     },
     toPay: function (e) {
         var order_id = order.getDataset(e, 'orderid');
