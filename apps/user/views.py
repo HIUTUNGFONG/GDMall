@@ -211,10 +211,18 @@ class WxUserInfo(APIView):
         # 获取用户open_id
         open_id = PublicFunction().getOpenIdByToken(token)
 
+        data = {}
         # 校验用户
         if open_id:
             try:
-                wx_user = WxUser.objects.filter(open_id=open_id).values()
+                wx_user = WxUser.objects.get(open_id=open_id)
+                data = {
+                    'nick_name':wx_user.nick_name,
+                    'birthday':wx_user.birthday,
+                    'phone':wx_user.phone,
+                    'weight':wx_user.weight,
+                    'height':wx_user.height
+                }
             except:
                 return Response({'msg': '用户不存在'})
-        return Response(wx_user)
+        return Response(data)
