@@ -226,3 +226,30 @@ class WxUserInfo(APIView):
             except:
                 return Response({'msg': '用户不存在'})
         return Response(data)
+
+class UpdataWxUser(APIView):
+    '''
+    修改微信用户信息
+    '''
+    def post(self,request):
+        # 接收数据
+        data = json.loads(request.body)
+        phone = data['phone']
+        token = data['token']
+
+        # 参数校验
+        if not all([phone, token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+                wx_user.phone = phone
+                wx_user.save()
+            except:
+                return Response({'msg': '用户不存在'})
+        return Response({'msg': '修改成功'})
