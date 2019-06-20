@@ -17,7 +17,8 @@ class OrderInfo(BaseModel):
         (3, '已发货'),
         (4, '已完成'),
         (5, '待退款'),
-        (6, '已关闭')
+        (6, '已关闭'),
+        (7, '退款成功')
     )
     wx_user = models.ForeignKey(WxUser,on_delete=models.CASCADE, verbose_name='微信用户')
     address = models.CharField(max_length=255,null=True, verbose_name='收件地址')

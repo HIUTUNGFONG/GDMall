@@ -147,6 +147,5 @@ import time
 # # ss = time.strftime('%Y%m%d%H%M%S') + str(random.randint(100000, 999999))
 # # print(ss)
 # # print(len('20190618232338173893'))
-
-ss = time.strftime('%Y%m%d%H%M%S')
+ss = time.strftime('%Y-%m-%d- %H:%M:%S')
 print(ss)

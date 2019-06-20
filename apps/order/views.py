@@ -290,6 +290,8 @@ class OrderByOrderIdView(APIView):
                     'commodity_total_price': order_info.commodity_total_price,
                     'total_price': order_info.total_price,
                     'transit_price': order_info.transit_price,
+                    'courier_number':order_info.courier_number,
+                    'returns_number':order_info.returns_number,
                     'order_list': orders,
                 }
             except:
@@ -366,3 +368,65 @@ class CleanInvalidOrderView(APIView):
 
             except:
                 return Response({'msg': '无订单信息'})
+
+class ConfirmOrderView(APIView):
+    '''
+    确认订单
+    '''
+    def post(self,request):
+        data = json.loads(request.body)
+        token = data['token']
+        order_id = data['order_id']
+
+        # 参数校验
+        if not all([token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                order_info = OrderInfo.objects.get(order_id=order_id)
+                order_info.state=4
+                order_info.complete_time= time.strftime('%Y-%m-%d- %H:%M:%S')
+                order_info.save()
+            except:
+                return Response({'msg': '订单不存在'})
+        return Response({'msg':'订单已确认'})
+
+
+class ReturnsOrderView(APIView):
+    '''
+    申请退货
+    '''
+    def post(self,request):
+        data = json.loads(request.body)
+        token = data['token']
+        order_id = data['order_id']
+        returns_num = data['returns_num']
+
+        # 参数校验
+        if not all([token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                order_info = OrderInfo.objects.get(order_id=order_id)
+                order_info.returns_number = returns_num
+                order_info.state=5
+                order_info.save()
+            except:
+                return Response({'msg': '订单不存在'})
+        return Response({'msg':'订单已确认'})

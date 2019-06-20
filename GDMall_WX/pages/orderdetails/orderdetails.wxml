@@ -3,86 +3,141 @@
 <import src="../../common/template/order.wxml"/>
 <view class='orderdetails_body'>
 
-  <view class='top'>
-      <view style='padding-top:70rpx;padding-left:45rpx;font-size:40rpx;font-weight:600;color: white;'>{{order_info.state[1]}}</view>
-  </view>
-
-  <!-- 收货地址 -->
-  <view class='body bottom_solid' style='padding-bottom:20rpx;'>
-      <van-row>
-        <van-col offset="1" span="2"><view class='top_text'><van-icon name='location-o' size='50rpx;'/></view></van-col>
-        <van-col offset="1" span="20">
-            <van-row>
-                <van-col><view style='font-size:28rpx;padding-top:18rpx;'>收货人：{{order_info.name}}    {{order_info.phone}}</view></van-col>
-            </van-row>
-            <van-row>
-                <van-col style='font-size:28rpx;'>收货地址：{{order_info.address}}</van-col>
-            </van-row>
-        </van-col>
-      </van-row>
-  </view>
-
-
-  <view class='body'>
-      <van-row>
-        <van-col offset="1" span="2"><view class='top_text'><van-icon name='free-postage' size='50rpx;'/></view></van-col>
-        <van-col offset="1" span="20">
-            <van-row>
-                <van-col><view style='font-size:28rpx;padding-top:23rpx;'>配送方式：商家配送</view></van-col>
-            </van-row>
-            <van-row>
-                <van-col><view style='font-size:28rpx;padding-bottom:20rpx;'>配送时间：立即配送</view></van-col>
-            </van-row>
-        </van-col>
-      </van-row>
-  </view>
-
-  <view class='body bottom_solid' style='margin-top:15rpx;padding-bottom:20rpx;'>
-      <view class='bottom_solid'>
-        <van-row>
-          <van-col offset="1" span="2"><view class='top_text'><van-icon name='notes-o' size='50rpx;'/></view></van-col>
-          <van-col offset="1" span="20">
-              <van-row>
-                  <van-col><view style='font-size:28rpx;padding-top:36rpx;'>购物清单</view></van-col>
-              </van-row>
-          </van-col>
-        </van-row>
-      </view>
-    <view>
-      <template is="order_commodity" data="{{order_list}}"/>
+    <view class='top'>
+        <view style='padding-top:70rpx;padding-left:45rpx;font-size:40rpx;font-weight:600;color: white;'>
+            {{ order_info.state[1]}}</view>
     </view>
-    <!-- 备注 -->
-    <van-row>
-        <van-col offset="1"><view class='top_text' style='font-size:28rpx;color:rgb(160,160,160);padding-bottom:15rpx;'>备注：{{order_info.note}}</view></van-col>
-    </van-row>
 
-    <van-row>
-      <van-col offset='1' span='18' class='bottom_text'>商品金额：</van-col>
-      <van-col span='5' class='bottom_text'>￥{{order_info.commodity_total_price}}</van-col>
-    </van-row>
-    <van-row>
-      <van-col offset='1' span='18' class='bottom_text'>优惠金额：</van-col>
-      <van-col span='5' class='bottom_text'>￥0</van-col>
-    </van-row>
-    <van-row>
-      <van-col offset='1' span='18' class='bottom_text'>运费：</van-col>
-      <van-col span='5' class='bottom_text'>￥{{order_info.transit_price}}</van-col>
-    </van-row>
-    <van-row>
-      <van-col offset='1' span='18' class='bottom_text'>实际支付：</van-col>
-      <van-col span='5' class='bottom_text'>￥{{order_info.total_price}}</van-col>
-    </van-row>
-  </view>
+    <!-- 收货地址 -->
+    <view class='body bottom_solid' style='padding-bottom:20rpx;'>
+        <van-row>
+            <van-col offset="1" span="2">
+                <view class='top_text'>
+                    <van-icon name='location-o' size='50rpx;'/>
+                </view>
+            </van-col>
+            <van-col offset="1" span="20">
+                <van-row>
+                    <van-col>
+                        <view style='font-size:28rpx;padding-top:18rpx;'>
+                            收货人：{{ order_info.name }} {{ order_info.phone }}</view>
+                    </van-col>
+                </van-row>
+                <van-row>
+                    <van-col style='font-size:28rpx;'>收货地址：{{ order_info.address }}</van-col>
+                </van-row>
+            </van-col>
+        </van-row>
+    </view>
 
-  <view class='body' style='margin-top:15rpx;padding-top:20rpx;padding-bottom:20rpx;'>
-    <view class='bottom_text bottom_time'>订单编号：{{order_info.order_id}}</view>
-    <view class='bottom_text bottom_time'>下单时间：{{order_info.create_time}}</view>
-    <view class='bottom_text bottom_time'>取消时间：{{order_info.cancel_time}}</view>
-  </view>
+
+    <view class='body'>
+        <van-row>
+            <van-col offset="1" span="2">
+                <view class='top_text'>
+                    <van-icon name='free-postage' size='50rpx;'/>
+                </view>
+            </van-col>
+            <van-col offset="1" span="20">
+                <van-row>
+                    <van-col>
+                        <view style='font-size:28rpx;padding-top:23rpx;'>配送方式：商家配送</view>
+                    </van-col>
+                </van-row>
+                <van-row>
+                    <van-col>
+                        <view style='font-size:28rpx;padding-bottom:20rpx;'>配送时间：立即配送</view>
+                    </van-col>
+                </van-row>
+            </van-col>
+        </van-row>
+    </view>
+
+    <view class='body bottom_solid' style='margin-top:15rpx;padding-bottom:20rpx;'>
+        <view class='bottom_solid'>
+            <van-row>
+                <van-col offset="1" span="2">
+                    <view class='top_text'>
+                        <van-icon name='notes-o' size='50rpx;'/>
+                    </view>
+                </van-col>
+                <van-col offset="1" span="20">
+                    <van-row>
+                        <van-col>
+                            <view style='font-size:28rpx;padding-top:36rpx;'>购物清单</view>
+                        </van-col>
+                    </van-row>
+                </van-col>
+            </van-row>
+        </view>
+        <view>
+            <template is="order_commodity" data="{{ order_list }}"/>
+        </view>
+        <!-- 备注 -->
+        <van-row>
+            <van-col offset="1">
+                <view class='top_text' style='font-size:28rpx;color:rgb(160,160,160);padding-bottom:15rpx;'>
+                    备注：{{ order_info.note }}</view>
+            </van-col>
+        </van-row>
+
+        <van-row>
+            <van-col offset='1' span='18' class='bottom_text'>商品金额：</van-col>
+            <van-col span='5' class='bottom_text'>￥{{ order_info.commodity_total_price }}</van-col>
+        </van-row>
+        <van-row>
+            <van-col offset='1' span='18' class='bottom_text'>优惠金额：</van-col>
+            <van-col span='5' class='bottom_text'>￥0</van-col>
+        </van-row>
+        <van-row>
+            <van-col offset='1' span='18' class='bottom_text'>运费：</van-col>
+            <van-col span='5' class='bottom_text'>￥{{ order_info.transit_price }}</van-col>
+        </van-row>
+        <van-row>
+            <van-col offset='1' span='18' class='bottom_text'>实际支付：</van-col>
+            <van-col span='5' class='bottom_text'>￥{{ order_info.total_price }}</van-col>
+        </van-row>
+    </view>
+
+    <view class='body' style='margin-top:15rpx;padding-top:20rpx;padding-bottom:20rpx;'>
+        <view class='bottom_text bottom_time'>订单编号：{{ order_info.order_id }}</view>
+        <view class='bottom_text bottom_time'>下单时间：{{ order_info.create_time }}</view>
+        <block wx:if="{{ order_info.state[0]==3||order_info.state[0]==4||order_info.state[0]==5||order_info.state[0]==6}}">
+            <view class='bottom_text bottom_time'>运单号：{{ order_info.courier_number }}</view>
+        </block>
+        <block wx:if="{{ order_info.state[0]==5}}">
+            <view class='bottom_text bottom_time'>退货单号：{{ order_info.returns_number }}</view>
+        </block>
+        <block wx:if="{{ order_info.state[0]==6}}">
+            <view class='bottom_text bottom_time'>取消时间：{{ order_info.cancel_time }}</view>
+        </block>
+    </view>
 </view>
 
 <view style="position:fixed; bottom:0;width:100%;height:90rpx;" class='body'>
-  <view style='padding-top:10rpx;padding-left:520rpx;'>
-    <button style='width:180rpx;font-size:28rpx;height:70rpx;' plain='true'>删除订单</button>
-  </view>
+    <block wx:if="{{ order_info.state[0]==0}}">
+        <view style='padding-top:10rpx;padding-left:520rpx;'>
+            <button style='width:180rpx;font-size:28rpx;height:70rpx;' plain='true'>支付</button>
+        </view>
+    </block>
+    <block wx:if="{{ order_info.state[0]==3}}">
+        <view style='padding-top:10rpx;padding-left:520rpx;'>
+            <button style='width:180rpx;font-size:28rpx;height:70rpx;' plain='true'>确认收货</button>
+        </view>
+    </block>
+    <block wx:if="{{ order_info.state[0]==4}}">
+        <view style='padding-top:10rpx;padding-left:520rpx;'>
+            <button style='width:180rpx;font-size:28rpx;height:70rpx;' plain='true'>申请退货</button>
+        </view>
+    </block>
+    <block wx:if="{{ order_info.state[0]==5}}">
+        <view style='padding-top:10rpx;padding-left:520rpx;'>
+            <button style='width:180rpx;font-size:28rpx;height:70rpx;' plain='true'>修改单号</button>
+        </view>
+    </block>
+    <block wx:if="{{ order_info.state[0]==6}}">
+        <view style='padding-top:10rpx;padding-left:520rpx;'>
+            <button style='width:180rpx;font-size:28rpx;height:70rpx;' plain='true'>删除订单</button>
+        </view>
+    </block>
 </view>

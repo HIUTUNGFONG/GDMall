@@ -6,7 +6,7 @@
           <van-col span="19" offset='1'><text class='text'>下单时间：{{item.create_time}}</text></van-col>
           <van-col span="4"><text class='text'>
           <block wx:if='{{item.state==0}}'>未支付</block>
-          <block wx:elif='{{item.state==1}}'>待发货</block>
+          <block wx:elif='{{item.state==1}}'>已支付</block>
           <block wx:elif='{{item.state==2}}'>待收货</block>
           <block wx:elif='{{item.state==3}}'>待确认</block>
           <block wx:elif='{{item.state==4}}'>已完成</block>
