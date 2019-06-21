@@ -11,8 +11,8 @@ from apps.user.models import WxUser
 from common.public_function import *
 
 pay_url = 'https://api.mch.weixin.qq.com/pay/unifiedorder'
-test_pay_url = 'https://api.mch.weixin.qq.com/sandboxnew/pay/unifiedorder'
-sx_url = 'https://api.mch.weixin.qq.com/sandboxnew/pay/getsignkey'
+# test_pay_url = 'https://api.mch.weixin.qq.com/sandboxnew/pay/unifiedorder'
+# sx_url = 'https://api.mch.weixin.qq.com/sandboxnew/pay/getsignkey'
 
 wxinfo = {
     'APPID': 'wxc999b4ac2adc328e',
@@ -54,7 +54,7 @@ class WxPayView(APIView):
             'nonce_str': str32,
             'body': 'test支付',
             'out_trade_no': order_id,
-            'total_fee': '551',
+            'total_fee': total_fee,
             'spbill_create_ip': '47.112.147.15',
             'notify_url': 'http://www.grotesquery.cn/api/pay/get',
             'trade_type': 'JSAPI'
@@ -63,7 +63,7 @@ class WxPayView(APIView):
         params['sign'] = sign
         print(params)
         # xmlmsg = PublicFunction().send_xml_request(pay_url, params)
-        xmlmsg = PublicFunction().send_xml_request(test_pay_url, params)
+        xmlmsg = PublicFunction().send_xml_request(pay_url, params)
         print(xmlmsg)
         print(xmlmsg['xml'])
         if xmlmsg['xml']['return_code'] == 'SUCCESS':
