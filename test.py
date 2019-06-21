@@ -142,10 +142,13 @@
 # # # pay = WeixinPay('wxc999b4ac2adc328e', '1535717001', 'guanxinguanxinguanxinguanxin3344', 'http://www.grotesquery.cn/api/pay/get') # 后两个参数可选
 # # # # print(pay.check(data))
 # # import random
-import time
+# import time
 # #
 # # ss = time.strftime('%Y%m%d%H%M%S') + str(random.randint(100000, 999999))
 # # print(ss)
 # # print(len('20190618232338173893'))
-ss = time.strftime('%Y-%m-%d- %H:%M:%S')
-print(ss)
+# ss = time.strftime('%Y-%m-%d- %H:%M:%S')
+# print(ss)
+
+
+
