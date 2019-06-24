@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.user',  # 用户模块
     'apps.goods',  # 商品模块
     'apps.cart',  # 购物车模块
+    'apps.card',  # 优惠券模块
     'apps.pay',  # 支付模块
     'apps.order', # 订单模块
     # 'werkzeug_debugger_runserver',    # https
