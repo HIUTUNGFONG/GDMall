@@ -19,7 +19,13 @@ Page({
   onLoad: function (options) {
     card.getCardList((res)=>{
       console.log(res)
+      this.setData({
+        card_list:res.card_list
+      })
     })
+  },
+  addCard:function(){
+    console.log('ttt')
   },
 
  
