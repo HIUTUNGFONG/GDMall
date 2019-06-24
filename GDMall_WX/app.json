@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/cardlist/cardlist",
     "pages/user/user",
     "pages/returnsorder/returnsorder",
     "pages/orderdetails/orderdetails",
@@ -14,6 +15,7 @@
     "pages/addressforms/addressforms",
     "pages/userinfo/userinfo",
     "pages/card/card"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
