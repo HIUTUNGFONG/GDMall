@@ -1,0 +1,10 @@
+/* pages/cardlist/cardlist.wxss */
+
+
+.card{
+  background-size :100% 100%;
+  background-image: url('https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/1561364277%281%29.jpg');
+  width: 90%;
+  height: 200rpx;
+  margin-top: 30rpx;
+}

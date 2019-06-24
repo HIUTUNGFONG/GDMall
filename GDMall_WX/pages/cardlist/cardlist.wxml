@@ -1,0 +1,27 @@
+<!--pages/cardlist/cardlist.wxml-->
+
+<view style='  display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+  <view class='card'>
+    <van-row>
+      <van-col span="6" offset='1'>
+        <view style='padding-top:50rpx;font-size:28rpx;color:white'>
+          <van-row>￥xxx</van-row>
+          <van-row>满xx可用</van-row>
+        </view>
+      </van-col>
+      <van-col span="13">
+        <view style='padding-top:40rpx;font-size:28rpx;color:white;'>
+          <van-row>优惠券标题</van-row>
+          <van-row>有效期xxxxx</van-row>
+          <van-row>优惠券描述</van-row>
+        </view>
+      </van-col>
+      <van-col span="4">
+       <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;'>
+          <van-row>领</van-row>
+          <van-row>取</van-row>
+        </view>
+      </van-col>
+    </van-row>
+  </view>
+</view>
