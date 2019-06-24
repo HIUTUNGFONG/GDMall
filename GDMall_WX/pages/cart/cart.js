@@ -270,7 +270,7 @@ Page({
       // console.log(commodityCount_list)
       // wx.setStorageSync('commodityId_list', commodityId_list)
       // wx.setStorageSync('commodityCount_list', commodityCount_list)
-      wx.setStorageSync('commodity_list', commodity_list)
+      wx.setStorageSync('commodity_list', commodity_list);
       // 跳转到订单页面
       wx.navigateTo({
         url: '../order/order',

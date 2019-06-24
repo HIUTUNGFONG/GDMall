@@ -90,4 +90,9 @@ Page({
             url: '../orderlist/orderlist?select=4'
         })
     },
+    toCard:function(){
+      wx.navigateTo({
+        url: '../card/card',
+      })
+    }
 })

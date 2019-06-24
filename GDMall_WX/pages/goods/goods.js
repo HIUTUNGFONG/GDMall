@@ -119,20 +119,20 @@ Page({
         var maxPrice = this.max_price;
         // console.log(maxPrice);
         var temp = [];
-        if (minPrice == undefined && maxPrice == undefined || minPrice == '' && maxPrice == '' ) {
+        if (minPrice == undefined && maxPrice == undefined || minPrice == '' && maxPrice == '') {
             temp = goods_list
             console.log(goods_list)
-        } else if (minPrice == undefined || minPrice == '' ) {
+        } else if (minPrice == undefined || minPrice == '') {
             for (var i = 0; i < goods_list.length; i++) {
-              var price = parseFloat(goods_list[i][0].commodity[0].price);
+                var price = parseFloat(goods_list[i][0].commodity[0].price);
                 if (price <= maxPrice) {
                     temp.push(goods_list[i])
                 }
                 // console.log(temp)
             }
-        } else if (maxPrice == undefined || maxPrice == '' ) {
+        } else if (maxPrice == undefined || maxPrice == '') {
             for (var i = 0; i < goods_list.length; i++) {
-              var price = parseFloat(goods_list[i][0].commodity[0].price);
+                var price = parseFloat(goods_list[i][0].commodity[0].price);
                 if (price >= minPrice) {
                     temp.push(goods_list[i])
                 }
@@ -140,11 +140,11 @@ Page({
             }
         } else {
             for (var i = 0; i < goods_list.length; i++) {
-              var price = parseFloat(goods_list[i][0].commodity[0].price);
-              // console.log('商品价格'+price)
-              // console.log(minPrice)
-              // console.log(maxPrice)
-              // console.log(temp)
+                var price = parseFloat(goods_list[i][0].commodity[0].price);
+                // console.log('商品价格'+price)
+                // console.log(minPrice)
+                // console.log(maxPrice)
+                // console.log(temp)
                 if (price >= minPrice && price <= maxPrice) {
                     temp.push(goods_list[i])
                 }
@@ -631,7 +631,8 @@ Page({
         })
 
     },
-    submit: function (event) {
+    //加入到购物车
+    addCart: function (event) {
         var value = [];
         for (var i = 0; i < this.attrValueList.length; i++) {
             if (!this.attrValueList[i].selectedValue) {
@@ -651,7 +652,7 @@ Page({
             console.log(this.stepperAttr)
             goods.addCommdityToCart(this.commodity_id, this.stepperAttr, (res) => {
                 var msg = res.msg
-              if (msg == '商品库存不足') {
+                if (msg == '商品库存不足') {
                     wx.showToast({
                         title: '库存不足',
                         image: '/icons/cross.png',
@@ -665,8 +666,41 @@ Page({
                     })
                 }
             })
+        }
+    },
+    //提交订单
+    toOrder: function (e) {
+        var value = [];
+        for (var i = 0; i < this.attrValueList.length; i++) {
+            if (!this.attrValueList[i].selectedValue) {
+                break;
+            }
+            value.push(this.attrValueList[i].selectedValue);
+        }
+        if (i < this.attrValueList.length) {
+            wx.showToast({
+                title: '请选择完整！',
+                icon: 'loading',
+                duration: 1000
+            })
+        } else {
+            // 将数据放入缓存中
+            // console.log(commodityId_list)
+            // console.log(commodityCount_list)
+            // wx.setStorageSync('commodityId_list', commodityId_list)
+            // wx.setStorageSync('commodityCount_list', commodityCount_list)
+            goods.getCommodityById(this.commodity_id,(res)=>{
+                console.log(res.data)
+                wx.setStorageSync('commodity_list', res.data);
+                wx.setStorageSync('commodity_list_num', this.stepperAttr);
 
 
+            })
+
+            // 跳转到订单页面
+            wx.navigateTo({
+                url: '../order/order',
+            })
         }
     },
     // 步进器点击事件

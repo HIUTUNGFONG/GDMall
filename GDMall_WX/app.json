@@ -12,7 +12,8 @@
     "pages/product/product",
     "pages/vip/vip",
     "pages/addressforms/addressforms",
-    "pages/userinfo/userinfo"
+    "pages/userinfo/userinfo",
+    "pages/card/card"
   ],
   "window": {
     "backgroundTextStyle": "light",

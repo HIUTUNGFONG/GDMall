@@ -29,6 +29,7 @@ class OrderInfo(BaseModel):
     total_price = models.FloatField(verbose_name='订单总价')
     total_count = models.IntegerField(verbose_name='订单总件数')
     transit_price = models.FloatField(default=0, verbose_name='运费')
+    discount_price = models.FloatField(default=0, verbose_name='优惠金额')
     state = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='订单状态')
     courier_number = models.CharField(max_length=255,default='', verbose_name='快递单号')
     returns_number = models.CharField(max_length=255,default='', verbose_name='退货单号')

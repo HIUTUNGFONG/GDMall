@@ -57,13 +57,29 @@ Page({
 
     // 获取缓存中选中的商品信息
     this.commodity_list = wx.getStorageSync('commodity_list');
+    this.commodity_list_num = wx.getStorageSync('commodity_list_num');
+    console.log(this.commodity_list)
     this.count = 0;
     this.sum = 0;
     this.commodityId_list = [];
     for(var i=0;i<this.commodity_list.length;i++){
       this.commodityId_list.push(this.commodity_list[i].id);
-      this.count+=this.commodity_list[i].num;
-      this.sum += this.commodity_list[i].num * this.commodity_list[i].price;
+      if(this.commodity_list_num!=''){
+        console.log(this.commodity_list_num)
+         this.count+=this.commodity_list_num;
+            this.sum += this.commodity_list_num * this.commodity_list[i].price;
+            this.setData({
+              commodity_list_num:this.commodity_list_num
+            })
+      }else {
+          console.log('run')
+           this.count+=this.commodity_list[i].num;
+            this.sum += this.commodity_list[i].num * this.commodity_list[i].price;
+            this.setData({
+              commodity_list_num:''
+            })
+      }
+
     }
     console.log(this.commodityId_list)
     console.log(this.count)
@@ -75,8 +91,8 @@ Page({
       sum:this.sum.toFixed(2),
       sums: this.sum.toFixed(2)*100
     })
-
-
+    // 删除缓存数据
+    wx.removeStorageSync('commodity_list_num')
 
   },
   selectAddress:function(){

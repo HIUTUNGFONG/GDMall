@@ -31,7 +31,12 @@
       </van-col>
       <van-col span="4">
         <van-row><view style='font-size:26rpx;padding-top:20rpx;'>￥{{item.price}}</view></van-row>
-        <van-row><view style='font-size:26rpx;'>x{{item.num}}</view></van-row>
+          <block wx:if="{{ commodity_list_num==''}}">
+              <van-row><view style='font-size:26rpx;'>x{{item.num}}</view></van-row>
+          </block>
+          <block wx:else>
+              <van-row><view style='font-size:26rpx;'>x{{commodity_list_num}}</view></van-row>
+          </block>
       </van-col>
     </van-row>
 

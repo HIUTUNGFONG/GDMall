@@ -206,10 +206,10 @@
   <!-- 加入购物车,提交订单按钮 -->
   <view style="position:fixed; bottom:0;width: 100%;">
     <van-col span='12'>
-      <van-button square type="danger" size='large' bind:click='submit' >加入购物车</van-button>
+      <van-button square type="danger" size='large' bind:click='addCart' >加入购物车</van-button>
     </van-col>
     <van-col span='12'>
-      <van-button square type="primary" size='large' bind:click='submit'>提交订单</van-button>
+      <van-button square type="primary" size='large' bind:click='toOrder'>提交订单</van-button>
     </van-col>
   </view>
 

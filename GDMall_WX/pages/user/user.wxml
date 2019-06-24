@@ -41,7 +41,7 @@
       </view>
     </van-col>
     <van-col span='12'> 
-      <view>
+      <view bindtap='toCard'>
         <view style='padding-left:180rpx;'>0</view>
         <view style='padding-left:130rpx;color: rgb(133, 133, 133);'>优惠券            </view>
       </view>

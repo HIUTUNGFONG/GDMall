@@ -64,7 +64,7 @@ Page({
     })
   },
   // 参数选择点击事件
-  ontype: function () {
+  ontype_1: function () {
     // // 获取点击的产品信息
     // goods.getGoodsAttribute(this.goodsId,(res)=>{
     //   console.log(res.data)
@@ -133,13 +133,86 @@ Page({
 
     // 显示底部栏
     this.setData({
-      show_bottom: true
+      show_bottom_1: true
+    });
+  },
+  ontype_2: function () {
+    // // 获取点击的产品信息
+    // goods.getGoodsAttribute(this.goodsId,(res)=>{
+    //   console.log(res.data)
+    //   this.commodity = res.data
+    // })
+    // console.log(commodity[0].goods.id);
+    var goodsId = this.goodsId;
+    this.attrValueList = [];
+    this.stepperAttr = 1;       //步进器默认参数
+    this.commodity_count = 0;   //商品总数量
+    this.commodity_id = 0;     //全选后的商品id
+    this.commodity_stock = 1;  //全选后的商品库存
+
+    // 获取商品列表，选择元素列表
+    goods.getCommodityList(goodsId, (res) => {
+
+
+      // 获取总件数
+
+      for (var i = 0; i < (res.data.commodity.length); i++) {
+        this.commodity_count += res.data.commodity[i].stock
+      }
+      this.commodity_data = res.data;
+      this.commodityAttr = res.data.commodityAttr;
+      console.log(this.commodity_data);
+      this.setData({
+        'commodity_data': res.data,
+        'commodity_count': this.commodity_count,
+        'price': res.data.commodity[0].price,
+
+
+      });
+
+      this.setData({
+        CodeColorAttr: '请选择尺码颜色',
+        includeGroup: this.commodityAttr
+      });
+
+      this.distachAttrValue(this.commodityAttr);
+      // 只有一个属性组合的时候默认选中
+      if (this.commodityAttr.length == 1) {
+        for (var i = 0; i < this.commodityAttr[0].attrValueList.length; i++) {
+          this.attrValueList[i].selectedValue = this.commodityAttr[0].attrValueList[i].attrValue;
+        }
+        this.setData({
+          attrValueList: this.attrValueList
+        });
+
+
+        var value = [];
+        for (var i = 0; i < this.attrValueList.length; i++) {
+          if (!this.attrValueList[i].selectedValue) {
+            break;
+          }
+          value.push(this.attrValueList[i].selectedValue);
+        }
+        var valueStr = "";
+        for (var i = 0; i < value.length; i++) {
+          valueStr += value[i] + ' ';
+        }
+        this.setData({ 'CodeColorAttr': valueStr });
+        this.commodity_id = this.commodity_data.commodity[0].id;
+      }
+    })
+
+
+    // 显示底部栏
+    this.setData({
+      show_bottom_2: true
     });
   },
   onClosePopupBottom() {
     //点击底部蒙层时触发
     this.setData({
-      show_bottom: false,
+      show_bottom_1: false,
+      show_bottom_2: false,
       code_style: '',  //清空code属性选择
       CodeColorAttr: '请选择尺码颜色',
       stepperAttr: 1      //步进器参数
@@ -370,48 +443,78 @@ Page({
     })
 
   },
-  submit: function (event) {
-    var value = [];
-    for (var i = 0; i < this.attrValueList.length; i++) {
-      if (!this.attrValueList[i].selectedValue) {
-        break;
-      }
-      value.push(this.attrValueList[i].selectedValue);
-    }
-    if (i < this.attrValueList.length) {
-      wx.showToast({
-        title: '请选择完整！',
-        icon: 'loading',
-        duration: 1000
-      })
-    } else {
-      //加入购物车
-      console.log(this.commodity_id)
-      console.log(this.stepperAttr)
-      goods.addCommdityToCart(this.commodity_id, this.stepperAttr, (res) => {
-        console.log(res.message)
-        console.log(res.errmsg)
-        var msg = res.message
-        var err = res.errmsg
-
-        if (this.stepperAttr > this.commodity_stock || err == '商品库存不足') {
-          wx.showToast({
-            title: '库存不足',
-            image: '/icons/cross.png',
-            duration: 1000
-          })
-        } else {
-          wx.showToast({
-            title: '成功加入购物车',
-            icon: 'success',
-            duration: 1000
-          })
+  //加入到购物车
+    addCart: function (event) {
+        var value = [];
+        for (var i = 0; i < this.attrValueList.length; i++) {
+            if (!this.attrValueList[i].selectedValue) {
+                break;
+            }
+            value.push(this.attrValueList[i].selectedValue);
         }
-      })
+        if (i < this.attrValueList.length) {
+            wx.showToast({
+                title: '请选择完整！',
+                icon: 'loading',
+                duration: 1000
+            })
+        } else {
+            //加入购物车
+            console.log(this.commodity_id)
+            console.log(this.stepperAttr)
+            goods.addCommdityToCart(this.commodity_id, this.stepperAttr, (res) => {
+                var msg = res.msg
+                if (msg == '商品库存不足') {
+                    wx.showToast({
+                        title: '库存不足',
+                        image: '/icons/cross.png',
+                        duration: 1000
+                    })
+                } else {
+                    wx.showToast({
+                        title: '成功加入购物车',
+                        icon: 'success',
+                        duration: 1000
+                    })
+                }
+            })
+        }
+    },
+    //提交订单
+    toOrder: function (e) {
+        var value = [];
+        for (var i = 0; i < this.attrValueList.length; i++) {
+            if (!this.attrValueList[i].selectedValue) {
+                break;
+            }
+            value.push(this.attrValueList[i].selectedValue);
+        }
+        if (i < this.attrValueList.length) {
+            wx.showToast({
+                title: '请选择完整！',
+                icon: 'loading',
+                duration: 1000
+            })
+        } else {
+            // 将数据放入缓存中
+            // console.log(commodityId_list)
+            // console.log(commodityCount_list)
+            // wx.setStorageSync('commodityId_list', commodityId_list)
+            // wx.setStorageSync('commodityCount_list', commodityCount_list)
+            goods.getCommodityById(this.commodity_id,(res)=>{
+                console.log(res.data)
+                wx.setStorageSync('commodity_list', res.data);
+                wx.setStorageSync('commodity_list_num', this.stepperAttr);
 
 
-    }
-  },
+            })
+
+            // 跳转到订单页面
+            wx.navigateTo({
+                url: '../order/order',
+            })
+        }
+    },
   // 步进器点击事件
   onStepper: function (event) {
     this.stepperAttr = event.detail
