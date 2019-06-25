@@ -61,7 +61,8 @@ class UserCardView(APIView):
                 for user_card in user_card_list:
                     card = Card.objects.filter(id=user_card.card).values()
                     data_list.append(card)
-            except:
+            except Exception as e:
+                print(e)
                 return Response({'msg': '暂无优惠券'})
 
         return Response({'card_list': data_list})
