@@ -19,7 +19,7 @@ class Card extends Base {
   addCard(card_id,callBack) {
     // 获取优惠券列表
     var params = {
-      url: 'card/add',
+      url: 'card/add/',
       method:'POST',
       data:{
         'token': wx.getStorageSync('token'),

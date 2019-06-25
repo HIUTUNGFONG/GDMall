@@ -36,45 +36,6 @@ class CardView(APIView):
 
         return Response({'card_list': card})
 
-    '''
-    领取优惠券
-    '''
-    def post(self,request):
-
-        # 接收数据
-        data = json.loads(request.body)
-        card_id = data['card_id']
-        token = data['token']
-
-        # 参数校验
-        if not all([card_id, token]):
-            return Response({'msg': '数据不完整'})
-
-        # 获取用户open_id
-        open_id = PublicFunction().getOpenIdByToken(token)
-        str32 = PublicFunction().randomStr()
-
-        # 校验用户
-        if open_id:
-            try:
-                wx_user = WxUser.objects.get(open_id=open_id)
-            except:
-                return Response({'msg': '用户不存在'})
-            try:
-                card = Card.objects.get(id=card_id)
-                user_card = UserCard.objects.filter(wx_user=wx_user)
-                if(user_card==''):
-                    print('t')
-                    UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
-                else:
-                    print('tt')
-                    print(len(user_card))
-                    print('领取数量'+card.get_count)
-
-
-            except:
-                return Response({'msg':'优惠券不存在'})
-        return Response({'msg':'领取成功'})
 
 
 class UserCard(APIView):
@@ -103,3 +64,46 @@ class UserCard(APIView):
                 return Response({'msg': '暂无优惠券'})
 
         return Response({'card_list': data_list})
+
+
+class AddCardView(APIView):
+    '''
+      领取优惠券
+      '''
+
+    def post(self, request):
+
+        # 接收数据
+        data = json.loads(request.body)
+        card_id = data['card_id']
+        token = data['token']
+
+        # 参数校验
+        if not all([card_id, token]):
+            return Response({'msg': '数据不完整'})
+
+        # 获取用户open_id
+        open_id = PublicFunction().getOpenIdByToken(token)
+        str32 = PublicFunction().randomStr()
+
+        # 校验用户
+        if open_id:
+            try:
+                wx_user = WxUser.objects.get(open_id=open_id)
+            except:
+                return Response({'msg': '用户不存在'})
+            try:
+                card = Card.objects.get(id=card_id)
+                user_card = UserCard.objects.filter(wx_user=wx_user)
+                if (user_card == ''):
+                    print('t')
+                    UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
+                else:
+                    print('tt')
+                    print(len(user_card))
+                    print('领取数量' + card.get_count)
+
+
+            except:
+                return Response({'msg': '优惠券不存在'})
+        return Response({'msg': '领取成功'})

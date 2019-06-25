@@ -26,7 +26,10 @@ Page({
   },
   addCard:function(e){
     // 获取card_id
-    card_id = card.getDataset(e,'cardid');
+    var card_id = card.getDataset(e,'id');
+    card.addCard(card_id,(res)=>{
+      console.log(res)
+    })
   },
 
  
