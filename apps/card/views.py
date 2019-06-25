@@ -58,7 +58,7 @@ class UserCardView(APIView):
             try:
                 user_card_list = UserCard.objects.filter(wx_user=wx_user)
                 for user_card in user_card_list:
-                    card = Card.objects.filter(id=user_card.card).values()
+                    card = Card.objects.filter(id=user_card.card.id).values()
                     data_list.append(card)
             except Exception as e:
                 print(e)
