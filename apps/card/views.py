@@ -98,7 +98,7 @@ class AddCardView(APIView):
                 if (len(user_card)==0):
                     UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
                 else:
-                    if(len(user_card)>card.get_count):
+                    if(len(user_card)>=card.get_count):
                         return Response({'msg':'您已领取过了!'})
                     else:
                         UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
