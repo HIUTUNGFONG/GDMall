@@ -102,7 +102,7 @@ class AddCardView(APIView):
                 else:
                     print('tt')
                     print(len(user_card))
-                    print('领取数量' + card.get_count)
+                    print('领取数量' + str(card.get_count))
             except:
                 return Response({'msg': '优惠券不存在'})
         return Response({'msg': '领取成功'})
