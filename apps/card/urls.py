@@ -1,8 +1,6 @@
 from django.urls import re_path,path
 
 from apps.card.views import *
-from apps.cart.views import *
-from apps.user.views import *
 
 app_name = 'cart'
 

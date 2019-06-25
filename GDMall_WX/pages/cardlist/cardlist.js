@@ -27,6 +27,7 @@ Page({
   addCard:function(e){
     // 获取card_id
     var card_id = card.getDataset(e,'id');
+    console.log(card_id)
     card.addCard(card_id,(res)=>{
       console.log(res)
     })

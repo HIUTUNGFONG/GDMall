@@ -93,8 +93,11 @@ class AddCardView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
+                print('获取card:'+card_id)
                 card = Card.objects.get(id=card_id)
+                print(card)
                 user_card = UserCard.objects.filter(wx_user=wx_user)
+                print(user_card)
                 if (user_card == ''):
                     print('t')
                     UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
