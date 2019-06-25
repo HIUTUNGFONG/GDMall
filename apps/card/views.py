@@ -56,7 +56,8 @@ class UserCardView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                user_card_list = UserCard.objects.filter(wx_user=wx_user)
+                print(wx_user)
+                user_card_list = UserCard.objects.get(wx_user=wx_user)
                 print(user_card_list)
                 for user_card in user_card_list:
                     card = Card.objects.filter(id=user_card.card).values()
