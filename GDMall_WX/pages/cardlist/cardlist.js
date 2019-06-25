@@ -24,8 +24,9 @@ Page({
       })
     })
   },
-  addCard:function(){
-    console.log('ttt')
+  addCard:function(e){
+    // 获取card_id
+    card_id = card.getDataset(e,'cardid');
   },
 
  

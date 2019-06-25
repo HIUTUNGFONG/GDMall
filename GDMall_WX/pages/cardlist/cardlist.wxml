@@ -17,7 +17,7 @@
         </view>
       </van-col>
       <van-col span="4">
-       <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;' bindtap='addCard'>
+       <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;' bindtap='addCard' data-cardid='{{item.id}}'>
           <van-row>领</van-row>
           <van-row>取</van-row>
         </view>
