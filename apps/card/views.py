@@ -93,16 +93,15 @@ class AddCardView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-
                 card = Card.objects.get(id=card_id)
-                user_card = UserCard.objects.filter(wx_user=wx_user)
+                user_card = UserCard.objects.filter(wx_user=wx_user,card=card)
                 if (len(user_card)==0):
-                    print('t')
                     UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
                 else:
-                    print('tt')
-                    print(len(user_card))
-                    print('领取数量' + str(card.get_count))
+                    if(len(user_card)>card.get_count):
+                        return Response({'msg':'您已领取过了!'})
+                    else:
+                        UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
             except:
                 return Response({'msg': '优惠券不存在'})
         return Response({'msg': '领取成功'})
