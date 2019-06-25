@@ -96,8 +96,7 @@ class AddCardView(APIView):
 
                 card = Card.objects.get(id=card_id)
                 user_card = UserCard.objects.filter(wx_user=wx_user)
-                print(user_card.values())
-                if (user_card.values() == []):
+                if (len(user_card)==0):
                     print('t')
                     UserCard.objects.create(card_id=card_id, wx_user=wx_user, card_token=str32).save()
                 else:
