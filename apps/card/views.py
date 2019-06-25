@@ -77,6 +77,7 @@ class AddCardView(APIView):
         data = json.loads(request.body)
         card_id = data['card_id']
         token = data['token']
+        print('获取card:' + card_id)
 
         # 参数校验
         if not all([card_id, token]):
@@ -93,7 +94,7 @@ class AddCardView(APIView):
             except:
                 return Response({'msg': '用户不存在'})
             try:
-                print('获取card:'+card_id)
+
                 card = Card.objects.get(id=card_id)
                 print(card)
                 user_card = UserCard.objects.filter(wx_user=wx_user)
@@ -105,8 +106,6 @@ class AddCardView(APIView):
                     print('tt')
                     print(len(user_card))
                     print('领取数量' + card.get_count)
-
-
             except:
                 return Response({'msg': '优惠券不存在'})
         return Response({'msg': '领取成功'})
