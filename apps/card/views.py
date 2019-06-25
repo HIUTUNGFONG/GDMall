@@ -77,7 +77,7 @@ class AddCardView(APIView):
         data = json.loads(request.body)
         card_id = data['card_id']
         token = data['token']
-        print('获取card:' + card_id)
+        print('获取card:' + str(card_id))
 
         # 参数校验
         if not all([card_id, token]):
