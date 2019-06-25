@@ -98,6 +98,11 @@
 <van-cell icon="newspaper-o" title="个人信息" is-link url="/pages/userinfo/userinfo" link-type="navigateTo" />
 </view>
 
+<!-- 优惠券 -->
+<view class='solid'>
+<van-cell icon="balance-pay" title="优惠券" is-link url="/pages/cardlist/cardlist" link-type="navigateTo" />
+</view>
+
 
 
 

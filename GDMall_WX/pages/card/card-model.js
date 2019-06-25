@@ -31,7 +31,16 @@ class Card extends Base {
     };
     this.request(params);
   }
-
+  getUserCardList(callBack){
+    // 获取优惠券列表
+    var params = {
+      url: 'card/user/get/' + wx.getStorageSync('token'),
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    };
+    this.request(params);
+  }
 }
 
 export { Card };
