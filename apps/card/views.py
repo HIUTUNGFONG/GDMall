@@ -38,7 +38,7 @@ class CardView(APIView):
 
 
 
-class UserCard(APIView):
+class UserCardView(APIView):
 
     def get(self,request,token):
         # 参数校验
@@ -77,7 +77,6 @@ class AddCardView(APIView):
         data = json.loads(request.body)
         card_id = data['card_id']
         token = data['token']
-        print('获取card:' + str(card_id))
 
         # 参数校验
         if not all([card_id, token]):
@@ -96,7 +95,6 @@ class AddCardView(APIView):
             try:
 
                 card = Card.objects.get(id=card_id)
-                print(card)
                 user_card = UserCard.objects.filter(wx_user=wx_user)
                 print(user_card)
                 if (user_card == ''):
