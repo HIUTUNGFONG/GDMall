@@ -42,11 +42,13 @@ Page({
       })
     });
     goods.getGoodsAttribute(this.goodsId,(res)=>{
+      console.log(this.goodsId)
       // 获取产品属性
       // console.log(res.data[0]);
       this.setData({
         goods_attribute: res.data[0]
       })
+      console.log(res.data)
     })
   },
 
@@ -57,6 +59,18 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //图片点击事件
+  img_yl: function (event) {
+    var url = event.currentTarget.dataset.url;//获取data-src
+    // var imgList = event.currentTarget.dataset.list;//获取data-list
+    //图片预览
+    wx.previewImage({
+      current: url, // 当前显示图片的http链接
+      urls: [url] // 需要预览的图片http链接列表
+    })
+  },
+
+
   // 分享图片点击事件
   test:function(){
     wx.showShareMenu({

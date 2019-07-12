@@ -1,28 +1,96 @@
 <!--pages/card/card.wxml-->
+<van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="有效券">
+        <view style='  display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+            <block wx:if='{{ cardClick=="on"}}'>
+                <view class='card' wx:for='{{ card_list_1 }}'>
 
-<view style='  display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
-  <view class='card' wx:for='{{card_list}}'>
-    <van-row>
-      <van-col span="6" offset='1'>
-        <view style='padding-top:50rpx;font-size:28rpx;color:white'>
-          <van-row>￥{{item.discount_price}}</van-row>
-          <van-row>满{{item.min_price}}可用</van-row>
+                    <van-row>
+                        <view bindtap='toOrder'>
+                            <van-col span="6" offset='1'>
+                                <view style='padding-top:50rpx;font-size:28rpx;color:white'>
+                                    <van-row>￥{{ item[0].discount_price}}</van-row>
+                                    <van-row>满{{ item[0].min_price}}可用</van-row>
+                                </view>
+                            </van-col>
+                            <van-col span="13">
+                                <view style='padding-top:30rpx;font-size:28rpx;color:white;'>
+                                    <van-row>{{ item[0].title}}</van-row>
+                                    <van-row>有效期：{{ item[0].validity}}</van-row>
+                                    <van-row>{{ item[0].describe}}</van-row>
+                                </view>
+                            </van-col>
+                            <van-col span="4">
+                                <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;'
+                                      data-id='{{ item[0].id}}'>
+                                    <van-row>使</van-row>
+                                    <van-row>用</van-row>
+                                </view>
+                            </van-col>
+                        </view>
+                    </van-row>
+                </view>
+
+            </block>
+            <block wx:else>
+                <view class='card' wx:for='{{ card_list_1 }}'>
+                    <van-row>
+                        <van-col span="6" offset='1'>
+                            <view style='padding-top:50rpx;font-size:28rpx;color:white'>
+                                <van-row>￥{{ item[0].discount_price}}</van-row>
+                                <van-row>满{{ item[0].min_price}}可用</van-row>
+                            </view>
+                        </van-col>
+                        <van-col span="13">
+                            <view style='padding-top:30rpx;font-size:28rpx;color:white;'>
+                                <van-row>{{ item[0].title}}</van-row>
+                                <van-row>有效期：{{ item[0].validity}}</van-row>
+                                <van-row>{{ item[0].describe}}</van-row>
+                            </view>
+                        </van-col>
+                        <van-col span="4">
+                            <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;'
+                                  bindtap='toGoods' data-id='{{ item[0].id}}'>
+                                <van-row>使</van-row>
+                                <van-row>用</van-row>
+                            </view>
+                        </van-col>
+                    </van-row>
+                </view>
+            </block>
+
         </view>
-      </van-col>
-      <van-col span="13">
-        <view style='padding-top:30rpx;font-size:28rpx;color:white;'>
-          <van-row>{{item.title}}</van-row>
-          <van-row>有效期：{{item.validity}}</van-row>
-          <van-row>{{item.describe}}</van-row>
+    </van-tab>
+
+
+    <van-tab title="无效券">
+        <view style='  display: flex;flex-direction: row;justify-content: center;flex-wrap: wrap;'>
+            <view class='card' wx:for='{{ card_list_2 }}'>
+                <van-row>
+                    <van-col span="6" offset='1'>
+                        <view style='padding-top:50rpx;font-size:28rpx;color:white'>
+                            <van-row>￥{{ item[0].discount_price}}</van-row>
+                            <van-row>满{{ item[0].min_price}}可用</van-row>
+                        </view>
+                    </van-col>
+                    <van-col span="13">
+                        <view style='padding-top:30rpx;font-size:28rpx;color:white;'>
+                            <van-row>{{ item[0].title}}</van-row>
+                            <van-row>有效期：{{ item[0].validity}}</van-row>
+                            <van-row>{{ item[0].describe}}</van-row>
+                        </view>
+                    </van-col>
+                    <van-col span="4">
+                        <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;'
+                              data-id='{{ item[0].id}}'>
+                            <van-row>无</van-row>
+                            <van-row>效</van-row>
+                        </view>
+                    </van-col>
+                </van-row>
+            </view>
         </view>
-      </van-col>
-      <van-col span="4">
-       <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;' bindtap='addCard' data-id='{{item.id}}'>
-          <van-row>去</van-row>
-          <van-row>使</van-row>
-          <van-row>用</van-row>
-        </view>
-      </van-col>
-    </van-row>
-  </view>
-</view>
+    </van-tab>
+</van-tabs>
+
+

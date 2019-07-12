@@ -133,7 +133,7 @@
   <block  wx:for='{{goods_list}}'>
     <van-col span='11' offset='1'>
       <van-col span='24'>
-        <image  src='{{item[0].goods_image[0].image}}' style='width:90%; height:300rpx;' data-goodsId='{{item[0].goods.id}}' bindtap='onProduct'></image>
+        <image  src='{{item[0].commodity[0].image}}' style='width:90%; height:300rpx;' data-goodsId='{{item[0].goods.id}}' bindtap='onProduct'></image>
       </van-col>
       <van-col span='24'>
         <view class='goods_title' data-goodsId='{{item[0].goods.id}}' bindtap='onProduct'>{{item[0].goods.title}}</view>
@@ -164,7 +164,7 @@
 <van-row>
   <van-col span="9">
     <view style='padding-top:20rpx;padding-left:60rpx'>
-      <image src='{{commodity_data.goods_image[0].image}}'  style='width:180rpx;height:180rpx'>
+      <image src='{{commodity_data.commodity[0].image}}'  style='width:180rpx;height:180rpx'>
       </image>
     </view>
   </van-col>

@@ -52,7 +52,7 @@ class WxPayView(APIView):
             'appid': wxinfo['APPID'],
             'mch_id': wxinfo['MCHID'],
             'nonce_str': str32,
-            'body': 'test支付',
+            'body': '微信支付',
             'out_trade_no': order_id,
             'total_fee': total_fee,
             'spbill_create_ip': '47.112.147.15',

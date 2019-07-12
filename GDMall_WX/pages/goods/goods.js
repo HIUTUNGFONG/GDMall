@@ -57,6 +57,7 @@ Page({
             // 查询女装产品列表
             goods.getGoodsDataBySort(2, (res) => {
                 this.setData({goods_list: res.data});
+              
             })
             console.log('查询成功')
             app.globalData.is_query = 0
@@ -293,7 +294,7 @@ Page({
         goods.getGoodsData((res) => {
             this.setData({goods_list: res.data});
             this.goods_list = res.data
-            // console.log(res.data)
+            console.log(res.data)
         })
     },
     // 搜索框搜索事件

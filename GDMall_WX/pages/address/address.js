@@ -18,8 +18,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.params = wx.getStorageSync('toOrder')
-    if(this.params=='click'){
+    this.params = wx.getStorageSync('orderClick')
+    if(this.params=='on'){
       this.setData({
         click:true
       })

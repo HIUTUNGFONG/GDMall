@@ -96,7 +96,7 @@ Page({
 
   },
   selectAddress:function(){
-    wx.setStorageSync('toOrder', 'click')
+    wx.setStorageSync('orderClick', 'on')
     wx.navigateTo({
       url: '../address/address',
     })
@@ -156,6 +156,13 @@ Page({
       }
     })
     
+  },
+  // 跳转优惠券页面
+  toCard:function(){
+    wx.setStorageSync('cardClick', 'on')
+    wx.navigateTo({
+      url: '../card/card',
+    })
   }
 
 

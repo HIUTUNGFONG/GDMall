@@ -1,4 +1,4 @@
-<image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/top_logo.png' class='top_logo'>首页顶部图片</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/top.jpg' class='top_logo_1'>首页顶部图片</image>
 
 <swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
   <swiper-item wx:for='{{ics}}' wx:key='{{index}}'>
@@ -6,7 +6,7 @@
   </swiper-item>
 </swiper>
 
-<image src='cloud://grotesquery-e9db0d.6772-grotesquery-e9db0d/index/title_img.png' class='top_logo'>首页无连接图片</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/8e77e984dce76c7f20b7e72e99a6ef7.jpg' class='top_logo_2'>首页无连接图片</image>
 
 
 <block wx:if="{{ivobs.show_type==1}}">
@@ -16,7 +16,7 @@
   <image src='{{ivobs.image}}' class='index_img2'>图片</image>
 </block>
 
-<image src='/temp/index_clothing.png' class='index_img1'>服装</image>
+<!-- <image src='/temp/index_clothing.png' class='index_img1'>服装</image> -->
 
 <view class='man_woman'>
   <image src='{{mwImageUrl}}' class='man_woman'>男装女装</image>
@@ -40,11 +40,13 @@
   <image src='https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/manlist.png' style='width:100%;height:800rpx'></image>
 </view>
 
-<image src='/temp/ps_img.png' class='index_ps'>配饰大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/3d7cd5af1f7ff580f4a013ff3895024.jpg' class='index_ps'>配饰大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/864d6ede0b30793288708672ac58612.jpg' class='index_ps'>配饰大图</image>
 
-<image src='/temp/vip_img.png' class='index_vip' bindtap='onVip'>vip大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/7ddf63642757eeb3398027c7a69bc3b.jpg' class='index_vip' bindtap='onVip'>vip大图</image>
 
-<image src='/temp/my_pss.png' class='index_ps_max'>本店声明大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/4ffdbf0f1f6e74298001230b5f7a03e.jpg' class='index_ps_max_1'>本店声明大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/82016ba9190df0d40304883fceb0795.jpg' class='index_ps_max_2'>本店声明大图</image>
 
 <!-- 底部tabbar -->
 <i-tab-bar current="{{ current }}" color="rgb(66, 66, 66)" bindchange="handleChange" fixed='true'>

@@ -231,7 +231,7 @@ class GoodsAttributeView(APIView):
     '''
     def get(self,request,goods_id):
 
-        goods = Attribute.objects.filter(id=goods_id).values()
+        goods = Attribute.objects.filter(goods=goods_id).values()
         data = {'data':goods}
         return Response(data)
 

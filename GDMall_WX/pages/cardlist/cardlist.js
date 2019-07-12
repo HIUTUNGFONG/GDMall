@@ -27,9 +27,22 @@ Page({
   addCard:function(e){
     // 获取card_id
     var card_id = card.getDataset(e,'id');
-    console.log(card_id)
+    // console.log(card_id)
     card.addCard(card_id,(res)=>{
-      console.log(res)
+      // console.log(res.msg)
+      if (res.msg == '您已领取过了!') {
+        wx.showToast({
+          title: '您已领取过了!',
+          image: '/icons/cross.png',
+          duration: 1000
+        })
+      } else {
+        wx.showToast({
+          title: '领取成功！',
+          icon: 'success',
+          duration: 1000
+        })
+      }
     })
   },
 

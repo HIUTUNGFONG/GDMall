@@ -61,7 +61,7 @@
 </view>
 
 <view class='body' style='margin-top:6px;'>
-  <van-cell title="优惠券" is-link value="无" />
+  <van-cell title="优惠券" is-link value="无"  bind:click='toCard'/>
 </view>
 
 <view class='body' style='margin-top:6px;'>

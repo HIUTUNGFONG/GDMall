@@ -13,7 +13,7 @@ Page({
 
     vp:true,  //视频或图片栏控制显示参数
     showManType:false,
-    mwImageUrl:'https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/mw.png',
+    mwImageUrl:'https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/86847ed413c4c738ee6dafdc0a08529.jpg',
     current: 'indexpage',  //底部导航栏参数
 
   },
