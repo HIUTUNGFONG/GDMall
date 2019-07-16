@@ -17,6 +17,8 @@ class AttributeAdmin(object):
     pass
 class CommodityAdmin(object):
     pass
+class CommodityBannerAdmin(object):
+    pass
 
 
 xadmin.site.register(IndexCarousel, IndexCarouselAdmin)
@@ -27,3 +29,4 @@ xadmin.site.register(Goods, GoodsAdmin)
 xadmin.site.register(GoodsImage, GoodsImageAdmin)
 xadmin.site.register(Attribute, AttributeAdmin)
 xadmin.site.register(Commodity, CommodityAdmin)
+xadmin.site.register(CommodityBanner, CommodityBannerAdmin)

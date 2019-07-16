@@ -165,3 +165,20 @@ class Commodity(BaseModel):
 
     def __str__(self):
         return str(self.goods.title)
+
+class CommodityBanner(BaseModel):
+    '''
+    商品详情轮播图
+    '''
+    goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name='所属产品')
+    image = models.ImageField(upload_to='CommdityBannerImg', verbose_name='商品图片')
+    index = models.IntegerField(default=0, verbose_name='展示顺序')
+
+
+    class Meta:
+        db_table = 'gd_commodity_Banner'
+        verbose_name = '商品轮播图'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str(self.goods)

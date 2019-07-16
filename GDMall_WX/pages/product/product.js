@@ -42,13 +42,11 @@ Page({
       })
     });
     goods.getGoodsAttribute(this.goodsId,(res)=>{
-      console.log(this.goodsId)
       // 获取产品属性
       // console.log(res.data[0]);
       this.setData({
         goods_attribute: res.data[0]
       })
-      console.log(res.data)
     })
   },
 

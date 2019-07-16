@@ -15,7 +15,9 @@
   color: rgb(204, 201, 201);
 }
 .product_title{
-  font-size: 45rpx;
+  font-size: 35rpx;
+  /* font-style: italic; */
+
 }
 .line{
   color: rgb(204, 201, 201);
