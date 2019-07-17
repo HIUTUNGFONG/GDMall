@@ -93,7 +93,7 @@ class GoodsListViewById(APIView):
         data_list = []
 
         for g in goods:
-            commodity_banner = CommodityBanner.objects.filter(goods=g,is_delete=0).order_by('index')
+            commodity_banner = CommodityBanner.objects.filter(goods=g,is_delete=0).order_by('index').values()
             goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'], is_delete=0), many=True)
             commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'], is_delete=0), many=True)
             sort = Sort.objects.filter(id=g['sort_id'], is_delete=0).values()
