@@ -3,7 +3,7 @@
 <view class='product_body'>
 
 <swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true' class='product_swiper'>
-  <swiper-item wx:for='{{goods_data.commodity}}' wx:key='{{index}}'>
+  <swiper-item wx:for='{{goods_data.commodity_banner}}' wx:key='{{index}}'>
     <image src='{{item.image}}' class='swiper_img'>商品详细页-轮播图</image>
   </swiper-item>
 </swiper>

@@ -144,11 +144,13 @@ STATIC_ROOT = '/opt/static/GDMall'
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 
 # 阿里云oss
-ACCESS_KEY_ID = "LTAI5cuJmRKFt1fW"
-ACCESS_KEY_SECRET = "Km5xbIeCN7ockiONQiX6hY0FQFIOzh"
+# ACCESS_KEY_ID = "LTAI5cuJmRKFt1fW"
+ACCESS_KEY_ID = "LTAIJ4v9rNDKgmn9"
+# ACCESS_KEY_SECRET = "Km5xbIeCN7ockiONQiX6hY0FQFIOzh"
+ACCESS_KEY_SECRET = "IYQUGn86JH9GaeS5LfHXxM5hapCJSt"
 END_POINT = "oss-cn-shenzhen.aliyuncs.com"
 PREFIX_URL = 'http://'
-BUCKET_NAME = "grotesquery"
+BUCKET_NAME = "grotesquery-mall"
 ALIYUN_OSS_CNAME = ""  # 自定义域名，如果不需要可以不填写
 BUCKET_ACL_TYPE = "public-read"  # private, public-read, public-read-write
 DEFAULT_FILE_STORAGE = 'aliyun_oss2_storage.backends.AliyunMediaStorage'
