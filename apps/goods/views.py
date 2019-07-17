@@ -94,11 +94,12 @@ class GoodsListViewById(APIView):
 
         for g in goods:
             commodity_banner = CommodityBanner.objects.filter(goods=g['id'],is_delete=0).order_by('index').values()
-            goods_image = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'], is_delete=0), many=True)
+            goods_image_0 = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],show_region=0, is_delete=0), many=True)
+            goods_image_1 = GoodsImageSerializers(GoodsImage.objects.filter(goods_id=g['id'],show_region=1, is_delete=0), many=True)
             commodity = CommoditySerializers(Commodity.objects.filter(goods_id=g['id'], is_delete=0), many=True)
             sort = Sort.objects.filter(id=g['sort_id'], is_delete=0).values()
             classify = Classify.objects.filter(id=g['classify_id'], is_delete=0).values()
-            data_list.append([{'goods': g, 'goods_image': goods_image.data, 'commodity': commodity.data, 'sort': sort,
+            data_list.append([{'goods': g, 'goods_image_0': goods_image_0.data,'goods_image_1': goods_image_1.data, 'commodity': commodity.data, 'sort': sort,
                                'classify': classify,'commodity_banner':commodity_banner}])
 
         data = {'data': data_list}
