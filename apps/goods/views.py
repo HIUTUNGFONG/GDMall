@@ -192,7 +192,6 @@ class CommodityListViewByGoodsId(APIView):
           {
             "attrKey": "规格：",
             "attrValue": "+免费配料",
-
           },
           {
             "attrKey": "甜度：",

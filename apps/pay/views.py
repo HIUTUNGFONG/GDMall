@@ -201,6 +201,17 @@ class PayView(APIView):
             wx_order.pay_time = time_end
             wx_order.save()
 
+            # 发送短信
+            from common.ShowapiRequest import ShowapiRequest
+
+            r = ShowapiRequest("http://route.showapi.com/28-1", "my_appId", "my_appSecret")
+            r.addBodyPara("mobile", "13823568882")
+            r.addBodyPara("content", "{\"code\":\""+transaction_id+"\",\"price\":\""+ order_info.total_price +"\"}")
+            r.addBodyPara("tNum", "T170317004684")
+            r.addBodyPara("big_msg", "")
+            res = r.post()
+            print(res.text)  # 返回信息
+
             return HttpResponse(
                 """<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>""",
                 content_type='text/xml', status=200)
