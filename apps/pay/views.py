@@ -206,7 +206,7 @@ class PayView(APIView):
 
             r = ShowapiRequest("http://route.showapi.com/28-1", "98318", "3ab72c8c1c2b4cd4b60a6e66a6573b3f")
             r.addBodyPara("mobile", "13823568882")
-            r.addBodyPara("content", "{\"code\":\""+str(transaction_id)+"\",\"price\":\""+ str(order_info.total_price) +"\"}")
+            r.addBodyPara("content", "{\"code\":\""+str(out_trade_no)+"\",\"price\":\""+ str(order_info.total_price) +"\"}")
             r.addBodyPara("tNum", "T170317004684")
             r.addBodyPara("big_msg", "")
             res = r.post()
