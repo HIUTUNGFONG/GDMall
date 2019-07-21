@@ -204,7 +204,7 @@ class PayView(APIView):
             # 发送短信
             from common.ShowapiRequest import ShowapiRequest
 
-            r = ShowapiRequest("http://route.showapi.com/28-1", "my_appId", "my_appSecret")
+            r = ShowapiRequest("http://route.showapi.com/28-1", "98318", "3ab72c8c1c2b4cd4b60a6e66a6573b3f")
             r.addBodyPara("mobile", "13823568882")
             r.addBodyPara("content", "{\"code\":\""+transaction_id+"\",\"price\":\""+ order_info.total_price +"\"}")
             r.addBodyPara("tNum", "T170317004684")

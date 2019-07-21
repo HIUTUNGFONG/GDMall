@@ -19,7 +19,7 @@
 
       <view wx:for='{{item.order_list}}' style='border-bottom: solid 1px rgb(221, 221, 221);' data-id='{{item.order_info_id}}' bindtap='toOrdertails' >
       <van-row>
-        <van-col span="6" offset='1'><image src='https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/{{item.commodity_image}}' style='width:150rpx;height:150rpx;'></image></van-col>
+        <van-col span="6" offset='1'><image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/{{item.commodity_image}}' style='width:150rpx;height:150rpx;'></image></van-col>
         <van-col span="14">
           <van-row>
             <text class='text'>{{item.commodity_name}}</text>
@@ -101,7 +101,7 @@
 
    <view wx:for='{{order_list}}' style='padding-top:20rpx;border-bottom: solid 1px rgb(221, 221, 221);'>
       <van-row>
-        <van-col span="6" offset='1'><image src='https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/{{item.commodity_image}}' style='width:150rpx;height:150rpx;'></image></van-col>
+        <van-col span="6" offset='1'><image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/{{item.commodity_image}}' style='width:150rpx;height:150rpx;'></image></van-col>
         <van-col span="14">
           <van-row>
             <text class='text'>{{item.commodity_name}}</text>

@@ -4,7 +4,7 @@
 
 <swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true' class='product_swiper'>
   <swiper-item wx:for='{{goods_data.commodity_banner}}' wx:key='{{index}}'>
-    <image src='{{item.image}}' class='swiper_img'>商品详细页-轮播图</image>
+    <image src='http://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/{{item.image}}' class='swiper_img'>商品详细页-轮播图</image>
   </swiper-item>
 </swiper>
 
@@ -16,7 +16,7 @@
       <van-icon name="smile-comment-o" size='60rpx' />
     </button>
   </van-col>
-  <van-col offset='1' span="18">价格:￥{{goods_data.commodity[0].price}}</van-col>
+  <van-col offset='1' span="18"> <view  style="padding-top:10rpx;">价格:￥{{goods_data.commodity[0].price}}</view></van-col>
   <van-col span="5" class='product_sales'>销量:{{goods_data.goods.sales}}件</van-col>
   <view class='line'></view>
 </van-row>
@@ -28,7 +28,7 @@
 
 <van-tabs bind:click="onClick">
   <van-tab title="图文详情">
-    <block wx:for='{{goods_data.goods_image}}'>
+    <block wx:for='{{goods_data.goods_image_1}}'>
       <view class='image-container' bindtap='img_yl' data-url='{{item.image}}'>
       <image src='{{item.image}}' style='height:1500px;'></image>
       </view>

@@ -10,12 +10,9 @@ var index = new Index();
 
 Page({
   data: {
-
     vp:true,  //视频或图片栏控制显示参数
-    showManType:false,
-    mwImageUrl:'https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/86847ed413c4c738ee6dafdc0a08529.jpg',
+    showManType:false,mwImageUrl:'https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/86847ed413c4c738ee6dafdc0a08529.jpg',
     current: 'indexpage',  //底部导航栏参数
-
   },
   //事件处理函数
   bindViewTap: function() {
@@ -27,7 +24,6 @@ Page({
     // 生命周期函数--监听页面加载
     showManType: (options.showManType == "true" ? true : false)
     this._loadData();
-  
   },
   _loadData:function(){
     index.getBannerData((res)=>{
@@ -48,7 +44,6 @@ Page({
       url: '../product/product',
     })
   },
-
   on_mw_1: function () {
     // 控制男装显示隐藏
     var that = this;
@@ -60,11 +55,10 @@ Page({
   onWomen: function(){
     // 跳转女装产品列表页
     console.log(app.globalData.is_query)
-    app.globalData.is_query = 1
-    
+    app.globalData.is_query = 1;
     wx.reLaunch({
       url: '../goods/goods',
-    })
+    });
   },
   onVip: function () {
     // 跳转vip页面
@@ -92,7 +86,4 @@ Page({
       url: tourl
     })
   }
-  
-
-  
 })

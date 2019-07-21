@@ -87,7 +87,7 @@ class GoodsListView(APIView):
 
 class GoodsListViewById(APIView):
     '''
-    获取产品列表
+    获取产品列表(根据id)
     '''
 
     def get(self, request, goods_id):
