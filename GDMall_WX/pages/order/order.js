@@ -92,7 +92,7 @@ Page({
       sums: this.sum.toFixed(2)*100
     })
     // 删除缓存数据
-    wx.removeStorageSync('commodity_list_num')
+    // wx.removeStorageSync('commodity_list_num')
 
   },
   selectAddress:function(){

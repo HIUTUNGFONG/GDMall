@@ -34,6 +34,7 @@ class CreateOrderView(APIView):
         address_id = data['address_id']
         note = data['note']
         token = data['token']
+        commodity_num = data['num']
         open_id = PublicFunction().getOpenIdByToken(token)
 
         # 参数校验
@@ -93,7 +94,10 @@ class CreateOrderView(APIView):
                 # 获取用户要购买商品的数量
                 conn = get_redis_connection('Cart')
                 cart_key = 'cart_' + open_id
-                count = conn.hget(cart_key, commodity_id)
+                if commodity_num == None:
+                    count = conn.hget(cart_key, commodity_id)
+                else:
+                    count = commodity_num
                 print(count)
                 print(commodity.stock)
 

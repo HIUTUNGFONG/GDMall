@@ -515,12 +515,10 @@ Page({
             // wx.setStorageSync('commodityId_list', commodityId_list)
             // wx.setStorageSync('commodityCount_list', commodityCount_list)
             goods.getCommodityById(this.commodity_id,(res)=>{
-                console.log(res.data)
+                console.log(res.data);
                 wx.setStorageSync('commodity_list', res.data);
                 wx.setStorageSync('commodity_list_num', this.stepperAttr);
-
-
-            })
+            });
 
             // 跳转到订单页面
             wx.navigateTo({
