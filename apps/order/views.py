@@ -94,7 +94,7 @@ class CreateOrderView(APIView):
                 # 获取用户要购买商品的数量
                 conn = get_redis_connection('Cart')
                 cart_key = 'cart_' + open_id
-                if commodity_num == None:
+                if commodity_num == '':
                     count = conn.hget(cart_key, commodity_id)
                 else:
                     count = commodity_num

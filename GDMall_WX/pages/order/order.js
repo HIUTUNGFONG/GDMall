@@ -92,7 +92,7 @@ Page({
       sums: this.sum.toFixed(2)*100
     })
     // 删除缓存数据
-    // wx.removeStorageSync('commodity_list_num')
+    wx.removeStorageSync('commodity_list_num')
 
   },
   selectAddress:function(){
@@ -109,11 +109,12 @@ Page({
   onSubmit:function(){
     // 获取收货地址id
     var addressId = wx.getStorageSync('addressId')
+    var commodity_num = wx.getStorageSync('commodity_list_num')
     // 创建订单
     if(this.note==''||this.note==undefined){
       this.note = '无备注'
     }
-    order.createOrder(this.commodityId_list, addressId, this.note,(res)=>{
+    order.createOrder(this.commodityId_list, addressId, this.note,commodity_num,(res)=>{
       console.log(res)
       if(res.msg=='商品库存不足'){
         wx.showToast({

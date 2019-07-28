@@ -22,22 +22,40 @@ class Order extends Base {
         this.request(params);
     }
 
-    createOrder(commodityId_list, address_id, note, callBack) {
-        // 创建订单
-        var params = {
-            url: 'order/create',
-            method: 'POST',
-            data: {
-                'token': wx.getStorageSync('token'),
-                'commodityId_list': commodityId_list,
-                'address_id': address_id,
-                'note': note
-            },
-            sCallBack: function (res) {
-                callBack && callBack(res);
-            }
-        };
-        this.request(params);
+    // createOrder(commodityId_list, address_id, note, callBack) {
+    //     // 创建订单
+    //     var params = {
+    //         url: 'order/create',
+    //         method: 'POST',
+    //         data: {
+    //             'token': wx.getStorageSync('token'),
+    //             'commodityId_list': commodityId_list,
+    //             'address_id': address_id,
+    //             'note': note
+    //         },
+    //         sCallBack: function (res) {
+    //             callBack && callBack(res);
+    //         }
+    //     };
+    //     this.request(params);
+    // }
+    createOrder(commodityId_list, address_id, note,num, callBack) {
+      // 创建订单
+      var params = {
+        url: 'order/create',
+        method: 'POST',
+        data: {
+          'token': wx.getStorageSync('token'),
+          'commodityId_list': commodityId_list,
+          'address_id': address_id,
+          'note': note,
+          'num':num
+        },
+        sCallBack: function (res) {
+          callBack && callBack(res);
+        }
+      };
+      this.request(params);
     }
 
     getOrderInfoList(callBack) {
