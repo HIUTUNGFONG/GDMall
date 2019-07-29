@@ -61,7 +61,7 @@
 </view>
 
 <view class='body' style='margin-top:6px;'>
-  <van-cell title="优惠券" is-link value="无"  bind:click='toCard'/>
+  <van-cell title="优惠券" is-link value="{{card_price}}"  bind:click='toCard'/>
 </view>
 
 <view class='body' style='margin-top:6px;'>
@@ -75,7 +75,7 @@
   </view>
   <view>
     <view class='bottom_text bottom_text_l'>优惠抵扣</view>
-    <view class='bottom_text bottom_text_r'>0</view>
+    <view class='bottom_text bottom_text_r'>{{card_price}}</view>
   </view>
   <view>
     <view class='bottom_text bottom_text_l'>运费</view>
@@ -83,13 +83,13 @@
   </view>
   <view>
     <view class='bottom_text bottom_text_l'>实际支付</view>
-    <view class='bottom_text bottom_text_r'>{{sum}}</view>
+    <view class='bottom_text bottom_text_r'>{{sum-card_price}}</view>
   </view>
 </view>
 
 
 <van-submit-bar
-  price="{{sums}}"
+  price="{{(sum-card_price)*100}}"
   button-text="提交订单"
   bind:submit="onSubmit"
   button-type='primary'

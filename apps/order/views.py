@@ -35,6 +35,7 @@ class CreateOrderView(APIView):
         note = data['note']
         token = data['token']
         commodity_num = data['num']
+        discount_price = data['card_price']
         open_id = PublicFunction().getOpenIdByToken(token)
 
         # 参数校验
@@ -79,6 +80,7 @@ class CreateOrderView(APIView):
                                              total_price=total_price,
                                              total_count=total_count,
                                              transit_price=transit_price,
+                                             discount_price=discount_price,
                                              note=note)
 
             # 遍历向gd_order_list中添加记录
@@ -129,7 +131,7 @@ class CreateOrderView(APIView):
 
             # 更新order对应记录中的total_count和total_price
             order.total_count = total_count
-            order.total_price = total_price + transit_price
+            order.total_price = total_price + transit_price - discount_price
             order.commodity_total_price = total_price
             order.save()
         except Exception as e:

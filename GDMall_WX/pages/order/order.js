@@ -22,10 +22,27 @@ Page({
    */
   onLoad: function (options) {
     // 获取缓存中的地址
-    this.address = wx.getStorageSync('address')
+    this.card_state = options.card_state;
+    if (this.card_state=='true'){
+      // 获取缓存的card_token
+      var card_token = wx.getStorageSync('card_key')
+      this.card_price = wx.getStorageSync('card_price')
+      this.setData({
+        card_state:'true',
+        card_price: this.card_price
+      })
+    }else{
+      this.card_price = 0;
+      this.setData({
+        card_price: 0
+      })
+    }
+    console.log(this.card_state)
+    this.address = wx.getStorageSync('address');
+    this.card_key = wx.getStorageSync('card_key');
     this.addressId = ''
     this.setNote = ''
-    console.log('缓存获取地址数据'+this.address)
+    console.log('缓存获取地址数据'+this.address);
     if(this.address==''){
 
     // 获取用户地址
@@ -91,10 +108,10 @@ Page({
       commodity_list:this.commodity_list,
       count:this.count,
       sum:this.sum.toFixed(2),
-      sums: this.sum.toFixed(2)*100
+      sums: this.sum.toFixed(2) * 100 
     })
     // 删除缓存数据
-    wx.removeStorageSync('commodity_list_num')
+    // wx.removeStorageSync('commodity_list_num')
 
   },
   selectAddress:function(){

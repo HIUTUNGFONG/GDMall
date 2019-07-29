@@ -6,23 +6,23 @@
                 <view class='card' wx:for='{{ card_list_1 }}'>
 
                     <van-row>
-                        <view bindtap='toOrder'>
+                        <view bindtap='toOrder' data-token="{{item[1]}}" data-cardprice="{{ item[0][0].discount_price}}">
                             <van-col span="6" offset='1'>
                                 <view style='padding-top:50rpx;font-size:28rpx;color:white'>
-                                    <van-row>￥{{ item[0].discount_price}}</van-row>
-                                    <van-row>满{{ item[0].min_price}}可用</van-row>
+                                    <van-row>￥{{ item[0][0].discount_price}}</van-row>
+                                    <van-row>满{{ item[0][0].min_price}}可用</van-row>
                                 </view>
                             </van-col>
                             <van-col span="13">
                                 <view style='padding-top:30rpx;font-size:28rpx;color:white;'>
-                                    <van-row>{{ item[0].title}}</van-row>
-                                    <van-row>有效期：{{ item[0].validity}}</van-row>
-                                    <van-row>{{ item[0].describe}}</van-row>
+                                    <van-row>{{ item[0][0].title}}</van-row>
+                                    <van-row>有效期：{{ item[0][0].validity}}</van-row>
+                                    <van-row>{{ item[0][0].describe}}</van-row>
                                 </view>
                             </van-col>
                             <van-col span="4">
                                 <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;'
-                                      data-id='{{ item[0].id}}'>
+                                      data-id='{{ item[0][0].id}}'>
                                     <van-row>使</van-row>
                                     <van-row>用</van-row>
                                 </view>
@@ -37,20 +37,20 @@
                     <van-row>
                         <van-col span="6" offset='1'>
                             <view style='padding-top:50rpx;font-size:28rpx;color:white'>
-                                <van-row>￥{{ item[0].discount_price}}</van-row>
-                                <van-row>满{{ item[0].min_price}}可用</van-row>
+                                <van-row>￥{{ item[0][0].discount_price}}</van-row>
+                                <van-row>满{{ item[0][0].min_price}}可用</van-row>
                             </view>
                         </van-col>
                         <van-col span="13">
                             <view style='padding-top:30rpx;font-size:28rpx;color:white;'>
-                                <van-row>{{ item[0].title}}</van-row>
-                                <van-row>有效期：{{ item[0].validity}}</van-row>
-                                <van-row>{{ item[0].describe}}</van-row>
+                                <van-row>{{ item[0][0].title}}</van-row>
+                                <van-row>有效期：{{ item[0][0].validity}}</van-row>
+                                <van-row>{{ item[0][0].describe}}</van-row>
                             </view>
                         </van-col>
                         <van-col span="4">
                             <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;'
-                                  bindtap='toGoods' data-id='{{ item[0].id}}'>
+                                  bindtap='toGoods' data-id='{{ item[0][0].id}}'>
                                 <van-row>使</van-row>
                                 <van-row>用</van-row>
                             </view>
@@ -69,20 +69,20 @@
                 <van-row>
                     <van-col span="6" offset='1'>
                         <view style='padding-top:50rpx;font-size:28rpx;color:white'>
-                            <van-row>￥{{ item[0].discount_price}}</van-row>
-                            <van-row>满{{ item[0].min_price}}可用</van-row>
+                            <van-row>￥{{ item[0][0].discount_price}}</van-row>
+                            <van-row>满{{ item[0][0].min_price}}可用</van-row>
                         </view>
                     </van-col>
                     <van-col span="13">
                         <view style='padding-top:30rpx;font-size:28rpx;color:white;'>
-                            <van-row>{{ item[0].title}}</van-row>
-                            <van-row>有效期：{{ item[0].validity}}</van-row>
-                            <van-row>{{ item[0].describe}}</van-row>
+                            <van-row>{{ item[0][0].title}}</van-row>
+                            <van-row>有效期：{{ item[0][0].validity}}</van-row>
+                            <van-row>{{ item[0][0].describe}}</van-row>
                         </view>
                     </van-col>
                     <van-col span="4">
                         <view style='padding-top:55rpx;padding-left:38rpx;font-size:35rpx;color:white;'
-                              data-id='{{ item[0].id}}'>
+                              data-id='{{ item[0][0].id}}'>
                             <van-row>无</van-row>
                             <van-row>效</van-row>
                         </view>
