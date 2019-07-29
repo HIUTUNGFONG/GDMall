@@ -68,6 +68,7 @@ Page({
         console.log(this.commodity_list_num)
          this.count+=this.commodity_list_num;
             this.sum += this.commodity_list_num * this.commodity_list[i].price;
+            wx.setStorageSync('order_price', this.sum)
             this.setData({
               commodity_list_num:this.commodity_list_num
             })
@@ -75,6 +76,7 @@ Page({
           console.log('run')
            this.count+=this.commodity_list[i].num;
             this.sum += this.commodity_list[i].num * this.commodity_list[i].price;
+            wx.setStorageSync('order_price', this.sum)
             this.setData({
               commodity_list_num:''
             })

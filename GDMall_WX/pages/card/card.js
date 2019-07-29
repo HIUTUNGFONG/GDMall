@@ -19,6 +19,7 @@ Page({
   onLoad: function (options) {
 
     this.params = wx.getStorageSync('cardClick')
+    this.order_price = wx.getStorageSync('order_price')
     console.log(this.params)
     if(this.params=='on'){
       this.setData({
@@ -30,20 +31,35 @@ Page({
     this.now_time = Date.parse(new Date());
 
     card.getUserCardList((res) => {
-      // console.log(res.card_list)
+      console.log(res.card_list)
       // 有效券
       var card_list_1 = [];
       // 无效券
       var card_list_2 = [];
-      for(var i=0;i<res.card_list.length;i++){
-        // 获取有效期时间戳
-        var validity_time = new Date(res.card_list[i][0].validity).getTime();
-        if (validity_time>=this.now_time){
-          card_list_1.push(res.card_list[i])
-        }else{
-          card_list_2.push(res.card_list[i])
+      if (this.params=='on'){
+        for (var i = 0; i < res.card_list.length; i++) {
+          // 获取有效期时间戳
+          var validity_time = new Date(res.card_list[i][0].validity).getTime();
+          // 获取使用金额
+          var min_price = res.card_list[i][0].min_price;
+          if (validity_time >= this.now_time&&this.order_price>=min_price) {
+            card_list_1.push(res.card_list[i])
+          } else {
+            card_list_2.push(res.card_list[i])
+          }
+        }
+      }else{
+        for (var i = 0; i < res.card_list.length; i++) {
+          // 获取有效期时间戳
+          var validity_time = new Date(res.card_list[i][0].validity).getTime();
+          if (validity_time >= this.now_time) {
+            card_list_1.push(res.card_list[i])
+          } else {
+            card_list_2.push(res.card_list[i])
+          }
         }
       }
+      
       this.setData({
         card_list_1: card_list_1,
         card_list_2: card_list_2
