@@ -133,7 +133,7 @@ Page({
     if(this.note==''||this.note==undefined){
       this.note = '无备注'
     }
-    order.createOrder(this.commodityId_list, addressId, this.note,commodity_num,(res)=>{
+    order.createOrder(this.commodityId_list, addressId, this.note,commodity_num,this.card_price,(res)=>{
       console.log(res)
       if(res.msg=='商品库存不足'){
         wx.showToast({

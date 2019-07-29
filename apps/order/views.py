@@ -131,7 +131,7 @@ class CreateOrderView(APIView):
 
             # 更新order对应记录中的total_count和total_price
             order.total_count = total_count
-            order.total_price = total_price + transit_price - discount_price
+            order.total_price = float(total_price) + float(transit_price) - float(discount_price)
             order.commodity_total_price = total_price
             order.save()
         except Exception as e:

@@ -39,7 +39,7 @@ class Order extends Base {
     //     };
     //     this.request(params);
     // }
-    createOrder(commodityId_list, address_id, note,num, callBack) {
+  createOrder(commodityId_list, address_id, note, num,card_price, callBack) {
       // 创建订单
       var params = {
         url: 'order/create',
@@ -49,7 +49,8 @@ class Order extends Base {
           'commodityId_list': commodityId_list,
           'address_id': address_id,
           'note': note,
-          'num':num
+          'num':num,
+          'card_price':card_price
         },
         sCallBack: function (res) {
           callBack && callBack(res);
