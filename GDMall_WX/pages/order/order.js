@@ -25,18 +25,22 @@ Page({
     this.card_state = options.card_state;
     if (this.card_state=='true'){
       // 获取缓存的card_token
-      var card_token = wx.getStorageSync('card_key')
+      this.card_token = wx.getStorageSync('card_key')
       this.card_price = wx.getStorageSync('card_price')
+      
       this.setData({
         card_state:'true',
         card_price: this.card_price
       })
     }else{
+      this.card_token ='no'
       this.card_price = 0;
       this.setData({
         card_price: 0
       })
     }
+
+    console.log(this.card_token)
     console.log(this.card_state)
     this.address = wx.getStorageSync('address');
     this.card_key = wx.getStorageSync('card_key');
@@ -85,6 +89,17 @@ Page({
         console.log(this.commodity_list_num)
          this.count+=this.commodity_list_num;
             this.sum += this.commodity_list_num * this.commodity_list[i].price;
+            if(this.card_price>0){
+              var sums = (this.sum - this.card_price).toFixed(2)*100
+              this.setData({
+                sums:sums
+              })
+            }else{
+              var sums = this.sum.toFixed(2) * 100
+              this.setData({
+                sums: sums
+              })
+            }
             wx.setStorageSync('order_price', this.sum)
             this.setData({
               commodity_list_num:this.commodity_list_num
@@ -108,7 +123,7 @@ Page({
       commodity_list:this.commodity_list,
       count:this.count,
       sum:this.sum.toFixed(2),
-      sums: this.sum.toFixed(2) * 100 
+      // sums: this.sum.toFixed(2) * 100 
     })
     // 删除缓存数据
     // wx.removeStorageSync('commodity_list_num')
@@ -133,7 +148,7 @@ Page({
     if(this.note==''||this.note==undefined){
       this.note = '无备注'
     }
-    order.createOrder(this.commodityId_list, addressId, this.note,commodity_num,this.card_price,(res)=>{
+    order.createOrder(this.commodityId_list, addressId, this.note, commodity_num, this.card_price, this.card_token,(res)=>{
       console.log(res)
       if(res.msg=='商品库存不足'){
         wx.showToast({

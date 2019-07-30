@@ -21,6 +21,12 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        user.getCard((res)=>{
+          this.card_count = res.data.length()
+          console.log(this.card_count)
+        })
+
+
         var that = this
         wx.getSetting({
             success(res) {

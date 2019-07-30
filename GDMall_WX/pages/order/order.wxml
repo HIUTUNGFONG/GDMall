@@ -83,13 +83,13 @@
   </view>
   <view>
     <view class='bottom_text bottom_text_l'>实际支付</view>
-    <view class='bottom_text bottom_text_r'>{{sum-card_price}}</view>
+    <view class='bottom_text bottom_text_r'>{{sums/100}}</view>
   </view>
 </view>
 
 
 <van-submit-bar
-  price="{{(sum-card_price)*100}}"
+  price="{{sums}}"
   button-text="提交订单"
   bind:submit="onSubmit"
   button-type='primary'

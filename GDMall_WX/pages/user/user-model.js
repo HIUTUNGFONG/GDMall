@@ -42,7 +42,15 @@ class User extends Base {
     }
     this.request(params);
   }
-
+  getCard(callBack) {
+    var params = {
+      url: 'getcard/' + wx.getStorageSync('token'),
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    }
+    this.request(params);
+  }
 }
 
 export { User };

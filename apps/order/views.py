@@ -15,6 +15,7 @@ from django_redis import get_redis_connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.card.models import UserCard
 from apps.goods.models import Commodity, Goods
 from apps.order.models import OrderInfo, OrderList
 from apps.user.models import Address, WxUser
@@ -36,6 +37,7 @@ class CreateOrderView(APIView):
         token = data['token']
         commodity_num = data['num']
         discount_price = data['card_price']
+        card_token = data['card_token']
         open_id = PublicFunction().getOpenIdByToken(token)
 
         # 参数校验
@@ -142,7 +144,9 @@ class CreateOrderView(APIView):
 
         # 删除购物车中对应的记录 sku_ids=[1,2]
         conn.hdel(cart_key, *commodityId_list)
-
+        if(card_token!='no'):
+            user_card = UserCard.objects.get(token=card_token)
+            user_card.is_use = True
         # 返回应答
         return Response({'msg': '订单创建成功', 'order_id': order_id})
 
