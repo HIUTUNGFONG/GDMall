@@ -194,3 +194,7 @@ class UserBackground(BaseModel):
         db_table = 'gd_user_background'
         verbose_name = '用户页面背景图'
         verbose_name_plural = verbose_name
+
+
+    def __str__(self):
+        return str(self.image)
