@@ -197,4 +197,4 @@ class UserBackground(BaseModel):
 
 
     def __str__(self):
-        return str(self.image)
+        return str(self.id)
