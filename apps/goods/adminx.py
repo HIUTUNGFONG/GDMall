@@ -1,5 +1,7 @@
 from apps.goods.models import *
 import xadmin
+from apps.user.models import UserBackground
+
 
 class IndexCarouselAdmin(object):
     pass
@@ -19,6 +21,8 @@ class CommodityAdmin(object):
     pass
 class CommodityBannerAdmin(object):
     pass
+class UserBackgroundAdmin(object):
+    pass
 
 
 xadmin.site.register(IndexCarousel, IndexCarouselAdmin)
@@ -30,3 +34,4 @@ xadmin.site.register(GoodsImage, GoodsImageAdmin)
 xadmin.site.register(Attribute, AttributeAdmin)
 xadmin.site.register(Commodity, CommodityAdmin)
 xadmin.site.register(CommodityBanner, CommodityBannerAdmin)
+xadmin.site.register(UserBackground, UserBackgroundAdmin)

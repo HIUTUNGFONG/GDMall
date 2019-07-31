@@ -15,5 +15,4 @@ urlpatterns = [
     path('address/delete', DeleteAddress.as_view(), name='deleteAddress'),  # POST删除用户地址
     path('address/update/default', UpdateDefault.as_view(), name='updateAddress'),  # GET修改用户默认地址
     path('address/update', UpdateAddress.as_view(), name='updateAddress'),  # POST修改用户地址
-    path('get/background', UserBackground.as_view(), name='UserBackground'),  # 获取背景图
 ]

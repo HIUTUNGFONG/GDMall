@@ -15,5 +15,6 @@ urlpatterns = [
     re_path('goods/attribute/(?P<goods_id>\d)', GoodsAttributeView.as_view(), name='GoodsAttributeView'),  # GET 查询产品属性
     re_path('commodity/get/(?P<commodity_id>\d)', CommodityListView.as_view(), name='CommodityListView'),  # GET
     re_path('commodity/(?P<goods_id>\d)', CommodityListViewByGoodsId.as_view(), name='CommodityListViewByGoodsId'), # GET
+    path('get/background', UserBackgroundView.as_view(), name='UserBackground'),  # 获取背景图
 
 ]

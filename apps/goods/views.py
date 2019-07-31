@@ -6,6 +6,7 @@ from apps.goods.models import *
 import json
 
 from apps.goods.serializers import *
+from apps.user.models import UserBackground
 
 
 class IndexView(APIView):
@@ -264,3 +265,11 @@ class CommodityListView(APIView):
         cs = CommoditySerializers(commodity, many=True)
         data = {'data': cs.data}
         return Response(data)
+
+class UserBackgroundView(APIView):
+    '''
+    获取用户页面背景图
+    '''
+    def get(self,request):
+        data = UserBackground.objects.filter(is_delete=False).values()
+        return Response({'data':data})

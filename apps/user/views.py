@@ -254,10 +254,3 @@ class UpdataWxUser(APIView):
                 return Response({'msg': '用户不存在'})
         return Response({'msg': '修改成功'})
 
-class UserBackground(APIView):
-    '''
-    获取用户页面背景图
-    '''
-    def get(self,request):
-        data = UserBackground.objects.filter(is_delete=False).values()
-        return Response({'data':data})
