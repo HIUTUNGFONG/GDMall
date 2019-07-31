@@ -68,3 +68,15 @@ class VipLevel(BaseModel):
         db_table = 'gd_vip_level'
         verbose_name = '会员等级'
         verbose_name_plural = verbose_name
+
+class UserBackground(BaseModel):
+    '''
+    用户页面背景图
+    '''
+    image = models.ImageField(upload_to='UserBackgroundImg', blank=True, verbose_name='背景图片')
+
+
+    class Meta:
+        db_table = 'gd_user_background'
+        verbose_name = '用户页面背景图'
+        verbose_name_plural = verbose_name

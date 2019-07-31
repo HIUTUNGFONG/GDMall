@@ -12,15 +12,15 @@ App({
         wx.setStorageSync('logs', logs)
 
         // 判断是否登录
-        wx.checkSession({
-            success: function (res) {
-                console.log(res, '登录未过期')
+        // wx.checkSession({
+        //     success: function (res) {
+        //         console.log(res, '登录未过期')
                 // wx.showToast({
                 //     title: '登录未过期啊',
                 // })
-            },
-            fail: function (res) {
-                console.log(res, '登录过期了')
+            // },
+            // fail: function (res) {
+            //     console.log(res, '登录过期了')
                 // wx.showModal({
                 //     title: '提示',
                 //     content: '你的登录信息过期了，请重新登录',
@@ -57,8 +57,8 @@ App({
 
                     }
                 })
-            }
-        });
+        //     }
+        // });
 
 
         // 获取用户信息

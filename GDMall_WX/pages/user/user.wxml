@@ -1,4 +1,4 @@
-<view class='user_info'>
+<view class='user_info' style="background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559553283164&di=d25bfe149496aebad4523f21cbeafc7d&imgtype=0&src=http%3A%2F%2Fp0.qhimgs4.com%2Ft015cf7b924f6b72d29.jpg);">
 
 <block wx:if='{{is_sq==false}}'>
   <button>授权</button>
@@ -18,7 +18,7 @@
       </i-avatar>
        </view>
     </i-col>
-    <i-col span='20'> 
+    <i-col span='16'  offset="4"> 
       <block wx:if='{{nickName!=None}}'>
         <view>{{nickName}}</view>
       </block>
@@ -42,7 +42,7 @@
     </van-col>
     <van-col span='12'> 
       <view bindtap='toCard'>
-        <view style='padding-left:180rpx;'>0</view>
+        <view style='padding-left:180rpx;'>{{card_count}}</view>
         <view style='padding-left:130rpx;color: rgb(133, 133, 133);'>优惠券            </view>
       </view>
     </van-col>

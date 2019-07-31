@@ -10,10 +10,3 @@ class Migration(migrations.Migration):
         ('goods', '0003_commoditybanner'),
     ]
 
-    operations = [
-        migrations.AlterField(
-            model_name='commoditybanner',
-            name='goods',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='goods.Goods', verbose_name='所属产品'),
-        ),
-    ]
