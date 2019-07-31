@@ -6,7 +6,6 @@ from apps.goods.models import *
 import json
 
 from apps.goods.serializers import *
-from apps.user.models import UserBackground
 
 
 class IndexView(APIView):

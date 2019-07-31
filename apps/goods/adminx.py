@@ -1,6 +1,5 @@
 from apps.goods.models import *
 import xadmin
-from apps.user.models import UserBackground
 
 
 class IndexCarouselAdmin(object):

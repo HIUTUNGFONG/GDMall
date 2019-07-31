@@ -182,3 +182,15 @@ class CommodityBanner(BaseModel):
 
     def __str__(self):
         return str(self.goods)
+
+class UserBackground(BaseModel):
+    '''
+    用户页面背景图
+    '''
+    image = models.ImageField(upload_to='UserBackgroundImg', blank=True, verbose_name='背景图片')
+
+
+    class Meta:
+        db_table = 'gd_user_background'
+        verbose_name = '用户页面背景图'
+        verbose_name_plural = verbose_name
