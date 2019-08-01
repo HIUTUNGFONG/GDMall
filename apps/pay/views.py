@@ -18,7 +18,7 @@ wxinfo = {
     'APPID': 'wxc999b4ac2adc328e',
     'SECRET': '8b4f824b7d81a2a2b091eca8c9eeb2ba',
     'MCHID': '1535717001',
-    'MCHKEY': 'guanxinguanxinguanxinguanxin3344'
+    'MCHKEY': 'tJYjdlaqw0c3aGpF0MonfOUhh5JIaW4f'
 }
 
 
