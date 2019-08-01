@@ -1,1 +1,1 @@
-# default_app_config = 'GDMall.apps.card.apps.CardConfig'
+default_app_config = 'apps.card.apps.CardConfig'
