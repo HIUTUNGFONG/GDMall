@@ -1,4 +1,4 @@
-<view class='user_info' style="background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559553283164&di=d25bfe149496aebad4523f21cbeafc7d&imgtype=0&src=http%3A%2F%2Fp0.qhimgs4.com%2Ft015cf7b924f6b72d29.jpg);">
+<view class='user_info' style="{{backgroundImg}}">
 
 <block wx:if='{{is_sq==false}}'>
   <button>授权</button>

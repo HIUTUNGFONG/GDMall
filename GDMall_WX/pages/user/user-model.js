@@ -51,6 +51,15 @@ class User extends Base {
     }
     this.request(params);
   }
+  getBackground(callBack) {
+    var params = {
+      url: 'get/background',
+      sCallBack: function (res) {
+        callBack && callBack(res);
+      }
+    }
+    this.request(params);
+  }
 }
 
 export { User };

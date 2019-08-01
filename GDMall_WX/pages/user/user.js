@@ -22,8 +22,18 @@ Page({
      */
 
     onLoad: function (options) {
+        user.getBackground((res)=>{
+          console.log(res.data[0].image)
+          this.setData({
+            
+            backgroundImg: "background-image: url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/" + res.data[0].image+");"
+          })
+        })
         user.getCard((res)=>{
           this.card_count = res.data.length
+          if(this.card_count==''||this.card_count==undefined){
+            this.card_count = 0
+          }
           console.log(this.card_count)
           this.setData({
             card_count : this.card_count
