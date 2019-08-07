@@ -90,15 +90,17 @@ Page({
          this.count+=this.commodity_list_num;
             this.sum += this.commodity_list_num * this.commodity_list[i].price;
             if(this.card_price>0){
-              var sums = (this.sum - this.card_price).toFixed(2)*100
+              var sums = (this.sum - this.card_price).toFixed(2)
               this.setData({
                 sums:sums
               })
+              console.log(sums)
             }else{
-              var sums = this.sum.toFixed(2) * 100
+              var sums = this.sum.toFixed(2)
               this.setData({
                 sums: sums
               })
+              console.log(sums)
             }
             wx.setStorageSync('order_price', this.sum)
             this.setData({
@@ -110,7 +112,8 @@ Page({
             this.sum += this.commodity_list[i].num * this.commodity_list[i].price;
             wx.setStorageSync('order_price', this.sum)
             this.setData({
-              commodity_list_num:''
+              commodity_list_num:'',
+              sums: this.sum.toFixed(2)
             })
       }
 
