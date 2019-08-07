@@ -32,17 +32,27 @@ Page({
       this.setData({
         'ics':res.ics
       })
-      console.log(res.ics)
+      // console.log(res.ics)
       this.setData({
         'ivobs': res.ivobs[0]
       })
     });
   },
-  onProduct: function (){
+  onProduct: function (e){
+    this.url = e.currentTarget.dataset.url;
+    console.log(this.url)
     // 轮播图跳转
-    wx.navigateTo({
-      url: '../product/product',
-    })
+    if(this.url=='new'){
+      app.globalData.is_query = 2;
+      wx.reLaunch({
+        url: '../goods/goods',
+      });
+    }else if(this.url!='none'){
+      wx.navigateTo({
+        url: "../" + this.url
+      })
+    }
+    
   },
   on_mw_1: function () {
     // 控制男装显示隐藏
@@ -51,6 +61,22 @@ Page({
       showManType: (!that.data.showManType)
     })
 
+  },
+  clickToPage: function(e){
+    var classify = e.currentTarget.dataset.classify
+    var goodsId = e.currentTarget.dataset.goodsid
+    if(classify>0){
+      wx.setStorageSync('classify', classify)
+      app.globalData.is_query = -1;
+      wx.reLaunch({
+        url: '../goods/goods',
+      });
+    }else{
+      wx.navigateTo({
+        url: '../product/product?goodsId=' + goodsId,
+      })
+    }
+    
   },
   onWomen: function(){
     // 跳转女装产品列表页

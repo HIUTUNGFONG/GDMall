@@ -50,16 +50,31 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        if (app.globalData.is_query != 1) {
+        if(app.globalData.is_query == -1){
+          var classify = wx.getStorageSync('classify')
+          goods.getGoodsDataByClassify(1, classify, (res) => {
+            this.setData({ goods_list: res.data });
+            this.goods_list = res.data;
+          })
+          app.globalData.is_query = 0
+        }else if (app.globalData.is_query == 0) {
             // 查询产品列表
             this.getAllGoods();
-        } else {
+        } else if (app.globalData.is_query == 1){
             // 查询女装产品列表
             goods.getGoodsDataBySort(2, (res) => {
                 this.setData({goods_list: res.data});
               
             })
-            console.log('查询成功')
+            // console.log('查询成功')
+            app.globalData.is_query = 0
+        } else if (app.globalData.is_query == 2){
+            // 查询新品产品列表
+            goods.getGoodsDataBySort(3, (res) => {
+              this.setData({ goods_list: res.data });
+
+            })
+            // console.log('查询成功')
             app.globalData.is_query = 0
         }
 
@@ -122,7 +137,7 @@ Page({
         var temp = [];
         if (minPrice == undefined && maxPrice == undefined || minPrice == '' && maxPrice == '') {
             temp = goods_list
-            console.log(goods_list)
+            // console.log(goods_list)
         } else if (minPrice == undefined || minPrice == '') {
             for (var i = 0; i < goods_list.length; i++) {
                 var price = parseFloat(goods_list[i][0].commodity[0].price);
@@ -172,7 +187,7 @@ Page({
                         goods_list[j + 1] = goods_list[j];
                         goods_list[j] = temp
                     }
-            console.log(goods_list);
+            // console.log(goods_list);
             this.setData({goods_list: goods_list})
         }
 
@@ -187,7 +202,7 @@ Page({
                         goods_list[j + 1] = goods_list[j];
                         goods_list[j] = temp
                     }
-            console.log(goods_list);
+            // console.log(goods_list);
             this.setData({goods_list: goods_list})
         }
 
@@ -209,7 +224,7 @@ Page({
                             goods_list[j + 1] = goods_list[j];
                             goods_list[j] = temp
                         }
-                console.log(goods_list);
+                // console.log(goods_list);
                 this.setData({goods_list: goods_list});
                 // 第二次点击取现在的相反值
                 this.setData({price_label: -this.data.price_label});
@@ -224,7 +239,7 @@ Page({
                             goods_list[j + 1] = goods_list[j];
                             goods_list[j] = temp
                         }
-                console.log(goods_list);
+                // console.log(goods_list);
                 this.setData({goods_list: goods_list});
                 // 第二次点击取现在的相反值
                 this.setData({price_label: -this.data.price_label});
@@ -244,7 +259,7 @@ Page({
                         goods_list[j + 1] = goods_list[j];
                         goods_list[j] = temp
                     }
-            console.log(goods_list);
+            // console.log(goods_list);
             this.setData({goods_list: goods_list})
         }
 
@@ -272,8 +287,8 @@ Page({
         // 点击分类事件
         var sort = event.currentTarget.dataset.sort;
         var classify = event.currentTarget.dataset.classify;
-        console.log(sort);
-        console.log(classify);
+        // console.log(sort);
+        // console.log(classify);
         goods.getGoodsDataByClassify(sort, classify, (res) => {
                 this.setData({goods_list: res.data});
                 this.goods_list = res.data;
@@ -294,22 +309,22 @@ Page({
         goods.getGoodsData((res) => {
             this.setData({goods_list: res.data});
             this.goods_list = res.data
-            console.log(res.data)
+            // console.log(res.data)
         })
     },
     // 搜索框搜索事件
     onSearch: function (event) {
         var search_value = event.detail;
-        console.log(search_value);
+        // console.log(search_value);
         goods.getGoodsDataBySearch(search_value, (res) => {
             this.setData({goods_list: res.data});
-            console.log(res.data)
+            // console.log(res.data)
         })
     },
     //跳转到详情页
     onProduct: function (event) {
         var goodsId = event.currentTarget.dataset.goodsid;
-        console.log(goodsId);
+        // console.log(goodsId);
         wx.navigateTo({
             url: '../product/product?goodsId=' + goodsId,
         })
@@ -339,7 +354,7 @@ Page({
             }
             this.commodity_data = res.data;
             this.commodityAttr = res.data.commodityAttr;
-            console.log(this.commodity_data);
+            // console.log(this.commodity_data);
             this.setData({
                 'commodity_data': res.data,
                 'commodity_count': this.commodity_count,
@@ -391,7 +406,7 @@ Page({
         this.setData({
             current: detail.key
         });
-        console.log(detail.key)
+        // console.log(detail.key)
         var tourl = ''
         if (detail.key == 'indexpage') {
             tourl = '../index/index'
@@ -649,8 +664,8 @@ Page({
             })
         } else {
             //加入购物车
-            console.log(this.commodity_id)
-            console.log(this.stepperAttr)
+            // console.log(this.commodity_id)
+            // console.log(this.stepperAttr)
             goods.addCommdityToCart(this.commodity_id, this.stepperAttr, (res) => {
                 var msg = res.msg
                 if (msg == '商品库存不足') {
@@ -691,7 +706,7 @@ Page({
             // wx.setStorageSync('commodityId_list', commodityId_list)
             // wx.setStorageSync('commodityCount_list', commodityCount_list)
             goods.getCommodityById(this.commodity_id,(res)=>{
-                console.log(res.data)
+                // console.log(res.data)
                 wx.setStorageSync('commodity_list', res.data);
                 wx.setStorageSync('commodity_list_num', this.stepperAttr);
 

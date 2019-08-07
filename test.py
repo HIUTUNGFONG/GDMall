@@ -152,12 +152,16 @@
 
 
 # 发送短信
-from common.ShowapiRequest import ShowapiRequest
-
-r = ShowapiRequest("http://route.showapi.com/28-1", "98318", "3ab72c8c1c2b4cd4b60a6e66a6573b3f")
-r.addBodyPara("mobile", "13823568882")
-r.addBodyPara("content", "{\"code\":\""+"123"+"\",\"price\":\""+ "123" +"\"}")
-r.addBodyPara("tNum", "T170317004684")
-r.addBodyPara("big_msg", "")
-res = r.post()
-print(res.text)  # 返回信息
+# from common.ShowapiRequest import ShowapiRequest
+#
+# r = ShowapiRequest("http://route.showapi.com/28-1", "98318", "3ab72c8c1c2b4cd4b60a6e66a6573b3f")
+# r.addBodyPara("mobile", "13823568882")
+# r.addBodyPara("content", "{\"code\":\""+"123"+"\",\"price\":\""+ "123" +"\"}")
+# r.addBodyPara("tNum", "T170317004684")
+# r.addBodyPara("big_msg", "")
+# res = r.post()
+# print(res.text)  # 返回信息
+# import requests
+#
+# data = requests.get('https://aip.baidubce.com/oauth/2.0/token?client_id=KGtfr5utjQdegD3mjgsoA29n&client_secret=EcO7tRSKICo3SedW80x7qmpk1LmPUKhc&grant_type=client_credentials').json()
+# print(data)

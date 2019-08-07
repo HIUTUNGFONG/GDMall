@@ -2,7 +2,7 @@
 
 <swiper class='index_swiper' autoplay='true' circular='true' indicator-dots='true'>
   <swiper-item wx:for='{{ics}}' wx:key='{{index}}'>
-    <image src='{{item.image}}' class='index_swiper' bindtap='onProduct'>轮播图</image>
+    <image src='{{item.image}}' class='index_swiper' bindtap='onProduct' data-url="{{item.url}}">轮播图</image>
   </swiper-item>
 </swiper>
 
@@ -13,7 +13,7 @@
   <video src='{{ivobs.video}}' custom-cache='true' class='index_video'>视频</video>
 </block>
 <block wx:else>
-  <image src='{{ivobs.image}}' class='index_img2'>图片</image>
+  <image src='{{ivobs.image}}' class='index_img2'  bindtap='onProduct' data-url="{{ivobs.url}}">图片</image>
 </block>
 
 <!-- <image src='/temp/index_clothing.png' class='index_img1'>服装</image> -->
@@ -25,23 +25,38 @@
 </view>
 
 <view class='{{showManType?"man_type":"man_type_none"}}'>
-  <!-- <view class='man_classify'>
-    <view class='man_classifys'>分类1</view>
-    <view class='man_classifys'>分类2</view>
+  <view  style='width:100%;height:850rpx;background:url(https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/manlist.png)'>
+    <view class='man_classify'>
+      <view class='man_classifys' data-classify="1" bindtap="clickToPage"></view>
+      <view class='man_classifys' data-classify="2" bindtap="clickToPage"></view>
+    </view>
+    <view class='man_classify'>
+      <view class='man_classifys' data-classify="3" bindtap="clickToPage"></view>
+      <view class='man_classifys' data-classify="4" bindtap="clickToPage"></view>
+    </view>
+    <view class='man_classify'>
+      <view class='man_classifys' data-classify="5" bindtap="clickToPage"></view>
+      <view class='man_classifys' data-classify="6" bindtap="clickToPage"></view>
+    </view>
   </view>
-  <view class='man_classify'>
-    <view class='man_classifys'>分类3</view>
-    <view class='man_classifys'>分类4</view>
-  </view>
-  <view class='man_classify'>
-    <view class='man_classifys'>分类5</view>
-    <view class='man_classifys'>分类6</view>
-  </view> -->
-  <image src='https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/manlist.png' style='width:100%;height:800rpx'></image>
 </view>
 
-<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/3d7cd5af1f7ff580f4a013ff3895024.jpg' class='index_ps'>配饰大图</image>
-<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/864d6ede0b30793288708672ac58612.jpg' class='index_ps'>配饰大图</image>
+
+<!-- 配饰大图 -->
+<view style="background-image:url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/3d7cd5af1f7ff580f4a013ff3895024.jpg)" class='index_ps'>
+    <view class='man_classify'>
+        <view class='commodity_click' data-goodsid="1" bindtap="clickToPage"></view>
+        <view class='commodity_click' data-goodsid="2" bindtap="clickToPage"></view>
+    </view>
+</view>
+<view style="background-image:url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/864d6ede0b30793288708672ac58612.jpg)" class='index_ps'>
+    <view class='man_classify'>
+      <view class='commodity_click' data-goodsid="3" bindtap="clickToPage"></view>
+      <view class='commodity_click' data-goodsid="4" bindtap="clickToPage"></view>
+    </view>
+
+</view>
+
 
 <image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/7ddf63642757eeb3398027c7a69bc3b.jpg' class='index_vip' bindtap='onVip'>vip大图</image>
 

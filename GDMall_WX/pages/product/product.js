@@ -40,7 +40,7 @@ Page({
       this.setData({
         goods_data: res.data[0][0]
       })
-      console.log(res.data[0][0])
+      // console.log(res.data[0][0])
     });
     goods.getGoodsAttribute(this.goodsId,(res)=>{
       // 获取产品属性
