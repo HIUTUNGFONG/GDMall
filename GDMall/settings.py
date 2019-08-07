@@ -192,6 +192,6 @@ SESSION_CACHE_ALIAS = "default"
 
 # CORS
 CORS_ORIGIN_WHITELIST = (
-  '*',
+  '0.0.0.0:0',
 )
 CORS_ALLOW_CREDENTIALS = True # 指明在跨域访问中，后端是否支持对cookie的操作。
