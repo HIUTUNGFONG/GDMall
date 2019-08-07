@@ -161,7 +161,14 @@
 # r.addBodyPara("big_msg", "")
 # res = r.post()
 # print(res.text)  # 返回信息
-# import requests
+import requests
 #
-# data = requests.get('https://aip.baidubce.com/oauth/2.0/token?client_id=KGtfr5utjQdegD3mjgsoA29n&client_secret=EcO7tRSKICo3SedW80x7qmpk1LmPUKhc&grant_type=client_credentials').json()
-# print(data)
+data = requests.get('https://aip.baidubce.com/oauth/2.0/token?client_id=KGtfr5utjQdegD3mjgsoA29n&client_secret=EcO7tRSKICo3SedW80x7qmpk1LmPUKhc&grant_type=client_credentials').json()
+
+token = data['refresh_token']
+dev_pid = '123'
+cuid = '123123'
+url2 = 'http://vop.baidu.com/server_api?dev_pid=' + dev_pid + '&cuid=' + cuid + '&token=' + token
+headers = {'ContentType':"audio/pcm;rate=16000"}
+d = requests.post(url2, headers=headers)
+print(d.json())
