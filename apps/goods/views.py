@@ -91,11 +91,8 @@ class GoodsListViewById(APIView):
     '''
 
     def get(self, request, goods_id):
-        print(goods_id)
         goods = Goods.objects.filter(id=goods_id, is_delete=0).values()
-        print("=============")
-        print(goods)
-        print("=============")
+
         # 获取所有产品
         data_list = []
 
