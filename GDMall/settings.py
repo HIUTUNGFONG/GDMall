@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',  # 添加rest_framework
     'stdimage',  # 上传图片
     'mdeditor',  # markdown
+    'corsheaders',  # 跨域模块
 ]
 
 # 配置使用到的用户模型类
@@ -61,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'GDMall.middlewares.MyDemo',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'GDMall.urls'
@@ -186,3 +187,11 @@ CACHES = {
 # Django 默认可以使用任何 cache backend 作为 session backend, 将 django-redis 作为 session 储存后端不用安装任何额外的 backend
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+
+
+# CORS
+CORS_ORIGIN_WHITELIST = (
+  '*',
+)
+CORS_ALLOW_CREDENTIALS = True # 指明在跨域访问中，后端是否支持对cookie的操作。
