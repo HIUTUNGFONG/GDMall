@@ -309,7 +309,7 @@ Page({
         goods.getGoodsData((res) => {
             this.setData({goods_list: res.data});
             this.goods_list = res.data
-            // console.log(res.data)
+            console.log(res.data)
         })
     },
     // 搜索框搜索事件
