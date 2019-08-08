@@ -206,12 +206,15 @@ class PayView(APIView):
             from common.ShowapiRequest import ShowapiRequest
 
             r = ShowapiRequest("http://route.showapi.com/28-1", "98318", "3ab72c8c1c2b4cd4b60a6e66a6573b3f")
-            r.addBodyPara("mobile", "13823568882")
+            r.addBodyPara("mobile", "18680688861")
             r.addBodyPara("content", "{\"code\":\""+str(out_trade_no)+"\",\"price\":\""+ str(order_info.total_price) +"\"}")
             r.addBodyPara("tNum", "T170317004684")
             r.addBodyPara("big_msg", "")
             res = r.post()
-            print(res.text)  # 返回信息
+            r.addBodyPara("mobile", "19146459712")
+            res = r.post()
+
+            # print(res.text)  # 返回信息
 
             return HttpResponse(
                 """<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>""",

@@ -91,3 +91,7 @@ border-top:1px #eeecec solid;
 .attr_stepper{
     padding-left: 470rpx;
 }
+
+.goods_list{
+  padding-bottom: 80px;
+}
