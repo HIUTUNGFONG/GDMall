@@ -160,7 +160,7 @@ class CreateOrderView(APIView):
         # 删除购物车中对应的记录 sku_ids=[1,2]
         conn.hdel(cart_key, *commodityId_list)
         if(card_token!='no'):
-            user_card = UserCard.objects.get(token=card_token)
+            user_card = UserCard.objects.get(card_token=card_token)
             user_card.is_use = True
         # 返回应答
         return Response({'msg': '订单创建成功', 'order_id': order_id})
