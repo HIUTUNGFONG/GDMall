@@ -39,6 +39,16 @@ class CreateOrderView(APIView):
         discount_price = data['card_price']
         card_token = data['card_token']
         open_id = PublicFunction().getOpenIdByToken(token)
+        print('-------------------------')
+        print(commodityId_list)
+        print(address_id)
+        print(note)
+        print(token)
+        print(commodity_num)
+        print(discount_price)
+        print(card_token)
+        print(open_id)
+        print('-------------------------')
 
         # 参数校验
         if not all([commodityId_list, address_id, token]):
@@ -134,6 +144,11 @@ class CreateOrderView(APIView):
             # 更新order对应记录中的total_count和total_price
             order.total_count = total_count
             order.total_price = round(float(total_price) + float(transit_price) - float(discount_price),2)
+
+            print('-------------------------')
+            print(order.total_price)
+            print('-------------------------')
+
             order.commodity_total_price = total_price
             order.save()
         except Exception as e:
