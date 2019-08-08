@@ -309,7 +309,8 @@ class OrderByOrderIdView(APIView):
                     'transit_price': order_info.transit_price,
                     'courier_number':order_info.courier_number,
                     'returns_number':order_info.returns_number,
-                    'order_list': orders,
+                    'discount_pric': order_info.discount_price,
+                    'order_list': orders
                 }
             except:
                 return Response({'msg': '无订单信息'})
