@@ -42,17 +42,27 @@ Page({
           var validity_time = new Date(res.card_list[i].card[0].validity).getTime();
           // 获取使用金额
           var min_price = res.card_list[i].card[0].min_price;
-          if (validity_time >= this.now_time&&this.order_price>=min_price) {
-            var temp = [];
-            temp.push(res.card_list[i].card);
-            temp.push(res.card_list[i].card_token);
-            card_list_1.push(temp);
-          } else {
+          if (res.card_list[i].is_use==true){
+            // 如果已使用，直接加入到无效券
             var temp = [];
             temp.push(res.card_list[i].card);
             temp.push(res.card_list[i].card_token);
             card_list_2.push(temp);
+
+          }else{
+            if (validity_time >= this.now_time && this.order_price >= min_price) {
+              var temp = [];
+              temp.push(res.card_list[i].card);
+              temp.push(res.card_list[i].card_token);
+              card_list_1.push(temp);
+            } else {
+              var temp = [];
+              temp.push(res.card_list[i].card);
+              temp.push(res.card_list[i].card_token);
+              card_list_2.push(temp);
+            }
           }
+          
         }
       }else{
         for (var i = 0; i < res.card_list.length; i++) {

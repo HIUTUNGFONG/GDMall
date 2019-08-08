@@ -153,6 +153,7 @@ class CreateOrderView(APIView):
         if(card_token!='no'):
             user_card = UserCard.objects.get(card_token=card_token)
             user_card.is_use = True
+            user_card.save()
         # 返回应答
         return Response({'msg': '订单创建成功', 'order_id': order_id})
 
