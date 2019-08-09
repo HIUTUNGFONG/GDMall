@@ -87,7 +87,7 @@
         </van-row>
         <van-row>
             <van-col offset='1' span='18' class='bottom_text'>优惠金额：</van-col>
-            <van-col span='5' class='bottom_text'>￥0</van-col>
+            <van-col span='5' class='bottom_text'>￥{{ order_info.discount_pric }}</van-col>
         </van-row>
         <van-row>
             <van-col offset='1' span='18' class='bottom_text'>运费：</van-col>

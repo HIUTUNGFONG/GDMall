@@ -45,9 +45,12 @@ Page({
      */
     onLoad: function (options) {
         cart.getCartList((res) => {
-          // console.log(res)
+          console.log(res)
           if(res.msg=='购物车无商品'){
             //添加变量控制跳转到首页
+            this.setData({
+              toGoods:'yes'
+            })
           }else{
             this.carts = res.commodity_list;
             console.log(this.carts)

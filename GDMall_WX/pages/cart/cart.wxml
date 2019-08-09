@@ -4,8 +4,15 @@
 </view>
  -->
 <view class="cart_body">
-
+    <block wx:if='{{toGoods}}'>
+      <view class="no_list" style="padding-top:300px;padding-left:37%">
+        
+        <text style="color:rgb(195,195,195);">购物车无商品</text>
+      </view>
+    </block>
+    <block wx:else>
     <view class="list" wx:for="{{ carts }}">
+        
         <view class="choose">
             <view class="option {{ item.selected == true?'selected':'selected1'}}" data-num="{{ index }}" data-id="{{ item.id }}"
                   bindtap="selected"></view>
@@ -27,6 +34,7 @@
             </view>
         </view>
     </view>
+    </block>
 </view>
 
 

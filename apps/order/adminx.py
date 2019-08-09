@@ -2,21 +2,12 @@ from apps.order.models import *
 import xadmin
 
 class OrderInfoAdmin(object):
-    pass
+    list_display = ['id', 'create_time', 'order_id','name','phone','address','commodity_total_price','state','complete_time','note']
 class OrderListAdmin(object):
-    pass
+    list_display = ['id','create_time','commodity','commodity_specifications','commodity_count']
 class WxOrderAdmin(object):
-    pass
-class ClassifyAdmin(object):
-    pass
-class GoodsAdmin(object):
-    pass
-class GoodsImageAdmin(object):
-    pass
-class AttributeAdmin(object):
-    pass
-class CommodityAdmin(object):
-    pass
+    list_display = ['id','create_time','wx_order','pay_time']
+
 
 
 xadmin.site.register(OrderInfo, OrderInfoAdmin)
