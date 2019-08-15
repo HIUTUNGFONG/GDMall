@@ -6,7 +6,9 @@
   </swiper-item>
 </swiper>
 
-<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/8e77e984dce76c7f20b7e72e99a6ef7.jpg' class='top_logo_2'>首页无连接图片</image>
+<view>
+  <image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/topimg.jpg' class='top_logo_2' mode="widthFix">首页无连接图片</image>
+</view>
 
 
 <block wx:if="{{ivobs.show_type==1}}">
@@ -19,13 +21,14 @@
 <!-- <image src='/temp/index_clothing.png' class='index_img1'>服装</image> -->
 
 <view class='man_woman'>
-  <image src='{{mwImageUrl}}' class='man_woman'>男装女装</image>
+  <image src='{{mwImageUrl}}' class='man_woman' mode="widthFix">男装女装</image>
   <view class='mw_1' bindtap='on_mw_1'></view>
-  <view class='mw_2' bindtap='onWomen'></view>
+  <view class='mw_2' ></view>
+  <!-- <view class='mw_2' bindtap='onWomen'></view> -->
 </view>
 
 <view class='{{showManType?"man_type":"man_type_none"}}'>
-  <view  style='width:100%;height:850rpx;background:url(https://grotesquery.oss-cn-shenzhen.aliyuncs.com/media/Banner/manlist.png)'>
+  <view  style='width:100%;height:850rpx;background-image:url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/six.jpg);background-repeat:no-repeat;background-size:100% 100%;'>
     <view class='man_classify'>
       <view class='man_classifys' data-classify="1" bindtap="clickToPage"></view>
       <view class='man_classifys' data-classify="2" bindtap="clickToPage"></view>
@@ -42,26 +45,28 @@
 </view>
 
 
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/topimg_2.jpg' class='top_logo_2' mode="widthFix">首页无连接图片</image>
+
 <!-- 配饰大图 -->
-<view style="background-image:url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/3d7cd5af1f7ff580f4a013ff3895024.jpg)" class='index_ps'>
+<view style="background-image:url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/index_goods_1.jpg);background-repeat:no-repeat;background-size:100% 100%;" class='index_ps'>
     <view class='man_classify'>
-        <view class='commodity_click' data-goodsid="1" bindtap="clickToPage"></view>
         <view class='commodity_click' data-goodsid="2" bindtap="clickToPage"></view>
+        <view class='commodity_click' data-goodsid="19" bindtap="clickToPage"></view>
     </view>
 </view>
-<view style="background-image:url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/864d6ede0b30793288708672ac58612.jpg)" class='index_ps'>
+<view style="background-image:url(https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/index_goods_2.jpg);background-repeat:no-repeat;background-size:100% 100%;" class='index_ps'>
     <view class='man_classify'>
-      <view class='commodity_click' data-goodsid="3" bindtap="clickToPage"></view>
-      <view class='commodity_click' data-goodsid="4" bindtap="clickToPage"></view>
+      <view class='commodity_click' data-goodsid="33" bindtap="clickToPage"></view>
+      <view class='commodity_click' data-goodsid="32" bindtap="clickToPage"></view>
     </view>
 
 </view>
 
 
-<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/7ddf63642757eeb3398027c7a69bc3b.jpg' class='index_vip' bindtap='onVip'>vip大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/vip.jpg' class='index_vip' bindtap='onVip' mode="widthFix" >vip大图</image>
 
-<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/4ffdbf0f1f6e74298001230b5f7a03e.jpg' class='index_ps_max_1'>本店声明大图</image>
-<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/82016ba9190df0d40304883fceb0795.jpg' class='index_ps_max_2'>本店声明大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/bdsm.jpg' class='index_ps_max_1' mode="widthFix" >本店声明大图</image>
+<image src='https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/gs.jpg' class='index_ps_max_2' mode="widthFix" >公司联系方式</image>
 
 <!-- 底部tabbar -->
 <i-tab-bar current="{{ current }}" color="rgb(66, 66, 66)" bindchange="handleChange" fixed='true'>

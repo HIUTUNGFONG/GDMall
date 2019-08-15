@@ -70,10 +70,12 @@ Page({
             app.globalData.is_query = 0
         } else if (app.globalData.is_query == 2){
             // 查询新品产品列表
-            goods.getGoodsDataBySort(3, (res) => {
-              this.setData({ goods_list: res.data });
+            // goods.getGoodsDataBySort(3, (res) => {
+            //   this.setData({ goods_list: res.data });
 
-            })
+            // })
+          // 查询产品列表
+          this.getAllGoods();
             // console.log('查询成功')
             app.globalData.is_query = 0
         }

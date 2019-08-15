@@ -11,7 +11,7 @@ var index = new Index();
 Page({
   data: {
     vp:true,  //视频或图片栏控制显示参数
-    showManType:false,mwImageUrl:'https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/86847ed413c4c738ee6dafdc0a08529.jpg',
+    showManType: false, mwImageUrl:'https://grotesquery-mall.oss-cn-shenzhen.aliyuncs.com/media/common/man_woman.jpg',
     current: 'indexpage',  //底部导航栏参数
   },
   //事件处理函数
